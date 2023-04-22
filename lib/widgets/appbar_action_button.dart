@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/utils/styles.dart';
+import 'package:flutter_sudoku/utils/app_colors.dart';
 
 class AppBarActionButton extends StatelessWidget {
   const AppBarActionButton({
@@ -17,7 +17,7 @@ class AppBarActionButton extends StatelessWidget {
       onPressed: onPressed,
       icon: Icon(
         icon,
-        color: Styles.appBarActionsColor,
+        color: AppColors.appBarActions,
       ),
       iconSize: 28,
       splashRadius: 26,
