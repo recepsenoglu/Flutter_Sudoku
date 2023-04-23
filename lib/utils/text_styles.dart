@@ -11,6 +11,24 @@ class AppTextStyles {
     color: AppColors.gameInfoValue,
   );
 
+  static final _givenNumber = TextStyle(
+    color: AppColors.givenNumber,
+    fontSize: 30,
+  );
+
+  static final _enteredNumber = TextStyle(
+    color: AppColors.enteredNumber,
+    fontSize: 30,
+  );
+
+  static final _wrongNumber = TextStyle(
+    color: AppColors.wrongNumber,
+    fontSize: 30,
+  );
+
   static TextStyle get gameInfoTitle => _gameInfoTitle;
   static TextStyle get gameInfoValue => _gameInfoValue;
+  static TextStyle get givenNumber => _givenNumber;
+  static TextStyle get enteredNumber => _enteredNumber;
+  static TextStyle get wrongNumber => _wrongNumber;
 }

@@ -13,7 +13,7 @@ class AppColors {
   static const _gameInfoValue = Color(0xFF888B97);
 
   static const _boardBorder = Colors.black;
-  static const _boardLine = Color(0xFFC2CAD5);
+  static const _cellBorder = Color(0xFFC2CAD5);
 
   static const _cell = Colors.white;
   static const _selectedCell = Color(0xFFB2DFFE);
@@ -25,7 +25,7 @@ class AppColors {
   static const _givenNumber = Colors.black;
   static const _wrongNumber = Color(0xFFD70942);
   static const _noteNumber = Color(0xFF99989C);
-  static const _highlightedNoteNumber = Color(0xFF99989C);
+  static const _highlightedNoteNumber = Colors.black;
 
   static const _pauseIcon = Color(0xFF888B97);
   static const _pauseButton = Color(0xFFE3ECF3);
@@ -46,7 +46,7 @@ class AppColors {
   static get gameInfoValue => _gameInfoValue;
 
   static get boardBorder => _boardBorder;
-  static get boardLine => _boardLine;
+  static get cellBorder => _cellBorder;
 
   static get cell => _cell;
   static get selectedCell => _selectedCell;
