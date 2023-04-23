@@ -136,7 +136,7 @@ class SudokuBoard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    double borderWidth = 3;
+    double borderWidth = 2;
     double cellBorderWidth = 1.5;
 
     return Container(
@@ -218,12 +218,14 @@ class NoteCell extends StatelessWidget {
           physics: const NeverScrollableScrollPhysics(),
           itemCount: 9,
           itemBuilder: (_, i) {
-            return Center(
-              child: Text(
-                (i + 1).toString(),
-                style: i != 5
-                    ? AppTextStyles.noteNumber
-                    : AppTextStyles.highlightedNoteNumber,
+            return FittedBox(
+              child: Center(
+                child: Text(
+                  (i + 1).toString(),
+                  style: i != 5
+                      ? AppTextStyles.noteNumber
+                      : AppTextStyles.highlightedNoteNumber,
+                ),
               ),
             );
           }),
