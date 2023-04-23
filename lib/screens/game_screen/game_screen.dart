@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_sudoku/constant/app_strings.dart';
 import 'package:flutter_sudoku/constant/enums.dart';
+import 'package:flutter_sudoku/models/cell_model.dart';
+import 'package:flutter_sudoku/screens/game_screen/game_screen_provider.dart';
 import 'package:flutter_sudoku/utils/app_colors.dart';
 import 'package:flutter_sudoku/utils/text_styles.dart';
 import 'package:flutter_sudoku/widgets/action_button/action_button.dart';
@@ -12,6 +14,7 @@ import 'package:flutter_sudoku/widgets/appBar_action_button.dart';
 import 'package:flutter_sudoku/widgets/game_info_widget.dart';
 import 'package:flutter_sudoku/widgets/sudoku_board/horizontal_lines.dart';
 import 'package:flutter_sudoku/widgets/sudoku_board/vertical_lines.dart';
+import 'package:provider/provider.dart';
 
 class GameScreen extends StatelessWidget {
   const GameScreen({super.key});
@@ -21,21 +24,26 @@ class GameScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: const GameAppBar(),
-      body: Column(
-        children: const [
-          GameInfo(
-            difficulty: Difficulty.Easy,
-            mistakes: 1,
-            score: 100,
-            time: 149,
-          ),
-          SudokuBoard(),
-          Spacer(),
-          ActionButtons(),
-          Spacer(),
-          NumberButtons(),
-          Spacer(flex: 1),
-        ],
+      body: ChangeNotifierProvider<GameScreenProvider>(
+        create: (context) => GameScreenProvider(),
+        child: Consumer<GameScreenProvider>(builder: (context, provider, _) {
+          return Column(
+            children: [
+              const GameInfo(
+                difficulty: Difficulty.Easy,
+                mistakes: 1,
+                score: 100,
+                time: 149,
+              ),
+              SudokuBoard(provider: provider),
+              const Spacer(),
+              const ActionButtons(),
+              const Spacer(),
+              const NumberButtons(),
+              const Spacer(flex: 1),
+            ],
+          );
+        }),
       ),
     );
   }
@@ -130,8 +138,11 @@ class NumberButtons extends StatelessWidget {
 
 class SudokuBoard extends StatelessWidget {
   const SudokuBoard({
+    required this.provider,
     super.key,
   });
+
+  final GameScreenProvider provider;
 
   @override
   Widget build(BuildContext context) {
@@ -164,7 +175,7 @@ class SudokuBoard extends StatelessWidget {
               crossAxisSpacing: borderWidth,
             ),
             itemCount: 9,
-            itemBuilder: (context, index) {
+            itemBuilder: (context, boxIndex) {
               return Stack(
                 children: [
                   VerticalLines(
@@ -183,9 +194,12 @@ class SudokuBoard extends StatelessWidget {
                       crossAxisSpacing: cellBorderWidth,
                     ),
                     itemCount: 9,
-                    itemBuilder: (context, index) {
-                      if (index % 2 == 0) {
-                        return NumberCell(index: index);
+                    itemBuilder: (context, boxCellIndex) {
+                      CellModel cellModel = provider.sudokuBoard
+                          .getCellByBoxIndex(boxIndex, boxCellIndex);
+
+                      if (!cellModel.isNoteCell) {
+                        return NumberCell(cell: cellModel);
                       }
 
                       return const NoteCell();
@@ -235,11 +249,11 @@ class NoteCell extends StatelessWidget {
 
 class NumberCell extends StatelessWidget {
   const NumberCell({
-    required this.index,
+    required this.cell,
     super.key,
   });
 
-  final int index;
+  final CellModel cell;
 
   @override
   Widget build(BuildContext context) {
@@ -247,8 +261,8 @@ class NumberCell extends StatelessWidget {
       color: Colors.white,
       child: Center(
         child: Text(
-          ((index % 9) + 1).toString(),
-          style: index % 2 == 0
+          cell.print(),
+          style: cell.isGivenNumber
               ? AppTextStyles.givenNumber
               : AppTextStyles.enteredNumber,
         ),
