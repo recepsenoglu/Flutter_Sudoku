@@ -29,7 +29,11 @@ class AppColors {
 
   static const _pauseIcon = Color(0xFF888B97);
   static const _pauseButton = Color(0xFFE3ECF3);
+
   static const _actionButton = Color(0xFF6F7583);
+  static const _actionInfoBg = Color(0xFF3358AB);
+  static const _actionInfoBgDeactive = Color(0xFFAEB5C3);
+  static const _actionInfoText = Colors.white;
 
   static const _numberButton = Color(0xFF355DA9);
   static const _noteButton = Color(0xFF616B7D);
@@ -62,7 +66,11 @@ class AppColors {
 
   static get pauseIcon => _pauseIcon;
   static get pauseButton => _pauseButton;
+
   static get actionButton => _actionButton;
+  static get actionInfoBg => _actionInfoBg;
+  static get actionInfoBgDeactive => _actionInfoBgDeactive;
+  static get actionInfoText => _actionInfoText;
 
   static get numberButton => _numberButton;
   static get noteButton => _noteButton;

@@ -4,6 +4,9 @@ import 'package:flutter_sudoku/constant/app_strings.dart';
 import 'package:flutter_sudoku/constant/enums.dart';
 import 'package:flutter_sudoku/utils/app_colors.dart';
 import 'package:flutter_sudoku/utils/text_styles.dart';
+import 'package:flutter_sudoku/widgets/action_button/action_icon.dart';
+import 'package:flutter_sudoku/widgets/action_button/hints_amount_circle.dart';
+import 'package:flutter_sudoku/widgets/action_button/note_switch_widget.dart';
 import 'package:flutter_sudoku/widgets/appBar_action_button.dart';
 import 'package:flutter_sudoku/widgets/game_info_widget.dart';
 import 'package:flutter_sudoku/widgets/sudoku_board/horizontal_lines.dart';
@@ -27,9 +30,108 @@ class GameScreen extends StatelessWidget {
           ),
           SudokuBoard(),
           Spacer(),
-          NumberButtons(),
+          ActionButtons(),
           Spacer(),
+          NumberButtons(),
+          Spacer(flex: 2),
         ],
+      ),
+    );
+  }
+}
+
+class ActionButtons extends StatelessWidget {
+  const ActionButtons({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          ActionButton(
+            title: Strings.undo,
+            iconWidget: const ActionIcon(Icons.refresh),
+            onTap: () {},
+          ),
+          ActionButton(
+            title: Strings.erase,
+            iconWidget: const ActionIcon(Icons.delete),
+            onTap: () {},
+          ),
+          ActionButton(
+            title: Strings.notes,
+            iconWidget: Align(
+              alignment: Alignment.centerRight,
+              child: Stack(
+                children: const [
+                  ActionIcon(
+                    Icons.drive_file_rename_outline_outlined,
+                    rightPadding: 16,
+                  ),
+                  NotesSwitchWidget(notesOn: true),
+                ],
+              ),
+            ),
+            onTap: () {},
+          ),
+          ActionButton(
+            title: Strings.hint,
+            onTap: () {},
+            iconWidget: Align(
+              alignment: Alignment.centerRight,
+              child: Stack(
+                children: const [
+                  ActionIcon(Icons.lightbulb_outlined, rightPadding: 12),
+                  HintsAmountCircle(hints: 3),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ActionButton extends StatelessWidget {
+  const ActionButton({
+    required this.title,
+    required this.iconWidget,
+    required this.onTap,
+    super.key,
+  });
+
+  final String title;
+  final Widget iconWidget;
+  final Function() onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(10),
+        child: Container(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20,
+            vertical: 0,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              iconWidget,
+              const SizedBox(height: 6),
+              Text(
+                title,
+                style: AppTextStyles.actionButton,
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -50,11 +152,7 @@ class NumberButtons extends StatelessWidget {
           9,
           (index) => Text(
             (index + 1).toString(),
-            style: TextStyle(
-              color: AppColors.numberButton,
-              fontSize: 34,
-              fontWeight: FontWeight.w500,
-            ),
+            style: AppTextStyles.numberButton,
           ),
         ),
       ),
@@ -155,12 +253,9 @@ class NoteCell extends StatelessWidget {
             return Center(
               child: Text(
                 (i + 1).toString(),
-                style: TextStyle(
-                  color: i != 5
-                      ? AppColors.noteNumber
-                      : AppColors.highlightedNoteNumber,
-                  fontSize: 12,
-                ),
+                style: i != 5
+                    ? AppTextStyles.noteNumber
+                    : AppTextStyles.highlightedNoteNumber,
               ),
             );
           }),
@@ -291,10 +386,7 @@ class GameAppBar extends StatelessWidget with PreferredSizeWidget {
       elevation: 0,
       title: Text(
         Strings.appBarTitle,
-        style: TextStyle(
-          color: AppColors.appBarTitle,
-          fontWeight: FontWeight.bold,
-        ),
+        style: AppTextStyles.appBarTitle,
       ),
       leading:
           AppBarActionButton(icon: Icons.arrow_back_ios_new, onPressed: () {}),
