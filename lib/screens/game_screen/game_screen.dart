@@ -202,7 +202,7 @@ class SudokuBoard extends StatelessWidget {
                         return NumberCell(cell: cellModel);
                       }
 
-                      return const NoteCell();
+                      return NoteCell(cell: cellModel);
                     },
                   ),
                 ],
@@ -217,8 +217,11 @@ class SudokuBoard extends StatelessWidget {
 
 class NoteCell extends StatelessWidget {
   const NoteCell({
+    required this.cell,
     super.key,
   });
+
+  final CellModel cell;
 
   @override
   Widget build(BuildContext context) {
@@ -228,20 +231,25 @@ class NoteCell extends StatelessWidget {
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3,
           ),
-          padding: const EdgeInsets.all(2),
+          padding: const EdgeInsets.all(1.5),
           physics: const NeverScrollableScrollPhysics(),
           itemCount: 9,
           itemBuilder: (_, i) {
-            return FittedBox(
-              child: Center(
-                child: Text(
-                  (i + 1).toString(),
-                  style: i != 5
-                      ? AppTextStyles.noteNumber
-                      : AppTextStyles.highlightedNoteNumber,
+            final int number = i + 1;
+            if (cell.notesContains(number)) {
+              return FittedBox(
+                child: Center(
+                  child: Text(
+                    number.toString(),
+                    style: i != 7
+                        ? AppTextStyles.noteNumber
+                        : AppTextStyles.highlightedNoteNumber,
+                  ),
                 ),
-              ),
-            );
+              );
+            } else {
+              return const SizedBox.shrink();
+            }
           }),
     );
   }
@@ -258,16 +266,46 @@ class NumberCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
-      child: Center(
-        child: Text(
-          cell.print(),
-          style: cell.isGivenNumber
-              ? AppTextStyles.givenNumber
-              : AppTextStyles.enteredNumber,
+      padding: const EdgeInsets.all(2),
+      color: getCellColor(cell),
+      child: FittedBox(
+        child: Center(
+          child: Text(
+            cell.print(),
+            style: getStyle(cell),
+          ),
         ),
       ),
     );
+  }
+
+  Color getCellColor(CellModel cell) {
+    if (cell.isSelected) {
+      return AppColors.selectedCell;
+    } else if (cell.hasValue && !cell.isValueCorrect && !cell.isGivenNumber) {
+      return AppColors.wrongNumberCell;
+    } else if (cell.isHighlighted) {
+      if (cell.value == 9) {
+        return AppColors.highlightedNumberCell;
+      } else {
+        return AppColors.highlightedCell;
+      }
+    } else {
+      return AppColors.cell;
+    }
+  }
+
+  TextStyle? getStyle(CellModel cell) {
+    if (cell.hasValue) {
+      if (cell.isGivenNumber) {
+        return AppTextStyles.givenNumber;
+      } else if (cell.isValueCorrect) {
+        return AppTextStyles.enteredNumber;
+      } else {
+        return AppTextStyles.wrongNumber;
+      }
+    }
+    return null;
   }
 }
 

@@ -31,6 +31,7 @@ class AppTextStyles {
   );
   static final _noteNumber = TextStyle(
     color: AppColors.noteNumber,
+    fontWeight: FontWeight.w600,
     fontSize: 14,
   );
   static final _highlightedNoteNumber = TextStyle(

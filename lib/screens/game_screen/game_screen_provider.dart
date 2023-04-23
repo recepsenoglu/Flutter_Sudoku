@@ -21,13 +21,17 @@ class GameScreenProvider with ChangeNotifier {
       for (var x = 0; x < 9; x++) {
         final CellPositionModel position = CellPositionModel(x: x, y: y);
 
+        int realValue = x % 2 == 0 ? 9 : 1;
+        int value = x % 2 == 0 ? realValue : 7;
+
         final cell = CellModel(
-          realValue: y * 8 + x,
-          isGivenNumber: (x + 1) % 3 == 0 && (y + 1) % 3 == 0 ||
-              x  % 3 == 0 && y % 3 == 0,
-          isNoteCell: false,
-          notes: [],
+          value: value,
+          realValue: realValue,
           position: position,
+          isGivenNumber:
+              (x + 1) % 3 == 0 && (y + 1) % 3 == 0 || x % 3 == 0 && y % 3 == 0,
+          isNoteCell: x % 2 == 0,
+          notes: [1,8],
         );
 
         if (cells.length <= y) {
