@@ -150,9 +150,16 @@ class NumberButtons extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: List.generate(
           9,
-          (index) => Text(
-            (index + 1).toString(),
-            style: AppTextStyles.numberButton,
+          (index) => InkWell(
+            onTap: () {},
+            borderRadius: BorderRadius.circular(8),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 10),
+              child: Text(
+                (index + 1).toString(),
+                style: AppTextStyles.numberButton,
+              ),
+            ),
           ),
         ),
       ),
