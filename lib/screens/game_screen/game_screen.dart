@@ -26,7 +26,37 @@ class GameScreen extends StatelessWidget {
             time: 149,
           ),
           SudokuBoard(),
+          Spacer(),
+          NumberButtons(),
+          Spacer(),
         ],
+      ),
+    );
+  }
+}
+
+class NumberButtons extends StatelessWidget {
+  const NumberButtons({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 26),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: List.generate(
+          9,
+          (index) => Text(
+            (index + 1).toString(),
+            style: TextStyle(
+              color: AppColors.numberButton,
+              fontSize: 34,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
       ),
     );
   }
