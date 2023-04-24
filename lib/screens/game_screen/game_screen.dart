@@ -6,6 +6,7 @@ import 'package:flutter_sudoku/models/cell_model.dart';
 import 'package:flutter_sudoku/screens/game_screen/game_screen_provider.dart';
 import 'package:flutter_sudoku/utils/app_colors.dart';
 import 'package:flutter_sudoku/utils/text_styles.dart';
+import 'package:flutter_sudoku/utils/utils.dart';
 import 'package:flutter_sudoku/widgets/action_button/action_button.dart';
 import 'package:flutter_sudoku/widgets/action_button/action_icon.dart';
 import 'package:flutter_sudoku/widgets/action_button/hints_amount_circle.dart';
@@ -198,11 +199,22 @@ class SudokuBoard extends StatelessWidget {
                       CellModel cellModel = provider.sudokuBoard
                           .getCellByBoxIndex(boxIndex, boxCellIndex);
 
-                      if (!cellModel.isNoteCell) {
-                        return NumberCell(cell: cellModel);
-                      }
-
-                      return NoteCell(cell: cellModel);
+                      return InkWell(
+                        onTap: () => provider.cellOnTap(cellModel),
+                        child: (() {
+                          if (!cellModel.isNoteCell) {
+                            return NumberCell(
+                              cell: cellModel,
+                              selectedCell: provider.selectedCell,
+                            );
+                          } else {
+                            return NoteCell(
+                              cell: cellModel,
+                              selectedCell: provider.selectedCell,
+                            );
+                          }
+                        }()),
+                      );
                     },
                   ),
                 ],
@@ -218,15 +230,17 @@ class SudokuBoard extends StatelessWidget {
 class NoteCell extends StatelessWidget {
   const NoteCell({
     required this.cell,
+    required this.selectedCell,
     super.key,
   });
 
   final CellModel cell;
+  final CellModel selectedCell;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: getCellColor(cell, selectedCell),
       child: GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3,
@@ -241,9 +255,9 @@ class NoteCell extends StatelessWidget {
                 child: Center(
                   child: Text(
                     number.toString(),
-                    style: i != 7
-                        ? AppTextStyles.noteNumber
-                        : AppTextStyles.highlightedNoteNumber,
+                    style: number == selectedCell.value
+                        ? AppTextStyles.highlightedNoteNumber
+                        : AppTextStyles.noteNumber,
                   ),
                 ),
               );
@@ -258,16 +272,18 @@ class NoteCell extends StatelessWidget {
 class NumberCell extends StatelessWidget {
   const NumberCell({
     required this.cell,
+    required this.selectedCell,
     super.key,
   });
 
   final CellModel cell;
+  final CellModel selectedCell;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(2),
-      color: getCellColor(cell),
+      color: getCellColor(cell, selectedCell),
       child: FittedBox(
         child: Center(
           child: Text(
@@ -277,35 +293,6 @@ class NumberCell extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Color getCellColor(CellModel cell) {
-    if (cell.isSelected) {
-      return AppColors.selectedCell;
-    } else if (cell.hasValue && !cell.isValueCorrect && !cell.isGivenNumber) {
-      return AppColors.wrongNumberCell;
-    } else if (cell.isHighlighted) {
-      if (cell.value == 9) {
-        return AppColors.highlightedNumberCell;
-      } else {
-        return AppColors.highlightedCell;
-      }
-    } else {
-      return AppColors.cell;
-    }
-  }
-
-  TextStyle? getStyle(CellModel cell) {
-    if (cell.hasValue) {
-      if (cell.isGivenNumber) {
-        return AppTextStyles.givenNumber;
-      } else if (cell.isValueCorrect) {
-        return AppTextStyles.enteredNumber;
-      } else {
-        return AppTextStyles.wrongNumber;
-      }
-    }
-    return null;
   }
 }
 

@@ -33,5 +33,5 @@ class CellModel {
       ? realValue.toString()
       : hasValue
           ? value.toString()
-          : 'a';
+          : ' ';
 }

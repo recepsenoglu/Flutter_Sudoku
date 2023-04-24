@@ -1,11 +1,13 @@
 class CellPositionModel {
-  final int x;
   final int y;
+  final int x;
 
   CellPositionModel({
-    required this.x,
     required this.y,
+    required this.x,
   });
 
-  int get boxIndex => y + (x / 3).floor();
+  int get boxIndex => 3 * (y / 3).floor() + (x / 3).floor();
+
+  String print() => 'y: $y, x: $x,   box: $boxIndex\n';
 }
