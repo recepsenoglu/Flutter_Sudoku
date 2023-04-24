@@ -51,6 +51,12 @@ class AppTextStyles {
     fontSize: 34,
   );
 
+  static final _noteButton = TextStyle(
+    color: AppColors.noteButton,
+    fontWeight: FontWeight.w500,
+    fontSize: 34,
+  );
+
   static TextStyle get appBarTitle => _appBarTitle;
 
   static TextStyle get gameInfoTitle => _gameInfoTitle;
@@ -65,4 +71,5 @@ class AppTextStyles {
   static TextStyle get actionButton => _actionButton;
 
   static TextStyle get numberButton => _numberButton;
+  static TextStyle get noteButton => _noteButton;
 }

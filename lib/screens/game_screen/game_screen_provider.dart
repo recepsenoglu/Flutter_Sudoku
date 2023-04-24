@@ -6,6 +6,7 @@ import 'package:flutter_sudoku/models/cell_position_model.dart';
 class GameScreenProvider with ChangeNotifier {
   late BoardModel sudokuBoard;
   late CellModel selectedCell;
+  bool notesMode = false;
 
   GameScreenProvider() {
     _init();
@@ -41,8 +42,7 @@ class GameScreenProvider with ChangeNotifier {
           realValue: realValue,
           position: position,
           isGivenNumber: isGiven,
-          isNoteCell: isNoteCell,
-          notes: [1, 8],
+          notes: isNoteCell ? [1, 8] : [],
         );
 
         if (cells.length <= y) {
@@ -59,17 +59,15 @@ class GameScreenProvider with ChangeNotifier {
   void cellOnTap(CellModel cellModel) {
     _selectCell(cellModel);
     _highlightCells(cellModel);
+    notifyListeners();
   }
 
   void _selectCell(CellModel cellModel) {
-    selectedCell.isSelected = false;
-    sudokuBoard.updateCell(selectedCell);
-
-    cellModel.isSelected = true;
-    sudokuBoard.updateCell(cellModel);
-
     selectedCell = cellModel;
-    notifyListeners();
+  }
+
+  void _updateSelectedCell() {
+    sudokuBoard.updateCell(selectedCell);
   }
 
   void _highlightCells(CellModel cellModel) {
@@ -78,17 +76,15 @@ class GameScreenProvider with ChangeNotifier {
     sudokuBoard.allCells
         .where(
       (element) =>
-          element.position.x == cellModel.position.x ||
-          element.position.y == cellModel.position.y ||
-          element.position.boxIndex == cellModel.position.boxIndex ||
+          // element.position.x == cellModel.position.x ||
+          // element.position.y == cellModel.position.y ||
+          // element.position.boxIndex == cellModel.position.boxIndex ||
           element.hasValue && element.value == cellModel.value,
     )
         .forEach((element) {
       element.isHighlighted = true;
       sudokuBoard.updateCell(element);
     });
-
-    notifyListeners();
   }
 
   void _removeAllHighlights() {
@@ -98,7 +94,63 @@ class GameScreenProvider with ChangeNotifier {
       element.isHighlighted = false;
       sudokuBoard.updateCell(element);
     });
+  }
 
+  void numberButtonOnTap(int number) {
+    if (!selectedCell.isGivenNumber && !selectedCell.isValueCorrect) {
+      if (notesMode) {
+        _enterNote(number);
+      } else {
+        _enterValue(number);
+        _clearNotes();
+      }
+
+      _updateSelectedCell();
+      notifyListeners();
+    }
+  }
+
+  void _enterNote(int number) {
+    if (selectedCell.notesContains(number)) {
+      selectedCell.notes.remove(number);
+    } else {
+      selectedCell.notes.add(number);
+    }
+  }
+
+  void _enterValue(int number) {
+    selectedCell.value = number;
+  }
+
+  void _clearNotes() {
+    if (selectedCell.hasNotes) {
+      selectedCell.notes.clear();
+    }
+  }
+
+  void eraseOnTap() {
+    if (!selectedCell.isGivenNumber && !selectedCell.isValueCorrect) {
+      if (selectedCell.hasNotes) {
+        _deleteLastNote();
+      } else {
+        _deleteNumber();
+      }
+      notifyListeners();
+    }
+  }
+
+  void _deleteLastNote() {
+    selectedCell.notes.removeLast();
+    _updateSelectedCell();
+  }
+
+  void _deleteNumber() {
+    selectedCell.value = null;
+    _updateSelectedCell();
+  }
+
+  void notesOnTap() {
+    notesMode = !notesMode;
     notifyListeners();
   }
 }

@@ -38,9 +38,9 @@ class GameScreen extends StatelessWidget {
               ),
               SudokuBoard(provider: provider),
               const Spacer(),
-              const ActionButtons(),
+              ActionButtons(provider: provider),
               const Spacer(),
-              const NumberButtons(),
+              NumberButtons(provider: provider),
               const Spacer(flex: 1),
             ],
           );
@@ -52,8 +52,11 @@ class GameScreen extends StatelessWidget {
 
 class ActionButtons extends StatelessWidget {
   const ActionButtons({
+    required this.provider,
     super.key,
   });
+
+  final GameScreenProvider provider;
 
   @override
   Widget build(BuildContext context) {
@@ -70,23 +73,23 @@ class ActionButtons extends StatelessWidget {
           ActionButton(
             title: Strings.erase,
             iconWidget: const ActionIcon(Icons.delete),
-            onTap: () {},
+            onTap: () => provider.eraseOnTap(),
           ),
           ActionButton(
             title: Strings.notes,
             iconWidget: Align(
               alignment: Alignment.centerRight,
               child: Stack(
-                children: const [
-                  ActionIcon(
+                children: [
+                  const ActionIcon(
                     Icons.drive_file_rename_outline_outlined,
                     rightPadding: 16,
                   ),
-                  NotesSwitchWidget(notesOn: true),
+                  NotesSwitchWidget(notesOn: provider.notesMode),
                 ],
               ),
             ),
-            onTap: () {},
+            onTap: () => provider.notesOnTap(),
           ),
           ActionButton(
             title: Strings.hint,
@@ -109,8 +112,11 @@ class ActionButtons extends StatelessWidget {
 
 class NumberButtons extends StatelessWidget {
   const NumberButtons({
+    required this.provider,
     super.key,
   });
+
+  final GameScreenProvider provider;
 
   @override
   Widget build(BuildContext context) {
@@ -121,13 +127,15 @@ class NumberButtons extends StatelessWidget {
         children: List.generate(
           9,
           (index) => InkWell(
-            onTap: () {},
+            onTap: () => provider.numberButtonOnTap(index + 1),
             borderRadius: BorderRadius.circular(8),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 10),
               child: Text(
                 (index + 1).toString(),
-                style: AppTextStyles.numberButton,
+                style: provider.notesMode
+                    ? AppTextStyles.noteButton
+                    : AppTextStyles.numberButton,
               ),
             ),
           ),
@@ -199,10 +207,10 @@ class SudokuBoard extends StatelessWidget {
                       CellModel cellModel = provider.sudokuBoard
                           .getCellByBoxIndex(boxIndex, boxCellIndex);
 
-                      return InkWell(
+                      return GestureDetector(
                         onTap: () => provider.cellOnTap(cellModel),
                         child: (() {
-                          if (!cellModel.isNoteCell) {
+                          if (!cellModel.hasNotes) {
                             return NumberCell(
                               cell: cellModel,
                               selectedCell: provider.selectedCell,

@@ -4,9 +4,7 @@ class CellModel {
   int? value;
   final int realValue;
   final bool isGivenNumber;
-  bool isSelected;
   bool isHighlighted;
-  bool isNoteCell;
   final List<int> notes;
   final CellPositionModel position;
 
@@ -15,15 +13,20 @@ class CellModel {
     required this.realValue,
     required this.position,
     required this.isGivenNumber,
-    this.isSelected = false,
     this.isHighlighted = false,
-    this.isNoteCell = false,
     this.notes = const [],
   });
 
   bool get hasValue => value != null;
 
-  bool get isValueCorrect => value == realValue;
+  bool get isValueCorrect => hasValue && value == realValue;
+
+  bool get hasNotes => notes.isNotEmpty;
+
+  bool hasIntersectionWith(CellPositionModel cellPosition) =>
+      position.x == cellPosition.x ||
+      position.y == cellPosition.y ||
+      position.boxIndex == cellPosition.boxIndex;
 
   bool notesContains(int number) => notes.contains(number);
 

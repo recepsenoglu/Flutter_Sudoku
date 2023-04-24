@@ -4,18 +4,23 @@ import 'package:flutter_sudoku/utils/app_colors.dart';
 import 'package:flutter_sudoku/utils/text_styles.dart';
 
 Color getCellColor(CellModel cell, CellModel selectedCell) {
-  if (cell.isSelected) {
+  if (cell.position == selectedCell.position) {
     return AppColors.selectedCell;
   } else if (cell.hasValue && !cell.isValueCorrect && !cell.isGivenNumber) {
     return AppColors.wrongNumberCell;
-  } else if (cell.isHighlighted) {
+  } else if (!cell.isHighlighted) {
+    return AppColors.cell;
+  } else {
     if (cell.hasValue && cell.value == selectedCell.value) {
-      return AppColors.highlightedNumberCell;
+      if (!selectedCell.isValueCorrect &&
+          cell.hasIntersectionWith(selectedCell.position)) {
+        return AppColors.wrongNumberCell;
+      } else {
+        return AppColors.highlightedNumberCell;
+      }
     } else {
       return AppColors.highlightedCell;
     }
-  } else {
-    return AppColors.cell;
   }
 }
 
