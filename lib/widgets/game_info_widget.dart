@@ -15,19 +15,21 @@ class GameInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: crossAxisAlignment,
-      children: [
-        Text(
-          title,
-          style: AppTextStyles.gameInfoTitle,
-        ),
-        const SizedBox(height: 4),
-        Text(
-          value,
-          style: AppTextStyles.gameInfoValue,
-        ),
-      ],
+    return Expanded(
+      child: Column(
+        crossAxisAlignment: crossAxisAlignment,
+        children: [
+          Text(
+            title,
+            style: AppTextStyles.gameInfoTitle,
+          ),
+          const SizedBox(height: 4),
+          Text(
+            value,
+            style: AppTextStyles.gameInfoValue,
+          ),
+        ],
+      ),
     );
   }
 }

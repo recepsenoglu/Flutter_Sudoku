@@ -5,6 +5,7 @@ import 'package:flutter_sudoku/constant/enums.dart';
 import 'package:flutter_sudoku/models/cell_model.dart';
 import 'package:flutter_sudoku/screens/game_screen/game_screen_provider.dart';
 import 'package:flutter_sudoku/utils/app_colors.dart';
+import 'package:flutter_sudoku/utils/extensions.dart';
 import 'package:flutter_sudoku/utils/text_styles.dart';
 import 'package:flutter_sudoku/utils/utils.dart';
 import 'package:flutter_sudoku/widgets/action_button/action_button.dart';
@@ -30,12 +31,7 @@ class GameScreen extends StatelessWidget {
         child: Consumer<GameScreenProvider>(builder: (context, provider, _) {
           return Column(
             children: [
-              GameInfo(
-                difficulty: provider.difficulty,
-                mistakes: provider.mistakes,
-                score: provider.score,
-                time: provider.time,
-              ),
+              GameInfo(provider: provider),
               SudokuBoard(provider: provider),
               const Spacer(),
               ActionButtons(provider: provider),
@@ -313,20 +309,22 @@ class NumberCell extends StatelessWidget {
 
 class GameInfo extends StatelessWidget {
   const GameInfo({
-    required this.difficulty,
-    required this.mistakes,
-    required this.score,
-    required this.time,
+    required this.provider,
     super.key,
   });
 
-  final Difficulty difficulty;
-  final int mistakes;
-  final int score;
-  final int time;
+  final GameScreenProvider provider;
 
   @override
   Widget build(BuildContext context) {
+    final Difficulty difficulty = provider.difficulty;
+    final int mistakes = provider.mistakes;
+    final int score = provider.score;
+    final int time = provider.time;
+
+    final bool isPaused = provider.gamePaused;
+    final Function() pauseGame = provider.pauseButtonOnTap;
+
     return Padding(
       padding: const EdgeInsets.all(12),
       child: Row(
@@ -350,7 +348,7 @@ class GameInfo extends StatelessWidget {
                   title: Strings.score,
                 ),
                 GameInfoWidget(
-                  value: '$time',
+                  value: time.toTimeString(),
                   title: Strings.time,
                   crossAxisAlignment: CrossAxisAlignment.end,
                 ),
@@ -358,7 +356,7 @@ class GameInfo extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 12),
-          PauseButton(isPaused: false, onPressed: () {}),
+          PauseButton(isPaused: isPaused, onPressed: pauseGame),
         ],
       ),
     );

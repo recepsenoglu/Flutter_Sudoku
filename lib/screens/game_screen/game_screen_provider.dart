@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_sudoku/constant/enums.dart';
 import 'package:flutter_sudoku/models/board_model.dart';
@@ -14,6 +16,8 @@ class GameScreenProvider with ChangeNotifier {
   int score = 0;
   int time = 0;
 
+  bool gamePaused = false;
+
   bool notesMode = false;
   int hints = 3;
 
@@ -25,7 +29,7 @@ class GameScreenProvider with ChangeNotifier {
     _createSudokuBoard();
     selectedCell = sudokuBoard.getCellByCoordinates(0, 0);
     _selectCell(selectedCell);
-
+    _startTimer();
     notifyListeners();
   }
 
@@ -85,6 +89,35 @@ class GameScreenProvider with ChangeNotifier {
       cell.value = cell.realValue;
       sudokuBoard.updateCell(cell);
     }
+  }
+
+  void _startTimer() {
+    Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (gamePaused) {
+        timer.cancel();
+        return;
+      }
+      time++;
+      notifyListeners();
+    });
+  }
+
+  void _pauseGame() {
+    gamePaused = true;
+  }
+
+  void _resumeGame() {
+    gamePaused = false;
+    _startTimer();
+  }
+
+  void pauseButtonOnTap() {
+    if (gamePaused) {
+      _resumeGame();
+    } else {
+      _pauseGame();
+    }
+    notifyListeners();
   }
 
   void cellOnTap(CellModel cellModel) {

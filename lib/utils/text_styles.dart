@@ -12,7 +12,7 @@ class AppTextStyles {
     color: AppColors.gameInfoTitle,
   );
   static final _gameInfoValue = TextStyle(
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: FontWeight.bold,
     color: AppColors.gameInfoValue,
   );
