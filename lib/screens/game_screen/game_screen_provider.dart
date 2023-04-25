@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sudoku/constant/enums.dart';
-import 'package:flutter_sudoku/constant/game_constants.dart';
 import 'package:flutter_sudoku/models/board_model.dart';
 import 'package:flutter_sudoku/models/cell_model.dart';
 import 'package:flutter_sudoku/models/cell_position_model.dart';
@@ -13,6 +12,8 @@ class GameScreenProvider with ChangeNotifier {
   Difficulty difficulty = Difficulty.Easy;
 
   bool notesMode = false;
+
+  int hints = 3;
 
   GameScreenProvider() {
     _init();
@@ -96,6 +97,7 @@ class GameScreenProvider with ChangeNotifier {
 
   void _updateSelectedCell() {
     sudokuBoard.updateCell(selectedCell);
+    _highlightCells(selectedCell);
   }
 
   void _highlightCells(CellModel cellModel) {
@@ -132,7 +134,6 @@ class GameScreenProvider with ChangeNotifier {
       } else {
         _clearNotes();
         _enterValue(number);
-        _highlightCells(selectedCell);
       }
 
       _updateSelectedCell();
@@ -162,6 +163,11 @@ class GameScreenProvider with ChangeNotifier {
     }
   }
 
+  void _clearCell() {
+    _clearValue();
+    _clearNotes();
+  }
+
   void eraseOnTap() {
     if (!selectedCell.isGivenNumber && !selectedCell.isValueCorrect) {
       if (selectedCell.hasNotes) {
@@ -187,4 +193,22 @@ class GameScreenProvider with ChangeNotifier {
     notesMode = !notesMode;
     notifyListeners();
   }
+
+  void hintsOnTap() {
+    if (_canGetHint) {
+      _giveHint();
+    }
+  }
+
+  void _giveHint() {
+    hints -= 1;
+    _clearCell();
+    selectedCell.isGivenNumber = true;
+    selectedCell.value = selectedCell.realValue;
+    _updateSelectedCell();
+    notifyListeners();
+  }
+
+  bool get _canGetHint =>
+      !selectedCell.isGivenNumber && !selectedCell.isValueCorrect && hints > 0;
 }

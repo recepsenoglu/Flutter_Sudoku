@@ -93,16 +93,16 @@ class ActionButtons extends StatelessWidget {
           ),
           ActionButton(
             title: Strings.hint,
-            onTap: () {},
             iconWidget: Align(
               alignment: Alignment.centerRight,
               child: Stack(
-                children: const [
-                  ActionIcon(Icons.lightbulb_outlined, rightPadding: 12),
-                  HintsAmountCircle(hints: 3),
+                children: [
+                  const ActionIcon(Icons.lightbulb_outlined, rightPadding: 12),
+                  HintsAmountCircle(hints: provider.hints),
                 ],
               ),
             ),
+            onTap: () => provider.hintsOnTap(),
           ),
         ],
       ),
