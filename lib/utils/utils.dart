@@ -38,8 +38,14 @@ Set<CellPositionModel> getRandomPositions(Difficulty difficulty) {
   return cellPositions;
 }
 
-Color getCellColor(CellModel cell, CellModel selectedCell) {
-  if (cell.position == selectedCell.position) {
+Color getCellColor({
+  required CellModel cell,
+  required CellModel selectedCell,
+  required bool hideCells,
+}) {
+  if (hideCells) {
+    return AppColors.cell;
+  } else if (cell.position == selectedCell.position) {
     return AppColors.selectedCell;
   } else if (cell.hasValue && !cell.isValueCorrect && !cell.isGivenNumber) {
     return AppColors.wrongNumberCell;
