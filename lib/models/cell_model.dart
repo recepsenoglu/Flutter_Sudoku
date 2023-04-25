@@ -2,8 +2,8 @@ import 'package:flutter_sudoku/models/cell_position_model.dart';
 
 class CellModel {
   int? value;
-  final int realValue;
-  final bool isGivenNumber;
+  int realValue;
+  bool isGivenNumber;
   bool isHighlighted;
   final List<int> notes;
   final CellPositionModel position;
@@ -12,12 +12,12 @@ class CellModel {
     this.value,
     required this.realValue,
     required this.position,
-    required this.isGivenNumber,
+    this.isGivenNumber = false,
     this.isHighlighted = false,
     this.notes = const [],
   });
 
-  bool get hasValue => value != null;
+  bool get hasValue => value != null && value != 0;
 
   bool get isValueCorrect => hasValue && value == realValue;
 

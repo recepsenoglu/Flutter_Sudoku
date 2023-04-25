@@ -18,7 +18,35 @@ class BoardModel {
     return allCells;
   }
 
+  void clearCells() {
+    for (var y = 0; y < 9; y++) {
+      for (var x = 0; x < 9; x++) {
+        cells[y][x].realValue = 0;
+        cells[y][x].value = 0;
+      }
+    }
+  }
+
   List<CellModel> get allCells => _getAllCells();
+
+  Set<int> getIntersectedValues(CellModel cellModel) {
+    final List<CellModel> intersectedCells = allCells
+        .where((element) =>
+            element.position.x == cellModel.position.x ||
+            element.position.y == cellModel.position.y ||
+            element.position.boxIndex == cellModel.position.boxIndex)
+        .toList();
+
+    Set<int> intersectedValues = {};
+
+    for (var element in intersectedCells) {
+      if (element.hasValue) {
+        intersectedValues.add(element.value!);
+      }
+    }
+
+    return intersectedValues;
+  }
 
   CellModel getCellByCoordinates(int y, int x) {
     return cells[y][x];

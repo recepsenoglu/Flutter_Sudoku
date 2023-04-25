@@ -21,39 +21,55 @@ class GameScreenProvider with ChangeNotifier {
   }
 
   void _createNewBoard() {
-    List<List<CellModel>> cells = [];
+    List<List<CellModel>> cells = List.generate(
+        9,
+        (y) => List.generate(
+            9,
+            (x) => CellModel(
+                  position: CellPositionModel(y: y, x: x),
+                  realValue: 0,
+                )));
+
+    sudokuBoard = BoardModel(cells: cells);
+
+    _fillSudokuBoard();
+  }
+
+  void _fillSudokuBoard() {
+    bool noAvailableNumbers = false;
 
     for (var y = 0; y < 9; y++) {
+      if (noAvailableNumbers) break;
       for (var x = 0; x < 9; x++) {
-        final CellPositionModel position = CellPositionModel(x: x, y: y);
+        CellModel cell = sudokuBoard.getCellByBoxIndex(y, x);
 
-        bool isGiven = x == 4 && y == 6 || x == 8 && y == 3;
-        bool isNoteCell = x == 3 && y == 7 || x == 1 && y == 6;
+        final Set<int> intersectedValues =
+            sudokuBoard.getIntersectedValues(cell);
 
-        int realValue = x % 2 == 0 ? 8 : 5;
-        int? value = !isNoteCell && x == 2 && y == 4 || x == 7 && y == 7
-            ? x % 2 == 0
-                ? realValue
-                : realValue - 1
-            : null;
+        noAvailableNumbers = intersectedValues.length > 8;
 
-        final cell = CellModel(
-          value: isGiven ? realValue : value,
-          realValue: realValue,
-          position: position,
-          isGivenNumber: isGiven,
-          notes: isNoteCell ? [1, 8] : [],
-        );
-
-        if (cells.length <= y) {
-          cells.add([cell]);
+        if (!noAvailableNumbers) {
+          final int randomNumber = _randomNumber(exclude: intersectedValues);
+          cell.realValue = randomNumber;
+          cell.value = cell.realValue;
         } else {
-          cells[y].add(cell);
+          sudokuBoard.clearCells();
+          noAvailableNumbers = true;
+          break;
         }
       }
     }
+    if (noAvailableNumbers) _fillSudokuBoard();
+  }
 
-    sudokuBoard = BoardModel(cells: cells);
+  int _randomNumber({required Set<int> exclude}) {
+    List<int> numberList = List<int>.from([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+
+    numberList.removeWhere((element) => exclude.contains(element));
+
+    numberList.shuffle();
+
+    return numberList.first;
   }
 
   void cellOnTap(CellModel cellModel) {
