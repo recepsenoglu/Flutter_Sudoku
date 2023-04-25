@@ -13,7 +13,8 @@ import 'package:flutter_sudoku/widgets/action_button/action_icon.dart';
 import 'package:flutter_sudoku/widgets/action_button/hints_amount_circle.dart';
 import 'package:flutter_sudoku/widgets/action_button/note_switch_widget.dart';
 import 'package:flutter_sudoku/widgets/appBar_action_button.dart';
-import 'package:flutter_sudoku/widgets/game_info_widget.dart';
+import 'package:flutter_sudoku/widgets/game_info/game_info_widget.dart';
+import 'package:flutter_sudoku/widgets/game_info/pause_button.dart';
 import 'package:flutter_sudoku/widgets/sudoku_board/horizontal_lines.dart';
 import 'package:flutter_sudoku/widgets/sudoku_board/vertical_lines.dart';
 import 'package:provider/provider.dart';
@@ -380,37 +381,6 @@ class GameInfo extends StatelessWidget {
           const SizedBox(width: 12),
           PauseButton(isPaused: isPaused, onPressed: pauseGame),
         ],
-      ),
-    );
-  }
-}
-
-class PauseButton extends StatelessWidget {
-  const PauseButton({
-    required this.isPaused,
-    required this.onPressed,
-    super.key,
-  });
-
-  final bool isPaused;
-  final Function() onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: 32,
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          shape: const CircleBorder(),
-          padding: EdgeInsets.zero,
-          backgroundColor: AppColors.pauseButton,
-        ),
-        child: Icon(
-          isPaused ? Icons.play_arrow : Icons.pause_outlined,
-          color: AppColors.pauseIcon,
-          size: 24,
-        ),
       ),
     );
   }
