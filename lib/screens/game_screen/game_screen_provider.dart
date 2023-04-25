@@ -200,6 +200,9 @@ class GameScreenProvider with ChangeNotifier {
     }
   }
 
+  bool get _canGetHint =>
+      !selectedCell.isGivenNumber && !selectedCell.isValueCorrect && hints > 0;
+
   void _giveHint() {
     hints -= 1;
     _clearCell();
@@ -209,6 +212,11 @@ class GameScreenProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  bool get _canGetHint =>
-      !selectedCell.isGivenNumber && !selectedCell.isValueCorrect && hints > 0;
+  bool isNumberButtonNecessary(int number) {
+    return sudokuBoard.allCells
+            .where((element) => element.value == number)
+            .toList()
+            .length <
+        9;
+  }
 }

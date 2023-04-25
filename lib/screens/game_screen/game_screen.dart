@@ -124,22 +124,29 @@ class NumberButtons extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 26),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: List.generate(
-          9,
-          (index) => InkWell(
-            onTap: () => provider.numberButtonOnTap(index + 1),
-            borderRadius: BorderRadius.circular(8),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 10),
-              child: Text(
-                (index + 1).toString(),
-                style: provider.notesMode
-                    ? AppTextStyles.noteButton
-                    : AppTextStyles.numberButton,
+        children: List.generate(9, (index) {
+          final bool showButton = provider.isNumberButtonNecessary(index + 1);
+
+          return Opacity(
+            opacity: showButton ? 1 : 0,
+            child: InkWell(
+              onTap: showButton
+                  ? () => provider.numberButtonOnTap(index + 1)
+                  : null,
+              borderRadius: BorderRadius.circular(8),
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 6, vertical: 10),
+                child: Text(
+                  (index + 1).toString(),
+                  style: provider.notesMode
+                      ? AppTextStyles.noteButton
+                      : AppTextStyles.numberButton,
+                ),
               ),
             ),
-          ),
-        ),
+          );
+        }),
       ),
     );
   }
