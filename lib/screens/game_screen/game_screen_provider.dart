@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sudoku/constant/enums.dart';
+import 'package:flutter_sudoku/constant/game_constants.dart';
 import 'package:flutter_sudoku/models/board_model.dart';
 import 'package:flutter_sudoku/models/cell_model.dart';
 import 'package:flutter_sudoku/models/cell_position_model.dart';
+import 'package:flutter_sudoku/utils/utils.dart';
 
 class GameScreenProvider with ChangeNotifier {
   late BoardModel sudokuBoard;
   late CellModel selectedCell;
+
+  Difficulty difficulty = Difficulty.Easy;
+
   bool notesMode = false;
 
   GameScreenProvider() {
@@ -13,14 +19,20 @@ class GameScreenProvider with ChangeNotifier {
   }
 
   void _init() {
-    _createNewBoard();
+    _createSudokuBoard();
     selectedCell = sudokuBoard.getCellByCoordinates(0, 0);
     _selectCell(selectedCell);
 
     notifyListeners();
   }
 
-  void _createNewBoard() {
+  void _createSudokuBoard() {
+    _createEmptyBoard();
+    _fillTheBoard();
+    _giveStartNumbers();
+  }
+
+  void _createEmptyBoard() {
     List<List<CellModel>> cells = List.generate(
         9,
         (y) => List.generate(
@@ -28,14 +40,13 @@ class GameScreenProvider with ChangeNotifier {
             (x) => CellModel(
                   position: CellPositionModel(y: y, x: x),
                   realValue: 0,
+                  notes: [],
                 )));
 
     sudokuBoard = BoardModel(cells: cells);
-
-    _fillSudokuBoard();
   }
 
-  void _fillSudokuBoard() {
+  void _fillTheBoard() {
     bool noAvailableNumbers = false;
 
     for (var y = 0; y < 9; y++) {
@@ -49,9 +60,10 @@ class GameScreenProvider with ChangeNotifier {
         noAvailableNumbers = intersectedValues.length > 8;
 
         if (!noAvailableNumbers) {
-          final int randomNumber = _randomNumber(exclude: intersectedValues);
+          final int randomNumber =
+              generateRandomNumber(exclude: intersectedValues);
           cell.realValue = randomNumber;
-          cell.value = cell.realValue;
+          sudokuBoard.updateCell(cell);
         } else {
           sudokuBoard.clearCells();
           noAvailableNumbers = true;
@@ -59,17 +71,17 @@ class GameScreenProvider with ChangeNotifier {
         }
       }
     }
-    if (noAvailableNumbers) _fillSudokuBoard();
+    if (noAvailableNumbers) _fillTheBoard();
   }
 
-  int _randomNumber({required Set<int> exclude}) {
-    List<int> numberList = List<int>.from([1, 2, 3, 4, 5, 6, 7, 8, 9]);
-
-    numberList.removeWhere((element) => exclude.contains(element));
-
-    numberList.shuffle();
-
-    return numberList.first;
+  void _giveStartNumbers() {
+    for (final CellPositionModel cellPosition
+        in getRandomPositions(difficulty)) {
+      CellModel cell = sudokuBoard.getCellByPosition(cellPosition);
+      cell.isGivenNumber = true;
+      cell.value = cell.realValue;
+      sudokuBoard.updateCell(cell);
+    }
   }
 
   void cellOnTap(CellModel cellModel) {
@@ -92,9 +104,9 @@ class GameScreenProvider with ChangeNotifier {
     sudokuBoard.allCells
         .where(
       (element) =>
-          // element.position.x == cellModel.position.x ||
-          // element.position.y == cellModel.position.y ||
-          // element.position.boxIndex == cellModel.position.boxIndex ||
+          element.position.x == cellModel.position.x ||
+          element.position.y == cellModel.position.y ||
+          element.position.boxIndex == cellModel.position.boxIndex ||
           element.hasValue && element.value == cellModel.value,
     )
         .forEach((element) {
@@ -115,10 +127,12 @@ class GameScreenProvider with ChangeNotifier {
   void numberButtonOnTap(int number) {
     if (!selectedCell.isGivenNumber && !selectedCell.isValueCorrect) {
       if (notesMode) {
+        _clearValue();
         _enterNote(number);
       } else {
-        _enterValue(number);
         _clearNotes();
+        _enterValue(number);
+        _highlightCells(selectedCell);
       }
 
       _updateSelectedCell();
@@ -136,6 +150,10 @@ class GameScreenProvider with ChangeNotifier {
 
   void _enterValue(int number) {
     selectedCell.value = number;
+  }
+
+  void _clearValue() {
+    selectedCell.value = null;
   }
 
   void _clearNotes() {

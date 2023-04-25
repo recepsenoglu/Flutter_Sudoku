@@ -5,7 +5,7 @@ class CellModel {
   int realValue;
   bool isGivenNumber;
   bool isHighlighted;
-  final List<int> notes;
+  List<int> notes;
   final CellPositionModel position;
 
   CellModel({
@@ -14,10 +14,12 @@ class CellModel {
     required this.position,
     this.isGivenNumber = false,
     this.isHighlighted = false,
-    this.notes = const [],
+    required this.notes,
   });
 
   bool get hasValue => value != null && value != 0;
+
+  bool get hasRealValue => realValue != 0;
 
   bool get isValueCorrect => hasValue && value == realValue;
 

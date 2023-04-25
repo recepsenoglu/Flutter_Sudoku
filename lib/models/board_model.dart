@@ -1,4 +1,5 @@
 import 'package:flutter_sudoku/models/cell_model.dart';
+import 'package:flutter_sudoku/models/cell_position_model.dart';
 
 class BoardModel {
   final List<List<CellModel>> cells;
@@ -40,8 +41,8 @@ class BoardModel {
     Set<int> intersectedValues = {};
 
     for (var element in intersectedCells) {
-      if (element.hasValue) {
-        intersectedValues.add(element.value!);
+      if (element.hasRealValue) {
+        intersectedValues.add(element.realValue);
       }
     }
 
@@ -50,6 +51,10 @@ class BoardModel {
 
   CellModel getCellByCoordinates(int y, int x) {
     return cells[y][x];
+  }
+
+  CellModel getCellByPosition(CellPositionModel cellPosition) {
+    return cells[cellPosition.y][cellPosition.x];
   }
 
   CellModel getCellByBoxIndex(int boxIndex, int boxCellIndex) {
