@@ -10,9 +10,11 @@ class GameScreenProvider with ChangeNotifier {
   late CellModel selectedCell;
 
   Difficulty difficulty = Difficulty.Easy;
+  int mistakes = 0;
+  int score = 0;
+  int time = 0;
 
   bool notesMode = false;
-
   int hints = 3;
 
   GameScreenProvider() {
@@ -150,7 +152,12 @@ class GameScreenProvider with ChangeNotifier {
   }
 
   void _enterValue(int number) {
-    selectedCell.value = number;
+    if (selectedCell.value != number) {
+      selectedCell.value = number;
+      if (selectedCell.realValue != selectedCell.value) {
+        mistakes += 1;
+      }
+    }
   }
 
   void _clearValue() {

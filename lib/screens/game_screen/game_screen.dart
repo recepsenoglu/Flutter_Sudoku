@@ -30,11 +30,11 @@ class GameScreen extends StatelessWidget {
         child: Consumer<GameScreenProvider>(builder: (context, provider, _) {
           return Column(
             children: [
-              const GameInfo(
-                difficulty: Difficulty.Easy,
-                mistakes: 1,
-                score: 100,
-                time: 149,
+              GameInfo(
+                difficulty: provider.difficulty,
+                mistakes: provider.mistakes,
+                score: provider.score,
+                time: provider.time,
               ),
               SudokuBoard(provider: provider),
               const Spacer(),
