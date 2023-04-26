@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sudoku/constant/app_strings.dart';
 import 'package:flutter_sudoku/constant/enums.dart';
 import 'package:flutter_sudoku/services/navigation_service.dart';
-import 'package:flutter_sudoku/utils/extensions.dart';
 import 'package:flutter_sudoku/utils/text_styles.dart';
-import 'package:flutter_sudoku/widgets/game_info/game_info_widget.dart';
+import 'package:flutter_sudoku/widgets/button/rounded_button/rounded_button.dart';
+import 'package:flutter_sudoku/widgets/popup/popup_game_stats.dart';
 import 'package:flutter_sudoku/widgets/popup/useful_tip_divider.dart';
 import 'package:flutter_sudoku/widgets/popup/useful_tip_widget.dart';
 
@@ -13,34 +13,13 @@ class Popup {
     required int time,
     required int mistakes,
     required Difficulty difficulty,
+    required Function() onResume,
   }) {
     const String title = Strings.pause;
 
     Widget content = Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 22),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              GameInfoWidget(
-                title: Strings.time,
-                value: time.toTimeString(),
-                forPopup: true,
-              ),
-              GameInfoWidget(
-                title: Strings.mistakes,
-                value: '$mistakes/3',
-                forPopup: true,
-              ),
-              GameInfoWidget(
-                title: Strings.difficulty,
-                value: difficulty.name,
-                forPopup: true,
-              ),
-            ],
-          ),
-        ),
+        PopupGameStats(time: time, mistakes: mistakes, difficulty: difficulty),
         const SizedBox(height: 28),
         const UsefulTipDivider(),
         const SizedBox(height: 18),
@@ -48,7 +27,14 @@ class Popup {
       ],
     );
 
-    List<Widget> actions = [];
+    List<Widget> actions = [
+      RoundedButton(
+          buttonText: Strings.resumeGame,
+          onPressed: () {
+            onResume();
+            Navigator.pop(NavigationService.navigatorKey.currentContext!);
+          })
+    ];
 
     _showDialog(
       title: title,
@@ -73,11 +59,11 @@ class Popup {
               borderRadius: BorderRadius.all(Radius.circular(24))),
           alignment: Alignment.center,
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 26),
+            padding: const EdgeInsets.symmetric(vertical: 20),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const SizedBox(height: 12),
+                const SizedBox(height: 16),
                 Center(
                   child: Text(
                     title,
@@ -86,8 +72,12 @@ class Popup {
                 ),
                 const SizedBox(height: 32),
                 content,
-                // const SizedBox(height: 32),
-                Column(children: actions),
+                const SizedBox(height: 22),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 2),
+                  child: Column(children: actions),
+                ),
               ],
             ),
           ),

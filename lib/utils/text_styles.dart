@@ -75,6 +75,12 @@ class AppTextStyles {
   static final _dividerText =
       _gameInfoTitle.copyWith(fontWeight: FontWeight.w600);
 
+  static final _buttonText = TextStyle(
+    color: AppColors.buttonText,
+    fontSize: 18,
+    fontWeight: FontWeight.bold,
+  );
+
   static TextStyle get appBarTitle => _appBarTitle;
 
   static TextStyle get gameInfoTitle => _gameInfoTitle;
@@ -96,4 +102,6 @@ class AppTextStyles {
   static TextStyle get popupInfoValue => _popupInfoValue;
 
   static TextStyle get dividerText => _dividerText;
+
+  static TextStyle get buttonText => _buttonText;
 }

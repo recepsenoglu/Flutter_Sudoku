@@ -49,6 +49,10 @@ class AppColors {
   static const _usefulTipTitle = Colors.black;
   static const _usefulTipContent = Colors.grey;
 
+  static const _buttonText = Colors.white;
+  static const _roundedButton = Color(0xFF0088F4);
+  static const _buttonDisabled = Color(0xFFEAEDF2);
+
   static get primary => _primary;
 
   static get appBarBackground => _appBarBackground;
@@ -98,4 +102,8 @@ class AppColors {
   static get usefulTipBg => _usefulTipBg;
   static get usefulTipTitle => _usefulTipTitle;
   static get usefulTipContent => _usefulTipContent;
+
+  static get buttonText => _buttonText;
+  static get roundedButton => _roundedButton;
+  static get buttonDisabled => _buttonDisabled;
 }

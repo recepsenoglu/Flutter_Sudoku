@@ -111,10 +111,16 @@ class GameScreenProvider with ChangeNotifier {
   void _resumeGame() {
     gamePaused = false;
     _startTimer();
+    notifyListeners();
   }
 
   void pauseButtonOnTap() {
-    Popup.gamePaused(time: time, mistakes: mistakes, difficulty: difficulty);
+    Popup.gamePaused(
+      time: time,
+      mistakes: mistakes,
+      difficulty: difficulty,
+      onResume: _resumeGame,
+    );
 
     if (gamePaused) {
       _resumeGame();
