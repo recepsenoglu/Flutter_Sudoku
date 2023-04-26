@@ -176,8 +176,6 @@ class GameScreenProvider with ChangeNotifier {
       oldNotes: oldNotes,
     );
 
-    print(moveModel.print());
-
     sudokuBoard.movesLog.add(moveModel);
   }
 
@@ -253,7 +251,6 @@ class GameScreenProvider with ChangeNotifier {
       final MoveModel moveModel = sudokuBoard.lastMove;
 
       CellModel cell = sudokuBoard.getCellByPosition(moveModel.cellPosition);
-      print(moveModel.print());
 
       _selectCell(cell);
 
@@ -264,8 +261,6 @@ class GameScreenProvider with ChangeNotifier {
       if (moveModel.notes != moveModel.oldNotes) {
         cell.notes = List.from(moveModel.oldNotes);
       }
-
-      print('cellNotes: ' + cell.notes.toString());
 
       sudokuBoard.movesLog.removeLast();
 
