@@ -234,8 +234,15 @@ class GameScreenProvider with ChangeNotifier {
       selectedCell.value = number;
       if (selectedCell.realValue != selectedCell.value) {
         mistakes += 1;
+        if (mistakes == 3) {
+          _gameOver();
+        }
       }
     }
+  }
+
+  void _gameOver() {
+    Popup.gameOver(onNewGame: () {});
   }
 
   void _clearValue() {

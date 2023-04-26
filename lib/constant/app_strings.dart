@@ -21,4 +21,10 @@ class Strings {
   static const pause = 'Pause';
   static const resumeGame = 'Resume Game';
   static const usefulTip = 'Useful Tip';
+
+  static const gameOver = 'Game Over';
+  static const gameOverDescription =
+      'You have made 3 mistakes and lost this game';
+  static const secondChance = 'Second Chance';
+  static const newGame = 'New Game';
 }

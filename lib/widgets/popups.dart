@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sudoku/constant/app_strings.dart';
 import 'package:flutter_sudoku/constant/enums.dart';
 import 'package:flutter_sudoku/services/navigation_service.dart';
+import 'package:flutter_sudoku/utils/app_colors.dart';
 import 'package:flutter_sudoku/utils/text_styles.dart';
 import 'package:flutter_sudoku/widgets/button/rounded_button/rounded_button.dart';
 import 'package:flutter_sudoku/widgets/popup/popup_game_stats.dart';
@@ -9,6 +10,48 @@ import 'package:flutter_sudoku/widgets/popup/useful_tip_divider.dart';
 import 'package:flutter_sudoku/widgets/popup/useful_tip_widget.dart';
 
 class Popup {
+  static void gameOver({
+    required Function() onNewGame,
+  }) {
+    const String title = Strings.gameOver;
+    const String contentText = Strings.gameOverDescription;
+
+    Widget content = Padding(
+      padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
+      child: Text(
+        contentText,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          color: AppColors.popupContentText,
+          fontSize: 16,
+        ),
+      ),
+    );
+
+    List<Widget> actions = [
+      RoundedButton(
+          buttonText: Strings.secondChance,
+          disabled: true,
+          icon: Icons.movie_filter,
+          onPressed: () {
+            Navigator.pop(NavigationService.navigatorKey.currentContext!);
+          }),
+      RoundedButton(
+          whiteButton: true,
+          buttonText: Strings.newGame,
+          onPressed: () {
+            onNewGame();
+            Navigator.pop(NavigationService.navigatorKey.currentContext!);
+          }),
+    ];
+
+    _showDialog(
+      title: title,
+      content: content,
+      actions: actions,
+    );
+  }
+
   static void gamePaused({
     required int time,
     required int mistakes,
@@ -47,7 +90,7 @@ class Popup {
     required String title,
     required Widget content,
     required List<Widget> actions,
-    bool barrierDismissible = true,
+    bool barrierDismissible = false,
   }) async {
     return showDialog<void>(
       context: NavigationService.navigatorKey.currentContext!,
@@ -76,7 +119,15 @@ class Popup {
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 2),
-                  child: Column(children: actions),
+                  child: Column(
+                      children: List<Widget>.generate(
+                          actions.length,
+                          (index) => Padding(
+                                padding: index < actions.length - 1
+                                    ? const EdgeInsets.only(bottom: 12)
+                                    : EdgeInsets.zero,
+                                child: actions[index],
+                              ))),
                 ),
               ],
             ),

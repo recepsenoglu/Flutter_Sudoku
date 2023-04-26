@@ -58,7 +58,7 @@ class AppTextStyles {
   );
 
   static final _popupTitle = TextStyle(
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: FontWeight.w800,
     color: AppColors.popupTitle,
   );
@@ -80,6 +80,12 @@ class AppTextStyles {
     fontSize: 18,
     fontWeight: FontWeight.bold,
   );
+
+  static final _disabledButtonText =
+      _buttonText.copyWith(color: AppColors.buttonDisabledText);
+
+  static final _whiteButtonText =
+      _buttonText.copyWith(color: AppColors.roundedButton);
 
   static TextStyle get appBarTitle => _appBarTitle;
 
@@ -104,4 +110,6 @@ class AppTextStyles {
   static TextStyle get dividerText => _dividerText;
 
   static TextStyle get buttonText => _buttonText;
+  static TextStyle get disabledButtonText => _disabledButtonText;
+  static TextStyle get whiteButtonText => _whiteButtonText;
 }

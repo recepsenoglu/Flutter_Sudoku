@@ -40,6 +40,7 @@ class AppColors {
 
   static const _popupTitle = Colors.black;
   static const _popupInfoValue = Colors.black;
+  static const _popupContentText = Color(0xFF8A929D);
 
   static final _divider = Colors.grey.shade300;
 
@@ -52,6 +53,8 @@ class AppColors {
   static const _buttonText = Colors.white;
   static const _roundedButton = Color(0xFF0088F4);
   static const _buttonDisabled = Color(0xFFEAEDF2);
+  static const _buttonDisabledText = _popupContentText;
+  static const _whiteButtonForeground = Color(0xFFD9EEFF);
 
   static get primary => _primary;
 
@@ -92,6 +95,7 @@ class AppColors {
 
   static get popupTitle => _popupTitle;
   static get popupInfoValue => _popupInfoValue;
+  static get popupContentText => _popupContentText;
 
   static get divider => _divider;
 
@@ -106,4 +110,6 @@ class AppColors {
   static get buttonText => _buttonText;
   static get roundedButton => _roundedButton;
   static get buttonDisabled => _buttonDisabled;
+  static get buttonDisabledText => _buttonDisabledText;
+  static get whiteButtonForeground => _whiteButtonForeground;
 }
