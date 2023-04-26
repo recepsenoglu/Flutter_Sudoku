@@ -6,6 +6,6 @@ extension TimeString on int {
 
       return '${minutes < 10 ? '0' : ''}$minutes:${seconds < 10 ? '0' : ''}$seconds';
     }
-    return '--:--';
+    return '-- : --';
   }
 }

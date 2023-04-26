@@ -38,6 +38,17 @@ class AppColors {
   static const _numberButton = Color(0xFF355DA9);
   static const _noteButton = Color(0xFF616B7D);
 
+  static const _popupTitle = Colors.black;
+  static const _popupInfoValue = Colors.black;
+
+  static final _divider = Colors.grey.shade300;
+
+  static const _usefulTipText = _gameInfoTitle;
+
+  static const _usefulTipBg = Color(0xFFEDF4FA);
+  static const _usefulTipTitle = Colors.black;
+  static const _usefulTipContent = Colors.grey;
+
   static get primary => _primary;
 
   static get appBarBackground => _appBarBackground;
@@ -74,4 +85,17 @@ class AppColors {
 
   static get numberButton => _numberButton;
   static get noteButton => _noteButton;
+
+  static get popupTitle => _popupTitle;
+  static get popupInfoValue => _popupInfoValue;
+
+  static get divider => _divider;
+
+  static get greyColor => _gameInfoTitle;
+
+  static get usefulTipText => _usefulTipText;
+
+  static get usefulTipBg => _usefulTipBg;
+  static get usefulTipTitle => _usefulTipTitle;
+  static get usefulTipContent => _usefulTipContent;
 }

@@ -16,4 +16,9 @@ class Strings {
   static const notesOn = 'ON';
   static const notesOff = 'OFF';
   static const ad = 'Ad';
+
+  // Pause Pop-up
+  static const pause = 'Pause';
+  static const resumeGame = 'Resume Game';
+  static const usefulTip = 'Useful Tip';
 }

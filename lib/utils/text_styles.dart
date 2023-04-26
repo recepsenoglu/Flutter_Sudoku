@@ -12,7 +12,7 @@ class AppTextStyles {
     color: AppColors.gameInfoTitle,
   );
   static final _gameInfoValue = TextStyle(
-    fontSize: 13,
+    fontSize: 12,
     fontWeight: FontWeight.bold,
     color: AppColors.gameInfoValue,
   );
@@ -57,6 +57,24 @@ class AppTextStyles {
     fontSize: 34,
   );
 
+  static final _popupTitle = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w800,
+    color: AppColors.popupTitle,
+  );
+
+  static final _popupInfoTitle =
+      _gameInfoTitle.copyWith(fontSize: 13.5, fontWeight: FontWeight.w500);
+
+  static final _popupInfoValue = _gameInfoValue.copyWith(
+    fontSize: 18,
+    color: AppColors.popupInfoValue,
+    fontWeight: FontWeight.w700,
+  );
+
+  static final _dividerText =
+      _gameInfoTitle.copyWith(fontWeight: FontWeight.w600);
+
   static TextStyle get appBarTitle => _appBarTitle;
 
   static TextStyle get gameInfoTitle => _gameInfoTitle;
@@ -72,4 +90,10 @@ class AppTextStyles {
 
   static TextStyle get numberButton => _numberButton;
   static TextStyle get noteButton => _noteButton;
+
+  static TextStyle get popupTitle => _popupTitle;
+  static TextStyle get popupInfoTitle => _popupInfoTitle;
+  static TextStyle get popupInfoValue => _popupInfoValue;
+
+  static TextStyle get dividerText => _dividerText;
 }

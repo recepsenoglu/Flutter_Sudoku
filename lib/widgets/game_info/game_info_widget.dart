@@ -6,12 +6,14 @@ class GameInfoWidget extends StatelessWidget {
     required this.title,
     required this.value,
     this.crossAxisAlignment = CrossAxisAlignment.center,
+    this.forPopup = false,
     super.key,
   });
 
   final String title;
   final String value;
   final CrossAxisAlignment crossAxisAlignment;
+  final bool forPopup;
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +23,16 @@ class GameInfoWidget extends StatelessWidget {
         children: [
           Text(
             title,
-            style: AppTextStyles.gameInfoTitle,
+            style: forPopup
+                ? AppTextStyles.popupInfoTitle
+                : AppTextStyles.gameInfoTitle,
           ),
-          const SizedBox(height: 4),
+          SizedBox(height: forPopup ? 8 : 4),
           Text(
             value,
-            style: AppTextStyles.gameInfoValue,
+            style: forPopup
+                ? AppTextStyles.popupInfoValue
+                : AppTextStyles.gameInfoTitle,
           ),
         ],
       ),

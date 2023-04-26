@@ -7,6 +7,7 @@ import 'package:flutter_sudoku/models/cell_model.dart';
 import 'package:flutter_sudoku/models/cell_position_model.dart';
 import 'package:flutter_sudoku/models/move_model.dart';
 import 'package:flutter_sudoku/utils/utils.dart';
+import 'package:flutter_sudoku/widgets/popups.dart';
 
 class GameScreenProvider with ChangeNotifier {
   late BoardModel sudokuBoard;
@@ -113,6 +114,8 @@ class GameScreenProvider with ChangeNotifier {
   }
 
   void pauseButtonOnTap() {
+    Popup.gamePaused(time: time, mistakes: mistakes, difficulty: difficulty);
+
     if (gamePaused) {
       _resumeGame();
     } else {
