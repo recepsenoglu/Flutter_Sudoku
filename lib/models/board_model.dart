@@ -1,12 +1,19 @@
 import 'package:flutter_sudoku/models/cell_model.dart';
 import 'package:flutter_sudoku/models/cell_position_model.dart';
+import 'package:flutter_sudoku/models/move_model.dart';
 
 class BoardModel {
   final List<List<CellModel>> cells;
+  final List<MoveModel> movesLog;
 
   BoardModel({
     required this.cells,
+    required this.movesLog,
   });
+
+  bool get hasLog => movesLog.isNotEmpty;
+
+  MoveModel get lastMove => movesLog.last;
 
   List<CellModel> _getAllCells() {
     List<CellModel> allCells = [];

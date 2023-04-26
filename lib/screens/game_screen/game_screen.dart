@@ -65,7 +65,7 @@ class ActionButtons extends StatelessWidget {
           ActionButton(
             title: Strings.undo,
             iconWidget: const ActionIcon(Icons.refresh),
-            onTap: () {},
+            onTap: () => provider.undoOnTap(),
           ),
           ActionButton(
             title: Strings.erase,
@@ -218,7 +218,7 @@ class SudokuBoard extends StatelessWidget {
                           if (provider.gamePaused) {
                             return null;
                           } else {
-                            if (!cell.hasNotes) {
+                            if (cell.hasValue) {
                               return CellValueText(cell: cell);
                             } else {
                               return CellNotesGrid(

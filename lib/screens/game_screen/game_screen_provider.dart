@@ -5,6 +5,7 @@ import 'package:flutter_sudoku/constant/enums.dart';
 import 'package:flutter_sudoku/models/board_model.dart';
 import 'package:flutter_sudoku/models/cell_model.dart';
 import 'package:flutter_sudoku/models/cell_position_model.dart';
+import 'package:flutter_sudoku/models/move_model.dart';
 import 'package:flutter_sudoku/utils/utils.dart';
 
 class GameScreenProvider with ChangeNotifier {
@@ -50,7 +51,7 @@ class GameScreenProvider with ChangeNotifier {
                   notes: [],
                 )));
 
-    sudokuBoard = BoardModel(cells: cells);
+    sudokuBoard = BoardModel(cells: cells, movesLog: []);
   }
 
   void _fillTheBoard() {
@@ -161,13 +162,30 @@ class GameScreenProvider with ChangeNotifier {
     });
   }
 
+  void addMoveToLog({
+    required int value,
+    required int oldValue,
+    required List<int> notes,
+    required List<int> oldNotes,
+  }) {
+    final MoveModel moveModel = MoveModel(
+      cellPosition: selectedCell.position,
+      value: value,
+      oldValue: oldValue,
+      notes: notes,
+      oldNotes: oldNotes,
+    );
+
+    print(moveModel.print());
+
+    sudokuBoard.movesLog.add(moveModel);
+  }
+
   void numberButtonOnTap(int number) {
     if (!selectedCell.isGivenNumber && !selectedCell.isValueCorrect) {
       if (notesMode) {
-        _clearValue();
         _enterNote(number);
       } else {
-        _clearNotes();
         _enterValue(number);
       }
 
@@ -177,15 +195,35 @@ class GameScreenProvider with ChangeNotifier {
   }
 
   void _enterNote(int number) {
+    final List<int> oldNotes = List<int>.from(selectedCell.notes);
+
     if (selectedCell.notesContains(number)) {
       selectedCell.notes.remove(number);
     } else {
       selectedCell.notes.add(number);
     }
+
+    addMoveToLog(
+      value: 0,
+      oldValue: selectedCell.value,
+      notes: List<int>.from(selectedCell.notes),
+      oldNotes: oldNotes,
+    );
+
+    _clearValue();
   }
 
   void _enterValue(int number) {
     if (selectedCell.value != number) {
+      addMoveToLog(
+        value: number,
+        oldValue: selectedCell.value,
+        notes: [],
+        oldNotes: List<int>.from(selectedCell.notes),
+      );
+
+      _clearNotes();
+
       selectedCell.value = number;
       if (selectedCell.realValue != selectedCell.value) {
         mistakes += 1;
@@ -194,7 +232,9 @@ class GameScreenProvider with ChangeNotifier {
   }
 
   void _clearValue() {
-    selectedCell.value = null;
+    if (selectedCell.hasValue) {
+      selectedCell.value = 0;
+    }
   }
 
   void _clearNotes() {
@@ -208,25 +248,69 @@ class GameScreenProvider with ChangeNotifier {
     _clearNotes();
   }
 
+  void undoOnTap() {
+    if (sudokuBoard.hasLog) {
+      final MoveModel moveModel = sudokuBoard.lastMove;
+
+      CellModel cell = sudokuBoard.getCellByPosition(moveModel.cellPosition);
+      print(moveModel.print());
+
+      _selectCell(cell);
+
+      if (moveModel.value != moveModel.oldValue) {
+        cell.value = moveModel.oldValue;
+      }
+
+      if (moveModel.notes != moveModel.oldNotes) {
+        cell.notes = List.from(moveModel.oldNotes);
+      }
+
+      print('cellNotes: ' + cell.notes.toString());
+
+      sudokuBoard.movesLog.removeLast();
+
+      _updateSelectedCell();
+
+      notifyListeners();
+    }
+  }
+
   void eraseOnTap() {
     if (!selectedCell.isGivenNumber && !selectedCell.isValueCorrect) {
-      if (selectedCell.hasNotes) {
-        _deleteLastNote();
-      } else {
+      if (selectedCell.hasValue) {
         _deleteNumber();
+      } else if (selectedCell.hasNotes) {
+        _deleteLastNote();
       }
       notifyListeners();
     }
   }
 
   void _deleteLastNote() {
+    final List<int> oldNotes = List<int>.from(selectedCell.notes);
+
     selectedCell.notes.removeLast();
+    addMoveToLog(
+      value: 0,
+      oldValue: 0,
+      notes: List<int>.from(selectedCell.notes),
+      oldNotes: oldNotes,
+    );
+
     _updateSelectedCell();
   }
 
   void _deleteNumber() {
-    selectedCell.value = null;
-    _updateSelectedCell();
+    if (selectedCell.hasValue) {
+      addMoveToLog(
+        value: 0,
+        oldValue: selectedCell.value,
+        notes: [],
+        oldNotes: [],
+      );
+      selectedCell.value = 0;
+      _updateSelectedCell();
+    }
   }
 
   void notesOnTap() {

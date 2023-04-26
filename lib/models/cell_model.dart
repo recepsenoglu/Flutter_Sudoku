@@ -1,7 +1,7 @@
 import 'package:flutter_sudoku/models/cell_position_model.dart';
 
 class CellModel {
-  int? value;
+  int value;
   int realValue;
   bool isGivenNumber;
   bool isHighlighted;
@@ -9,7 +9,7 @@ class CellModel {
   final CellPositionModel position;
 
   CellModel({
-    this.value,
+    this.value = 0,
     required this.realValue,
     required this.position,
     this.isGivenNumber = false,
@@ -17,7 +17,7 @@ class CellModel {
     required this.notes,
   });
 
-  bool get hasValue => value != null && value != 0;
+  bool get hasValue => value != 0;
 
   bool get hasRealValue => realValue != 0;
 
