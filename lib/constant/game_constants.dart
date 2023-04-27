@@ -9,6 +9,10 @@ class GameSettings {
         return 30;
       case Difficulty.Hard:
         return 28;
+      case Difficulty.Expert:
+        return 26;
+      case Difficulty.Nightmare:
+        return 22;
       default:
         return 30;
     }

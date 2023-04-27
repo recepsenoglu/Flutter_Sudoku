@@ -40,8 +40,8 @@ class Popup {
           whiteButton: true,
           buttonText: Strings.newGame,
           onPressed: () {
-            onNewGame();
             Navigator.pop(NavigationService.navigatorKey.currentContext!);
+            onNewGame();
           }),
     ];
 

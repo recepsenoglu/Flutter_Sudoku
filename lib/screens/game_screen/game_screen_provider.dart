@@ -8,7 +8,6 @@ import 'package:flutter_sudoku/models/cell_model.dart';
 import 'package:flutter_sudoku/models/cell_position_model.dart';
 import 'package:flutter_sudoku/models/move_model.dart';
 import 'package:flutter_sudoku/models/option_button_model.dart';
-import 'package:flutter_sudoku/services/navigation_service.dart';
 import 'package:flutter_sudoku/utils/utils.dart';
 import 'package:flutter_sudoku/widgets/modal_bottom_sheet/modal_bottom_sheets.dart';
 import 'package:flutter_sudoku/widgets/popups.dart';
@@ -22,17 +21,26 @@ class GameScreenProvider with ChangeNotifier {
   int score = 0;
   int time = 0;
 
-  bool gamePaused = false;
-  bool gameOver = false;
+  int hints = 3;
 
   bool notesMode = false;
-  int hints = 3;
+
+  bool gamePaused = false;
+  bool gameOver = false;
 
   GameScreenProvider() {
     _init();
   }
 
   void _init() {
+    _createNewGame(difficulty);
+  }
+
+  void _createNewGame(Difficulty gameDifficulty) {
+    _clearGame();
+
+    debugPrint('Creating new ${difficulty.name.toUpperCase()} game ');
+    difficulty = gameDifficulty;
     _createSudokuBoard();
     selectedCell = sudokuBoard.getCellByCoordinates(0, 0);
     _selectCell(selectedCell);
@@ -107,6 +115,18 @@ class GameScreenProvider with ChangeNotifier {
       time++;
       notifyListeners();
     });
+  }
+
+  void _clearGame() {
+    debugPrint('Clearing game...');
+
+    mistakes = 0;
+    score = 0;
+    time = 0;
+
+    gamePaused = false;
+    gameOver = false;
+    notesMode = false;
   }
 
   void _pauseGame() {
@@ -250,12 +270,10 @@ class GameScreenProvider with ChangeNotifier {
     gameOver = true;
     notifyListeners();
 
-    Popup.gameOver(onNewGame: () {}).then(
-      (value) => _restartGame(),
-    );
+    Popup.gameOver(onNewGame: _chooseNewGameDifficulty);
   }
 
-  _restartGame() async {
+  _chooseNewGameDifficulty() async {
     List<Difficulty> options = [
       Difficulty.Easy,
       Difficulty.Medium,
@@ -282,10 +300,6 @@ class GameScreenProvider with ChangeNotifier {
     } else {
       Future.delayed(const Duration(milliseconds: 300), () => _gameOver());
     }
-  }
-
-  void _createNewGame(Difficulty difficulty) {
-    print('Creating new ${difficulty.name.toUpperCase()} game ');
   }
 
   void _clearValue() {
