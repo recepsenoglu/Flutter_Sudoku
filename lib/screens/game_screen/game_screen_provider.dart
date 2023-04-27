@@ -1,12 +1,16 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_sudoku/constant/app_strings.dart';
 import 'package:flutter_sudoku/constant/enums.dart';
 import 'package:flutter_sudoku/models/board_model.dart';
 import 'package:flutter_sudoku/models/cell_model.dart';
 import 'package:flutter_sudoku/models/cell_position_model.dart';
 import 'package:flutter_sudoku/models/move_model.dart';
+import 'package:flutter_sudoku/models/option_button_model.dart';
+import 'package:flutter_sudoku/services/navigation_service.dart';
 import 'package:flutter_sudoku/utils/utils.dart';
+import 'package:flutter_sudoku/widgets/modal_bottom_sheet/modal_bottom_sheets.dart';
 import 'package:flutter_sudoku/widgets/popups.dart';
 
 class GameScreenProvider with ChangeNotifier {
@@ -19,6 +23,7 @@ class GameScreenProvider with ChangeNotifier {
   int time = 0;
 
   bool gamePaused = false;
+  bool gameOver = false;
 
   bool notesMode = false;
   int hints = 3;
@@ -95,7 +100,7 @@ class GameScreenProvider with ChangeNotifier {
 
   void _startTimer() {
     Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (gamePaused) {
+      if (gamePaused || gameOver) {
         timer.cancel();
         return;
       }
@@ -242,7 +247,45 @@ class GameScreenProvider with ChangeNotifier {
   }
 
   void _gameOver() {
-    Popup.gameOver(onNewGame: () {});
+    gameOver = true;
+    notifyListeners();
+
+    Popup.gameOver(onNewGame: () {}).then(
+      (value) => _restartGame(),
+    );
+  }
+
+  _restartGame() async {
+    List<Difficulty> options = [
+      Difficulty.Easy,
+      Difficulty.Medium,
+      Difficulty.Hard,
+      Difficulty.Expert,
+      Difficulty.Nightmare,
+      difficulty,
+    ];
+
+    Function()? optionCallBack = await ModalBottomSheets.showOptions(
+        options: List.generate(
+      options.length,
+      (index) => OptionButtonModel(
+        title:
+            index == options.length - 1 ? Strings.restart : options[index].name,
+        onTap: () {
+          _createNewGame(options[index]);
+        },
+      ),
+    ));
+
+    if (optionCallBack != null) {
+      optionCallBack.call();
+    } else {
+      Future.delayed(const Duration(milliseconds: 300), () => _gameOver());
+    }
+  }
+
+  void _createNewGame(Difficulty difficulty) {
+    print('Creating new ${difficulty.name.toUpperCase()} game ');
   }
 
   void _clearValue() {

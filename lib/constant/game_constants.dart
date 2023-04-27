@@ -5,9 +5,9 @@ class GameSettings {
     switch (difficulty) {
       case Difficulty.Easy:
         return 38;
-      case Difficulty.medium:
+      case Difficulty.Medium:
         return 30;
-      case Difficulty.hard:
+      case Difficulty.Hard:
         return 28;
       default:
         return 30;

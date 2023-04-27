@@ -10,7 +10,7 @@ import 'package:flutter_sudoku/widgets/popup/useful_tip_divider.dart';
 import 'package:flutter_sudoku/widgets/popup/useful_tip_widget.dart';
 
 class Popup {
-  static void gameOver({
+  static Future<void> gameOver({
     required Function() onNewGame,
   }) {
     const String title = Strings.gameOver;
@@ -45,7 +45,7 @@ class Popup {
           }),
     ];
 
-    _showDialog(
+    return _showDialog(
       title: title,
       content: content,
       actions: actions,

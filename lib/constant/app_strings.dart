@@ -27,4 +27,7 @@ class Strings {
       'You have made 3 mistakes and lost this game';
   static const secondChance = 'Second Chance';
   static const newGame = 'New Game';
+
+  // Modal Bottom Sheet
+  static const restart = 'Restart';
 }
