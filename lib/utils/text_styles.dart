@@ -81,9 +81,9 @@ class AppTextStyles {
     fontWeight: FontWeight.bold,
   );
 
-  static const _navigationBarItemLabel = TextStyle(
-    fontSize: 12,
-    fontWeight: FontWeight.bold,
+  static final _buttonSubText = _buttonText.copyWith(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
   );
 
   static final _disabledButtonText =
@@ -91,6 +91,16 @@ class AppTextStyles {
 
   static final _whiteButtonText =
       _buttonText.copyWith(color: AppColors.roundedButton);
+
+  static const _navigationBarItemLabel = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.bold,
+  );
+
+  static const _mainScreenTitle = TextStyle(
+    fontSize: 64,
+    fontWeight: FontWeight.bold,
+  );
 
   static TextStyle get appBarTitle => _appBarTitle;
 
@@ -115,8 +125,11 @@ class AppTextStyles {
   static TextStyle get dividerText => _dividerText;
 
   static TextStyle get buttonText => _buttonText;
+  static TextStyle get buttonSubText => _buttonSubText;
   static TextStyle get disabledButtonText => _disabledButtonText;
   static TextStyle get whiteButtonText => _whiteButtonText;
 
   static TextStyle get navigationBarItemLabel => _navigationBarItemLabel;
+
+  static TextStyle get mainScreenTitle => _mainScreenTitle;
 }

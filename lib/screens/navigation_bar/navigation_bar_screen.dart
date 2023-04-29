@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_sudoku/constant/app_strings.dart';
+import 'package:flutter_sudoku/screens/main_screen/main_screen.dart';
 import 'package:flutter_sudoku/utils/app_colors.dart';
 import 'package:flutter_sudoku/utils/text_styles.dart';
 
@@ -13,9 +14,7 @@ class NavigationBarScreen extends StatefulWidget {
 
 class _NavigationBarScreenState extends State<NavigationBarScreen> {
   List<Widget> screens = [
-    const Center(
-      child: Text('Main Screen'),
-    ),
+    const MainScreen(),
     const Center(
       child: Text('Daily Challenges Screen'),
     ),
@@ -34,12 +33,6 @@ class _NavigationBarScreenState extends State<NavigationBarScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
-      appBar: AppBar(
-        elevation: 0,
-        toolbarHeight: 0,
-        backgroundColor: AppColors.appBarBackground,
-        systemOverlayStyle: SystemUiOverlayStyle.dark,
-      ),
       bottomNavigationBar: BottomNavigationBar(
         elevation: 10,
         onTap: onTappedItem,

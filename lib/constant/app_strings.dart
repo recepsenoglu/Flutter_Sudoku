@@ -35,4 +35,8 @@ class Strings {
   static const main = 'Main';
   static const dailyChallenges = 'Daily Challenges';
   static const statistics = 'Statistics';
+
+  // Main Screen
+  static const gameTitle = 'Flutter Sudoku';
+  static const continueGame = 'Continue Game';
 }
