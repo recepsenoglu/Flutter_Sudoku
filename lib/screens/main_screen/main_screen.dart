@@ -11,7 +11,7 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool continueGame = true;
+    bool continueGame = false;
 
     return Scaffold(
       backgroundColor: AppColors.mainScreenBg,

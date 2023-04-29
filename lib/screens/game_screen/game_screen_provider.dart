@@ -274,29 +274,11 @@ class GameScreenProvider with ChangeNotifier {
   }
 
   _chooseNewGameDifficulty() async {
-    List<Difficulty> options = [
-      Difficulty.Easy,
-      Difficulty.Medium,
-      Difficulty.Hard,
-      Difficulty.Expert,
-      Difficulty.Nightmare,
-      difficulty,
-    ];
+    Difficulty? chosenDifficulty =
+        await ModalBottomSheets.chooseDifficulty(restartDifficulty: difficulty);
 
-    Function()? optionCallBack = await ModalBottomSheets.showOptions(
-        options: List.generate(
-      options.length,
-      (index) => OptionButtonModel(
-        title:
-            index == options.length - 1 ? Strings.restart : options[index].name,
-        onTap: () {
-          _createNewGame(options[index]);
-        },
-      ),
-    ));
-
-    if (optionCallBack != null) {
-      optionCallBack.call();
+    if (chosenDifficulty != null) {
+      _createNewGame(chosenDifficulty);
     } else {
       Future.delayed(const Duration(milliseconds: 300), () => _gameOver());
     }

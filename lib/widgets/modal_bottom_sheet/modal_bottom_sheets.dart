@@ -1,11 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sudoku/constant/app_strings.dart';
+import 'package:flutter_sudoku/constant/enums.dart';
+import 'package:flutter_sudoku/constant/game_constants.dart';
 import 'package:flutter_sudoku/models/option_button_model.dart';
 import 'package:flutter_sudoku/services/navigation_service.dart';
 import 'package:flutter_sudoku/utils/app_colors.dart';
 import 'package:flutter_sudoku/widgets/widget_divider.dart';
 
 class ModalBottomSheets {
-  static Future<dynamic> showOptions({
+  static Future<dynamic> chooseDifficulty(
+      {Difficulty? restartDifficulty}) async {
+    List<Difficulty> options = GameSettings.getDifficulties;
+
+    if (restartDifficulty != null) {
+      options.add(restartDifficulty);
+    }
+
+    return await _showOptions(
+        options: List.generate(
+      options.length,
+      (index) => OptionButtonModel(
+        title:
+            index == options.length - 1 ? Strings.restart : options[index].name,
+        onTap: () {
+          return options[index];
+        },
+      ),
+    ));
+  }
+
+  static Future<dynamic> _showOptions({
     required List<OptionButtonModel> options,
   }) {
     const double radius = 28;
@@ -49,7 +73,7 @@ class ModalBottomSheets {
                   child: InkWell(
                     highlightColor: AppColors.whiteButtonForeground,
                     onTap: () {
-                      Navigator.pop(context, optionButton.onTap);
+                      Navigator.pop(context, optionButton.onTap());
                     },
                     borderRadius: borderRadius,
                     child: Container(

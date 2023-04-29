@@ -1,6 +1,14 @@
 import 'package:flutter_sudoku/constant/enums.dart';
 
 class GameSettings {
+  static List<Difficulty> get getDifficulties => [
+        Difficulty.Easy,
+        Difficulty.Medium,
+        Difficulty.Hard,
+        Difficulty.Expert,
+        Difficulty.Nightmare
+      ];
+
   static int amountOfNumbersGiven(Difficulty difficulty) {
     switch (difficulty) {
       case Difficulty.Easy:
