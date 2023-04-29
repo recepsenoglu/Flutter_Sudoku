@@ -56,6 +56,9 @@ class AppColors {
   static const _buttonDisabledText = _popupContentText;
   static const _whiteButtonForeground = Color(0xFFD9EEFF);
 
+  static const _navigationBarItemActive = Color(0xFF2E86E7);
+  static const _navigationBarItemPassive = Color(0xFF858E9C);
+
   static get primary => _primary;
 
   static get appBarBackground => _appBarBackground;
@@ -112,4 +115,7 @@ class AppColors {
   static get buttonDisabled => _buttonDisabled;
   static get buttonDisabledText => _buttonDisabledText;
   static get whiteButtonForeground => _whiteButtonForeground;
+
+  static get navigationBarItemActive => _navigationBarItemActive;
+  static get navigationBarItemPassive => _navigationBarItemPassive;
 }

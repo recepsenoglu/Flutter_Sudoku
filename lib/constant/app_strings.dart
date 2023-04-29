@@ -30,4 +30,9 @@ class Strings {
 
   // Modal Bottom Sheet
   static const restart = 'Restart';
+
+  // Navigation Bar
+  static const main = 'Main';
+  static const dailyChallenges = 'Daily Challenges';
+  static const statistics = 'Statistics';
 }

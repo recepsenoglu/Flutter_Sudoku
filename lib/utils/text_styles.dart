@@ -81,6 +81,11 @@ class AppTextStyles {
     fontWeight: FontWeight.bold,
   );
 
+  static const _navigationBarItemLabel = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.bold,
+  );
+
   static final _disabledButtonText =
       _buttonText.copyWith(color: AppColors.buttonDisabledText);
 
@@ -112,4 +117,6 @@ class AppTextStyles {
   static TextStyle get buttonText => _buttonText;
   static TextStyle get disabledButtonText => _disabledButtonText;
   static TextStyle get whiteButtonText => _whiteButtonText;
+
+  static TextStyle get navigationBarItemLabel => _navigationBarItemLabel;
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/screens/game_screen/game_screen.dart';
+import 'package:flutter_sudoku/screens/navigaton_bar/navigaton_bar_screen.dart';
 import 'package:flutter_sudoku/services/navigation_service.dart';
 
 void main() {
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Sudoku',
       theme: ThemeData(primarySwatch: Colors.blue),
       navigatorKey: NavigationService.navigatorKey,
-      home: const GameScreen(),
+      home: const NavigationBarScreen(),
     );
   }
 }
