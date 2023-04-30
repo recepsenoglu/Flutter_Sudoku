@@ -1,13 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/constant/app_strings.dart';
 import 'package:flutter_sudoku/constant/enums.dart';
 import 'package:flutter_sudoku/models/board_model.dart';
 import 'package:flutter_sudoku/models/cell_model.dart';
 import 'package:flutter_sudoku/models/cell_position_model.dart';
 import 'package:flutter_sudoku/models/move_model.dart';
-import 'package:flutter_sudoku/models/option_button_model.dart';
 import 'package:flutter_sudoku/utils/utils.dart';
 import 'package:flutter_sudoku/widgets/modal_bottom_sheet/modal_bottom_sheets.dart';
 import 'package:flutter_sudoku/widgets/popups.dart';
@@ -28,7 +26,7 @@ class GameScreenProvider with ChangeNotifier {
   bool gamePaused = false;
   bool gameOver = false;
 
-  GameScreenProvider() {
+  GameScreenProvider({this.difficulty = Difficulty.Easy}) {
     _init();
   }
 

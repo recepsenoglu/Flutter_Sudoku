@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_sudoku/constant/app_strings.dart';
+import 'package:flutter_sudoku/screens/main_screen/main_screen_provider.dart';
 import 'package:flutter_sudoku/utils/app_colors.dart';
 import 'package:flutter_sudoku/utils/text_styles.dart';
 import 'package:flutter_sudoku/widgets/appBar_action_button.dart';
 import 'package:flutter_sudoku/widgets/button/rounded_button/rounded_button.dart';
+import 'package:provider/provider.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
@@ -26,51 +28,56 @@ class MainScreen extends StatelessWidget {
           AppBarActionButton(icon: Icons.settings_outlined, onPressed: () {}),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 8),
-        child: Column(
-          children: [
-            const ChallengeAndEvents(),
-            const GameTitle(),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 26),
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Visibility(
-                              visible: continueGame,
-                              child: Padding(
-                                padding: const EdgeInsets.only(bottom: 16),
-                                child: RoundedButton(
-                                  buttonText: Strings.continueGame,
-                                  subText: '00:05 - Easy',
-                                  subIcon: Icons.watch_later_outlined,
-                                  onPressed: () {},
-                                ),
-                              )),
-                          RoundedButton(
-                            buttonText: Strings.newGame,
-                            whiteButton: continueGame,
-                            elevation: continueGame ? 2 : 0,
-                            onPressed: () {},
+      body: ChangeNotifierProvider<MainScreenProvider>(
+        create: (context) => MainScreenProvider(),
+        child: Consumer<MainScreenProvider>(builder: (context, provider, _) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 8),
+            child: Column(
+              children: [
+                const ChallengeAndEvents(),
+                const GameTitle(),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 26),
+                    child: Column(
+                      children: [
+                        Expanded(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Visibility(
+                                  visible: continueGame,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(bottom: 16),
+                                    child: RoundedButton(
+                                      buttonText: Strings.continueGame,
+                                      subText: '00:05 - Easy',
+                                      subIcon: Icons.watch_later_outlined,
+                                      onPressed: () {},
+                                    ),
+                                  )),
+                              RoundedButton(
+                                buttonText: Strings.newGame,
+                                whiteButton: continueGame,
+                                elevation: continueGame ? 2 : 0,
+                                onPressed: provider.newGame,
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                        const SizedBox(
+                          height: 86,
+                          width: double.infinity,
+                        ),
+                      ],
                     ),
-                    const SizedBox(
-                      height: 86,
-                      width: double.infinity,
-                    ),
-                  ],
+                  ),
                 ),
-              ),
+              ],
             ),
-          ],
-        ),
+          );
+        }),
       ),
     );
   }

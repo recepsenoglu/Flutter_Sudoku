@@ -20,7 +20,8 @@ import 'package:flutter_sudoku/widgets/sudoku_board/vertical_lines.dart';
 import 'package:provider/provider.dart';
 
 class GameScreen extends StatelessWidget {
-  const GameScreen({super.key});
+  const GameScreen({this.difficulty, super.key});
+  final Difficulty? difficulty;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,8 @@ class GameScreen extends StatelessWidget {
       backgroundColor: AppColors.background,
       appBar: const GameAppBar(),
       body: ChangeNotifierProvider<GameScreenProvider>(
-        create: (context) => GameScreenProvider(),
+        create: (context) =>
+            GameScreenProvider(difficulty: difficulty ?? Difficulty.Easy),
         child: Consumer<GameScreenProvider>(builder: (context, provider, _) {
           return Column(
             children: [

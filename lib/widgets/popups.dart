@@ -34,13 +34,13 @@ class Popup {
           disabled: true,
           icon: Icons.movie_filter,
           onPressed: () {
-            Navigator.pop(NavigationService.navigatorKey.currentContext!);
+            Navigator.pop(Routes.navigatorKey.currentContext!);
           }),
       RoundedButton(
           whiteButton: true,
           buttonText: Strings.newGame,
           onPressed: () {
-            Navigator.pop(NavigationService.navigatorKey.currentContext!);
+            Navigator.pop(Routes.navigatorKey.currentContext!);
             onNewGame();
           }),
     ];
@@ -75,7 +75,7 @@ class Popup {
           buttonText: Strings.resumeGame,
           onPressed: () {
             onResume();
-            Navigator.pop(NavigationService.navigatorKey.currentContext!);
+            Navigator.pop(Routes.navigatorKey.currentContext!);
           })
     ];
 
@@ -93,7 +93,7 @@ class Popup {
     bool barrierDismissible = false,
   }) async {
     return showDialog<void>(
-      context: NavigationService.navigatorKey.currentContext!,
+      context: Routes.navigatorKey.currentContext!,
       barrierDismissible: barrierDismissible,
       builder: (BuildContext context) {
         return Dialog(
