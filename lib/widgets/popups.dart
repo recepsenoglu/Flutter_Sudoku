@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sudoku/constant/app_strings.dart';
 import 'package:flutter_sudoku/constant/enums.dart';
-import 'package:flutter_sudoku/services/navigation_service.dart';
+import 'package:flutter_sudoku/services/routes.dart';
 import 'package:flutter_sudoku/utils/app_colors.dart';
 import 'package:flutter_sudoku/utils/text_styles.dart';
 import 'package:flutter_sudoku/widgets/button/rounded_button/rounded_button.dart';

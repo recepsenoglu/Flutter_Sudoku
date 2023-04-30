@@ -3,11 +3,33 @@ import 'package:flutter_sudoku/constant/app_strings.dart';
 import 'package:flutter_sudoku/constant/enums.dart';
 import 'package:flutter_sudoku/constant/game_constants.dart';
 import 'package:flutter_sudoku/models/option_button_model.dart';
-import 'package:flutter_sudoku/services/navigation_service.dart';
+import 'package:flutter_sudoku/services/routes.dart';
 import 'package:flutter_sudoku/utils/app_colors.dart';
+import 'package:flutter_sudoku/utils/utils.dart';
 import 'package:flutter_sudoku/widgets/widget_divider.dart';
 
 class ModalBottomSheets {
+  static Future<dynamic> chooseTimeInterval(TimeInterval timeInterval) async {
+    List<TimeInterval> options = GameSettings.getTimeIntervals;
+
+    options.add(timeInterval);
+
+    return await _showOptions(
+        options: List.generate(
+      options.length,
+      (index) => OptionButtonModel(
+        title: index == options.length - 1
+            ? Strings.cancel
+            : removeUnderscore(options[index].name),
+        selected: options[index].name == timeInterval.name &&
+            index != options.length - 1,
+        onTap: () {
+          return options[index];
+        },
+      ),
+    ));
+  }
+
   static Future<dynamic> chooseDifficulty(
       {Difficulty? restartDifficulty}) async {
     List<Difficulty> options = GameSettings.getDifficulties;
@@ -84,9 +106,12 @@ class ModalBottomSheets {
                           if (leading) ...[
                             SizedBox(
                               width: leadingWidth,
-                              child: Center(
-                                child: Icon(Icons.done,
-                                    color: AppColors.roundedButton),
+                              child: Visibility(
+                                visible: optionButton.selected,
+                                child: Center(
+                                  child: Icon(Icons.done,
+                                      color: AppColors.roundedButton),
+                                ),
                               ),
                             ),
                           ],

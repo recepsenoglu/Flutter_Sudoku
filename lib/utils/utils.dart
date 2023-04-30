@@ -6,6 +6,10 @@ import 'package:flutter_sudoku/models/cell_position_model.dart';
 import 'package:flutter_sudoku/utils/app_colors.dart';
 import 'package:flutter_sudoku/utils/text_styles.dart';
 
+String removeUnderscore(String text) {
+  return text.replaceAll(RegExp(r'_'), ' ');
+}
+
 int generateRandomNumber({required Set<int> exclude}) {
   List<int> numberList = List<int>.from([1, 2, 3, 4, 5, 6, 7, 8, 9]);
 

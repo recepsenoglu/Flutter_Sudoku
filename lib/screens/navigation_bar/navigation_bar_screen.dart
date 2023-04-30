@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sudoku/constant/app_strings.dart';
 import 'package:flutter_sudoku/screens/main_screen/main_screen.dart';
+import 'package:flutter_sudoku/screens/statistics_screen/statistics_screen.dart';
 import 'package:flutter_sudoku/utils/app_colors.dart';
 import 'package:flutter_sudoku/utils/text_styles.dart';
 
@@ -17,9 +18,7 @@ class _NavigationBarScreenState extends State<NavigationBarScreen> {
     const Center(
       child: Text('Daily Challenges Screen'),
     ),
-    const Center(
-      child: Text('Statistics Screen'),
-    ),
+    const StatisticsScreen(),
   ];
 
   int _selectedIndex = 0;

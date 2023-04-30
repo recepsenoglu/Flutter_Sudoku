@@ -4,6 +4,7 @@ import 'package:flutter_sudoku/constant/app_strings.dart';
 import 'package:flutter_sudoku/constant/enums.dart';
 import 'package:flutter_sudoku/models/cell_model.dart';
 import 'package:flutter_sudoku/screens/game_screen/game_screen_provider.dart';
+import 'package:flutter_sudoku/services/routes.dart';
 import 'package:flutter_sudoku/utils/app_colors.dart';
 import 'package:flutter_sudoku/utils/extensions.dart';
 import 'package:flutter_sudoku/utils/text_styles.dart';
@@ -404,8 +405,12 @@ class GameAppBar extends StatelessWidget with PreferredSizeWidget {
         Strings.appBarTitle,
         style: AppTextStyles.appBarTitle,
       ),
-      leading:
-          AppBarActionButton(icon: Icons.arrow_back_ios_new, onPressed: () {}),
+      leading: AppBarActionButton(
+        icon: Icons.arrow_back_ios_new,
+        onPressed: () {
+          Routes.goTo(Routes.navigationBar);
+        },
+      ),
       actions: [
         AppBarActionButton(
           icon: Icons.palette_outlined,

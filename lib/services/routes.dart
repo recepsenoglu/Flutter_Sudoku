@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sudoku/constant/enums.dart';
 import 'package:flutter_sudoku/screens/game_screen/game_screen.dart';
 import 'package:flutter_sudoku/screens/navigation_bar/navigation_bar_screen.dart';
+import 'package:flutter_sudoku/screens/statistics_screen/statistics_screen.dart';
 
 class Routes {
   static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
   static const String navigationBar = '/navigation_bar';
   static const String gameScreen = '/game_screen';
+  static const String statisticsScreen = '/statistics_screen';
 
   static Route<dynamic>? generateRoute(RouteSettings settings) {
     final args = settings.arguments;
@@ -19,6 +21,9 @@ class Routes {
       case gameScreen:
         return MaterialPageRoute(
             builder: (_) => GameScreen(difficulty: args as Difficulty));
+
+      case statisticsScreen:
+        return MaterialPageRoute(builder: (_) => const StatisticsScreen());
 
       default:
         return _errorRoute();

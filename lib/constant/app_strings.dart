@@ -30,6 +30,7 @@ class Strings {
 
   // Modal Bottom Sheet
   static const restart = 'Restart';
+  static const cancel = 'Cancel';
 
   // Navigation Bar
   static const main = 'Main';
@@ -39,4 +40,10 @@ class Strings {
   // Main Screen
   static const gameTitle = 'Flutter Sudoku';
   static const continueGame = 'Continue Game';
+
+  // Statistics Screen
+  static const games = 'Games';
+  static const streaks = 'Streaks';
+  static const resetStatistics = 'Reset Statistics';
+
 }

@@ -61,6 +61,12 @@ class AppColors {
 
   static const _mainScreenBg = Color(0xFFF6F7F9);
 
+  static const _statisticsTitle = Colors.black;
+
+  static const _statisticsCard = Color(0xFFF0F3F8);
+  static const _statisticsUp = Color(0xFF3DC161);
+  static const _statisticsDown = Color(0xFFFF3A2F);
+
   static get primary => _primary;
 
   static get appBarBackground => _appBarBackground;
@@ -122,4 +128,9 @@ class AppColors {
   static get navigationBarItemPassive => _navigationBarItemPassive;
 
   static get mainScreenBg => _mainScreenBg;
+
+  static get statisticsTitle => _statisticsTitle;
+  static get statisticsCard => _statisticsCard;
+  static get statisticsUp => _statisticsUp;
+  static get statisticsDown => _statisticsDown;
 }

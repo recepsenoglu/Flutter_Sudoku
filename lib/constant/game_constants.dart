@@ -9,6 +9,14 @@ class GameSettings {
         Difficulty.Nightmare
       ];
 
+  static List<TimeInterval> get getTimeIntervals => [
+        TimeInterval.Today,
+        TimeInterval.This_week,
+        TimeInterval.This_month,
+        TimeInterval.This_year,
+        TimeInterval.All_time,
+      ];
+
   static int amountOfNumbersGiven(Difficulty difficulty) {
     switch (difficulty) {
       case Difficulty.Easy:

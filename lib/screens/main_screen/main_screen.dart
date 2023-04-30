@@ -22,6 +22,7 @@ class MainScreen extends StatelessWidget {
         toolbarHeight: 52,
         backgroundColor: AppColors.mainScreenBg,
         systemOverlayStyle: SystemUiOverlayStyle.dark,
+        leading: const SizedBox.shrink(),
         actions: [
           AppBarActionButton(
               icon: Icons.emoji_events_outlined, onPressed: () {}),
@@ -114,7 +115,7 @@ class ChallengeAndEvents extends StatelessWidget {
     return Container(
       height: 190,
       width: double.infinity,
-      color: Colors.black,
+      decoration: BoxDecoration(border: Border.all()),
     );
   }
 }

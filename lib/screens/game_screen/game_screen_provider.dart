@@ -26,6 +26,15 @@ class GameScreenProvider with ChangeNotifier {
   bool gamePaused = false;
   bool gameOver = false;
 
+  bool _mounted = false;
+  bool get mounted => _mounted;
+
+  @override
+  void dispose() {
+    super.dispose();
+    _mounted = true;
+  }
+
   GameScreenProvider({this.difficulty = Difficulty.Easy}) {
     _init();
   }
@@ -106,7 +115,7 @@ class GameScreenProvider with ChangeNotifier {
 
   void _startTimer() {
     Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (gamePaused || gameOver) {
+      if (gamePaused || gameOver || _mounted) {
         timer.cancel();
         return;
       }

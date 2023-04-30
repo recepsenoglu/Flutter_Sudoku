@@ -102,6 +102,20 @@ class AppTextStyles {
     fontWeight: FontWeight.bold,
   );
 
+  static final _statisticsTitle = TextStyle(
+    color: AppColors.statisticsTitle,
+    fontWeight: FontWeight.bold,
+  );
+
+  static const _statisticsGroupTitle =
+      TextStyle(fontSize: 24, fontWeight: FontWeight.w800);
+
+  static const _statisticsCardValue =
+      TextStyle(fontSize: 22, fontWeight: FontWeight.w800);
+
+  static const _statisticsCardTitle =
+      TextStyle(fontSize: 15, fontWeight: FontWeight.bold);
+
   static TextStyle get appBarTitle => _appBarTitle;
 
   static TextStyle get gameInfoTitle => _gameInfoTitle;
@@ -132,4 +146,9 @@ class AppTextStyles {
   static TextStyle get navigationBarItemLabel => _navigationBarItemLabel;
 
   static TextStyle get mainScreenTitle => _mainScreenTitle;
+
+  static TextStyle get statisticsTitle => _statisticsTitle;
+  static TextStyle get statisticsGroupTitle => _statisticsGroupTitle;
+  static TextStyle get statisticsCardValue => _statisticsCardValue;
+  static TextStyle get statisticsCardTitle => _statisticsCardTitle;
 }

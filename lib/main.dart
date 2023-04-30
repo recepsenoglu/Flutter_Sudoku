@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/services/navigation_service.dart';
+import 'package:flutter_sudoku/services/routes.dart';
 
 void main() {
   runApp(const MyApp());
