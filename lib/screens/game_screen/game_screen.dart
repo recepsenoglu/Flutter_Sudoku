@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_sudoku/constant/app_strings.dart';
 import 'package:flutter_sudoku/constant/enums.dart';
 import 'package:flutter_sudoku/models/cell_model.dart';
+import 'package:flutter_sudoku/models/game_model.dart';
 import 'package:flutter_sudoku/screens/game_screen/game_screen_provider.dart';
 import 'package:flutter_sudoku/services/routes.dart';
 import 'package:flutter_sudoku/utils/app_colors.dart';
@@ -21,19 +22,21 @@ import 'package:flutter_sudoku/widgets/sudoku_board/vertical_lines.dart';
 import 'package:provider/provider.dart';
 
 class GameScreen extends StatelessWidget {
-  const GameScreen({this.difficulty, super.key});
-  final Difficulty? difficulty;
+  const GameScreen({required this.gameModel, super.key});
+  final GameModel gameModel;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.background,
-      appBar: const GameAppBar(),
-      body: ChangeNotifierProvider<GameScreenProvider>(
-        create: (context) =>
-            GameScreenProvider(difficulty: difficulty ?? Difficulty.Easy),
-        child: Consumer<GameScreenProvider>(builder: (context, provider, _) {
-          return Column(
+    return ChangeNotifierProvider<GameScreenProvider>(
+      create: (context) => GameScreenProvider(gameModel: gameModel),
+      child: Consumer<GameScreenProvider>(builder: (context, provider, _) {
+        return Scaffold(
+          backgroundColor: AppColors.background,
+          appBar: GameAppBar(onBackPressed: () async {
+            final GameModel currentGame = await provider.getCurrentGame();
+            Routes.goTo(Routes.navigationBar, args: currentGame);
+          }),
+          body: Column(
             children: [
               GameInfo(provider: provider),
               SudokuBoard(provider: provider),
@@ -43,9 +46,9 @@ class GameScreen extends StatelessWidget {
               NumberButtons(provider: provider),
               const Spacer(flex: 1),
             ],
-          );
-        }),
-      ),
+          ),
+        );
+      }),
     );
   }
 }
@@ -391,8 +394,11 @@ class GameInfo extends StatelessWidget {
 
 class GameAppBar extends StatelessWidget with PreferredSizeWidget {
   const GameAppBar({
+    required this.onBackPressed,
     super.key,
   });
+
+  final Function() onBackPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -407,9 +413,7 @@ class GameAppBar extends StatelessWidget with PreferredSizeWidget {
       ),
       leading: AppBarActionButton(
         icon: Icons.arrow_back_ios_new,
-        onPressed: () {
-          Routes.goTo(Routes.navigationBar);
-        },
+        onPressed: onBackPressed,
       ),
       actions: [
         AppBarActionButton(

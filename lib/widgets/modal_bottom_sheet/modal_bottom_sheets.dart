@@ -33,8 +33,9 @@ class ModalBottomSheets {
   static Future<dynamic> chooseDifficulty(
       {Difficulty? restartDifficulty}) async {
     List<Difficulty> options = GameSettings.getDifficulties;
+    final bool restartButton = restartDifficulty != null;
 
-    if (restartDifficulty != null) {
+    if (restartButton) {
       options.add(restartDifficulty);
     }
 
@@ -42,8 +43,9 @@ class ModalBottomSheets {
         options: List.generate(
       options.length,
       (index) => OptionButtonModel(
-        title:
-            index == options.length - 1 ? Strings.restart : options[index].name,
+        title: index == options.length - 1 && restartButton
+            ? Strings.restart
+            : options[index].name,
         onTap: () {
           return options[index];
         },

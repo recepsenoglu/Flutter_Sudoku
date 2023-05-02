@@ -1,26 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sudoku/constant/app_strings.dart';
+import 'package:flutter_sudoku/models/game_model.dart';
 import 'package:flutter_sudoku/screens/main_screen/main_screen.dart';
 import 'package:flutter_sudoku/screens/statistics_screen/statistics_screen.dart';
 import 'package:flutter_sudoku/utils/app_colors.dart';
 import 'package:flutter_sudoku/utils/text_styles.dart';
 
 class NavigationBarScreen extends StatefulWidget {
-  const NavigationBarScreen({super.key});
+  const NavigationBarScreen({
+    super.key,
+    this.savedGame,
+  });
+
+  final GameModel? savedGame;
 
   @override
   State<NavigationBarScreen> createState() => _NavigationBarScreenState();
 }
 
 class _NavigationBarScreenState extends State<NavigationBarScreen> {
-  List<Widget> screens = [
-    const MainScreen(),
-    const Center(
-      child: Text('Daily Challenges Screen'),
-    ),
-    const StatisticsScreen(),
-  ];
-
   int _selectedIndex = 0;
 
   void onTappedItem(int index) {
@@ -28,7 +26,14 @@ class _NavigationBarScreenState extends State<NavigationBarScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {    
+    List<Widget> screens = [
+      MainScreen(savedGame: widget.savedGame),
+      const Center(
+        child: Text('Daily Challenges Screen'),
+      ),
+      const StatisticsScreen(),
+    ];
     return Scaffold(
       backgroundColor: AppColors.background,
       bottomNavigationBar: BottomNavigationBar(

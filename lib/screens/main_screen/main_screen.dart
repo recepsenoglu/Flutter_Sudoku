@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_sudoku/constant/app_strings.dart';
+import 'package:flutter_sudoku/models/game_model.dart';
 import 'package:flutter_sudoku/screens/main_screen/main_screen_provider.dart';
 import 'package:flutter_sudoku/utils/app_colors.dart';
 import 'package:flutter_sudoku/utils/text_styles.dart';
@@ -9,12 +10,12 @@ import 'package:flutter_sudoku/widgets/button/rounded_button/rounded_button.dart
 import 'package:provider/provider.dart';
 
 class MainScreen extends StatelessWidget {
-  const MainScreen({super.key});
+  const MainScreen({this.savedGame, super.key});
+
+  final GameModel? savedGame;
 
   @override
   Widget build(BuildContext context) {
-    bool continueGame = false;
-
     return Scaffold(
       backgroundColor: AppColors.mainScreenBg,
       appBar: AppBar(
@@ -30,7 +31,7 @@ class MainScreen extends StatelessWidget {
         ],
       ),
       body: ChangeNotifierProvider<MainScreenProvider>(
-        create: (context) => MainScreenProvider(),
+        create: (context) => MainScreenProvider(savedGame: savedGame),
         child: Consumer<MainScreenProvider>(builder: (context, provider, _) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 8),
@@ -48,20 +49,20 @@ class MainScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Visibility(
-                                  visible: continueGame,
+                                  visible: provider.isThereASavedGame,
                                   child: Padding(
                                     padding: const EdgeInsets.only(bottom: 16),
                                     child: RoundedButton(
                                       buttonText: Strings.continueGame,
-                                      subText: '00:05 - Easy',
+                                      subText: provider.continueGameButtonText,
                                       subIcon: Icons.watch_later_outlined,
-                                      onPressed: () {},
+                                      onPressed: provider.continueGame,
                                     ),
                                   )),
                               RoundedButton(
                                 buttonText: Strings.newGame,
-                                whiteButton: continueGame,
-                                elevation: continueGame ? 2 : 0,
+                                whiteButton: provider.isThereASavedGame,
+                                elevation: provider.isThereASavedGame ? 2 : 0,
                                 onPressed: provider.newGame,
                               ),
                             ],

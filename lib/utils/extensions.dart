@@ -9,3 +9,8 @@ extension TimeString on int {
     return '-- : --';
   }
 }
+extension StringExtensions on String {
+  bool toBool() {
+    return this == 'true';
+  }
+}

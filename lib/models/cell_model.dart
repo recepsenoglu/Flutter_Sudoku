@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter_sudoku/models/cell_position_model.dart';
+import 'package:flutter_sudoku/utils/extensions.dart';
 
 class CellModel {
   int value;
@@ -39,4 +42,24 @@ class CellModel {
       : hasValue
           ? value.toString()
           : ' ';
+
+  factory CellModel.fromJson(Map<String, dynamic> json) {
+    return CellModel(
+      value: int.parse(json['value']!),
+      realValue: int.parse(json['realValue']!),
+      isGivenNumber: (json['isGivenNumber']!).toString().toBool(),
+      isHighlighted: (json['isHighlighted']!).toString().toBool(),
+      position: CellPositionModel.fromJson(jsonDecode(json['position'])),
+      notes: List<int>.from(jsonDecode(json['notes'])),
+    );
+  }
+
+  Map<String, String> toJson() => {
+        'value': '$value',
+        'realValue': '$realValue',
+        'isGivenNumber': '$isGivenNumber',
+        'isHighlighted': '$isHighlighted',
+        'notes': jsonEncode(notes),
+        'position': jsonEncode(position.toJson()),
+      };
 }

@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:flutter_sudoku/models/cell_model.dart';
 import 'package:flutter_sudoku/models/cell_position_model.dart';
 import 'package:flutter_sudoku/models/move_model.dart';
@@ -11,9 +12,15 @@ class BoardModel {
     required this.movesLog,
   });
 
+  factory BoardModel.newBoard() {
+    return BoardModel(cells: [], movesLog: []);
+  }
+
   bool get hasLog => movesLog.isNotEmpty;
 
   MoveModel get lastMove => movesLog.last;
+
+  List<CellModel> get allCells => _getAllCells();
 
   List<CellModel> _getAllCells() {
     List<CellModel> allCells = [];
@@ -34,8 +41,6 @@ class BoardModel {
       }
     }
   }
-
-  List<CellModel> get allCells => _getAllCells();
 
   Set<int> getIntersectedValues(CellModel cellModel) {
     final List<CellModel> intersectedCells = allCells
@@ -77,4 +82,21 @@ class BoardModel {
 
     cells[y][x] = cellModel;
   }
+
+  factory BoardModel.fromJson(Map<String, dynamic> json) {
+    return BoardModel(
+      cells: List<List<CellModel>>.from(jsonDecode(json['cells']).map(
+          (cellList) => List<CellModel>.from(
+              cellList.map((cell) => CellModel.fromJson(cell)).toList()))),
+      movesLog: List<MoveModel>.from(
+          jsonDecode(json['movesLog']).map((e) => MoveModel.fromJson(e))),
+    );
+  }
+
+  Map<String, String> toJson() => {
+        'cells': jsonEncode(cells
+            .map((cellList) => cellList.map((cell) => cell.toJson()).toList())
+            .toList()),
+        'movesLog': jsonEncode(movesLog.map((e) => e.toJson()).toList()),
+      };
 }

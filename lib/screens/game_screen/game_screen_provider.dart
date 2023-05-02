@@ -2,24 +2,38 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_sudoku/constant/enums.dart';
+import 'package:flutter_sudoku/constant/game_constants.dart';
 import 'package:flutter_sudoku/models/board_model.dart';
 import 'package:flutter_sudoku/models/cell_model.dart';
 import 'package:flutter_sudoku/models/cell_position_model.dart';
+import 'package:flutter_sudoku/models/game_model.dart';
 import 'package:flutter_sudoku/models/move_model.dart';
+import 'package:flutter_sudoku/services/storage_service.dart';
+import 'package:flutter_sudoku/utils/extensions.dart';
 import 'package:flutter_sudoku/utils/utils.dart';
 import 'package:flutter_sudoku/widgets/modal_bottom_sheet/modal_bottom_sheets.dart';
 import 'package:flutter_sudoku/widgets/popups.dart';
 
 class GameScreenProvider with ChangeNotifier {
-  late BoardModel sudokuBoard;
+  late StorageService storageService;
+  late GameModel gameModel;
   late CellModel selectedCell;
 
-  Difficulty difficulty = Difficulty.Easy;
-  int mistakes = 0;
-  int score = 0;
-  int time = 0;
+  Difficulty get difficulty => gameModel.difficulty;
 
-  int hints = 3;
+  BoardModel get sudokuBoard => gameModel.sudokuBoard;
+
+  int get mistakes => gameModel.mistakes;
+  int get score => gameModel.score;
+  int get time => gameModel.time;
+  int get hints => gameModel.hints;
+
+  set sudokuBoard(value) => gameModel.sudokuBoard = value;
+
+  set mistakes(int value) => gameModel.mistakes = value;
+  set score(int value) => gameModel.score = value;
+  set time(int value) => gameModel.time = value;
+  set hints(int value) => gameModel.hints = value;
 
   bool notesMode = false;
 
@@ -35,47 +49,50 @@ class GameScreenProvider with ChangeNotifier {
     _mounted = true;
   }
 
-  GameScreenProvider({this.difficulty = Difficulty.Easy}) {
+  GameScreenProvider({required this.gameModel}) {
     _init();
   }
 
-  void _init() {
-    _createNewGame(difficulty);
+  Future<void> _init() async {
+    _createNewGame(gameModel);
+    storageService = await StorageService.initialize();
+    await _saveGame();
   }
 
-  void _createNewGame(Difficulty gameDifficulty) {
-    _clearGame();
+  Future<void> _saveGame() async {
+    await storageService.saveGame(gameModel);
+  }
 
-    debugPrint('Creating new ${difficulty.name.toUpperCase()} game ');
-    difficulty = gameDifficulty;
-    _createSudokuBoard();
+  Future<GameModel> getCurrentGame() async {
+    await _saveGame();
+    return gameModel;
+  }
+
+  void _createNewGame(GameModel newGame) {
+    gameModel = newGame;
+
+    if (gameModel.time == 0) {
+      _clearGame();
+      debugPrint(
+          'Creating a new ${gameModel.difficulty.name.toUpperCase()} game ');
+      _fillTheBoard();
+    } else {
+      debugPrint(
+          'Continuing ${gameModel.difficulty.name.toUpperCase()} game - TIME: ${gameModel.time.toTimeString()}');
+    }
+
     selectedCell = sudokuBoard.getCellByCoordinates(0, 0);
     _selectCell(selectedCell);
     _startTimer();
     notifyListeners();
   }
 
-  void _createSudokuBoard() {
-    _createEmptyBoard();
-    _fillTheBoard();
+  void _fillTheBoard() {
+    _fillNumbers();
     _giveStartNumbers();
   }
 
-  void _createEmptyBoard() {
-    List<List<CellModel>> cells = List.generate(
-        9,
-        (y) => List.generate(
-            9,
-            (x) => CellModel(
-                  position: CellPositionModel(y: y, x: x),
-                  realValue: 0,
-                  notes: [],
-                )));
-
-    sudokuBoard = BoardModel(cells: cells, movesLog: []);
-  }
-
-  void _fillTheBoard() {
+  void _fillNumbers() {
     bool noAvailableNumbers = false;
 
     for (var y = 0; y < 9; y++) {
@@ -100,7 +117,7 @@ class GameScreenProvider with ChangeNotifier {
         }
       }
     }
-    if (noAvailableNumbers) _fillTheBoard();
+    if (noAvailableNumbers) _fillNumbers();
   }
 
   void _giveStartNumbers() {
@@ -126,10 +143,6 @@ class GameScreenProvider with ChangeNotifier {
 
   void _clearGame() {
     debugPrint('Clearing game...');
-
-    mistakes = 0;
-    score = 0;
-    time = 0;
 
     gamePaused = false;
     gameOver = false;
@@ -227,7 +240,7 @@ class GameScreenProvider with ChangeNotifier {
       } else {
         _enterValue(number);
       }
-
+      _saveGame();
       _updateSelectedCell();
       notifyListeners();
     }
@@ -285,7 +298,12 @@ class GameScreenProvider with ChangeNotifier {
         await ModalBottomSheets.chooseDifficulty(restartDifficulty: difficulty);
 
     if (chosenDifficulty != null) {
-      _createNewGame(chosenDifficulty);
+      final GameModel gameModel = GameModel(
+        sudokuBoard: GameSettings.createSudokuBoard(),
+        difficulty: chosenDifficulty,
+      );
+
+      _createNewGame(gameModel);
     } else {
       Future.delayed(const Duration(milliseconds: 300), () => _gameOver());
     }
@@ -313,21 +331,18 @@ class GameScreenProvider with ChangeNotifier {
       final MoveModel moveModel = sudokuBoard.lastMove;
 
       CellModel cell = sudokuBoard.getCellByPosition(moveModel.cellPosition);
-
       _selectCell(cell);
 
       if (moveModel.value != moveModel.oldValue) {
         cell.value = moveModel.oldValue;
       }
-
       if (moveModel.notes != moveModel.oldNotes) {
         cell.notes = List.from(moveModel.oldNotes);
       }
-
       sudokuBoard.movesLog.removeLast();
 
+      _saveGame();
       _updateSelectedCell();
-
       notifyListeners();
     }
   }
@@ -339,6 +354,7 @@ class GameScreenProvider with ChangeNotifier {
       } else if (selectedCell.hasNotes) {
         _deleteLastNote();
       }
+      _saveGame();
       notifyListeners();
     }
   }
@@ -378,6 +394,7 @@ class GameScreenProvider with ChangeNotifier {
   void hintsOnTap() {
     if (_canGetHint) {
       _giveHint();
+      _saveGame();
     }
   }
 

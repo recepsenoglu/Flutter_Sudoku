@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/constant/enums.dart';
+import 'package:flutter_sudoku/models/game_model.dart';
 import 'package:flutter_sudoku/screens/game_screen/game_screen.dart';
 import 'package:flutter_sudoku/screens/navigation_bar/navigation_bar_screen.dart';
 import 'package:flutter_sudoku/screens/statistics_screen/statistics_screen.dart';
@@ -16,11 +16,14 @@ class Routes {
 
     switch (settings.name) {
       case navigationBar:
-        return MaterialPageRoute(builder: (_) => const NavigationBarScreen());
+        return MaterialPageRoute(
+            builder: (_) => NavigationBarScreen(
+                  savedGame: args as GameModel?,
+                ));
 
       case gameScreen:
         return MaterialPageRoute(
-            builder: (_) => GameScreen(difficulty: args as Difficulty));
+            builder: (_) => GameScreen(gameModel: args as GameModel));
 
       case statisticsScreen:
         return MaterialPageRoute(builder: (_) => const StatisticsScreen());
