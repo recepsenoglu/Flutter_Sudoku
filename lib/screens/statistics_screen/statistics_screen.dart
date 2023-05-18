@@ -131,7 +131,6 @@ class StatisticCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Column(
@@ -149,10 +148,54 @@ class StatisticCard extends StatelessWidget {
               ),
             ],
           ),
-          Text(
-            statisticModel.value.toString(),
-            style: AppTextStyles.statisticsCardValue,
+          const Spacer(),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const ComparisonBox(),
+              Text(
+                statisticModel.value.toString(),
+                style: AppTextStyles.statisticsCardValue,
+              ),
+            ],
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class ComparisonBox extends StatelessWidget {
+  const ComparisonBox({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    bool positive = true;
+    IconData arrowIcon = positive ? Icons.arrow_drop_up : Icons.arrow_drop_down;
+
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.all(2),
+      decoration: BoxDecoration(
+          color: positive ? AppColors.statisticsUp : AppColors.statisticsDown,
+          borderRadius: BorderRadius.circular(6)),
+      child: Row(
+        children: [
+          Icon(
+            arrowIcon,
+            color: Colors.white,
+            size: 16,
+          ),
+          Text(
+            '12',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 12,
+            ),
+          ),
+          const SizedBox(width: 4),
         ],
       ),
     );
