@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_sudoku/constant/app_strings.dart';
 import 'package:flutter_sudoku/constant/enums.dart';
 import 'package:flutter_sudoku/constant/game_constants.dart';
-import 'package:flutter_sudoku/models/statistic_model.dart';
+import 'package:flutter_sudoku/models/stat_model.dart';
 import 'package:flutter_sudoku/screens/statistics_screen/statistics_screen_provider.dart';
 import 'package:flutter_sudoku/utils/app_colors.dart';
 import 'package:flutter_sudoku/utils/text_styles.dart';
@@ -27,11 +27,18 @@ class StatisticsScreen extends StatelessWidget {
             backgroundColor: AppColors.background,
             appBar:
                 StatisticsAppBar(onTimeInterval: provider.changeTimeInterval),
-            body: TabBarView(
-                children: List.generate(
-                    difficulties.length,
-                    (index) => Statistics(
-                        difficulty: difficulties[index], provider: provider))),
+            body: Column(
+              children: [
+                Expanded(
+                  child: TabBarView(
+                      children: List.generate(
+                          difficulties.length,
+                          (index) => Statistics(
+                              difficulty: difficulties[index],
+                              provider: provider))),
+                ),
+              ],
+            ),
           );
         }),
       ),
@@ -57,17 +64,37 @@ class Statistics extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           StatisticsGroup(
-            title: Strings.games,
+            groupTitle: Strings.games,
             statistics: [
-              StatisticModel(title: 'Games Started', value: 10),
-              StatisticModel(title: 'Games Won', value: 7),
+              StatModel(
+                index: 0,
+                value: 10,
+                title: 'Games Started',
+                iconData: Icons.grid_on_rounded,
+              ),
+              StatModel(
+                index: 1,
+                value: 7,
+                title: 'Games Won',
+                iconData: Icons.grid_on_rounded,
+              ),
             ],
           ),
           StatisticsGroup(
-            title: Strings.time,
+            groupTitle: Strings.time,
             statistics: [
-              StatisticModel(title: 'Best Time', value: 10),
-              StatisticModel(title: 'Average Time', value: 7),
+              StatModel(
+                index: 0,
+                value: 10,
+                title: 'Best Time',
+                iconData: Icons.grid_on_rounded,
+              ),
+              StatModel(
+                index: 1,
+                value: 7,
+                title: 'Average Time',
+                iconData: Icons.grid_on_rounded,
+              ),
             ],
           ),
         ],
@@ -78,13 +105,13 @@ class Statistics extends StatelessWidget {
 
 class StatisticsGroup extends StatelessWidget {
   const StatisticsGroup({
-    required this.title,
+    required this.groupTitle,
     required this.statistics,
     super.key,
   });
 
-  final String title;
-  final List<StatisticModel> statistics;
+  final String groupTitle;
+  final List<StatModel> statistics;
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +121,7 @@ class StatisticsGroup extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            title,
+            groupTitle,
             style: AppTextStyles.statisticsGroupTitle,
           ),
           const SizedBox(height: 6),
@@ -102,7 +129,7 @@ class StatisticsGroup extends StatelessWidget {
             children: List.generate(
               statistics.length,
               (index) {
-                return StatisticCard(statisticModel: statistics[index]);
+                return StatisticCard(statModel: statistics[index]);
               },
             ),
           )
@@ -114,11 +141,11 @@ class StatisticsGroup extends StatelessWidget {
 
 class StatisticCard extends StatelessWidget {
   const StatisticCard({
-    required this.statisticModel,
+    required this.statModel,
     super.key,
   });
 
-  final StatisticModel statisticModel;
+  final StatModel statModel;
 
   @override
   Widget build(BuildContext context) {
@@ -137,13 +164,13 @@ class StatisticCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Icon(
-                Icons.grid_on_rounded,
+                statModel.iconData,
                 color: AppColors.roundedButton,
                 size: 28,
               ),
               const SizedBox(height: 14),
               Text(
-                statisticModel.title,
+                statModel.title,
                 style: AppTextStyles.statisticsCardTitle,
               ),
             ],
@@ -154,7 +181,7 @@ class StatisticCard extends StatelessWidget {
             children: [
               const ComparisonBox(),
               Text(
-                statisticModel.value.toString(),
+                statModel.value.toString(),
                 style: AppTextStyles.statisticsCardValue,
               ),
             ],

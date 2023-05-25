@@ -1,3 +1,6 @@
+import 'package:flutter_sudoku/constant/enums.dart';
+import 'package:flutter_sudoku/constant/game_constants.dart';
+
 extension TimeString on int {
   String toTimeString() {
     if (this >= 0) {
@@ -9,8 +12,14 @@ extension TimeString on int {
     return '-- : --';
   }
 }
+
 extension StringExtensions on String {
   bool toBool() {
     return this == 'true';
+  }
+
+  Difficulty toDifficulty() {
+    return GameSettings.getDifficulties
+        .firstWhere((element) => element.name == this);
   }
 }

@@ -7,7 +7,9 @@ import 'package:flutter_sudoku/models/board_model.dart';
 import 'package:flutter_sudoku/models/cell_model.dart';
 import 'package:flutter_sudoku/models/cell_position_model.dart';
 import 'package:flutter_sudoku/models/game_model.dart';
+import 'package:flutter_sudoku/models/game_stats_model.dart';
 import 'package:flutter_sudoku/models/move_model.dart';
+import 'package:flutter_sudoku/models/statistics_model.dart';
 import 'package:flutter_sudoku/services/storage_service.dart';
 import 'package:flutter_sudoku/utils/extensions.dart';
 import 'package:flutter_sudoku/utils/utils.dart';
@@ -71,20 +73,43 @@ class GameScreenProvider with ChangeNotifier {
   void _createNewGame(GameModel newGame) {
     gameModel = newGame;
 
-    if (gameModel.time == 0) {
+    if (gameModel.isOnGoingGame) {
+      debugPrint(
+          'Continuing ${gameModel.difficulty.name.toUpperCase()} game - TIME: ${gameModel.time.toTimeString()}');
+    } else {
       _clearGame();
       debugPrint(
           'Creating a new ${gameModel.difficulty.name.toUpperCase()} game ');
       _fillTheBoard();
-    } else {
-      debugPrint(
-          'Continuing ${gameModel.difficulty.name.toUpperCase()} game - TIME: ${gameModel.time.toTimeString()}');
+      _saveGameStarted();
     }
 
     selectedCell = sudokuBoard.getCellByCoordinates(0, 0);
     _selectCell(selectedCell);
     _startTimer();
     notifyListeners();
+  }
+
+  Future<void> _saveGameStarted() async {
+    final DateTime now = DateTime.now();
+
+    GameStatsModel gameStatsModel = GameStatsModel(
+      difficulty: difficulty,
+      dateTime: now,
+      startTime: now,
+    );
+
+    storageService = await StorageService.initialize();
+
+    await storageService.saveGameStats(gameStatsModel);
+    print("GAME STATS SAVED");
+
+    StatisticsModel? statisticsModel = storageService.getStatistics(difficulty);
+
+    if (statisticsModel != null) {
+      print('GAME STATS FETCHED');
+      print(statisticsModel.statistics.length.toString());
+    }
   }
 
   void _fillTheBoard() {
@@ -293,7 +318,7 @@ class GameScreenProvider with ChangeNotifier {
     Popup.gameOver(onNewGame: _chooseNewGameDifficulty);
   }
 
-  _chooseNewGameDifficulty() async {
+  Future<void> _chooseNewGameDifficulty() async {
     Difficulty? chosenDifficulty =
         await ModalBottomSheets.chooseDifficulty(restartDifficulty: difficulty);
 

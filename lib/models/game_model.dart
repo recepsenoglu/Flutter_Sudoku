@@ -45,4 +45,6 @@ class GameModel {
     return GameSettings.getDifficulties
         .firstWhere((element) => element.name == difficulty);
   }
+
+  bool get isOnGoingGame => time > 0;
 }
