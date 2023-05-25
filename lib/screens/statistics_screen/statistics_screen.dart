@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_sudoku/constant/app_strings.dart';
@@ -28,15 +29,19 @@ class StatisticsScreen extends StatelessWidget {
             appBar:
                 StatisticsAppBar(onTimeInterval: provider.changeTimeInterval),
             body: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Expanded(
-                  child: TabBarView(
-                      children: List.generate(
-                          difficulties.length,
-                          (index) => Statistics(
-                              difficulty: difficulties[index],
-                              provider: provider))),
-                ),
+                if (provider.loading) ...[
+                  const Center(child: CupertinoActivityIndicator()),
+                ] else
+                  Expanded(
+                    child: TabBarView(
+                        children: List.generate(
+                            difficulties.length,
+                            (index) => Statistics(
+                                difficulty: difficulties[index],
+                                provider: provider))),
+                  ),
               ],
             ),
           );
