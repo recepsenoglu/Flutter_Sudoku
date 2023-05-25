@@ -311,9 +311,26 @@ class GameScreenProvider with ChangeNotifier {
     }
   }
 
+  Future<void> _saveGameStats() async {
+    final DateTime now = DateTime.now();
+
+    GameStatsModel gameStatsModel = GameStatsModel(
+      dateTime: now,
+      startTime: now,
+      difficulty: difficulty,
+      score: score,
+      time: time,
+      won: false,
+    );
+    
+    await storageService.saveGameStats(gameStatsModel);
+  }
+
   void _gameOver() {
     gameOver = true;
     notifyListeners();
+
+    _saveGameStats();
 
     Popup.gameOver(onNewGame: _chooseNewGameDifficulty);
   }
@@ -330,7 +347,8 @@ class GameScreenProvider with ChangeNotifier {
 
       _createNewGame(gameModel);
     } else {
-      Future.delayed(const Duration(milliseconds: 300), () => _gameOver());
+      Future.delayed(const Duration(milliseconds: 300),
+          () => Popup.gameOver(onNewGame: _chooseNewGameDifficulty));
     }
   }
 

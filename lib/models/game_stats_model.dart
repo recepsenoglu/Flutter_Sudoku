@@ -18,6 +18,8 @@ class GameStatsModel {
     this.time,
   });
 
+  bool get isOnGoing => won == null;
+
   factory GameStatsModel.fromJson(Map<String, dynamic> json) {
     return GameStatsModel(
       dateTime: DateTime.parse(json['dateTime']),

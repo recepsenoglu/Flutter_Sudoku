@@ -34,7 +34,13 @@ class StorageService {
     StatisticsModel? statistics = getStatistics(gameStatsModel.difficulty);
     statistics ??= StatisticsModel(statistics: []);
 
-    statistics.statistics.add(gameStatsModel);
+    if (statistics.statistics.isEmpty || gameStatsModel.isOnGoing) {
+      print("ADD ADD");
+      statistics.statistics.add(gameStatsModel);
+    } else {
+      statistics.updateLast(gameStatsModel);
+    }
+
     await _prefs.setString('statistics_${gameStatsModel.difficulty}',
         jsonEncode(statistics.toJson()));
   }

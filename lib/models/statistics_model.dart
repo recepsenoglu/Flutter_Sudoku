@@ -19,4 +19,10 @@ class StatisticsModel {
   Map<String, String> toJson() => {
         'statistics': jsonEncode(statistics.map((e) => e.toJson()).toList()),
       };
+
+  void updateLast(GameStatsModel gameStatsModel) {
+    statistics.sort((a, b) => a.startTime.compareTo(b.startTime));
+
+    statistics.last = gameStatsModel;
+  }
 }
