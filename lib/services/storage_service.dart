@@ -32,10 +32,9 @@ class StorageService {
 
   Future<void> saveGameStats(GameStatsModel gameStatsModel) async {
     StatisticsModel? statistics = getStatistics(gameStatsModel.difficulty);
-    statistics ??= StatisticsModel(statistics: []);
+    statistics ??= StatisticsModel(statistics: [], statGroups: []);
 
     if (statistics.statistics.isEmpty || gameStatsModel.isOnGoing) {
-      print("ADD ADD");
       statistics.statistics.add(gameStatsModel);
     } else {
       statistics.updateLast(gameStatsModel);

@@ -8,6 +8,7 @@ class GameStatsModel {
   final bool? won;
   final int? score;
   final int? time;
+  final int? mistakes;
 
   GameStatsModel({
     required this.dateTime,
@@ -16,6 +17,7 @@ class GameStatsModel {
     this.won,
     this.score,
     this.time,
+    this.mistakes,
   });
 
   bool get isOnGoing => won == null;
@@ -28,6 +30,8 @@ class GameStatsModel {
       won: json['won'] != 'null' ? json['won'].toString().toBool() : null,
       score: json['score'] != 'null' ? int.parse(json['score']!) : null,
       time: json['time'] != 'null' ? int.parse(json['time']!) : null,
+      mistakes:
+          json['mistakes'] != 'null' ? int.parse(json['mistakes']!) : null,
     );
   }
 
@@ -38,6 +42,7 @@ class GameStatsModel {
         'won': '$won',
         'score': '$score',
         'time': '$time',
+        'mistakes': '$mistakes',
       };
 
   @override

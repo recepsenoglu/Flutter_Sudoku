@@ -18,6 +18,13 @@ class GameSettings {
     return BoardModel(cells: cells, movesLog: []);
   }
 
+  static List<StatisticType> get getStatisticTypes => [
+        StatisticType.Games,
+        StatisticType.Time,
+        StatisticType.Score,
+        StatisticType.Streaks
+      ];
+
   static List<Difficulty> get getDifficulties => [
         Difficulty.Easy,
         Difficulty.Medium,

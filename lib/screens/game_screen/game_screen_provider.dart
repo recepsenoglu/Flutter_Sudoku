@@ -318,11 +318,12 @@ class GameScreenProvider with ChangeNotifier {
       dateTime: now,
       startTime: now,
       difficulty: difficulty,
+      won: false,
       score: score,
       time: time,
-      won: false,
+      mistakes: mistakes,
     );
-    
+
     await storageService.saveGameStats(gameStatsModel);
   }
 

@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_sudoku/constant/app_strings.dart';
 import 'package:flutter_sudoku/constant/enums.dart';
 import 'package:flutter_sudoku/constant/game_constants.dart';
+import 'package:flutter_sudoku/models/stat_group_model.dart';
 import 'package:flutter_sudoku/models/stat_model.dart';
 import 'package:flutter_sudoku/screens/statistics_screen/statistics_screen_provider.dart';
 import 'package:flutter_sudoku/utils/app_colors.dart';
@@ -36,11 +37,15 @@ class StatisticsScreen extends StatelessWidget {
                 ] else
                   Expanded(
                     child: TabBarView(
-                        children: List.generate(
-                            difficulties.length,
-                            (index) => Statistics(
-                                difficulty: difficulties[index],
-                                provider: provider))),
+                      children: List.generate(
+                        difficulties.length,
+                        (index) => Statistics(
+                          provider: provider,
+                          statGroupModel:
+                              provider.getStatGroup(difficulties[index]),
+                        ),
+                      ),
+                    ),
                   ),
               ],
             ),
@@ -53,12 +58,12 @@ class StatisticsScreen extends StatelessWidget {
 
 class Statistics extends StatelessWidget {
   const Statistics({
-    required this.difficulty,
+    required this.statGroupModel,
     required this.provider,
     super.key,
   });
 
-  final Difficulty difficulty;
+  final StatGroupModel statGroupModel;
   final StatisticsScreenProvider provider;
 
   @override
@@ -67,42 +72,17 @@ class Statistics extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          StatisticsGroup(
-            groupTitle: Strings.games,
-            statistics: [
-              StatModel(
-                index: 0,
-                value: 10,
-                title: 'Games Started',
-                iconData: Icons.grid_on_rounded,
-              ),
-              StatModel(
-                index: 1,
-                value: 7,
-                title: 'Games Won',
-                iconData: Icons.grid_on_rounded,
-              ),
-            ],
-          ),
-          StatisticsGroup(
-            groupTitle: Strings.time,
-            statistics: [
-              StatModel(
-                index: 0,
-                value: 10,
-                title: 'Best Time',
-                iconData: Icons.grid_on_rounded,
-              ),
-              StatModel(
-                index: 1,
-                value: 7,
-                title: 'Average Time',
-                iconData: Icons.grid_on_rounded,
-              ),
-            ],
-          ),
-        ],
+        children: List.generate(
+          GameSettings.getStatisticTypes.length,
+          (index) {
+            StatisticType statisticType = GameSettings.getStatisticTypes[index];
+
+            return StatisticsGroup(
+              groupTitle: statisticType.name,
+              statistics: statGroupModel.getStats(statisticType),
+            );
+          },
+        ),
       ),
     );
   }
@@ -169,7 +149,7 @@ class StatisticCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Icon(
-                statModel.iconData,
+                getIcon(statModel.title),
                 color: AppColors.roundedButton,
                 size: 28,
               ),
@@ -184,9 +164,9 @@ class StatisticCard extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const ComparisonBox(),
+              // const ComparisonBox(),
               Text(
-                statModel.value.toString(),
+                statModel.value == null ? '-' : statModel.value.toString(),
                 style: AppTextStyles.statisticsCardValue,
               ),
             ],
@@ -194,6 +174,10 @@ class StatisticCard extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  IconData getIcon(String title) {
+    return Icons.grid_on_rounded;
   }
 }
 

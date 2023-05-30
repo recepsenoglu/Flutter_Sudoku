@@ -1,15 +1,15 @@
-import 'package:flutter/material.dart';
+import 'package:flutter_sudoku/constant/enums.dart';
 
 class StatModel {
   final int index;
-  final int value;
+  final dynamic value;
   final String title;
-  final IconData iconData;
-  
+  final StatisticType type;
+
   StatModel({
     required this.index,
     required this.value,
     required this.title,
-    required this.iconData,
+    required this.type,
   });
 }
