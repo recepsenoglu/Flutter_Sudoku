@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_sudoku/constant/app_strings.dart';
 import 'package:flutter_sudoku/models/game_model.dart';
 import 'package:flutter_sudoku/screens/main_screen/main_screen_provider.dart';
+import 'package:flutter_sudoku/services/routes.dart';
 import 'package:flutter_sudoku/utils/app_colors.dart';
 import 'package:flutter_sudoku/utils/text_styles.dart';
 import 'package:flutter_sudoku/widgets/appBar_action_button.dart';
@@ -27,7 +28,11 @@ class MainScreen extends StatelessWidget {
         actions: [
           AppBarActionButton(
               icon: Icons.emoji_events_outlined, onPressed: () {}),
-          AppBarActionButton(icon: Icons.settings_outlined, onPressed: () {}),
+          AppBarActionButton(
+            icon: Icons.settings_outlined,
+            onPressed: () =>
+                Routes.goTo(Routes.optionsScreen, enableBack: true),
+          ),
         ],
       ),
       body: ChangeNotifierProvider<MainScreenProvider>(

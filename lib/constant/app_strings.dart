@@ -55,4 +55,16 @@ class Strings {
   static const averageScore = 'Average Score';
   static const currentWinStreak = 'Current Win Streak';
   static const bestWinStreak = 'Best Win Streak';
+
+  // Options Screen
+  static const options = 'Options';
+  static const done = 'Done';
+
+  static const settings = 'Settings';
+  static const howToPlay = 'How to Play';
+  static const rules = 'Rules';
+  static const help = 'Help';
+  static const aboutGame = 'About Game';
+  static const mathPuzzle = 'Math Puzzle';
+  static const removeAds = 'Remove Ads';
 }

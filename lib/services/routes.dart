@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sudoku/models/game_model.dart';
 import 'package:flutter_sudoku/screens/game_screen/game_screen.dart';
 import 'package:flutter_sudoku/screens/navigation_bar/navigation_bar_screen.dart';
+import 'package:flutter_sudoku/screens/options_screen/options_screen.dart';
 import 'package:flutter_sudoku/screens/statistics_screen/statistics_screen.dart';
 
 class Routes {
@@ -10,6 +11,7 @@ class Routes {
   static const String navigationBar = '/navigation_bar';
   static const String gameScreen = '/game_screen';
   static const String statisticsScreen = '/statistics_screen';
+  static const String optionsScreen = '/options_screen';
 
   static Route<dynamic>? generateRoute(RouteSettings settings) {
     final args = settings.arguments;
@@ -20,13 +22,13 @@ class Routes {
             builder: (_) => NavigationBarScreen(
                   savedGame: args as GameModel?,
                 ));
-
       case gameScreen:
         return MaterialPageRoute(
             builder: (_) => GameScreen(gameModel: args as GameModel));
-
       case statisticsScreen:
         return MaterialPageRoute(builder: (_) => const StatisticsScreen());
+      case optionsScreen:
+        return MaterialPageRoute(builder: (_) => const OptionsScreen());
 
       default:
         return _errorRoute();
@@ -55,10 +57,12 @@ class Routes {
     );
   }
 
-  static void back({bool returnDialog = false}) {
+  static void back({int backTimes = 1, bool returnDialog = false}) {
     debugPrint('GO BACK <- ${returnDialog ? 'return $returnDialog' : ''}');
-    if (Navigator.canPop(Routes.navigatorKey.currentContext!)) {
-      Navigator.pop(Routes.navigatorKey.currentContext!, returnDialog);
+    for (var i = 0; i < backTimes; i++) {
+      if (Navigator.canPop(Routes.navigatorKey.currentContext!)) {
+        Navigator.pop(Routes.navigatorKey.currentContext!, returnDialog);
+      }
     }
   }
 }

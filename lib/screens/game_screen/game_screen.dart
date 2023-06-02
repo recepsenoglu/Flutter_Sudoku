@@ -422,7 +422,7 @@ class GameAppBar extends StatelessWidget with PreferredSizeWidget {
         ),
         AppBarActionButton(
           icon: Icons.settings_outlined,
-          onPressed: () {},
+          onPressed: () => Routes.goTo(Routes.optionsScreen, enableBack: true),
         ),
       ],
     );

@@ -67,6 +67,8 @@ class AppColors {
   static const _statisticsUp = Color(0xFF3DC161);
   static const _statisticsDown = Color(0xFFFF3A2F);
 
+  static const _optionsBackground = Color(0xFFE9EEF4);
+
   static get primary => _primary;
 
   static get appBarBackground => _appBarBackground;
@@ -133,4 +135,6 @@ class AppColors {
   static get statisticsCard => _statisticsCard;
   static get statisticsUp => _statisticsUp;
   static get statisticsDown => _statisticsDown;
+
+  static get optionsBackground => _optionsBackground;
 }

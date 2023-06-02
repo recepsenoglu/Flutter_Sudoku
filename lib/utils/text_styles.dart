@@ -116,6 +116,21 @@ class AppTextStyles {
   static const _statisticsCardTitle =
       TextStyle(fontSize: 15, fontWeight: FontWeight.bold);
 
+  static const _optionsScreenAppBarTitle = TextStyle(
+    fontSize: 18,
+    color: Colors.black,
+    fontWeight: FontWeight.bold,
+  );
+  static const _doneButtonText = TextStyle(
+    fontWeight: FontWeight.w700,
+    fontSize: 16,
+  );
+  static const _optionButtonTitle = TextStyle(
+    color: Colors.black,
+    fontWeight: FontWeight.w500,
+    fontSize: 15.5,
+  );
+
   static TextStyle get appBarTitle => _appBarTitle;
 
   static TextStyle get gameInfoTitle => _gameInfoTitle;
@@ -151,4 +166,9 @@ class AppTextStyles {
   static TextStyle get statisticsGroupTitle => _statisticsGroupTitle;
   static TextStyle get statisticsCardValue => _statisticsCardValue;
   static TextStyle get statisticsCardTitle => _statisticsCardTitle;
+
+  static TextStyle get optionsScreenAppBarTitle => _optionsScreenAppBarTitle;
+  static TextStyle get doneButtonText => _doneButtonText;
+
+  static TextStyle get optionButtonTitle => _optionButtonTitle;
 }
