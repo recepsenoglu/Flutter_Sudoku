@@ -23,15 +23,59 @@ class StatisticsScreenProvider with ChangeNotifier {
     _init();
   }
 
+  List<GameStatsModel> _getStatisticsByTime() {
+    final DateTime now = DateTime.now();
+    List<GameStatsModel> gameStats = statisticsModel.statistics;
+
+    if (timeInterval == TimeInterval.All_time) {
+      return gameStats;
+    } else if (timeInterval == TimeInterval.This_year) {
+      if (gameStats.any((element) => element.dateTime.year == now.year)) {
+        return gameStats
+            .where((element) => element.dateTime.year == now.year)
+            .toList();
+      }
+    } else if (timeInterval == TimeInterval.This_month) {
+      if (gameStats.any((element) =>
+          element.dateTime.month == now.month &&
+          now.difference(element.dateTime).inDays < 31)) {
+        return gameStats
+            .where((element) => element.dateTime.month == now.month)
+            .toList();
+      }
+    } else if (timeInterval == TimeInterval.This_week) {
+      if (gameStats.any((element) =>
+          now.difference(element.dateTime).inDays <= now.weekday)) {
+        return gameStats
+            .where((element) =>
+                now.difference(element.dateTime).inDays <= now.weekday)
+            .toList();
+      }
+    } else if (timeInterval == TimeInterval.Today) {
+      if (gameStats.any((element) =>
+          now.day == element.dateTime.day &&
+          now.difference(element.dateTime).inDays < 1)) {
+        return gameStats
+            .where((element) => now.difference(element.dateTime).inDays < 1)
+            .toList();
+      }
+    }
+
+    return [];
+  }
+
   void _setStatGroups() {
     statisticsModel.statGroups.clear();
+    final List<GameStatsModel> statisticsByTime = _getStatisticsByTime();
 
     for (Difficulty difficulty in GameSettings.getDifficulties) {
       List<GameStatsModel> gameStats = [];
 
-      if (statisticsModel.statistics
-          .any((element) => element.difficulty == difficulty)) {
-        gameStats = statisticsModel.statistics
+      final bool difficultyRecordExists =
+          statisticsByTime.any((element) => element.difficulty == difficulty);
+
+      if (difficultyRecordExists) {
+        gameStats = statisticsByTime
             .where((element) => element.difficulty == difficulty)
             .toList();
       }
@@ -71,7 +115,7 @@ class StatisticsScreenProvider with ChangeNotifier {
 
       /// Time
       final List<int> times = gameStats
-          .where((element) => element.time != null)
+          .where((element) => element.time != null && element.won == true)
           .toList()
           .map((e) => e.time!)
           .toList();
