@@ -45,5 +45,14 @@ class Strings {
   static const games = 'Games';
   static const streaks = 'Streaks';
   static const resetStatistics = 'Reset Statistics';
-
+  static const gamesStarted = 'Games Started';
+  static const gamesWon = 'Games Won';
+  static const winRate = 'Win Rate';
+  static const winsWithNoMistakes = 'Wins with No Mistakes';
+  static const bestTime = 'Best Time';
+  static const averageTime = 'Average Time';
+  static const bestScore = 'Best Score';
+  static const averageScore = 'Average Score';
+  static const currentWinStreak = 'Current Win Streak';
+  static const bestWinStreak = 'Best Win Streak';
 }

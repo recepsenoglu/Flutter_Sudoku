@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_sudoku/constant/app_strings.dart';
 import 'package:flutter_sudoku/constant/enums.dart';
 import 'package:flutter_sudoku/constant/game_constants.dart';
 import 'package:flutter_sudoku/models/game_stats_model.dart';
@@ -169,61 +170,61 @@ class StatisticsScreenProvider with ChangeNotifier {
     stats.add(StatModel(
       index: 0,
       value: gamesStarted,
-      title: 'Games Started',
+      title: Strings.gamesStarted,
       type: StatisticType.Games,
     ));
     stats.add(StatModel(
       index: 1,
       value: gamesWon,
-      title: 'Games Won',
+      title: Strings.gamesWon,
       type: StatisticType.Games,
     ));
     stats.add(StatModel(
       index: 2,
       value: winRate != null ? '$winRate%' : null,
-      title: 'Win Rate',
+      title: Strings.winRate,
       type: StatisticType.Games,
     ));
     stats.add(StatModel(
       index: 3,
       value: winsWithNoMistakes,
-      title: 'Wins with No Mistakes',
+      title: Strings.winsWithNoMistakes,
       type: StatisticType.Games,
     ));
     stats.add(StatModel(
       index: 0,
       value: bestTime != null ? bestTime.toTimeString() : '-',
-      title: 'Best Time',
+      title: Strings.bestTime,
       type: StatisticType.Time,
     ));
     stats.add(StatModel(
       index: 1,
       value: averageTime != null ? averageTime.toTimeString() : '-',
-      title: 'Average Time',
+      title: Strings.averageTime,
       type: StatisticType.Time,
     ));
     stats.add(StatModel(
       index: 0,
       value: bestScore,
-      title: 'Best Score',
+      title: Strings.bestScore,
       type: StatisticType.Score,
     ));
     stats.add(StatModel(
       index: 1,
       value: averageScore,
-      title: 'Average Score',
+      title: Strings.averageScore,
       type: StatisticType.Score,
     ));
     stats.add(StatModel(
       index: 0,
       value: currentWinStreak,
-      title: 'Current Win Streak',
+      title: Strings.currentWinStreak,
       type: StatisticType.Streaks,
     ));
     stats.add(StatModel(
       index: 1,
       value: bestWinStreak,
-      title: 'Best Win Streak',
+      title: Strings.bestWinStreak,
       type: StatisticType.Streaks,
     ));
 

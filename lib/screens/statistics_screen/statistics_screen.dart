@@ -177,7 +177,30 @@ class StatisticCard extends StatelessWidget {
   }
 
   IconData getIcon(String title) {
-    return Icons.grid_on_rounded;
+    switch (title) {
+      case Strings.gamesStarted:
+        return Icons.grid_on_rounded;
+      case Strings.gamesWon:
+        return Icons.workspace_premium_rounded;
+      case Strings.winRate:
+        return Icons.outlined_flag_sharp;
+      case Strings.winsWithNoMistakes:
+        return Icons.sports_score_outlined;
+      case Strings.bestTime:
+        return Icons.timer;
+      case Strings.averageTime:
+        return Icons.timelapse_sharp;
+      case Strings.bestScore:
+        return Icons.star;
+      case Strings.averageScore:
+        return Icons.star_border_purple500;
+      case Strings.currentWinStreak:
+        return Icons.keyboard_double_arrow_right_rounded;
+      case Strings.bestWinStreak:
+        return Icons.double_arrow_sharp;
+      default:
+        return Icons.grid_on_rounded;
+    }
   }
 }
 
