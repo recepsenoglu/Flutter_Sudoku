@@ -259,7 +259,7 @@ class StatisticsAppBar extends StatelessWidget with PreferredSizeWidget {
       leading: const SizedBox.shrink(),
       actions: [
         AppBarActionButton(
-          icon: Icons.settings,
+          icon: Icons.tune,
           onPressed: onTimeInterval,
         ),
       ],
