@@ -140,10 +140,16 @@ class StatisticsScreenProvider with ChangeNotifier {
       /// Streaks
       gameStats.removeWhere((element) => element.won == null);
 
-      currentWinStreak = gameStats
-          .where((element) => element.won != null)
-          .toList()
-          .indexWhere((element) => element.won == false);
+      if (gameStats.every((element) => element.won == true)) {
+        currentWinStreak = gameStats.length;
+      } else {
+        currentWinStreak =
+            gameStats.indexWhere((element) => element.won == false);
+        if (currentWinStreak == -1) {
+          currentWinStreak = 0;
+        }
+      }
+
       int currentConsecutiveWins = 0;
       bestWinStreak = 0;
 
@@ -228,10 +234,7 @@ class StatisticsScreenProvider with ChangeNotifier {
     List<StatGroupModel> statGroups = statisticsModel.statGroups
         .where((element) => element.difficulty == difficulty)
         .toList();
-////
-    // statisticsModel.statGroups = statGroups;
-    // statGroups.sort((a, b) => a.groupIndex.compareTo(b.groupIndex));
-////
+
     return statGroups.first;
   }
 
