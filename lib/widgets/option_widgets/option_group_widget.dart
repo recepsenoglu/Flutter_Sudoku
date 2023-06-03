@@ -26,7 +26,6 @@ class OptionGroup extends StatelessWidget {
         const SizedBox(height: 12),
         Container(
           width: double.infinity,
-          padding: const EdgeInsets.symmetric(vertical: 3),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(10),
@@ -40,7 +39,7 @@ class OptionGroup extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 6, vertical: 3),
+                          horizontal: 6, vertical: 5),
                       child: options[index],
                     ),
                     Visibility(
@@ -64,7 +63,6 @@ class OptionGroup extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Text(
               groupDescription!,
-              
               style: AppTextStyles.optionGroupDescription,
             ),
           ),
