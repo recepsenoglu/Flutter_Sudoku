@@ -6,7 +6,7 @@ import 'package:flutter_sudoku/screens/main_screen/main_screen_provider.dart';
 import 'package:flutter_sudoku/services/routes.dart';
 import 'package:flutter_sudoku/utils/app_colors.dart';
 import 'package:flutter_sudoku/utils/text_styles.dart';
-import 'package:flutter_sudoku/widgets/appBar_action_button.dart';
+import 'package:flutter_sudoku/widgets/app_bar_action_button.dart';
 import 'package:flutter_sudoku/widgets/button/rounded_button/rounded_button.dart';
 import 'package:provider/provider.dart';
 
@@ -27,12 +27,17 @@ class MainScreen extends StatelessWidget {
         leading: const SizedBox.shrink(),
         actions: [
           AppBarActionButton(
-              icon: Icons.emoji_events_outlined, onPressed: () {}),
+            onPressed: () {},
+            icon: Icons.emoji_events_outlined,
+            iconSize: 32,
+          ),
           AppBarActionButton(
-            icon: Icons.settings_outlined,
             onPressed: () =>
                 Routes.goTo(Routes.optionsScreen, enableBack: true),
+            icon: Icons.settings_outlined,
+            iconSize: 32,
           ),
+          const SizedBox(width: 12),
         ],
       ),
       body: ChangeNotifierProvider<MainScreenProvider>(

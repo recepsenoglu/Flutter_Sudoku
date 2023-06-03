@@ -5,11 +5,13 @@ class AppBarActionButton extends StatelessWidget {
   const AppBarActionButton({
     required this.icon,
     required this.onPressed,
+    this.iconSize = 26,
     super.key,
   });
 
   final IconData icon;
   final Function() onPressed;
+  final double iconSize;
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +21,8 @@ class AppBarActionButton extends StatelessWidget {
         icon,
         color: AppColors.appBarActions,
       ),
-      iconSize: 26,
-      splashRadius: 24,
+      iconSize: iconSize,
+      splashRadius: iconSize,
       visualDensity: VisualDensity.compact,
     );
   }
