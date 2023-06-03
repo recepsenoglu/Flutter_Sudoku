@@ -47,7 +47,7 @@ class OptionGroup extends StatelessWidget {
                       child: Container(
                         height: 0.4,
                         width: double.infinity,
-                        margin: EdgeInsets.only(left: fullDivider ? 16 : 50),
+                        margin: EdgeInsets.only(left: fullDivider ? 16 : 57),
                         color: AppColors.greyColor,
                       ),
                     ),

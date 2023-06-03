@@ -43,7 +43,7 @@ class OptionWidget extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(width: 11),
+            const SizedBox(width: 18),
             Text(
               title,
               style: AppTextStyles.optionButtonTitle,
