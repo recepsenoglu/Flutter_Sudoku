@@ -42,7 +42,7 @@ class OptionsScreen extends StatelessWidget {
                       OptionWidget(
                         title: Strings.settings,
                         iconColor: Colors.red,
-                        iconData: Icons.settings_applications,
+                        iconData: Icons.settings,
                         onTap: () => Routes.goTo(
                           Routes.settingsScreen,
                           enableBack: true,
@@ -51,13 +51,13 @@ class OptionsScreen extends StatelessWidget {
                       OptionWidget(
                         title: Strings.howToPlay,
                         iconColor: Colors.orange,
-                        iconData: Icons.settings_applications,
+                        iconData: Icons.school,
                         onTap: () => null,
                       ),
                       OptionWidget(
                         title: Strings.rules,
-                        iconColor: Colors.blue,
-                        iconData: Icons.settings_applications,
+                        iconColor: Colors.lightBlue,
+                        iconData: Icons.menu_book_rounded,
                         onTap: () => null,
                       ),
                     ],
@@ -66,14 +66,14 @@ class OptionsScreen extends StatelessWidget {
                     options: [
                       OptionWidget(
                         title: Strings.help,
-                        iconColor: Colors.orange,
-                        iconData: Icons.settings_applications,
+                        iconColor: Colors.green,
+                        iconData: Icons.help,
                         onTap: () => null,
                       ),
                       OptionWidget(
                         title: Strings.aboutGame,
-                        iconColor: Colors.blue,
-                        iconData: Icons.settings_applications,
+                        iconColor: Colors.blue.shade700,
+                        iconData: Icons.info,
                         onTap: () => null,
                       ),
                     ],
@@ -82,8 +82,8 @@ class OptionsScreen extends StatelessWidget {
                     options: [
                       OptionWidget(
                         title: Strings.mathPuzzle,
-                        iconColor: Colors.orange,
-                        iconData: Icons.settings_applications,
+                        iconColor: Colors.purple,
+                        iconData: Icons.numbers,
                         onTap: () => null,
                       ),
                     ],
@@ -92,8 +92,8 @@ class OptionsScreen extends StatelessWidget {
                     options: [
                       OptionWidget(
                         title: Strings.removeAds,
-                        iconColor: Colors.orange,
-                        iconData: Icons.settings_applications,
+                        iconColor: Colors.red,
+                        iconData: Icons.no_adult_content_sharp,
                         onTap: () => null,
                       ),
                     ],

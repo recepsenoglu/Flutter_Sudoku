@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_sudoku/utils/app_colors.dart';
 import 'package:flutter_sudoku/utils/text_styles.dart';
@@ -22,24 +21,40 @@ class OptionWidget extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(8),
-      child: Row(
-        children: [
-          Icon(
-            iconData,
-            size: 34,
-            color: iconColor,
-          ),
-          const SizedBox(width: 10),
-          Text(
-            title,
-            style: AppTextStyles.optionButtonTitle,
-          ),
-          const Spacer(),
-          Icon(
-            Icons.keyboard_arrow_right,
-            color: AppColors.greyColor,
-          ),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 4),
+        child: Row(
+          children: [
+            const SizedBox(width: 4),
+            Container(
+              width: 28,
+              height: 28,
+              padding: const EdgeInsets.all(3),
+              decoration: BoxDecoration(
+                color: iconColor,
+                borderRadius: BorderRadius.circular(6),
+              ),
+              child: Center(
+                child: FittedBox(
+                  child: Icon(
+                    iconData,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(width: 11),
+            Text(
+              title,
+              style: AppTextStyles.optionButtonTitle,
+            ),
+            const Spacer(),
+            Icon(
+              Icons.keyboard_arrow_right,
+              color: AppColors.greyColor,
+            ),
+          ],
+        ),
       ),
     );
   }
