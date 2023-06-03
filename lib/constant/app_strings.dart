@@ -67,4 +67,40 @@ class Strings {
   static const aboutGame = 'About Game';
   static const mathPuzzle = 'Math Puzzle';
   static const removeAds = 'Remove Ads';
+
+  // Settings Screen
+  static const sounds = 'Sounds';
+  static const autoLock = 'Auto-Lock';
+  static const timer = 'Timer';
+  static const statisticsMessage = 'Statistics Message';
+  static const smartHints = 'Smart Hints';
+  static const numberFirstInput = 'Number-First Input';
+  static const mistakeLimit = 'Mistake Limit';
+  static const autoCheckForMistakes = 'Auto-Check for Mistakes';
+  static const highLightDuplicates = 'HighLight Duplicates';
+  static const highlightAres = 'Highlight Areas';
+  static const highlightIdenticalNumbers = 'Highlight Identical Numbers';
+  static const hideUsedNumbers = 'Hide Used Numbers';
+  static const autoRemoveNotes = 'Auto-Remove Notes';
+
+  static const statisticsMessageDescription =
+      'Show Messages about the number of people who were able to solve a level';
+  static const smartHintsDescription =
+      'Educational hints will teach you how to solve sudoku';
+  static const numberFirstInputDescription =
+      'Lock a number by tapping and holding it, then use it for multiple cells';
+  static const mistakeLimitDescription =
+      'Limit the number of possible mistakes to 3 per game';
+  static const autoCheckForMistakesDescription =
+      'Mark numbers that don\'t match the final sudoku solution';
+  static const highLightDuplicatesDescription =
+      'Highlight repeating numbers in each row, column, and block';
+  static const highlightAresDescription =
+      'Highlight the block, column, and row for a selected cell';
+  static const highlightIdenticalNumbersDescription =
+      'When selecting a cell with a number, highlight the same numbers throughout the grid';
+  static const hideUsedNumbersDescription =
+      'Hide numbers that have been placed in 9 different cells';
+  static const autoRemoveNotesDescription =
+      'Remove a number from all notes when it\'s placed in a cell';
 }

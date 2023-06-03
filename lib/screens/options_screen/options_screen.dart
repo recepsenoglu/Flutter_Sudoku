@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_sudoku/constant/app_strings.dart';
 import 'package:flutter_sudoku/screens/options_screen/options_screen_provider.dart';
+import 'package:flutter_sudoku/services/routes.dart';
 import 'package:flutter_sudoku/utils/app_colors.dart';
 import 'package:flutter_sudoku/utils/text_styles.dart';
 import 'package:flutter_sudoku/widgets/button/done_button.dart';
+import 'package:flutter_sudoku/widgets/option_widgets/option_group_widget.dart';
+import 'package:flutter_sudoku/widgets/option_widgets/option_widget.dart';
 import 'package:provider/provider.dart';
 
 class OptionsScreen extends StatelessWidget {
@@ -40,7 +43,10 @@ class OptionsScreen extends StatelessWidget {
                         title: Strings.settings,
                         iconColor: Colors.red,
                         iconData: Icons.settings_applications,
-                        onTap: () => null,
+                        onTap: () => Routes.goTo(
+                          Routes.settingsScreen,
+                          enableBack: true,
+                        ),
                       ),
                       OptionWidget(
                         title: Strings.howToPlay,
@@ -98,98 +104,6 @@ class OptionsScreen extends StatelessWidget {
           );
         }),
       ),
-    );
-  }
-}
-
-class OptionGroup extends StatelessWidget {
-  const OptionGroup({
-    required this.options,
-    this.fullDivider = false,
-    super.key,
-  });
-
-  final List<OptionWidget> options;
-  final bool fullDivider;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.symmetric(vertical: 3),
-      margin: const EdgeInsets.symmetric(vertical: 12),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Column(
-        children: List.generate(
-          options.length,
-          (index) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                InkWell(
-                  onTap: () => options[index].onTap?.call(),
-                  borderRadius: BorderRadius.circular(8),
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
-                    child: options[index],
-                  ),
-                ),
-                Visibility(
-                  visible: index < options.length - 1,
-                  child: Container(
-                    height: 0.4,
-                    width: double.infinity,
-                    margin: EdgeInsets.only(left: fullDivider ? 20 : 50),
-                    color: AppColors.greyColor,
-                  ),
-                ),
-              ],
-            );
-          },
-        ),
-      ),
-    );
-  }
-}
-
-class OptionWidget extends StatelessWidget {
-  const OptionWidget({
-    required this.title,
-    required this.iconData,
-    required this.iconColor,
-    this.onTap,
-    super.key,
-  });
-
-  final String title;
-  final IconData iconData;
-  final Color iconColor;
-  final Function()? onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Icon(
-          iconData,
-          size: 34,
-          color: iconColor,
-        ),
-        const SizedBox(width: 10),
-        Text(
-          title,
-          style: AppTextStyles.optionButtonTitle,
-        ),
-        const Spacer(),
-        Icon(
-          Icons.keyboard_arrow_right,
-          color: AppColors.greyColor,
-        ),
-      ],
     );
   }
 }

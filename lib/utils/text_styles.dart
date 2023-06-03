@@ -130,6 +130,16 @@ class AppTextStyles {
     fontWeight: FontWeight.w500,
     fontSize: 15.5,
   );
+  static const _settingButtonTitle = TextStyle(
+    color: Colors.black,
+    fontWeight: FontWeight.w500,
+    fontSize: 16.5,
+  );
+  static final _optionGroupDescription = TextStyle(
+    fontSize: 13,
+    color: AppColors.greyColor,
+    fontWeight: FontWeight.w500,
+  );
 
   static TextStyle get appBarTitle => _appBarTitle;
 
@@ -171,4 +181,6 @@ class AppTextStyles {
   static TextStyle get doneButtonText => _doneButtonText;
 
   static TextStyle get optionButtonTitle => _optionButtonTitle;
+  static TextStyle get settingButtonTitle => _settingButtonTitle;
+  static TextStyle get optionGroupDescription => _optionGroupDescription;
 }

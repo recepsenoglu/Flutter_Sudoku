@@ -3,6 +3,7 @@ import 'package:flutter_sudoku/models/game_model.dart';
 import 'package:flutter_sudoku/screens/game_screen/game_screen.dart';
 import 'package:flutter_sudoku/screens/navigation_bar/navigation_bar_screen.dart';
 import 'package:flutter_sudoku/screens/options_screen/options_screen.dart';
+import 'package:flutter_sudoku/screens/options_screen/settings_screen/settings_screen.dart';
 import 'package:flutter_sudoku/screens/statistics_screen/statistics_screen.dart';
 
 class Routes {
@@ -12,6 +13,7 @@ class Routes {
   static const String gameScreen = '/game_screen';
   static const String statisticsScreen = '/statistics_screen';
   static const String optionsScreen = '/options_screen';
+  static const String settingsScreen = '/settings_screen';
 
   static Route<dynamic>? generateRoute(RouteSettings settings) {
     final args = settings.arguments;
@@ -19,9 +21,7 @@ class Routes {
     switch (settings.name) {
       case navigationBar:
         return MaterialPageRoute(
-            builder: (_) => NavigationBarScreen(
-                  savedGame: args as GameModel?,
-                ));
+            builder: (_) => NavigationBarScreen(savedGame: args as GameModel?));
       case gameScreen:
         return MaterialPageRoute(
             builder: (_) => GameScreen(gameModel: args as GameModel));
@@ -29,6 +29,8 @@ class Routes {
         return MaterialPageRoute(builder: (_) => const StatisticsScreen());
       case optionsScreen:
         return MaterialPageRoute(builder: (_) => const OptionsScreen());
+      case settingsScreen:
+        return MaterialPageRoute(builder: (_) => const SettingsScreen());
 
       default:
         return _errorRoute();
