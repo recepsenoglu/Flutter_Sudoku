@@ -72,6 +72,8 @@ class AppColors {
   static const _switchOn = Color(0xFF2E85EC);
   static const _switchOff = Color(0xFFDDE4EC);
 
+  static const _dailyChallengesScreenBg = Color(0xFFFFFFFF);
+
   static get primary => _primary;
 
   static get appBarBackground => _appBarBackground;
@@ -143,4 +145,6 @@ class AppColors {
 
   static get switchOn => _switchOn;
   static get switchOff => _switchOff;
+
+  static get dailyChallengesScreenBg => _dailyChallengesScreenBg;
 }

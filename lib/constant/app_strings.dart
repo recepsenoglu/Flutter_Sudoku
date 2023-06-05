@@ -56,6 +56,9 @@ class Strings {
   static const currentWinStreak = 'Current Win Streak';
   static const bestWinStreak = 'Best Win Streak';
 
+  // Daily Challenges Screen
+  static const play = 'Play';
+
   // Options Screen
   static const options = 'Options';
   static const done = 'Done';

@@ -141,6 +141,14 @@ class AppTextStyles {
     fontWeight: FontWeight.w500,
   );
 
+  static const _dailyChallengesTitle = TextStyle(
+    fontSize: 16,
+    color: Colors.white,
+    fontWeight: FontWeight.w500,
+  );
+  static const _calendarDateTitle =
+      TextStyle(fontWeight: FontWeight.bold, fontSize: 16);
+
   static TextStyle get appBarTitle => _appBarTitle;
 
   static TextStyle get gameInfoTitle => _gameInfoTitle;
@@ -183,4 +191,7 @@ class AppTextStyles {
   static TextStyle get optionButtonTitle => _optionButtonTitle;
   static TextStyle get settingButtonTitle => _settingButtonTitle;
   static TextStyle get optionGroupDescription => _optionGroupDescription;
+
+  static TextStyle get dailyChallengesTitle => _dailyChallengesTitle;
+  static TextStyle get calendarDateTitle => _calendarDateTitle;
 }
