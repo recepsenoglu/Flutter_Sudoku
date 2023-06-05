@@ -147,7 +147,20 @@ class AppTextStyles {
     fontWeight: FontWeight.w500,
   );
   static const _calendarDateTitle =
-      TextStyle(fontWeight: FontWeight.bold, fontSize: 16);
+      TextStyle(fontWeight: FontWeight.bold, fontSize: 17);
+
+  static const _calendarDays = TextStyle(
+    fontSize: 13,
+    color: Colors.grey,
+  );
+
+  static const _calendarDate =
+      TextStyle(fontSize: 15, fontWeight: FontWeight.bold);
+  static const _calendarFutureDate = TextStyle(
+    fontSize: 15,
+    fontWeight: FontWeight.bold,
+    color: Colors.grey,
+  );
 
   static TextStyle get appBarTitle => _appBarTitle;
 
@@ -194,4 +207,7 @@ class AppTextStyles {
 
   static TextStyle get dailyChallengesTitle => _dailyChallengesTitle;
   static TextStyle get calendarDateTitle => _calendarDateTitle;
+  static TextStyle get calendarDays => _calendarDays;
+  static TextStyle get calendarDate => _calendarDate;
+  static TextStyle get calendarFutureDate => _calendarFutureDate;
 }

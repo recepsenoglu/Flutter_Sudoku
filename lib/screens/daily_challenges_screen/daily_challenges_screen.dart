@@ -49,6 +49,9 @@ class CalendarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final DateTime now = DateTime.now();
+
+    final int firstDayOfMonth = now.copyWith(day: 1).weekday;
+
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 20),
@@ -69,7 +72,46 @@ class CalendarWidget extends StatelessWidget {
                   style: AppTextStyles.calendarDateTitle,
                 ),
               ],
-            )
+            ),
+            const SizedBox(height: 18),
+            Row(
+              children: List.generate(
+                days.length,
+                (index) {
+                  return Expanded(
+                    child: Text(
+                      days[index],
+                      textAlign: TextAlign.center,
+                      style: AppTextStyles.calendarDays,
+                    ),
+                  );
+                },
+              ),
+            ),
+            const SizedBox(height: 18),
+            Expanded(
+              child: GridView.count(
+                crossAxisCount: 7,
+                shrinkWrap: true,
+                children: List.generate(
+                  35,
+                  (index) {
+                    final int day = index - firstDayOfMonth + 1;
+                    final bool isFuture = day > now.day;
+                    final bool isCurrentMonth = index >= firstDayOfMonth;
+
+                    return Center(
+                      child: Text(
+                        isCurrentMonth ? '$day' : '',
+                        style: isFuture
+                            ? AppTextStyles.calendarFutureDate
+                            : AppTextStyles.calendarDate,
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
           ],
         ),
       ),

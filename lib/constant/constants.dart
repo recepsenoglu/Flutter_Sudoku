@@ -12,3 +12,5 @@ List<String> months = [
   'November',
   'December',
 ];
+
+List<String> days = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
