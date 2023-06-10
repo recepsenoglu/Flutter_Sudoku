@@ -156,6 +156,9 @@ class AppTextStyles {
 
   static const _calendarDate =
       TextStyle(fontSize: 15, fontWeight: FontWeight.bold);
+  static const _calendarDateSelected =
+      TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white);
+
   static const _calendarFutureDate = TextStyle(
     fontSize: 15,
     fontWeight: FontWeight.bold,
@@ -209,5 +212,6 @@ class AppTextStyles {
   static TextStyle get calendarDateTitle => _calendarDateTitle;
   static TextStyle get calendarDays => _calendarDays;
   static TextStyle get calendarDate => _calendarDate;
+  static TextStyle get calendarDateSelected => _calendarDateSelected;
   static TextStyle get calendarFutureDate => _calendarFutureDate;
 }

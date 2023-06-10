@@ -74,24 +74,32 @@ class CalendarWidget extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 18),
-            Row(
-              children: List.generate(
-                days.length,
-                (index) {
-                  return Expanded(
-                    child: Text(
-                      days[index],
-                      textAlign: TextAlign.center,
-                      style: AppTextStyles.calendarDays,
-                    ),
-                  );
-                },
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 18),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: List.generate(
+                  days.length,
+                  (index) {
+                    return SizedBox(
+                      width: 10,
+                      child: Text(
+                        days[index],
+                        textAlign: TextAlign.center,
+                        style: AppTextStyles.calendarDays,
+                      ),
+                    );
+                  },
+                ),
               ),
             ),
             const SizedBox(height: 18),
             Expanded(
               child: GridView.count(
                 crossAxisCount: 7,
+                padding: const EdgeInsets.symmetric(horizontal: 6),
+                crossAxisSpacing: 20,
+                mainAxisSpacing: 10,
                 shrinkWrap: true,
                 children: List.generate(
                   35,
@@ -99,14 +107,34 @@ class CalendarWidget extends StatelessWidget {
                     final int day = index - firstDayOfMonth + 1;
                     final bool isFuture = day > now.day;
                     final bool isCurrentMonth = index >= firstDayOfMonth;
+                    final bool isCompleted = day == 8;
+                    final bool isStarted = isCurrentMonth && day % 2 == 0;
+                    final bool isSelected =
+                        isCurrentMonth && !isFuture && day % 3 == 0;
 
-                    return Center(
-                      child: Text(
-                        isCurrentMonth ? '$day' : '',
-                        style: isFuture
-                            ? AppTextStyles.calendarFutureDate
-                            : AppTextStyles.calendarDate,
-                      ),
+                    if (isCompleted) {
+                      return const StarBadgeWidget();
+                    }
+
+                    return Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Container(
+                          width: 100,
+                          decoration: getDecoration(isSelected),
+                          child: Center(
+                            child: Text(
+                              isCurrentMonth ? '$day' : '',
+                              style: isFuture
+                                  ? AppTextStyles.calendarFutureDate
+                                  : isSelected
+                                      ? AppTextStyles.calendarDateSelected
+                                      : AppTextStyles.calendarDate,
+                            ),
+                          ),
+                        ),
+                        getProgressIndicator(isStarted, isSelected),
+                      ],
                     );
                   },
                 ),
@@ -116,6 +144,32 @@ class CalendarWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  BoxDecoration? getDecoration(bool isSelected) {
+    return isSelected
+        ? BoxDecoration(
+            shape: BoxShape.circle,
+            color: AppColors.roundedButton,
+          )
+        : null;
+  }
+
+  Widget getProgressIndicator(bool isStarted, bool isSelected) {
+    if (isStarted) {
+      return Padding(
+        padding: EdgeInsets.all(isSelected ? 4 : 2),
+        child: CircularProgressIndicator(
+          value: 0.4,
+          strokeWidth: 3,
+          color: isSelected ? Colors.white : AppColors.roundedButton,
+          backgroundColor: isSelected
+              ? AppColors.progressBgSelected
+              : AppColors.lightGreyColor,
+        ),
+      );
+    }
+    return const SizedBox();
   }
 }
 

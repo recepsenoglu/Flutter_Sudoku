@@ -74,6 +74,11 @@ class AppColors {
 
   static const _dailyChallengesScreenBg = Color(0xFFFFFFFF);
 
+  static final _starBadgeBg = Colors.orange.shade300;
+  static final _starBadgeStar = Colors.orange.shade800;
+
+  static final _lightGreyColor = Colors.grey.shade300;
+
   static get primary => _primary;
 
   static get appBarBackground => _appBarBackground;
@@ -147,4 +152,9 @@ class AppColors {
   static get switchOff => _switchOff;
 
   static get dailyChallengesScreenBg => _dailyChallengesScreenBg;
+
+  static get starBadgeBg => _starBadgeBg;
+  static get starBadgeStar => _starBadgeStar;
+
+  static get lightGreyColor => _lightGreyColor;
 }
