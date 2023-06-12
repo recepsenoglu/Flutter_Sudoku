@@ -164,6 +164,26 @@ class AppTextStyles {
     fontWeight: FontWeight.bold,
     color: Colors.grey,
   );
+  static const _winScreenHeader = TextStyle(
+    color: Colors.white,
+    fontSize: 34,
+    fontWeight: FontWeight.w600,
+  );
+  static const _mainTextButton = TextStyle(
+    color: Colors.white,
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
+  );
+  static const _levelStatisticsTitle = TextStyle(
+    fontSize: 15,
+    color: Colors.white,
+  );
+
+  static const _seeAll = TextStyle(
+    fontSize: 16,
+    color: Colors.white,
+    fontWeight: FontWeight.bold,
+  );
 
   static TextStyle get appBarTitle => _appBarTitle;
 
@@ -214,4 +234,9 @@ class AppTextStyles {
   static TextStyle get calendarDate => _calendarDate;
   static TextStyle get calendarDateSelected => _calendarDateSelected;
   static TextStyle get calendarFutureDate => _calendarFutureDate;
+
+  static TextStyle get winScreenHeader => _winScreenHeader;
+  static TextStyle get mainTextButton => _mainTextButton;
+  static TextStyle get levelStatisticsTitle => _levelStatisticsTitle;
+  static TextStyle get seeAll => _seeAll;
 }

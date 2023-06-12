@@ -71,6 +71,10 @@ class AppStrings {
   static const mathPuzzle = 'Math Puzzle';
   static const removeAds = 'Remove Ads';
 
+  // Win Screen
+  static const levelCompleted = 'Level Completed!';
+  static const seeAll = 'See All';
+
   // Settings Screen
   static const sounds = 'Sounds';
   static const autoLock = 'Auto-Lock';

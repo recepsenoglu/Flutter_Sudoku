@@ -5,6 +5,7 @@ import 'package:flutter_sudoku/screens/navigation_bar/navigation_bar_screen.dart
 import 'package:flutter_sudoku/screens/options_screen/options_screen.dart';
 import 'package:flutter_sudoku/screens/options_screen/settings_screen/settings_screen.dart';
 import 'package:flutter_sudoku/screens/statistics_screen/statistics_screen.dart';
+import 'package:flutter_sudoku/screens/win_screen/win_screen.dart';
 
 class Routes {
   static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -14,6 +15,7 @@ class Routes {
   static const String statisticsScreen = '/statistics_screen';
   static const String optionsScreen = '/options_screen';
   static const String settingsScreen = '/settings_screen';
+  static const String winScreen = '/win_screen';
 
   static Route<dynamic>? generateRoute(RouteSettings settings) {
     final args = settings.arguments;
@@ -31,6 +33,8 @@ class Routes {
         return MaterialPageRoute(builder: (_) => const OptionsScreen());
       case settingsScreen:
         return MaterialPageRoute(builder: (_) => const SettingsScreen());
+      case winScreen:
+        return MaterialPageRoute(builder: (_) => const WinScreen());
 
       default:
         return _errorRoute();
