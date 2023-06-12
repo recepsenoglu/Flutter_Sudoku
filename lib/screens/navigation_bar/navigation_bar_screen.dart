@@ -5,7 +5,7 @@ import 'package:flutter_sudoku/screens/daily_challenges_screen/daily_challenges_
 import 'package:flutter_sudoku/screens/main_screen/main_screen.dart';
 import 'package:flutter_sudoku/screens/statistics_screen/statistics_screen.dart';
 import 'package:flutter_sudoku/utils/app_colors.dart';
-import 'package:flutter_sudoku/utils/text_styles.dart';
+import 'package:flutter_sudoku/utils/app_text_styles.dart';
 
 class NavigationBarScreen extends StatefulWidget {
   const NavigationBarScreen({

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_sudoku/utils/app_colors.dart';
-import 'package:flutter_sudoku/utils/text_styles.dart';
+import 'package:flutter_sudoku/utils/app_text_styles.dart';
 
 class SettingWidget extends StatelessWidget {
   const SettingWidget({

@@ -80,6 +80,8 @@ class AppColors {
   static final _lightGreyColor = Colors.grey.shade300;
   static final _progressBgSelected = Colors.white.withOpacity(0.4);
 
+  static const _winScreenBg = Color(0xFF0180F1);
+
   static get primary => _primary;
 
   static get appBarBackground => _appBarBackground;
@@ -159,4 +161,6 @@ class AppColors {
 
   static get lightGreyColor => _lightGreyColor;
   static get progressBgSelected => _progressBgSelected;
+
+  static get winScreenBg => _winScreenBg;
 }

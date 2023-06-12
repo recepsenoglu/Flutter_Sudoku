@@ -8,7 +8,7 @@ import 'package:flutter_sudoku/screens/game_screen/game_screen_provider.dart';
 import 'package:flutter_sudoku/services/routes.dart';
 import 'package:flutter_sudoku/utils/app_colors.dart';
 import 'package:flutter_sudoku/utils/extensions.dart';
-import 'package:flutter_sudoku/utils/text_styles.dart';
+import 'package:flutter_sudoku/utils/app_text_styles.dart';
 import 'package:flutter_sudoku/utils/utils.dart';
 import 'package:flutter_sudoku/widgets/button/action_button/action_button.dart';
 import 'package:flutter_sudoku/widgets/button/action_button/action_icon.dart';

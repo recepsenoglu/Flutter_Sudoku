@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/utils/text_styles.dart';
+import 'package:flutter_sudoku/utils/app_text_styles.dart';
 
 class GameInfoWidget extends StatelessWidget {
   const GameInfoWidget({

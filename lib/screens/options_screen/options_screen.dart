@@ -4,7 +4,7 @@ import 'package:flutter_sudoku/utils/app_strings.dart';
 import 'package:flutter_sudoku/screens/options_screen/options_screen_provider.dart';
 import 'package:flutter_sudoku/services/routes.dart';
 import 'package:flutter_sudoku/utils/app_colors.dart';
-import 'package:flutter_sudoku/utils/text_styles.dart';
+import 'package:flutter_sudoku/utils/app_text_styles.dart';
 import 'package:flutter_sudoku/widgets/button/done_button.dart';
 import 'package:flutter_sudoku/widgets/option_widgets/option_group_widget.dart';
 import 'package:flutter_sudoku/widgets/option_widgets/option_widget.dart';

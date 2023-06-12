@@ -5,7 +5,7 @@ import 'package:flutter_sudoku/models/game_model.dart';
 import 'package:flutter_sudoku/screens/main_screen/main_screen_provider.dart';
 import 'package:flutter_sudoku/services/routes.dart';
 import 'package:flutter_sudoku/utils/app_colors.dart';
-import 'package:flutter_sudoku/utils/text_styles.dart';
+import 'package:flutter_sudoku/utils/app_text_styles.dart';
 import 'package:flutter_sudoku/widgets/app_bar_action_button.dart';
 import 'package:flutter_sudoku/widgets/button/rounded_button/rounded_button.dart';
 import 'package:provider/provider.dart';

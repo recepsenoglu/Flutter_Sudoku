@@ -4,7 +4,7 @@ import 'package:flutter_sudoku/constant/constants.dart';
 import 'package:flutter_sudoku/screens/daily_challenges_screen/daily_challenges_screen_provider.dart';
 import 'package:flutter_sudoku/utils/app_colors.dart';
 import 'package:flutter_sudoku/utils/app_sizes.dart';
-import 'package:flutter_sudoku/utils/text_styles.dart';
+import 'package:flutter_sudoku/utils/app_text_styles.dart';
 import 'package:flutter_sudoku/widgets/button/rounded_button/rounded_button.dart';
 import 'package:flutter_sudoku/widgets/star_badge_widget.dart';
 import 'package:provider/provider.dart';
