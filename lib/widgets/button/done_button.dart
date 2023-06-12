@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/constant/app_strings.dart';
+import 'package:flutter_sudoku/utils/app_strings.dart';
 import 'package:flutter_sudoku/services/routes.dart';
 import 'package:flutter_sudoku/utils/text_styles.dart';
 
@@ -13,7 +13,7 @@ class DoneButton extends StatelessWidget {
     return TextButton(
       onPressed: onPressed ?? () => Routes.back(),
       child: Text(
-        Strings.done,
+        AppStrings.done,
         style: AppTextStyles.doneButtonText,
       ),
     );

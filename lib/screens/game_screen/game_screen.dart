@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_sudoku/constant/app_strings.dart';
+import 'package:flutter_sudoku/utils/app_strings.dart';
 import 'package:flutter_sudoku/constant/enums.dart';
 import 'package:flutter_sudoku/models/cell_model.dart';
 import 'package:flutter_sudoku/models/game_model.dart';
@@ -69,17 +69,17 @@ class ActionButtons extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           ActionButton(
-            title: Strings.undo,
+            title: AppStrings.undo,
             iconWidget: const ActionIcon(Icons.refresh),
             onTap: () => provider.undoOnTap(),
           ),
           ActionButton(
-            title: Strings.erase,
+            title: AppStrings.erase,
             iconWidget: const ActionIcon(Icons.delete),
             onTap: () => provider.eraseOnTap(),
           ),
           ActionButton(
-            title: Strings.notes,
+            title: AppStrings.notes,
             iconWidget: Align(
               alignment: Alignment.centerRight,
               child: Stack(
@@ -95,7 +95,7 @@ class ActionButtons extends StatelessWidget {
             onTap: () => provider.notesOnTap(),
           ),
           ActionButton(
-            title: Strings.hint,
+            title: AppStrings.hint,
             iconWidget: Align(
               alignment: Alignment.centerRight,
               child: Stack(
@@ -365,20 +365,20 @@ class GameInfo extends StatelessWidget {
               children: [
                 GameInfoWidget(
                   value: difficulty.name,
-                  title: Strings.difficulty,
+                  title: AppStrings.difficulty,
                   crossAxisAlignment: CrossAxisAlignment.start,
                 ),
                 GameInfoWidget(
                   value: '$mistakes/3',
-                  title: Strings.mistakes,
+                  title: AppStrings.mistakes,
                 ),
                 GameInfoWidget(
                   value: '$score',
-                  title: Strings.score,
+                  title: AppStrings.score,
                 ),
                 GameInfoWidget(
                   value: time.toTimeString(),
-                  title: Strings.time,
+                  title: AppStrings.time,
                   crossAxisAlignment: CrossAxisAlignment.end,
                 ),
               ],
@@ -408,7 +408,7 @@ class GameAppBar extends StatelessWidget with PreferredSizeWidget {
       centerTitle: true,
       elevation: 0,
       title: Text(
-        Strings.appBarTitle,
+        AppStrings.appBarTitle,
         style: AppTextStyles.appBarTitle,
       ),
       leading: AppBarActionButton(

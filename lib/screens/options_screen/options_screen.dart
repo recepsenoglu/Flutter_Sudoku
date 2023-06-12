@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_sudoku/constant/app_strings.dart';
+import 'package:flutter_sudoku/utils/app_strings.dart';
 import 'package:flutter_sudoku/screens/options_screen/options_screen_provider.dart';
 import 'package:flutter_sudoku/services/routes.dart';
 import 'package:flutter_sudoku/utils/app_colors.dart';
@@ -27,7 +27,7 @@ class OptionsScreen extends StatelessWidget {
               backgroundColor: AppColors.appBarBackground,
               systemOverlayStyle: SystemUiOverlayStyle.dark,
               title: Text(
-                Strings.options,
+                AppStrings.options,
                 style: AppTextStyles.optionsScreenAppBarTitle,
               ),
               leading: const SizedBox.shrink(),
@@ -40,7 +40,7 @@ class OptionsScreen extends StatelessWidget {
                   OptionGroup(
                     options: [
                       OptionWidget(
-                        title: Strings.settings,
+                        title: AppStrings.settings,
                         iconColor: Colors.red,
                         iconData: Icons.settings,
                         onTap: () => Routes.goTo(
@@ -49,13 +49,13 @@ class OptionsScreen extends StatelessWidget {
                         ),
                       ),
                       OptionWidget(
-                        title: Strings.howToPlay,
+                        title: AppStrings.howToPlay,
                         iconColor: Colors.orange,
                         iconData: Icons.school,
                         onTap: () => null,
                       ),
                       OptionWidget(
-                        title: Strings.rules,
+                        title: AppStrings.rules,
                         iconColor: Colors.lightBlue,
                         iconData: Icons.menu_book_rounded,
                         onTap: () => null,
@@ -65,13 +65,13 @@ class OptionsScreen extends StatelessWidget {
                   OptionGroup(
                     options: [
                       OptionWidget(
-                        title: Strings.help,
+                        title: AppStrings.help,
                         iconColor: Colors.green,
                         iconData: Icons.help,
                         onTap: () => null,
                       ),
                       OptionWidget(
-                        title: Strings.aboutGame,
+                        title: AppStrings.aboutGame,
                         iconColor: Colors.blue.shade700,
                         iconData: Icons.info,
                         onTap: () => null,
@@ -81,7 +81,7 @@ class OptionsScreen extends StatelessWidget {
                   OptionGroup(
                     options: [
                       OptionWidget(
-                        title: Strings.mathPuzzle,
+                        title: AppStrings.mathPuzzle,
                         iconColor: Colors.purple,
                         iconData: Icons.numbers,
                         onTap: () => null,
@@ -91,7 +91,7 @@ class OptionsScreen extends StatelessWidget {
                   OptionGroup(
                     options: [
                       OptionWidget(
-                        title: Strings.removeAds,
+                        title: AppStrings.removeAds,
                         iconColor: Colors.red,
                         iconData: Icons.no_adult_content_sharp,
                         onTap: () => null,

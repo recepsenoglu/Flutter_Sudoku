@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_sudoku/constant/app_strings.dart';
+import 'package:flutter_sudoku/utils/app_strings.dart';
 import 'package:flutter_sudoku/constant/enums.dart';
 import 'package:flutter_sudoku/constant/game_constants.dart';
 import 'package:flutter_sudoku/models/stat_group_model.dart';
@@ -178,25 +178,25 @@ class StatisticCard extends StatelessWidget {
 
   IconData getIcon(String title) {
     switch (title) {
-      case Strings.gamesStarted:
+      case AppStrings.gamesStarted:
         return Icons.grid_on_rounded;
-      case Strings.gamesWon:
+      case AppStrings.gamesWon:
         return Icons.workspace_premium_rounded;
-      case Strings.winRate:
+      case AppStrings.winRate:
         return Icons.outlined_flag_sharp;
-      case Strings.winsWithNoMistakes:
+      case AppStrings.winsWithNoMistakes:
         return Icons.sports_score_outlined;
-      case Strings.bestTime:
+      case AppStrings.bestTime:
         return Icons.timer;
-      case Strings.averageTime:
+      case AppStrings.averageTime:
         return Icons.timelapse_sharp;
-      case Strings.bestScore:
+      case AppStrings.bestScore:
         return Icons.star;
-      case Strings.averageScore:
+      case AppStrings.averageScore:
         return Icons.star_border_purple500;
-      case Strings.currentWinStreak:
+      case AppStrings.currentWinStreak:
         return Icons.keyboard_double_arrow_right_rounded;
-      case Strings.bestWinStreak:
+      case AppStrings.bestWinStreak:
         return Icons.double_arrow_sharp;
       default:
         return Icons.grid_on_rounded;
@@ -255,7 +255,7 @@ class StatisticsAppBar extends StatelessWidget with PreferredSizeWidget {
       elevation: 0.5,
       backgroundColor: AppColors.appBarBackground,
       systemOverlayStyle: SystemUiOverlayStyle.dark,
-      title: Text(Strings.statistics, style: AppTextStyles.statisticsTitle),
+      title: Text(AppStrings.statistics, style: AppTextStyles.statisticsTitle),
       leading: const SizedBox.shrink(),
       actions: [
         AppBarActionButton(

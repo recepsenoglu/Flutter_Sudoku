@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/constant/app_strings.dart';
+import 'package:flutter_sudoku/utils/app_strings.dart';
 import 'package:flutter_sudoku/models/game_model.dart';
 import 'package:flutter_sudoku/screens/daily_challenges_screen/daily_challenges_screen.dart';
 import 'package:flutter_sudoku/screens/main_screen/main_screen.dart';
@@ -54,15 +54,15 @@ class _NavigationBarScreenState extends State<NavigationBarScreen> {
   List<BottomNavigationBarItem> get navigationBarItems => const [
         BottomNavigationBarItem(
           icon: Icon(Icons.home, size: 32),
-          label: Strings.main,
+          label: AppStrings.main,
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.calendar_month_rounded, size: 32),
-          label: Strings.dailyChallenges,
+          label: AppStrings.dailyChallenges,
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.bar_chart, size: 32),
-          label: Strings.statistics,
+          label: AppStrings.statistics,
         ),
       ];
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/constant/app_strings.dart';
+import 'package:flutter_sudoku/utils/app_strings.dart';
 import 'package:flutter_sudoku/constant/enums.dart';
 import 'package:flutter_sudoku/constant/game_constants.dart';
 import 'package:flutter_sudoku/models/option_button_model.dart';
@@ -19,7 +19,7 @@ class ModalBottomSheets {
       options.length,
       (index) => OptionButtonModel(
         title: index == options.length - 1
-            ? Strings.cancel
+            ? AppStrings.cancel
             : removeUnderscore(options[index].name),
         selected: options[index].name == timeInterval.name &&
             index != options.length - 1,
@@ -44,7 +44,7 @@ class ModalBottomSheets {
       options.length,
       (index) => OptionButtonModel(
         title: index == options.length - 1 && restartButton
-            ? Strings.restart
+            ? AppStrings.restart
             : options[index].name,
         onTap: () {
           return options[index];

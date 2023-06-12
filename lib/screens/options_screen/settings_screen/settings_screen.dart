@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_sudoku/constant/app_strings.dart';
+import 'package:flutter_sudoku/utils/app_strings.dart';
 import 'package:flutter_sudoku/screens/options_screen/settings_screen/settings_screen_provider.dart';
 import 'package:flutter_sudoku/services/routes.dart';
 import 'package:flutter_sudoku/utils/app_colors.dart';
@@ -28,7 +28,7 @@ class SettingsScreen extends StatelessWidget {
               backgroundColor: AppColors.appBarBackground,
               systemOverlayStyle: SystemUiOverlayStyle.dark,
               title: Text(
-                Strings.settings,
+                AppStrings.settings,
                 style: AppTextStyles.optionsScreenAppBarTitle,
               ),
               leading: AppBarActionButton(
@@ -45,92 +45,92 @@ class SettingsScreen extends StatelessWidget {
                     fullDivider: true,
                     options: [
                       SettingWidget(
-                        title: Strings.sounds,
+                        title: AppStrings.sounds,
                         value: provider.switchValue,
                         onChanged: provider.changeValue,
                       ),
                       SettingWidget(
-                        title: Strings.autoLock,
+                        title: AppStrings.autoLock,
                         value: provider.switchValue,
                         onChanged: provider.changeValue,
                       ),
                       SettingWidget(
-                        title: Strings.timer,
+                        title: AppStrings.timer,
                         value: provider.switchValue,
                         onChanged: provider.changeValue,
                       ),
                       SettingWidget(
-                        title: Strings.score,
-                        value: provider.switchValue,
-                        onChanged: provider.changeValue,
-                      ),
-                    ],
-                  ),
-                  OptionGroup(
-                    groupDescription: Strings.statisticsMessageDescription,
-                    options: [
-                      SettingWidget(
-                        title: Strings.statisticsMessage,
+                        title: AppStrings.score,
                         value: provider.switchValue,
                         onChanged: provider.changeValue,
                       ),
                     ],
                   ),
                   OptionGroup(
-                    groupDescription: Strings.smartHintsDescription,
+                    groupDescription: AppStrings.statisticsMessageDescription,
                     options: [
                       SettingWidget(
-                        title: Strings.smartHints,
+                        title: AppStrings.statisticsMessage,
                         value: provider.switchValue,
                         onChanged: provider.changeValue,
                       ),
                     ],
                   ),
                   OptionGroup(
-                    groupDescription: Strings.numberFirstInputDescription,
+                    groupDescription: AppStrings.smartHintsDescription,
                     options: [
                       SettingWidget(
-                        title: Strings.numberFirstInput,
+                        title: AppStrings.smartHints,
                         value: provider.switchValue,
                         onChanged: provider.changeValue,
                       ),
                     ],
                   ),
                   OptionGroup(
-                    groupDescription: Strings.mistakeLimitDescription,
+                    groupDescription: AppStrings.numberFirstInputDescription,
                     options: [
                       SettingWidget(
-                        title: Strings.mistakeLimit,
+                        title: AppStrings.numberFirstInput,
                         value: provider.switchValue,
                         onChanged: provider.changeValue,
                       ),
                     ],
                   ),
                   OptionGroup(
-                    groupDescription: Strings.autoCheckForMistakesDescription,
+                    groupDescription: AppStrings.mistakeLimitDescription,
                     options: [
                       SettingWidget(
-                        title: Strings.autoCheckForMistakes,
+                        title: AppStrings.mistakeLimit,
+                        value: provider.switchValue,
+                        onChanged: provider.changeValue,
+                      ),
+                    ],
+                  ),
+                  OptionGroup(
+                    groupDescription: AppStrings.autoCheckForMistakesDescription,
+                    options: [
+                      SettingWidget(
+                        title: AppStrings.autoCheckForMistakes,
                         value: provider.switchValue,
                         onChanged: null,
                       ),
                     ],
                   ),
                   OptionGroup(
-                    groupDescription: Strings.highLightDuplicatesDescription,
+                    groupDescription: AppStrings.highLightDuplicatesDescription,
                     options: [
                       SettingWidget(
-                        title: Strings.highLightDuplicates,
+                        title: AppStrings.highLightDuplicates,
                         value: provider.switchValue,
                         onChanged: provider.changeValue,
                       ),
                     ],
                   ),
                   OptionGroup(
-                    groupDescription: Strings.highlightAresDescription,
+                    groupDescription: AppStrings.highlightAresDescription,
                     options: [
                       SettingWidget(
-                        title: Strings.highlightAres,
+                        title: AppStrings.highlightAres,
                         value: provider.switchValue,
                         onChanged: provider.changeValue,
                       ),
@@ -138,30 +138,30 @@ class SettingsScreen extends StatelessWidget {
                   ),
                   OptionGroup(
                     groupDescription:
-                        Strings.highlightIdenticalNumbersDescription,
+                        AppStrings.highlightIdenticalNumbersDescription,
                     options: [
                       SettingWidget(
-                        title: Strings.highlightIdenticalNumbers,
+                        title: AppStrings.highlightIdenticalNumbers,
                         value: provider.switchValue,
                         onChanged: provider.changeValue,
                       ),
                     ],
                   ),
                   OptionGroup(
-                    groupDescription: Strings.hideUsedNumbersDescription,
+                    groupDescription: AppStrings.hideUsedNumbersDescription,
                     options: [
                       SettingWidget(
-                        title: Strings.hideUsedNumbers,
+                        title: AppStrings.hideUsedNumbers,
                         value: provider.switchValue,
                         onChanged: provider.changeValue,
                       ),
                     ],
                   ),
                   OptionGroup(
-                    groupDescription: Strings.autoRemoveNotesDescription,
+                    groupDescription: AppStrings.autoRemoveNotesDescription,
                     options: [
                       SettingWidget(
-                        title: Strings.autoRemoveNotes,
+                        title: AppStrings.autoRemoveNotes,
                         value: provider.switchValue,
                         onChanged: provider.changeValue,
                       ),

@@ -78,6 +78,7 @@ class AppColors {
   static final _starBadgeStar = Colors.orange.shade800;
 
   static final _lightGreyColor = Colors.grey.shade300;
+  static final _progressBgSelected = Colors.white.withOpacity(0.4);
 
   static get primary => _primary;
 
@@ -157,4 +158,5 @@ class AppColors {
   static get starBadgeStar => _starBadgeStar;
 
   static get lightGreyColor => _lightGreyColor;
+  static get progressBgSelected => _progressBgSelected;
 }

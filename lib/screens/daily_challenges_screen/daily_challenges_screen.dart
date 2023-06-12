@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/constant/app_strings.dart';
+import 'package:flutter_sudoku/utils/app_strings.dart';
 import 'package:flutter_sudoku/constant/constants.dart';
 import 'package:flutter_sudoku/screens/daily_challenges_screen/daily_challenges_screen_provider.dart';
 import 'package:flutter_sudoku/utils/app_colors.dart';
@@ -27,7 +27,7 @@ class DailyChallengesScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: RoundedButton(
-                    buttonText: Strings.play,
+                    buttonText: AppStrings.play,
                     onPressed: () {},
                   ),
                 ),
@@ -191,7 +191,7 @@ class TopBlueBox extends StatelessWidget {
         children: [
           const SizedBox(height: 18),
           Text(
-            Strings.dailyChallenges,
+            AppStrings.dailyChallenges,
             style: AppTextStyles.dailyChallengesTitle,
           ),
         ],

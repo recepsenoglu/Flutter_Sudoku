@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/constant/app_strings.dart';
+import 'package:flutter_sudoku/utils/app_strings.dart';
 import 'package:flutter_sudoku/utils/app_colors.dart';
 
 class NotesSwitchWidget extends StatelessWidget {
@@ -12,7 +12,7 @@ class NotesSwitchWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String text = notesOn ? Strings.notesOn : Strings.notesOff;
+    final String text = notesOn ? AppStrings.notesOn : AppStrings.notesOff;
     final Color bgColor =
         notesOn ? AppColors.actionInfoBg : AppColors.actionInfoBgDeactive;
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/constant/app_strings.dart';
+import 'package:flutter_sudoku/utils/app_strings.dart';
 import 'package:flutter_sudoku/utils/app_colors.dart';
 import 'package:flutter_sudoku/utils/text_styles.dart';
 
@@ -21,7 +21,7 @@ class UsefulTipDivider extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 4),
           child: Text(
-            Strings.usefulTip,
+            AppStrings.usefulTip,
             style: AppTextStyles.dividerText,
           ),
         ),

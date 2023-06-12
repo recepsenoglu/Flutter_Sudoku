@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_sudoku/constant/app_strings.dart';
+import 'package:flutter_sudoku/utils/app_strings.dart';
 import 'package:flutter_sudoku/models/game_model.dart';
 import 'package:flutter_sudoku/screens/main_screen/main_screen_provider.dart';
 import 'package:flutter_sudoku/services/routes.dart';
@@ -63,14 +63,14 @@ class MainScreen extends StatelessWidget {
                                   child: Padding(
                                     padding: const EdgeInsets.only(bottom: 16),
                                     child: RoundedButton(
-                                      buttonText: Strings.continueGame,
+                                      buttonText: AppStrings.continueGame,
                                       subText: provider.continueGameButtonText,
                                       subIcon: Icons.watch_later_outlined,
                                       onPressed: provider.continueGame,
                                     ),
                                   )),
                               RoundedButton(
-                                buttonText: Strings.newGame,
+                                buttonText: AppStrings.newGame,
                                 whiteButton: provider.isThereASavedGame,
                                 elevation: provider.isThereASavedGame ? 2 : 0,
                                 onPressed: provider.newGame,
@@ -107,7 +107,7 @@ class GameTitle extends StatelessWidget {
       child: FittedBox(
         child: Center(
           child: Text(
-            Strings.gameTitle,
+            AppStrings.gameTitle,
             style: AppTextStyles.mainScreenTitle,
           ),
         ),

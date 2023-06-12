@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/constant/app_strings.dart';
+import 'package:flutter_sudoku/utils/app_strings.dart';
 import 'package:flutter_sudoku/utils/app_colors.dart';
 
 class HintsAmountCircle extends StatelessWidget {
@@ -12,7 +12,7 @@ class HintsAmountCircle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String hintText = hints > 0 ? hints.toString() : Strings.ad;
+    String hintText = hints > 0 ? hints.toString() : AppStrings.ad;
 
     return Positioned(
       right: 6,

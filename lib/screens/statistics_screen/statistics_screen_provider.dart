@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/constant/app_strings.dart';
+import 'package:flutter_sudoku/utils/app_strings.dart';
 import 'package:flutter_sudoku/constant/enums.dart';
 import 'package:flutter_sudoku/constant/game_constants.dart';
 import 'package:flutter_sudoku/models/game_stats_model.dart';
@@ -170,61 +170,61 @@ class StatisticsScreenProvider with ChangeNotifier {
     stats.add(StatModel(
       index: 0,
       value: gamesStarted,
-      title: Strings.gamesStarted,
+      title: AppStrings.gamesStarted,
       type: StatisticType.Games,
     ));
     stats.add(StatModel(
       index: 1,
       value: gamesWon,
-      title: Strings.gamesWon,
+      title: AppStrings.gamesWon,
       type: StatisticType.Games,
     ));
     stats.add(StatModel(
       index: 2,
       value: winRate != null ? '$winRate%' : null,
-      title: Strings.winRate,
+      title: AppStrings.winRate,
       type: StatisticType.Games,
     ));
     stats.add(StatModel(
       index: 3,
       value: winsWithNoMistakes,
-      title: Strings.winsWithNoMistakes,
+      title: AppStrings.winsWithNoMistakes,
       type: StatisticType.Games,
     ));
     stats.add(StatModel(
       index: 0,
       value: bestTime != null ? bestTime.toTimeString() : '-',
-      title: Strings.bestTime,
+      title: AppStrings.bestTime,
       type: StatisticType.Time,
     ));
     stats.add(StatModel(
       index: 1,
       value: averageTime != null ? averageTime.toTimeString() : '-',
-      title: Strings.averageTime,
+      title: AppStrings.averageTime,
       type: StatisticType.Time,
     ));
     stats.add(StatModel(
       index: 0,
       value: bestScore,
-      title: Strings.bestScore,
+      title: AppStrings.bestScore,
       type: StatisticType.Score,
     ));
     stats.add(StatModel(
       index: 1,
       value: averageScore,
-      title: Strings.averageScore,
+      title: AppStrings.averageScore,
       type: StatisticType.Score,
     ));
     stats.add(StatModel(
       index: 0,
       value: currentWinStreak,
-      title: Strings.currentWinStreak,
+      title: AppStrings.currentWinStreak,
       type: StatisticType.Streaks,
     ));
     stats.add(StatModel(
       index: 1,
       value: bestWinStreak,
-      title: Strings.bestWinStreak,
+      title: AppStrings.bestWinStreak,
       type: StatisticType.Streaks,
     ));
 

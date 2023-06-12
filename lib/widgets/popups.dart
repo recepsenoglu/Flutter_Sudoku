@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/constant/app_strings.dart';
+import 'package:flutter_sudoku/utils/app_strings.dart';
 import 'package:flutter_sudoku/constant/enums.dart';
 import 'package:flutter_sudoku/services/routes.dart';
 import 'package:flutter_sudoku/utils/app_colors.dart';
@@ -13,8 +13,8 @@ class Popup {
   static Future<void> gameOver({
     required Function() onNewGame,
   }) {
-    const String title = Strings.gameOver;
-    const String contentText = Strings.gameOverDescription;
+    const String title = AppStrings.gameOver;
+    const String contentText = AppStrings.gameOverDescription;
 
     Widget content = Padding(
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
@@ -30,7 +30,7 @@ class Popup {
 
     List<Widget> actions = [
       RoundedButton(
-          buttonText: Strings.secondChance,
+          buttonText: AppStrings.secondChance,
           disabled: true,
           icon: Icons.movie_filter,
           onPressed: () {
@@ -38,7 +38,7 @@ class Popup {
           }),
       RoundedButton(
           whiteButton: true,
-          buttonText: Strings.newGame,
+          buttonText: AppStrings.newGame,
           onPressed: () {
             Navigator.pop(Routes.navigatorKey.currentContext!);
             onNewGame();
@@ -58,7 +58,7 @@ class Popup {
     required Difficulty difficulty,
     required Function() onResume,
   }) {
-    const String title = Strings.pause;
+    const String title = AppStrings.pause;
 
     Widget content = Column(
       children: [
@@ -72,7 +72,7 @@ class Popup {
 
     List<Widget> actions = [
       RoundedButton(
-          buttonText: Strings.resumeGame,
+          buttonText: AppStrings.resumeGame,
           onPressed: () {
             onResume();
             Navigator.pop(Routes.navigatorKey.currentContext!);
