@@ -23,7 +23,12 @@ class Routes {
     switch (settings.name) {
       case navigationBar:
         return MaterialPageRoute(
-            builder: (_) => NavigationBarScreen(savedGame: args as GameModel?));
+          builder: (_) => args != null
+              ? NavigationBarScreen(
+                  pageIndex: (args as List)[0] as int,
+                  savedGame: args.length > 1 ? args[1] as GameModel? : null)
+              : const NavigationBarScreen(),
+        );
       case gameScreen:
         return MaterialPageRoute(
             builder: (_) => GameScreen(gameModel: args as GameModel));

@@ -7,6 +7,7 @@ import 'package:flutter_sudoku/models/board_model.dart';
 class GameModel {
   BoardModel sudokuBoard;
   Difficulty difficulty;
+  bool dailyChallenge;
   int mistakes;
   int score;
   int time;
@@ -15,6 +16,7 @@ class GameModel {
   GameModel({
     required this.difficulty,
     required this.sudokuBoard,
+    this.dailyChallenge = false,
     this.mistakes = 0,
     this.score = 0,
     this.time = 0,
@@ -47,4 +49,6 @@ class GameModel {
   }
 
   bool get isOnGoingGame => time > 0;
+
+  bool get isDailyChallenge => dailyChallenge;
 }

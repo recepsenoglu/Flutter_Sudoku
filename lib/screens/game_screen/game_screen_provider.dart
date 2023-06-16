@@ -10,6 +10,7 @@ import 'package:flutter_sudoku/models/game_model.dart';
 import 'package:flutter_sudoku/models/game_stats_model.dart';
 import 'package:flutter_sudoku/models/move_model.dart';
 import 'package:flutter_sudoku/models/statistics_model.dart';
+import 'package:flutter_sudoku/services/routes.dart';
 import 'package:flutter_sudoku/services/storage_service.dart';
 import 'package:flutter_sudoku/utils/extensions.dart';
 import 'package:flutter_sudoku/utils/utils.dart';
@@ -55,6 +56,16 @@ class GameScreenProvider with ChangeNotifier {
     _init();
   }
 
+  Future<void> onBackPressed() async {
+    if (isDailyChallenge) {
+      print('heyyy');
+      Routes.goTo(Routes.navigationBar);
+    } else {
+      final GameModel currentGame = await _getCurrentGame();
+      Routes.goTo(Routes.navigationBar, args: [0, currentGame]);
+    }
+  }
+
   Future<void> _init() async {
     _createNewGame(gameModel);
     storageService = await StorageService.initialize();
@@ -65,7 +76,7 @@ class GameScreenProvider with ChangeNotifier {
     await storageService.saveGame(gameModel);
   }
 
-  Future<GameModel> getCurrentGame() async {
+  Future<GameModel> _getCurrentGame() async {
     await _saveGame();
     return gameModel;
   }
@@ -103,13 +114,6 @@ class GameScreenProvider with ChangeNotifier {
 
     await storageService.saveGameStats(gameStatsModel);
     print("GAME STATS SAVED");
-
-    StatisticsModel? statisticsModel = storageService.getStatistics(difficulty);
-
-    if (statisticsModel != null) {
-      print('GAME STATS FETCHED');
-      print(statisticsModel.statistics.length.toString());
-    }
   }
 
   void _fillTheBoard() {
@@ -461,4 +465,6 @@ class GameScreenProvider with ChangeNotifier {
             .length <
         9;
   }
+
+  bool get isDailyChallenge => gameModel.isDailyChallenge;
 }

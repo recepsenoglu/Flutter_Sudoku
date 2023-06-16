@@ -32,10 +32,7 @@ class GameScreen extends StatelessWidget {
       child: Consumer<GameScreenProvider>(builder: (context, provider, _) {
         return Scaffold(
           backgroundColor: AppColors.background,
-          appBar: GameAppBar(onBackPressed: () async {
-            final GameModel currentGame = await provider.getCurrentGame();
-            Routes.goTo(Routes.navigationBar, args: currentGame);
-          }),
+          appBar: GameAppBar(onBackPressed: provider.onBackPressed),
           body: Column(
             children: [
               GameInfo(provider: provider),

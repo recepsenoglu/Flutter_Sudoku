@@ -10,9 +10,11 @@ import 'package:flutter_sudoku/utils/app_text_styles.dart';
 class NavigationBarScreen extends StatefulWidget {
   const NavigationBarScreen({
     super.key,
+    this.pageIndex,
     this.savedGame,
   });
 
+  final int? pageIndex;
   final GameModel? savedGame;
 
   @override
@@ -20,7 +22,7 @@ class NavigationBarScreen extends StatefulWidget {
 }
 
 class _NavigationBarScreenState extends State<NavigationBarScreen> {
-  int _selectedIndex = 0;
+  int _selectedIndex = -1;
 
   void onTappedItem(int index) {
     setState(() => _selectedIndex = index);
@@ -28,6 +30,9 @@ class _NavigationBarScreenState extends State<NavigationBarScreen> {
 
   @override
   Widget build(BuildContext context) {
+    _selectedIndex =
+        _selectedIndex == -1 ? (widget.pageIndex ?? 0) : _selectedIndex;
+
     List<Widget> screens = [
       MainScreen(savedGame: widget.savedGame),
       const DailyChallengesScreen(),

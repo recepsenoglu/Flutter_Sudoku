@@ -23,14 +23,8 @@ class DailyChallengesScreen extends StatelessWidget {
             body: Column(
               children: [
                 const TopBlueBox(),
-                const CalendarWidget(),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: RoundedButton(
-                    buttonText: AppStrings.play,
-                    onPressed: () {},
-                  ),
-                ),
+                CalendarWidget(provider: provider),
+                PlayButton(onPressed: provider.play),
                 const SizedBox(height: 36),
               ],
             ),
@@ -41,10 +35,33 @@ class DailyChallengesScreen extends StatelessWidget {
   }
 }
 
-class CalendarWidget extends StatelessWidget {
-  const CalendarWidget({
+class PlayButton extends StatelessWidget {
+  const PlayButton({
+    required this.onPressed,
     super.key,
   });
+
+  final Function() onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: RoundedButton(
+        buttonText: AppStrings.play,
+        onPressed: onPressed,
+      ),
+    );
+  }
+}
+
+class CalendarWidget extends StatelessWidget {
+  const CalendarWidget({
+    required this.provider,
+    super.key,
+  });
+
+  final DailyChallengesScreenProvider provider;
 
   @override
   Widget build(BuildContext context) {
@@ -110,31 +127,36 @@ class CalendarWidget extends StatelessWidget {
                     final bool isCompleted = day == 8;
                     final bool isStarted = isCurrentMonth && day % 2 == 0;
                     final bool isSelected =
-                        isCurrentMonth && !isFuture && day % 3 == 0;
+                        isCurrentMonth && provider.selectedDay == day;
 
                     if (isCompleted) {
                       return const StarBadgeWidget();
                     }
 
-                    return Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        Container(
-                          width: 100,
-                          decoration: getDecoration(isSelected),
-                          child: Center(
-                            child: Text(
-                              isCurrentMonth ? '$day' : '',
-                              style: isFuture
-                                  ? AppTextStyles.calendarFutureDate
-                                  : isSelected
-                                      ? AppTextStyles.calendarDateSelected
-                                      : AppTextStyles.calendarDate,
+                    return InkWell(
+                      highlightColor: Colors.transparent,
+                      splashColor: Colors.transparent,
+                      onTap: () => provider.selectDay(day),
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Container(
+                            width: 100,
+                            decoration: getDecoration(isSelected),
+                            child: Center(
+                              child: Text(
+                                isCurrentMonth ? '$day' : '',
+                                style: isFuture
+                                    ? AppTextStyles.calendarFutureDate
+                                    : isSelected
+                                        ? AppTextStyles.calendarDateSelected
+                                        : AppTextStyles.calendarDate,
+                              ),
                             ),
                           ),
-                        ),
-                        getProgressIndicator(isStarted, isSelected),
-                      ],
+                          getProgressIndicator(isStarted, isSelected),
+                        ],
+                      ),
                     );
                   },
                 ),
