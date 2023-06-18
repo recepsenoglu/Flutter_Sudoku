@@ -20,12 +20,17 @@ class DailyChallengesScreen extends StatelessWidget {
         builder: (context, provider, _) {
           return Scaffold(
             backgroundColor: AppColors.dailyChallengesScreenBg,
-            body: Column(
+            body: Stack(
               children: [
-                const TopBlueBox(),
-                CalendarWidget(provider: provider),
-                PlayButton(onPressed: provider.play),
-                const SizedBox(height: 36),
+                Column(
+                  children: [
+                    const TopBlueBox(),
+                    CalendarWidget(provider: provider),
+                    PlayButton(onPressed: provider.play),
+                    const SizedBox(height: 36),
+                  ],
+                ),
+                Image.asset('assets/images/inProgress.png'),
               ],
             ),
           );
@@ -85,7 +90,7 @@ class CalendarWidget extends StatelessWidget {
                 const StarBadgeWidget(),
                 const SizedBox(width: 8),
                 Text(
-                  '0/30',
+                  '1/30',
                   style: AppTextStyles.calendarDateTitle,
                 ),
               ],
@@ -124,8 +129,8 @@ class CalendarWidget extends StatelessWidget {
                     final int day = index - firstDayOfMonth + 1;
                     final bool isFuture = day > now.day;
                     final bool isCurrentMonth = index >= firstDayOfMonth;
-                    final bool isCompleted = day == 8;
-                    final bool isStarted = isCurrentMonth && day % 2 == 0;
+                    final bool isCompleted = isCurrentMonth && day == 3;
+                    final bool isStarted = isCurrentMonth && day == 5;
                     final bool isSelected =
                         isCurrentMonth && provider.selectedDay == day;
 

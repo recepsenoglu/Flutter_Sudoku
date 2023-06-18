@@ -50,12 +50,9 @@ class WinScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         const Spacer(),
-                        InkWell(
-                          onTap: () => Routes.back(),
-                          child: Text(
-                            AppStrings.levelCompleted,
-                            style: AppTextStyles.winScreenHeader,
-                          ),
+                        Text(
+                          AppStrings.levelCompleted,
+                          style: AppTextStyles.winScreenHeader,
                         ),
                         MiniSudokuBoard(
                             boardModel: provider.gameModel.sudokuBoard),
@@ -278,7 +275,7 @@ class PromotionText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (newBestTime || true) {
+    if (newBestTime) {
       return RichText(
         textAlign: TextAlign.center,
         text: TextSpan(
@@ -393,9 +390,9 @@ class MiniSudokuBoard extends StatelessWidget {
                       ),
                       itemCount: 9,
                       itemBuilder: (context, boxCellIndex) {
-                        CellModel cell =
-                            boardModel.getCellByBoxIndex(boxIndex, boxCellIndex);
-                        
+                        CellModel cell = boardModel.getCellByBoxIndex(
+                            boxIndex, boxCellIndex);
+
                         return CellValueText(cell: cell);
                       },
                     ),

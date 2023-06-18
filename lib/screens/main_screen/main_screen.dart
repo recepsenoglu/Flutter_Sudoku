@@ -126,7 +126,18 @@ class ChallengeAndEvents extends StatelessWidget {
     return Container(
       height: 190,
       width: double.infinity,
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(border: Border.all()),
+      child: const Center(
+        child: Text(
+          'This app is being developed by \n @recepsenoglu',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 18,
+          ),
+        ),
+      ),
     );
   }
 }

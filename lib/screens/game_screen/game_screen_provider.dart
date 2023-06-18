@@ -83,6 +83,9 @@ class GameScreenProvider with ChangeNotifier {
   }
 
   Future<void> _saveGame() async {
+    if (gameModel.dailyChallenge) {
+      return;
+    }
     await storageService.saveGame(gameModel);
   }
 
@@ -112,6 +115,9 @@ class GameScreenProvider with ChangeNotifier {
   }
 
   Future<void> _saveGameStarted() async {
+    if (gameModel.dailyChallenge) {
+      return;
+    }
     final DateTime now = DateTime.now();
 
     GameStatsModel gameStatsModel = GameStatsModel(
@@ -337,6 +343,9 @@ class GameScreenProvider with ChangeNotifier {
   }
 
   Future<void> _saveGameStats() async {
+    if (gameModel.dailyChallenge) {
+      return;
+    }
     final DateTime now = DateTime.now();
 
     GameStatsModel gameStatsModel = GameStatsModel(

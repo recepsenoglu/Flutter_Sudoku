@@ -206,12 +206,14 @@ class StatisticCard extends StatelessWidget {
 
 class ComparisonBox extends StatelessWidget {
   const ComparisonBox({
+    required this.positive,
     super.key,
   });
 
+  final bool positive;
+
   @override
   Widget build(BuildContext context) {
-    bool positive = true;
     IconData arrowIcon = positive ? Icons.arrow_drop_up : Icons.arrow_drop_down;
 
     return Container(
