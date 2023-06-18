@@ -5,7 +5,6 @@ import 'package:flutter_sudoku/constant/enums.dart';
 import 'package:flutter_sudoku/models/cell_model.dart';
 import 'package:flutter_sudoku/models/game_model.dart';
 import 'package:flutter_sudoku/screens/game_screen/game_screen_provider.dart';
-import 'package:flutter_sudoku/services/routes.dart';
 import 'package:flutter_sudoku/utils/app_colors.dart';
 import 'package:flutter_sudoku/utils/extensions.dart';
 import 'package:flutter_sudoku/utils/app_text_styles.dart';
@@ -32,7 +31,10 @@ class GameScreen extends StatelessWidget {
       child: Consumer<GameScreenProvider>(builder: (context, provider, _) {
         return Scaffold(
           backgroundColor: AppColors.background,
-          appBar: GameAppBar(onBackPressed: provider.onBackPressed),
+          appBar: GameAppBar(
+            onBackPressed: provider.onBackPressed,
+            onSettingsPressed: provider.onSettingsPressed,
+          ),
           body: Column(
             children: [
               GameInfo(provider: provider),
@@ -392,10 +394,12 @@ class GameInfo extends StatelessWidget {
 class GameAppBar extends StatelessWidget with PreferredSizeWidget {
   const GameAppBar({
     required this.onBackPressed,
+    required this.onSettingsPressed,
     super.key,
   });
 
   final Function() onBackPressed;
+  final Function() onSettingsPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -419,7 +423,7 @@ class GameAppBar extends StatelessWidget with PreferredSizeWidget {
         ),
         AppBarActionButton(
           icon: Icons.settings_outlined,
-          onPressed: () => Routes.goTo(Routes.optionsScreen, enableBack: true),
+          onPressed: onSettingsPressed,
         ),
       ],
     );

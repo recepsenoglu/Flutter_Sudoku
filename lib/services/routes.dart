@@ -39,7 +39,8 @@ class Routes {
       case settingsScreen:
         return MaterialPageRoute(builder: (_) => const SettingsScreen());
       case winScreen:
-        return MaterialPageRoute(builder: (_) => const WinScreen());
+        return MaterialPageRoute(
+            builder: (_) => WinScreen(gameModel: args as GameModel));
 
       default:
         return _errorRoute();
@@ -59,14 +60,39 @@ class Routes {
     });
   }
 
-  static void goTo(String route, {bool enableBack = false, args}) {
+  static Future<void> goTo(
+    String route, {
+    args,
+    bool enableBack = false,
+    Function()? callBackAfter,
+  }) async {
     debugPrint('GO TO $route');
-    Navigator.of(Routes.navigatorKey.currentContext!).pushNamedAndRemoveUntil(
+    await Navigator.of(Routes.navigatorKey.currentContext!)
+        .pushNamedAndRemoveUntil(
       route,
       arguments: args,
       (route) => enableBack,
     );
+    if (callBackAfter != null) {
+      callBackAfter();
+    }
   }
+
+  // static Future<void> goTo(
+  //   String route, {
+  //   args,
+  //   bool enableBack = false,
+  // }) async {
+  //   debugPrint('GO TO $route');
+  //   await Navigator.of(Routes.navigatorKey.currentContext!)
+  //       .pushNamedAndRemoveUntil(
+  //     route,
+  //     arguments: args,
+  //     (route) => enableBack,
+  //   );
+  // }
+
+  static void goToPageThenCallFunction(Function() function) {}
 
   static void back({int backTimes = 1, bool returnDialog = false}) {
     debugPrint('GO BACK <- ${returnDialog ? 'return $returnDialog' : ''}');

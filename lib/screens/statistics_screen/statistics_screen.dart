@@ -227,7 +227,7 @@ class ComparisonBox extends StatelessWidget {
             color: Colors.white,
             size: 16,
           ),
-          Text(
+          const Text(
             '12',
             style: TextStyle(
               color: Colors.white,

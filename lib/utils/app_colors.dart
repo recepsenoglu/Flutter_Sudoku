@@ -83,6 +83,8 @@ class AppColors {
   static const _winScreenBg = Color(0xFF078AF4);
   static final _translucentWhite = Colors.white.withOpacity(0.2);
 
+  static const _gold = Color(0xFFF1FA32);
+
   static get primary => _primary;
 
   static get appBarBackground => _appBarBackground;
@@ -165,4 +167,6 @@ class AppColors {
 
   static get winScreenBg => _winScreenBg;
   static get translucentWhite => _translucentWhite;
+
+  static get gold => _gold;
 }

@@ -74,6 +74,14 @@ class AppStrings {
   // Win Screen
   static const levelCompleted = 'Level Completed!';
   static const seeAll = 'See All';
+  static const youSolvedThisPuzzle = 'You solved this puzzle ';
+  static const faster = 'faster ';
+  static const slower = 'slower ';
+  static const thanYourAverage = 'than your average!';
+  static const youSetANew = 'You set a new';
+  static const bestTimeB = ' best time ';
+  static const forThe = 'for the ';
+  static const difficultyLevel = ' difficulty level: ';
 
   // Settings Screen
   static const sounds = 'Sounds';

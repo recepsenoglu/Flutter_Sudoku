@@ -16,6 +16,9 @@ class BoardModel {
     return BoardModel(cells: [], movesLog: []);
   }
 
+  bool get isCompleted => cells.every((cellList) =>
+      cellList.every((element) => element.value == element.realValue));
+
   bool get hasLog => movesLog.isNotEmpty;
 
   MoveModel get lastMove => movesLog.last;

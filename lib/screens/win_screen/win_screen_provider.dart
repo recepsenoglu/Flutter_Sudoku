@@ -6,6 +6,12 @@ import 'package:flutter_sudoku/services/routes.dart';
 import 'package:flutter_sudoku/widgets/modal_bottom_sheet/modal_bottom_sheets.dart';
 
 class WinScreenProvider with ChangeNotifier {
+  late final GameModel gameModel;
+
+  WinScreenProvider(GameModel gameModelP) {
+    gameModel = gameModelP;
+  }
+
   Future<void> newGame() async {
     Difficulty? newGameDifficulty = await ModalBottomSheets.chooseDifficulty();
 

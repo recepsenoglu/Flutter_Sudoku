@@ -7,12 +7,16 @@ class OptionGroup extends StatelessWidget {
     required this.options,
     this.fullDivider = false,
     this.groupDescription,
+    this.bgColor = Colors.white,
+    this.dividerColor,
     super.key,
   });
 
   final List<Widget> options;
   final bool fullDivider;
   final String? groupDescription;
+  final Color bgColor;
+  final Color? dividerColor;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +31,7 @@ class OptionGroup extends StatelessWidget {
         Container(
           width: double.infinity,
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: bgColor,
             borderRadius: BorderRadius.circular(10),
           ),
           child: Column(
@@ -48,7 +52,7 @@ class OptionGroup extends StatelessWidget {
                         height: 0.4,
                         width: double.infinity,
                         margin: EdgeInsets.only(left: fullDivider ? 16 : 57),
-                        color: AppColors.greyColor,
+                        color: dividerColor ?? AppColors.greyColor,
                       ),
                     ),
                   ],

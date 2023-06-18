@@ -175,7 +175,7 @@ class AppTextStyles {
     fontWeight: FontWeight.w600,
   );
   static const _levelStatisticsTitle = TextStyle(
-    fontSize: 15,
+    fontSize: 15.5,
     color: Colors.white,
   );
 
@@ -183,6 +183,24 @@ class AppTextStyles {
     fontSize: 16,
     color: Colors.white,
     fontWeight: FontWeight.bold,
+  );
+
+  static const _promotionText = TextStyle(
+    fontSize: 14,
+    color: Colors.white,
+    fontWeight: FontWeight.w600,
+  );
+
+  static final _promotionTextGold = TextStyle(
+    fontSize: 14,
+    color: AppColors.gold,
+    fontWeight: FontWeight.w600,
+  );
+
+  static const _statRowText = TextStyle(
+    fontSize: 16,
+    color: Colors.white,
+    fontWeight: FontWeight.w500,
   );
 
   static TextStyle get appBarTitle => _appBarTitle;
@@ -239,4 +257,8 @@ class AppTextStyles {
   static TextStyle get mainTextButton => _mainTextButton;
   static TextStyle get levelStatisticsTitle => _levelStatisticsTitle;
   static TextStyle get seeAll => _seeAll;
+
+  static TextStyle get promotionText => _promotionText;
+  static TextStyle get promotionTextGold => _promotionTextGold;
+  static TextStyle get statRowText => _statRowText;
 }

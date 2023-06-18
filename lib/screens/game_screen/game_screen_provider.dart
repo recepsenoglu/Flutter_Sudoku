@@ -9,7 +9,6 @@ import 'package:flutter_sudoku/models/cell_position_model.dart';
 import 'package:flutter_sudoku/models/game_model.dart';
 import 'package:flutter_sudoku/models/game_stats_model.dart';
 import 'package:flutter_sudoku/models/move_model.dart';
-import 'package:flutter_sudoku/models/statistics_model.dart';
 import 'package:flutter_sudoku/services/routes.dart';
 import 'package:flutter_sudoku/services/storage_service.dart';
 import 'package:flutter_sudoku/utils/extensions.dart';
@@ -58,12 +57,23 @@ class GameScreenProvider with ChangeNotifier {
 
   Future<void> onBackPressed() async {
     if (isDailyChallenge) {
-      print('heyyy');
       Routes.goTo(Routes.navigationBar);
     } else {
       final GameModel currentGame = await _getCurrentGame();
       Routes.goTo(Routes.navigationBar, args: [0, currentGame]);
     }
+  }
+
+  Future<void> onSettingsPressed() async {
+    _pauseGame();
+    notifyListeners();
+
+    await Routes.goTo(
+      Routes.optionsScreen,
+      enableBack: true,
+      callBackAfter: _resumeGame,
+    );
+    notifyListeners();
   }
 
   Future<void> _init() async {
@@ -113,7 +123,6 @@ class GameScreenProvider with ChangeNotifier {
     storageService = await StorageService.initialize();
 
     await storageService.saveGameStats(gameStatsModel);
-    print("GAME STATS SAVED");
   }
 
   void _fillTheBoard() {
@@ -179,10 +188,14 @@ class GameScreenProvider with ChangeNotifier {
   }
 
   void _pauseGame() {
+    debugPrint('Game paused');
+
     gamePaused = true;
   }
 
   void _resumeGame() {
+    debugPrint('Game resumed');
+
     gamePaused = false;
     _startTimer();
     notifyListeners();
@@ -312,6 +325,14 @@ class GameScreenProvider with ChangeNotifier {
           _gameOver();
         }
       }
+
+      _checkIsCompleted();
+    }
+  }
+
+  void _checkIsCompleted() {
+    if (sudokuBoard.isCompleted) {
+      _gameOver(win: true);
     }
   }
 
@@ -331,13 +352,16 @@ class GameScreenProvider with ChangeNotifier {
     await storageService.saveGameStats(gameStatsModel);
   }
 
-  void _gameOver() {
+  void _gameOver({bool win = false}) {
     gameOver = true;
     notifyListeners();
 
     _saveGameStats();
-
-    Popup.gameOver(onNewGame: _chooseNewGameDifficulty);
+    if (win) {
+      Routes.goTo(Routes.winScreen, args: gameModel);
+    } else {
+      Popup.gameOver(onNewGame: _chooseNewGameDifficulty);
+    }
   }
 
   Future<void> _chooseNewGameDifficulty() async {

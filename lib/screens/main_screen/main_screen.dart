@@ -27,7 +27,7 @@ class MainScreen extends StatelessWidget {
         leading: const SizedBox.shrink(),
         actions: [
           AppBarActionButton(
-            onPressed: () => Routes.goTo(Routes.winScreen),
+            onPressed: () {},
             icon: Icons.emoji_events_outlined,
             iconSize: 32,
           ),
