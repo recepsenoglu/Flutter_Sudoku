@@ -391,7 +391,7 @@ class GameInfo extends StatelessWidget {
   }
 }
 
-class GameAppBar extends StatelessWidget with PreferredSizeWidget {
+class GameAppBar extends StatelessWidget implements PreferredSizeWidget {
   const GameAppBar({
     required this.onBackPressed,
     required this.onSettingsPressed,

@@ -27,8 +27,10 @@ class StatisticsScreen extends StatelessWidget {
             Consumer<StatisticsScreenProvider>(builder: (context, provider, _) {
           return Scaffold(
             backgroundColor: AppColors.background,
-            appBar:
-                StatisticsAppBar(onTimeInterval: provider.changeTimeInterval),
+            appBar: StatisticsAppBar(
+              onTimeInterval: provider.changeTimeInterval,
+              difficulties: GameSettings.getDifficulties,
+            ),
             body: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -243,13 +245,15 @@ class ComparisonBox extends StatelessWidget {
   }
 }
 
-class StatisticsAppBar extends StatelessWidget with PreferredSizeWidget {
+class StatisticsAppBar extends StatelessWidget implements PreferredSizeWidget {
   const StatisticsAppBar({
     required this.onTimeInterval,
+    required this.difficulties,
     super.key,
   });
 
   final Function() onTimeInterval;
+  final List<Difficulty> difficulties;
 
   @override
   Widget build(BuildContext context) {
