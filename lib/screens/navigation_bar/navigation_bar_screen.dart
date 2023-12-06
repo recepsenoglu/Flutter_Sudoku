@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/utils/app_strings.dart';
-import 'package:flutter_sudoku/models/game_model.dart';
-import 'package:flutter_sudoku/screens/daily_challenges_screen/daily_challenges_screen.dart';
-import 'package:flutter_sudoku/screens/main_screen/main_screen.dart';
-import 'package:flutter_sudoku/screens/statistics_screen/statistics_screen.dart';
-import 'package:flutter_sudoku/utils/app_colors.dart';
-import 'package:flutter_sudoku/utils/app_text_styles.dart';
+import 'package:flutter_sudoku/utils/game_sizes.dart';
+
+import '../../models/game_model.dart';
+import '../../utils/app_colors.dart';
+import '../../utils/app_strings.dart';
+import '../../utils/app_text_styles.dart';
+import '../main_screen/main_screen.dart';
+import '../statistics_screen/statistics_screen.dart';
 
 class NavigationBarScreen extends StatefulWidget {
   const NavigationBarScreen({
@@ -35,7 +36,6 @@ class _NavigationBarScreenState extends State<NavigationBarScreen> {
 
     List<Widget> screens = [
       MainScreen(savedGame: widget.savedGame),
-      const DailyChallengesScreen(),
       const StatisticsScreen(),
     ];
     return Scaffold(
@@ -49,25 +49,24 @@ class _NavigationBarScreenState extends State<NavigationBarScreen> {
         type: BottomNavigationBarType.fixed,
         selectedItemColor: AppColors.navigationBarItemActive,
         unselectedItemColor: AppColors.navigationBarItemPassive,
-        selectedLabelStyle: AppTextStyles.navigationBarItemLabel,
-        unselectedLabelStyle: AppTextStyles.navigationBarItemLabel,
+        selectedLabelStyle: AppTextStyles.navigationBarItemLabel
+            .copyWith(fontSize: GameSizes.getWidth(0.035)),
+        unselectedLabelStyle: AppTextStyles.navigationBarItemLabel.copyWith(
+          fontSize: GameSizes.getWidth(0.035),
+        ),
       ),
       body: screens[_selectedIndex],
     );
   }
 
-  List<BottomNavigationBarItem> get navigationBarItems => const [
+  List<BottomNavigationBarItem> get navigationBarItems => [
         BottomNavigationBarItem(
-          icon: Icon(Icons.home, size: 32),
           label: AppStrings.main,
+          icon: Icon(Icons.home, size: GameSizes.getWidth(0.08)),
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.calendar_month_rounded, size: 32),
-          label: AppStrings.dailyChallenges,
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.bar_chart, size: 32),
           label: AppStrings.statistics,
+          icon: Icon(Icons.bar_chart, size: GameSizes.getWidth(0.08)),
         ),
       ];
 }

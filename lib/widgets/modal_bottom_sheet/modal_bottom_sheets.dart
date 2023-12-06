@@ -3,7 +3,7 @@ import 'package:flutter_sudoku/utils/app_strings.dart';
 import 'package:flutter_sudoku/constant/enums.dart';
 import 'package:flutter_sudoku/constant/game_constants.dart';
 import 'package:flutter_sudoku/models/option_button_model.dart';
-import 'package:flutter_sudoku/services/routes.dart';
+import 'package:flutter_sudoku/services/game_routes.dart';
 import 'package:flutter_sudoku/utils/app_colors.dart';
 import 'package:flutter_sudoku/utils/utils.dart';
 import 'package:flutter_sudoku/widgets/widget_divider.dart';
@@ -62,7 +62,7 @@ class ModalBottomSheets {
     final bool leading = options.any((element) => element.selected);
 
     return showModalBottomSheet(
-      context: Routes.navigatorKey.currentContext!,
+      context: GameRoutes.navigatorKey.currentContext!,
       backgroundColor: Colors.transparent,
       enableDrag: false,
       builder: (context) {

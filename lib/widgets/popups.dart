@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sudoku/utils/app_strings.dart';
 import 'package:flutter_sudoku/constant/enums.dart';
-import 'package:flutter_sudoku/services/routes.dart';
+import 'package:flutter_sudoku/services/game_routes.dart';
 import 'package:flutter_sudoku/utils/app_colors.dart';
 import 'package:flutter_sudoku/utils/app_text_styles.dart';
 import 'package:flutter_sudoku/widgets/button/rounded_button/rounded_button.dart';
@@ -34,13 +34,13 @@ class Popup {
           disabled: true,
           icon: Icons.movie_filter,
           onPressed: () {
-            Navigator.pop(Routes.navigatorKey.currentContext!);
+            Navigator.pop(GameRoutes.navigatorKey.currentContext!);
           }),
       RoundedButton(
           whiteButton: true,
           buttonText: AppStrings.newGame,
           onPressed: () {
-            Navigator.pop(Routes.navigatorKey.currentContext!);
+            Navigator.pop(GameRoutes.navigatorKey.currentContext!);
             onNewGame();
           }),
     ];
@@ -75,7 +75,7 @@ class Popup {
           buttonText: AppStrings.resumeGame,
           onPressed: () {
             onResume();
-            Navigator.pop(Routes.navigatorKey.currentContext!);
+            Navigator.pop(GameRoutes.navigatorKey.currentContext!);
           })
     ];
 
@@ -93,7 +93,7 @@ class Popup {
     bool barrierDismissible = false,
   }) async {
     return showDialog<void>(
-      context: Routes.navigatorKey.currentContext!,
+      context: GameRoutes.navigatorKey.currentContext!,
       barrierDismissible: barrierDismissible,
       builder: (BuildContext context) {
         return Dialog(

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_sudoku/utils/game_sizes.dart';
 
-import 'services/routes.dart';
+import 'services/game_routes.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,9 +21,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Sudoku',
       theme: ThemeData(primarySwatch: Colors.blue),
-      navigatorKey: Routes.navigatorKey,
-      onGenerateRoute: Routes.generateRoute,
-      initialRoute: Routes.navigationBar,
+      navigatorKey: GameRoutes.navigatorKey,
+      onGenerateRoute: GameRoutes.generateRoute,
+      initialRoute: GameRoutes.navigationBar,
     );
   }
 }

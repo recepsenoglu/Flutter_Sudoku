@@ -7,7 +7,7 @@ import 'package:flutter_sudoku/screens/options_screen/settings_screen/settings_s
 import 'package:flutter_sudoku/screens/statistics_screen/statistics_screen.dart';
 import 'package:flutter_sudoku/screens/win_screen/win_screen.dart';
 
-class Routes {
+class GameRoutes {
   static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
   static const String navigationBar = '/navigation_bar';
@@ -67,7 +67,7 @@ class Routes {
     Function()? callBackAfter,
   }) async {
     debugPrint('GO TO $route');
-    await Navigator.of(Routes.navigatorKey.currentContext!)
+    await Navigator.of(GameRoutes.navigatorKey.currentContext!)
         .pushNamedAndRemoveUntil(
       route,
       arguments: args,
@@ -84,7 +84,7 @@ class Routes {
   //   bool enableBack = false,
   // }) async {
   //   debugPrint('GO TO $route');
-  //   await Navigator.of(Routes.navigatorKey.currentContext!)
+  //   await Navigator.of(GameRoutes.navigatorKey.currentContext!)
   //       .pushNamedAndRemoveUntil(
   //     route,
   //     arguments: args,
@@ -97,8 +97,8 @@ class Routes {
   static void back({int backTimes = 1, bool returnDialog = false}) {
     debugPrint('GO BACK <- ${returnDialog ? 'return $returnDialog' : ''}');
     for (var i = 0; i < backTimes; i++) {
-      if (Navigator.canPop(Routes.navigatorKey.currentContext!)) {
-        Navigator.pop(Routes.navigatorKey.currentContext!, returnDialog);
+      if (Navigator.canPop(GameRoutes.navigatorKey.currentContext!)) {
+        Navigator.pop(GameRoutes.navigatorKey.currentContext!, returnDialog);
       }
     }
   }

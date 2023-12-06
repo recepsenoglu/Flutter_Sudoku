@@ -6,7 +6,7 @@ import 'package:flutter_sudoku/models/cell_model.dart';
 import 'package:flutter_sudoku/models/game_model.dart';
 import 'package:flutter_sudoku/screens/game_screen/game_screen.dart';
 import 'package:flutter_sudoku/screens/win_screen/win_screen_provider.dart';
-import 'package:flutter_sudoku/services/routes.dart';
+import 'package:flutter_sudoku/services/game_routes.dart';
 import 'package:flutter_sudoku/utils/app_colors.dart';
 import 'package:flutter_sudoku/utils/app_strings.dart';
 import 'package:flutter_sudoku/utils/app_text_styles.dart';
@@ -60,7 +60,7 @@ class WinScreen extends StatelessWidget {
                         LevelStatistics(gameModel: provider.gameModel),
                         NewGameButton(onPressed: () => provider.newGame()),
                         MainButton(
-                            onPressed: () => Routes.goTo(Routes.navigationBar)),
+                            onPressed: () => GameRoutes.goTo(GameRoutes.navigationBar)),
                         const SizedBox(height: 12),
                       ],
                     ),
@@ -141,7 +141,7 @@ class LevelStatistics extends StatelessWidget {
                 style: AppTextStyles.levelStatisticsTitle,
               ),
               InkWell(
-                onTap: () => Routes.goTo(Routes.navigationBar, args: [2]),
+                onTap: () => GameRoutes.goTo(GameRoutes.navigationBar, args: [2]),
                 borderRadius: BorderRadius.circular(16),
                 child: Container(
                   padding: const EdgeInsets.symmetric(

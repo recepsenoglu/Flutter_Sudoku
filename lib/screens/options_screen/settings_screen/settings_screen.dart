@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_sudoku/utils/app_strings.dart';
 import 'package:flutter_sudoku/screens/options_screen/settings_screen/settings_screen_provider.dart';
-import 'package:flutter_sudoku/services/routes.dart';
+import 'package:flutter_sudoku/services/game_routes.dart';
 import 'package:flutter_sudoku/utils/app_colors.dart';
 import 'package:flutter_sudoku/utils/app_text_styles.dart';
 import 'package:flutter_sudoku/widgets/app_bar_action_button.dart';
@@ -33,9 +33,9 @@ class SettingsScreen extends StatelessWidget {
               ),
               leading: AppBarActionButton(
                 icon: Icons.arrow_back_ios_new,
-                onPressed: () => Routes.back(),
+                onPressed: () => GameRoutes.back(),
               ),
-              actions: [DoneButton(onPressed: () => Routes.back(backTimes: 2))],
+              actions: [DoneButton(onPressed: () => GameRoutes.back(backTimes: 2))],
             ),
             body: SingleChildScrollView(
               padding: const EdgeInsets.all(20),

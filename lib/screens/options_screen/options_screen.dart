@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_sudoku/utils/app_strings.dart';
 import 'package:flutter_sudoku/screens/options_screen/options_screen_provider.dart';
-import 'package:flutter_sudoku/services/routes.dart';
+import 'package:flutter_sudoku/services/game_routes.dart';
 import 'package:flutter_sudoku/utils/app_colors.dart';
 import 'package:flutter_sudoku/utils/app_text_styles.dart';
 import 'package:flutter_sudoku/widgets/button/done_button.dart';
@@ -43,8 +43,8 @@ class OptionsScreen extends StatelessWidget {
                         title: AppStrings.settings,
                         iconColor: Colors.red,
                         iconData: Icons.settings,
-                        onTap: () => Routes.goTo(
-                          Routes.settingsScreen,
+                        onTap: () => GameRoutes.goTo(
+                          GameRoutes.settingsScreen,
                           enableBack: true,
                         ),
                       ),

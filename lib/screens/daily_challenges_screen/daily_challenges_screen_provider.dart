@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_sudoku/constant/enums.dart';
 import 'package:flutter_sudoku/constant/game_constants.dart';
 import 'package:flutter_sudoku/models/game_model.dart';
-import 'package:flutter_sudoku/services/routes.dart';
+import 'package:flutter_sudoku/services/game_routes.dart';
 
 class DailyChallengesScreenProvider with ChangeNotifier {
   int selectedDay = -1;
@@ -40,6 +40,6 @@ class DailyChallengesScreenProvider with ChangeNotifier {
       dailyChallenge: true,
     );
 
-    Routes.goTo(Routes.gameScreen, args: gameModel);
+    GameRoutes.goTo(GameRoutes.gameScreen, args: gameModel);
   }
 }

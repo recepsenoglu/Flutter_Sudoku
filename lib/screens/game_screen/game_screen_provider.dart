@@ -9,7 +9,7 @@ import 'package:flutter_sudoku/models/cell_position_model.dart';
 import 'package:flutter_sudoku/models/game_model.dart';
 import 'package:flutter_sudoku/models/game_stats_model.dart';
 import 'package:flutter_sudoku/models/move_model.dart';
-import 'package:flutter_sudoku/services/routes.dart';
+import 'package:flutter_sudoku/services/game_routes.dart';
 import 'package:flutter_sudoku/services/storage_service.dart';
 import 'package:flutter_sudoku/utils/extensions.dart';
 import 'package:flutter_sudoku/utils/utils.dart';
@@ -57,10 +57,10 @@ class GameScreenProvider with ChangeNotifier {
 
   Future<void> onBackPressed() async {
     if (isDailyChallenge) {
-      Routes.goTo(Routes.navigationBar);
+      GameRoutes.goTo(GameRoutes.navigationBar);
     } else {
       final GameModel currentGame = await _getCurrentGame();
-      Routes.goTo(Routes.navigationBar, args: [0, currentGame]);
+      GameRoutes.goTo(GameRoutes.navigationBar, args: [0, currentGame]);
     }
   }
 
@@ -68,8 +68,8 @@ class GameScreenProvider with ChangeNotifier {
     _pauseGame();
     notifyListeners();
 
-    await Routes.goTo(
-      Routes.optionsScreen,
+    await GameRoutes.goTo(
+      GameRoutes.optionsScreen,
       enableBack: true,
       callBackAfter: _resumeGame,
     );
@@ -367,7 +367,7 @@ class GameScreenProvider with ChangeNotifier {
 
     _saveGameStats();
     if (win) {
-      Routes.goTo(Routes.winScreen, args: gameModel);
+      GameRoutes.goTo(GameRoutes.winScreen, args: gameModel);
     } else {
       Popup.gameOver(onNewGame: _chooseNewGameDifficulty);
     }
