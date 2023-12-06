@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/utils/app_colors.dart';
-import 'package:flutter_sudoku/utils/app_text_styles.dart';
+import 'package:flutter_sudoku/utils/game_colors.dart';
+import 'package:flutter_sudoku/utils/game_text_styles.dart';
 
 class OptionWidget extends StatelessWidget {
   const OptionWidget({
@@ -46,12 +46,12 @@ class OptionWidget extends StatelessWidget {
             const SizedBox(width: 18),
             Text(
               title,
-              style: AppTextStyles.optionButtonTitle,
+              style: GameTextStyles.optionButtonTitle,
             ),
             const Spacer(),
             Icon(
               Icons.keyboard_arrow_right,
-              color: AppColors.greyColor,
+              color: GameColors.greyColor,
             ),
           ],
         ),

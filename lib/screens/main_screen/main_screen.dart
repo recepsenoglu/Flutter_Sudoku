@@ -4,9 +4,9 @@ import 'package:provider/provider.dart';
 
 import '../../models/game_model.dart';
 import '../../services/game_routes.dart';
-import '../../utils/app_colors.dart';
-import '../../utils/app_strings.dart';
-import '../../utils/app_text_styles.dart';
+import '../../utils/game_colors.dart';
+import '../../utils/game_strings.dart';
+import '../../utils/game_text_styles.dart';
 import '../../utils/game_sizes.dart';
 import '../../widgets/app_bar_action_button.dart';
 import '../../widgets/button/rounded_button/rounded_button.dart';
@@ -20,11 +20,11 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.mainScreenBg,
+      backgroundColor: GameColors.mainScreenBg,
       appBar: AppBar(
         elevation: 0,
         toolbarHeight: GameSizes.getHeight(0.07),
-        backgroundColor: AppColors.mainScreenBg,
+        backgroundColor: GameColors.mainScreenBg,
         systemOverlayStyle: SystemUiOverlayStyle.dark,
         leading: const SizedBox.shrink(),
         actions: [
@@ -58,14 +58,14 @@ class MainScreen extends StatelessWidget {
                             padding: EdgeInsets.only(
                                 bottom: GameSizes.getHeight(0.02)),
                             child: RoundedButton(
-                              buttonText: AppStrings.continueGame,
+                              buttonText: GameStrings.continueGame,
                               subText: provider.continueGameButtonText,
                               subIcon: Icons.watch_later_outlined,
                               onPressed: provider.continueGame,
                             ),
                           )),
                       RoundedButton(
-                        buttonText: AppStrings.newGame,
+                        buttonText: GameStrings.newGame,
                         whiteButton: provider.isThereASavedGame,
                         elevation: provider.isThereASavedGame ? 5 : 0,
                         onPressed: provider.newGame,
@@ -92,8 +92,8 @@ class GameTitle extends StatelessWidget {
       child: FittedBox(
         child: Center(
           child: Text(
-            AppStrings.gameTitle,
-            style: AppTextStyles.mainScreenTitle.copyWith(
+            GameStrings.gameTitle,
+            style: GameTextStyles.mainScreenTitle.copyWith(
               fontSize: GameSizes.getHeight(0.05),
             ),
           ),

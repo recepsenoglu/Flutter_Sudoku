@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/utils/app_text_styles.dart';
+import 'package:flutter_sudoku/utils/game_text_styles.dart';
 
 class ActionButton extends StatelessWidget {
   const ActionButton({
@@ -31,7 +31,7 @@ class ActionButton extends StatelessWidget {
               const SizedBox(height: 6),
               Text(
                 title,
-                style: AppTextStyles.actionButton,
+                style: GameTextStyles.actionButton,
               )
             ],
           ),

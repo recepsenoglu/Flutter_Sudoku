@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/utils/app_strings.dart';
-import 'package:flutter_sudoku/utils/app_colors.dart';
-import 'package:flutter_sudoku/utils/app_text_styles.dart';
+import 'package:flutter_sudoku/utils/game_strings.dart';
+import 'package:flutter_sudoku/utils/game_colors.dart';
+import 'package:flutter_sudoku/utils/game_text_styles.dart';
 
 class UsefulTipDivider extends StatelessWidget {
   const UsefulTipDivider({
@@ -15,20 +15,20 @@ class UsefulTipDivider extends StatelessWidget {
         Expanded(
           child: Container(
             height: 1,
-            color: AppColors.divider,
+            color: GameColors.divider,
           ),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 4),
           child: Text(
-            AppStrings.usefulTip,
-            style: AppTextStyles.dividerText,
+            GameStrings.usefulTip,
+            style: GameTextStyles.dividerText,
           ),
         ),
         Expanded(
           child: Container(
             height: 1,
-            color: AppColors.divider,
+            color: GameColors.divider,
           ),
         ),
       ],

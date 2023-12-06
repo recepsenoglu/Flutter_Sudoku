@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/utils/app_strings.dart';
-import 'package:flutter_sudoku/utils/app_colors.dart';
+import 'package:flutter_sudoku/utils/game_strings.dart';
+import 'package:flutter_sudoku/utils/game_colors.dart';
 
 class HintsAmountCircle extends StatelessWidget {
   const HintsAmountCircle({
@@ -12,7 +12,7 @@ class HintsAmountCircle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String hintText = hints > 0 ? hints.toString() : AppStrings.ad;
+    String hintText = hints > 0 ? hints.toString() : GameStrings.ad;
 
     return Positioned(
       right: 6,
@@ -28,13 +28,13 @@ class HintsAmountCircle extends StatelessWidget {
           padding: const EdgeInsets.all(4),
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: AppColors.actionInfoBg,
+            color: GameColors.actionInfoBg,
           ),
           child: Center(
             child: Text(
               hintText,
               style: TextStyle(
-                color: AppColors.actionInfoText,
+                color: GameColors.actionInfoText,
                 fontWeight: FontWeight.w700,
                 fontSize: 10,
               ),

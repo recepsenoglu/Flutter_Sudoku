@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_sudoku/utils/app_strings.dart';
+import 'package:flutter_sudoku/utils/game_strings.dart';
 import 'package:flutter_sudoku/screens/options_screen/settings_screen/settings_screen_provider.dart';
 import 'package:flutter_sudoku/services/game_routes.dart';
-import 'package:flutter_sudoku/utils/app_colors.dart';
-import 'package:flutter_sudoku/utils/app_text_styles.dart';
+import 'package:flutter_sudoku/utils/game_colors.dart';
+import 'package:flutter_sudoku/utils/game_text_styles.dart';
 import 'package:flutter_sudoku/widgets/app_bar_action_button.dart';
 import 'package:flutter_sudoku/widgets/button/done_button.dart';
 import 'package:flutter_sudoku/widgets/option_widgets/option_group_widget.dart';
@@ -21,15 +21,15 @@ class SettingsScreen extends StatelessWidget {
       child: Consumer<SettingsScreenProvider>(
         builder: (context, provider, _) {
           return Scaffold(
-            backgroundColor: AppColors.optionsBackground,
+            backgroundColor: GameColors.optionsBackground,
             appBar: AppBar(
               elevation: 0,
               toolbarHeight: 50,
-              backgroundColor: AppColors.appBarBackground,
+              backgroundColor: GameColors.appBarBackground,
               systemOverlayStyle: SystemUiOverlayStyle.dark,
               title: Text(
-                AppStrings.settings,
-                style: AppTextStyles.optionsScreenAppBarTitle,
+                GameStrings.settings,
+                style: GameTextStyles.optionsScreenAppBarTitle,
               ),
               leading: AppBarActionButton(
                 icon: Icons.arrow_back_ios_new,
@@ -45,92 +45,92 @@ class SettingsScreen extends StatelessWidget {
                     fullDivider: true,
                     options: [
                       SettingWidget(
-                        title: AppStrings.sounds,
+                        title: GameStrings.sounds,
                         value: provider.switchValue,
                         onChanged: provider.changeValue,
                       ),
                       SettingWidget(
-                        title: AppStrings.autoLock,
+                        title: GameStrings.autoLock,
                         value: provider.switchValue,
                         onChanged: provider.changeValue,
                       ),
                       SettingWidget(
-                        title: AppStrings.timer,
+                        title: GameStrings.timer,
                         value: provider.switchValue,
                         onChanged: provider.changeValue,
                       ),
                       SettingWidget(
-                        title: AppStrings.score,
-                        value: provider.switchValue,
-                        onChanged: provider.changeValue,
-                      ),
-                    ],
-                  ),
-                  OptionGroup(
-                    groupDescription: AppStrings.statisticsMessageDescription,
-                    options: [
-                      SettingWidget(
-                        title: AppStrings.statisticsMessage,
+                        title: GameStrings.score,
                         value: provider.switchValue,
                         onChanged: provider.changeValue,
                       ),
                     ],
                   ),
                   OptionGroup(
-                    groupDescription: AppStrings.smartHintsDescription,
+                    groupDescription: GameStrings.statisticsMessageDescription,
                     options: [
                       SettingWidget(
-                        title: AppStrings.smartHints,
+                        title: GameStrings.statisticsMessage,
                         value: provider.switchValue,
                         onChanged: provider.changeValue,
                       ),
                     ],
                   ),
                   OptionGroup(
-                    groupDescription: AppStrings.numberFirstInputDescription,
+                    groupDescription: GameStrings.smartHintsDescription,
                     options: [
                       SettingWidget(
-                        title: AppStrings.numberFirstInput,
+                        title: GameStrings.smartHints,
                         value: provider.switchValue,
                         onChanged: provider.changeValue,
                       ),
                     ],
                   ),
                   OptionGroup(
-                    groupDescription: AppStrings.mistakeLimitDescription,
+                    groupDescription: GameStrings.numberFirstInputDescription,
                     options: [
                       SettingWidget(
-                        title: AppStrings.mistakeLimit,
+                        title: GameStrings.numberFirstInput,
                         value: provider.switchValue,
                         onChanged: provider.changeValue,
                       ),
                     ],
                   ),
                   OptionGroup(
-                    groupDescription: AppStrings.autoCheckForMistakesDescription,
+                    groupDescription: GameStrings.mistakeLimitDescription,
                     options: [
                       SettingWidget(
-                        title: AppStrings.autoCheckForMistakes,
+                        title: GameStrings.mistakeLimit,
+                        value: provider.switchValue,
+                        onChanged: provider.changeValue,
+                      ),
+                    ],
+                  ),
+                  OptionGroup(
+                    groupDescription: GameStrings.autoCheckForMistakesDescription,
+                    options: [
+                      SettingWidget(
+                        title: GameStrings.autoCheckForMistakes,
                         value: provider.switchValue,
                         onChanged: null,
                       ),
                     ],
                   ),
                   OptionGroup(
-                    groupDescription: AppStrings.highLightDuplicatesDescription,
+                    groupDescription: GameStrings.highLightDuplicatesDescription,
                     options: [
                       SettingWidget(
-                        title: AppStrings.highLightDuplicates,
+                        title: GameStrings.highLightDuplicates,
                         value: provider.switchValue,
                         onChanged: provider.changeValue,
                       ),
                     ],
                   ),
                   OptionGroup(
-                    groupDescription: AppStrings.highlightAresDescription,
+                    groupDescription: GameStrings.highlightAresDescription,
                     options: [
                       SettingWidget(
-                        title: AppStrings.highlightAres,
+                        title: GameStrings.highlightAres,
                         value: provider.switchValue,
                         onChanged: provider.changeValue,
                       ),
@@ -138,30 +138,30 @@ class SettingsScreen extends StatelessWidget {
                   ),
                   OptionGroup(
                     groupDescription:
-                        AppStrings.highlightIdenticalNumbersDescription,
+                        GameStrings.highlightIdenticalNumbersDescription,
                     options: [
                       SettingWidget(
-                        title: AppStrings.highlightIdenticalNumbers,
+                        title: GameStrings.highlightIdenticalNumbers,
                         value: provider.switchValue,
                         onChanged: provider.changeValue,
                       ),
                     ],
                   ),
                   OptionGroup(
-                    groupDescription: AppStrings.hideUsedNumbersDescription,
+                    groupDescription: GameStrings.hideUsedNumbersDescription,
                     options: [
                       SettingWidget(
-                        title: AppStrings.hideUsedNumbers,
+                        title: GameStrings.hideUsedNumbers,
                         value: provider.switchValue,
                         onChanged: provider.changeValue,
                       ),
                     ],
                   ),
                   OptionGroup(
-                    groupDescription: AppStrings.autoRemoveNotesDescription,
+                    groupDescription: GameStrings.autoRemoveNotesDescription,
                     options: [
                       SettingWidget(
-                        title: AppStrings.autoRemoveNotes,
+                        title: GameStrings.autoRemoveNotes,
                         value: provider.switchValue,
                         onChanged: provider.changeValue,
                       ),

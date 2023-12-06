@@ -7,9 +7,9 @@ import '../../constant/enums.dart';
 import '../../constant/game_constants.dart';
 import '../../models/stat_group_model.dart';
 import '../../models/stat_model.dart';
-import '../../utils/app_colors.dart';
-import '../../utils/app_strings.dart';
-import '../../utils/app_text_styles.dart';
+import '../../utils/game_colors.dart';
+import '../../utils/game_strings.dart';
+import '../../utils/game_text_styles.dart';
 import '../../utils/game_sizes.dart';
 import '../../widgets/app_bar_action_button.dart';
 import 'statistics_screen_provider.dart';
@@ -28,7 +28,7 @@ class StatisticsScreen extends StatelessWidget {
         child:
             Consumer<StatisticsScreenProvider>(builder: (context, provider, _) {
           return Scaffold(
-            backgroundColor: AppColors.background,
+            backgroundColor: GameColors.background,
             appBar: StatisticsAppBar(
               onTimeInterval: provider.changeTimeInterval,
               difficulties: GameSettings.getDifficulties,
@@ -105,7 +105,7 @@ class StatisticsGroup extends StatelessWidget {
         children: [
           Text(
             groupTitle,
-            style: AppTextStyles.statisticsGroupTitle,
+            style: GameTextStyles.statisticsGroupTitle,
           ),
           SizedBox(height: GameSizes.getHeight(0.005)),
           Column(
@@ -134,7 +134,7 @@ class StatisticCard extends StatelessWidget {
       margin: GameSizes.getVerticalPadding(0.007),
       padding: GameSizes.getPadding(0.045),
       decoration: BoxDecoration(
-        color: AppColors.statisticsCard,
+        color: GameColors.statisticsCard,
         borderRadius: GameSizes.getRadius(12),
       ),
       child: Row(
@@ -145,13 +145,13 @@ class StatisticCard extends StatelessWidget {
             children: [
               Icon(
                 getIconData(statModel.title),
-                color: AppColors.roundedButton,
+                color: GameColors.roundedButton,
                 size: GameSizes.getHeight(0.038),
               ),
               SizedBox(height: GameSizes.getHeight(0.013)),
               Text(
                 statModel.title,
-                style: AppTextStyles.statisticsCardTitle
+                style: GameTextStyles.statisticsCardTitle
                     .copyWith(fontSize: GameSizes.getHeight(0.019)),
               ),
             ],
@@ -163,7 +163,7 @@ class StatisticCard extends StatelessWidget {
               // const ComparisonBox(),
               Text(
                 statModel.value == null ? '-' : statModel.value.toString(),
-                style: AppTextStyles.statisticsCardValue
+                style: GameTextStyles.statisticsCardValue
                     .copyWith(fontSize: GameSizes.getHeight(0.025)),
               ),
             ],
@@ -175,25 +175,25 @@ class StatisticCard extends StatelessWidget {
 
   IconData getIconData(String title) {
     switch (title) {
-      case AppStrings.gamesStarted:
+      case GameStrings.gamesStarted:
         return Icons.grid_on_rounded;
-      case AppStrings.gamesWon:
+      case GameStrings.gamesWon:
         return Icons.workspace_premium_rounded;
-      case AppStrings.winRate:
+      case GameStrings.winRate:
         return Icons.outlined_flag_sharp;
-      case AppStrings.winsWithNoMistakes:
+      case GameStrings.winsWithNoMistakes:
         return Icons.sports_score_outlined;
-      case AppStrings.bestTime:
+      case GameStrings.bestTime:
         return Icons.timer;
-      case AppStrings.averageTime:
+      case GameStrings.averageTime:
         return Icons.timelapse_sharp;
-      case AppStrings.bestScore:
+      case GameStrings.bestScore:
         return Icons.star;
-      case AppStrings.averageScore:
+      case GameStrings.averageScore:
         return Icons.star_border_purple500;
-      case AppStrings.currentWinStreak:
+      case GameStrings.currentWinStreak:
         return Icons.keyboard_double_arrow_right_rounded;
-      case AppStrings.bestWinStreak:
+      case GameStrings.bestWinStreak:
         return Icons.double_arrow_sharp;
       default:
         return Icons.grid_on_rounded;
@@ -214,7 +214,7 @@ class ComparisonBox extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 10),
       padding: const EdgeInsets.all(2),
       decoration: BoxDecoration(
-          color: positive ? AppColors.statisticsUp : AppColors.statisticsDown,
+          color: positive ? GameColors.statisticsUp : GameColors.statisticsDown,
           borderRadius: BorderRadius.circular(6)),
       child: Row(
         children: [
@@ -248,11 +248,11 @@ class StatisticsAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       elevation: 0.5,
-      backgroundColor: AppColors.appBarBackground,
+      backgroundColor: GameColors.appBarBackground,
       systemOverlayStyle: SystemUiOverlayStyle.dark,
       title: Text(
-        AppStrings.statistics,
-        style: AppTextStyles.statisticsTitle
+        GameStrings.statistics,
+        style: GameTextStyles.statisticsTitle
             .copyWith(fontSize: GameSizes.getHeight(0.03)),
       ),
       leading: const SizedBox(),
@@ -266,8 +266,8 @@ class StatisticsAppBar extends StatelessWidget implements PreferredSizeWidget {
       ],
       bottom: TabBar(
           tabAlignment: TabAlignment.start,
-          labelColor: AppColors.roundedButton,
-          unselectedLabelColor: AppColors.greyColor,
+          labelColor: GameColors.roundedButton,
+          unselectedLabelColor: GameColors.greyColor,
           labelStyle: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: GameSizes.getWidth(0.04),

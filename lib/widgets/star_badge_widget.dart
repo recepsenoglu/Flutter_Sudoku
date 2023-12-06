@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/utils/app_colors.dart';
+import 'package:flutter_sudoku/utils/game_colors.dart';
 
 class StarBadgeWidget extends StatelessWidget {
   const StarBadgeWidget({
@@ -13,14 +13,14 @@ class StarBadgeWidget extends StatelessWidget {
       width: 22,
       padding: const EdgeInsets.all(3),
       decoration: BoxDecoration(
-        color: AppColors.starBadgeBg,
+        color: GameColors.starBadgeBg,
         shape: BoxShape.circle,
       ),
       child: FittedBox(
         child: Icon(
           Icons.star,
           // size: 14,
-          color: AppColors.starBadgeStar,
+          color: GameColors.starBadgeStar,
         ),
       ),
     );

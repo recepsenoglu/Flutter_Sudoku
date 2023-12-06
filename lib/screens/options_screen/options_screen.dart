@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_sudoku/utils/app_strings.dart';
+import 'package:flutter_sudoku/utils/game_strings.dart';
 import 'package:flutter_sudoku/screens/options_screen/options_screen_provider.dart';
 import 'package:flutter_sudoku/services/game_routes.dart';
-import 'package:flutter_sudoku/utils/app_colors.dart';
-import 'package:flutter_sudoku/utils/app_text_styles.dart';
+import 'package:flutter_sudoku/utils/game_colors.dart';
+import 'package:flutter_sudoku/utils/game_text_styles.dart';
 import 'package:flutter_sudoku/widgets/button/done_button.dart';
 import 'package:flutter_sudoku/widgets/option_widgets/option_group_widget.dart';
 import 'package:flutter_sudoku/widgets/option_widgets/option_widget.dart';
@@ -20,15 +20,15 @@ class OptionsScreen extends StatelessWidget {
       child: Consumer<OptionsScreenProvider>(
         builder: ((context, provider, _) {
           return Scaffold(
-            backgroundColor: AppColors.optionsBackground,
+            backgroundColor: GameColors.optionsBackground,
             appBar: AppBar(
               elevation: 0,
               toolbarHeight: 50,
-              backgroundColor: AppColors.appBarBackground,
+              backgroundColor: GameColors.appBarBackground,
               systemOverlayStyle: SystemUiOverlayStyle.dark,
               title: Text(
-                AppStrings.options,
-                style: AppTextStyles.optionsScreenAppBarTitle,
+                GameStrings.options,
+                style: GameTextStyles.optionsScreenAppBarTitle,
               ),
               leading: const SizedBox.shrink(),
               actions: const [DoneButton()],
@@ -40,7 +40,7 @@ class OptionsScreen extends StatelessWidget {
                   OptionGroup(
                     options: [
                       OptionWidget(
-                        title: AppStrings.settings,
+                        title: GameStrings.settings,
                         iconColor: Colors.red,
                         iconData: Icons.settings,
                         onTap: () => GameRoutes.goTo(
@@ -49,13 +49,13 @@ class OptionsScreen extends StatelessWidget {
                         ),
                       ),
                       OptionWidget(
-                        title: AppStrings.howToPlay,
+                        title: GameStrings.howToPlay,
                         iconColor: Colors.orange,
                         iconData: Icons.school,
                         onTap: () => null,
                       ),
                       OptionWidget(
-                        title: AppStrings.rules,
+                        title: GameStrings.rules,
                         iconColor: Colors.lightBlue,
                         iconData: Icons.menu_book_rounded,
                         onTap: () => null,
@@ -65,13 +65,13 @@ class OptionsScreen extends StatelessWidget {
                   OptionGroup(
                     options: [
                       OptionWidget(
-                        title: AppStrings.help,
+                        title: GameStrings.help,
                         iconColor: Colors.green,
                         iconData: Icons.help,
                         onTap: () => null,
                       ),
                       OptionWidget(
-                        title: AppStrings.aboutGame,
+                        title: GameStrings.aboutGame,
                         iconColor: Colors.blue.shade700,
                         iconData: Icons.info,
                         onTap: () => null,
@@ -81,7 +81,7 @@ class OptionsScreen extends StatelessWidget {
                   OptionGroup(
                     options: [
                       OptionWidget(
-                        title: AppStrings.mathPuzzle,
+                        title: GameStrings.mathPuzzle,
                         iconColor: Colors.purple,
                         iconData: Icons.numbers,
                         onTap: () => null,
@@ -91,7 +91,7 @@ class OptionsScreen extends StatelessWidget {
                   OptionGroup(
                     options: [
                       OptionWidget(
-                        title: AppStrings.removeAds,
+                        title: GameStrings.removeAds,
                         iconColor: Colors.red,
                         iconData: Icons.no_adult_content_sharp,
                         onTap: () => null,

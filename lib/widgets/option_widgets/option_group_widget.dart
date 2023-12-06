@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/utils/app_colors.dart';
-import 'package:flutter_sudoku/utils/app_text_styles.dart';
+import 'package:flutter_sudoku/utils/game_colors.dart';
+import 'package:flutter_sudoku/utils/game_text_styles.dart';
 
 class OptionGroup extends StatelessWidget {
   const OptionGroup({
@@ -52,7 +52,7 @@ class OptionGroup extends StatelessWidget {
                         height: 0.4,
                         width: double.infinity,
                         margin: EdgeInsets.only(left: fullDivider ? 16 : 57),
-                        color: dividerColor ?? AppColors.greyColor,
+                        color: dividerColor ?? GameColors.greyColor,
                       ),
                     ),
                   ],
@@ -67,7 +67,7 @@ class OptionGroup extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Text(
               groupDescription!,
-              style: AppTextStyles.optionGroupDescription,
+              style: GameTextStyles.optionGroupDescription,
             ),
           ),
         ],

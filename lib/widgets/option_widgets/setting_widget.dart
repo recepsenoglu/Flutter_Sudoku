@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_sudoku/utils/app_colors.dart';
-import 'package:flutter_sudoku/utils/app_text_styles.dart';
+import 'package:flutter_sudoku/utils/game_colors.dart';
+import 'package:flutter_sudoku/utils/game_text_styles.dart';
 
 class SettingWidget extends StatelessWidget {
   const SettingWidget({
@@ -23,7 +23,7 @@ class SettingWidget extends StatelessWidget {
           const SizedBox(width: 6),
           Text(
             title,
-            style: AppTextStyles.settingButtonTitle,
+            style: GameTextStyles.settingButtonTitle,
           ),
           const Spacer(),
           SizedBox(
@@ -31,7 +31,7 @@ class SettingWidget extends StatelessWidget {
             child: CupertinoSwitch(
               value: value,
               onChanged: onChanged,
-              activeColor: AppColors.switchOn,
+              activeColor: GameColors.switchOn,
             ),
           )
         ],

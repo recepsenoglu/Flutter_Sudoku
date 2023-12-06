@@ -3,8 +3,8 @@ import 'package:flutter_sudoku/constant/enums.dart';
 import 'package:flutter_sudoku/constant/game_constants.dart';
 import 'package:flutter_sudoku/models/cell_model.dart';
 import 'package:flutter_sudoku/models/cell_position_model.dart';
-import 'package:flutter_sudoku/utils/app_colors.dart';
-import 'package:flutter_sudoku/utils/app_text_styles.dart';
+import 'package:flutter_sudoku/utils/game_colors.dart';
+import 'package:flutter_sudoku/utils/game_text_styles.dart';
 
 String removeUnderscore(String text) {
   return text.replaceAll(RegExp(r'_'), ' ');
@@ -48,23 +48,23 @@ Color getCellColor({
   required bool hideCells,
 }) {
   if (hideCells) {
-    return AppColors.cell;
+    return GameColors.cell;
   } else if (cell.position == selectedCell.position) {
-    return AppColors.selectedCell;
+    return GameColors.selectedCell;
   } else if (cell.hasValue && !cell.isValueCorrect && !cell.isGivenNumber) {
-    return AppColors.wrongNumberCell;
+    return GameColors.wrongNumberCell;
   } else if (!cell.isHighlighted) {
-    return AppColors.cell;
+    return GameColors.cell;
   } else {
     if (cell.hasValue && cell.value == selectedCell.value) {
       if (!selectedCell.isValueCorrect &&
           cell.hasIntersectionWith(selectedCell.position)) {
-        return AppColors.wrongNumberCell;
+        return GameColors.wrongNumberCell;
       } else {
-        return AppColors.highlightedNumberCell;
+        return GameColors.highlightedNumberCell;
       }
     } else {
-      return AppColors.highlightedCell;
+      return GameColors.highlightedCell;
     }
   }
 }
@@ -72,11 +72,11 @@ Color getCellColor({
 TextStyle? getStyle(CellModel cell) {
   if (cell.hasValue) {
     if (cell.isGivenNumber) {
-      return AppTextStyles.givenNumber;
+      return GameTextStyles.givenNumber;
     } else if (cell.isValueCorrect) {
-      return AppTextStyles.enteredNumber;
+      return GameTextStyles.enteredNumber;
     } else {
-      return AppTextStyles.wrongNumber;
+      return GameTextStyles.wrongNumber;
     }
   }
   return null;

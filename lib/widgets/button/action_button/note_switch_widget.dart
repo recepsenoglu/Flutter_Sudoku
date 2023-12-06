@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/utils/app_strings.dart';
-import 'package:flutter_sudoku/utils/app_colors.dart';
+import 'package:flutter_sudoku/utils/game_strings.dart';
+import 'package:flutter_sudoku/utils/game_colors.dart';
 
 class NotesSwitchWidget extends StatelessWidget {
   const NotesSwitchWidget({
@@ -12,9 +12,9 @@ class NotesSwitchWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String text = notesOn ? AppStrings.notesOn : AppStrings.notesOff;
+    final String text = notesOn ? GameStrings.notesOn : GameStrings.notesOff;
     final Color bgColor =
-        notesOn ? AppColors.actionInfoBg : AppColors.actionInfoBgDeactive;
+        notesOn ? GameColors.actionInfoBg : GameColors.actionInfoBgDeactive;
 
     return Positioned(
       right: 0,
@@ -36,7 +36,7 @@ class NotesSwitchWidget extends StatelessWidget {
             child: Text(
               text,
               style: TextStyle(
-                color: AppColors.actionInfoText,
+                color: GameColors.actionInfoText,
                 fontWeight: FontWeight.w700,
                 fontSize: 12,
               ),

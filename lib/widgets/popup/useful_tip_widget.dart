@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/utils/app_colors.dart';
+import 'package:flutter_sudoku/utils/game_colors.dart';
 
 class UsefulTipWidget extends StatelessWidget {
   const UsefulTipWidget({
@@ -14,7 +14,7 @@ class UsefulTipWidget extends StatelessWidget {
         width: double.infinity,
         padding: const EdgeInsets.symmetric(vertical: 22, horizontal: 20),
         decoration: BoxDecoration(
-          color: AppColors.usefulTipBg,
+          color: GameColors.usefulTipBg,
           borderRadius: BorderRadius.circular(16),
         ),
         child: Column(
@@ -28,7 +28,7 @@ class UsefulTipWidget extends StatelessWidget {
             Text(
               'Statistics',
               style: TextStyle(
-                color: AppColors.usefulTipTitle,
+                color: GameColors.usefulTipTitle,
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
@@ -38,7 +38,7 @@ class UsefulTipWidget extends StatelessWidget {
               'Each puzzle solved improves your statistics!',
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: AppColors.usefulTipContent,
+                color: GameColors.usefulTipContent,
                 fontSize: 14,
               ),
             ),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/utils/app_strings.dart';
+import 'package:flutter_sudoku/utils/game_strings.dart';
 import 'package:flutter_sudoku/constant/constants.dart';
 import 'package:flutter_sudoku/screens/daily_challenges_screen/daily_challenges_screen_provider.dart';
-import 'package:flutter_sudoku/utils/app_colors.dart';
-import 'package:flutter_sudoku/utils/app_text_styles.dart';
+import 'package:flutter_sudoku/utils/game_colors.dart';
+import 'package:flutter_sudoku/utils/game_text_styles.dart';
 import 'package:flutter_sudoku/utils/game_sizes.dart';
 import 'package:flutter_sudoku/widgets/button/rounded_button/rounded_button.dart';
 import 'package:flutter_sudoku/widgets/star_badge_widget.dart';
@@ -19,7 +19,7 @@ class DailyChallengesScreen extends StatelessWidget {
       child: Consumer<DailyChallengesScreenProvider>(
         builder: (context, provider, _) {
           return Scaffold(
-            backgroundColor: AppColors.dailyChallengesScreenBg,
+            backgroundColor: GameColors.dailyChallengesScreenBg,
             body: Stack(
               children: [
                 Column(
@@ -53,7 +53,7 @@ class PlayButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: RoundedButton(
-        buttonText: AppStrings.play,
+        buttonText: GameStrings.play,
         onPressed: onPressed,
       ),
     );
@@ -84,14 +84,14 @@ class CalendarWidget extends StatelessWidget {
               children: [
                 Text(
                   '${months[now.month - 1]} ${now.year}',
-                  style: AppTextStyles.calendarDateTitle,
+                  style: GameTextStyles.calendarDateTitle,
                 ),
                 const Spacer(),
                 const StarBadgeWidget(),
                 const SizedBox(width: 8),
                 Text(
                   '1/30',
-                  style: AppTextStyles.calendarDateTitle,
+                  style: GameTextStyles.calendarDateTitle,
                 ),
               ],
             ),
@@ -108,7 +108,7 @@ class CalendarWidget extends StatelessWidget {
                       child: Text(
                         days[index],
                         textAlign: TextAlign.center,
-                        style: AppTextStyles.calendarDays,
+                        style: GameTextStyles.calendarDays,
                       ),
                     );
                   },
@@ -152,10 +152,10 @@ class CalendarWidget extends StatelessWidget {
                               child: Text(
                                 isCurrentMonth ? '$day' : '',
                                 style: isFuture
-                                    ? AppTextStyles.calendarFutureDate
+                                    ? GameTextStyles.calendarFutureDate
                                     : isSelected
-                                        ? AppTextStyles.calendarDateSelected
-                                        : AppTextStyles.calendarDate,
+                                        ? GameTextStyles.calendarDateSelected
+                                        : GameTextStyles.calendarDate,
                               ),
                             ),
                           ),
@@ -177,7 +177,7 @@ class CalendarWidget extends StatelessWidget {
     return isSelected
         ? BoxDecoration(
             shape: BoxShape.circle,
-            color: AppColors.roundedButton,
+            color: GameColors.roundedButton,
           )
         : null;
   }
@@ -189,10 +189,10 @@ class CalendarWidget extends StatelessWidget {
         child: CircularProgressIndicator(
           value: 0.4,
           strokeWidth: 3,
-          color: isSelected ? Colors.white : AppColors.roundedButton,
+          color: isSelected ? Colors.white : GameColors.roundedButton,
           backgroundColor: isSelected
-              ? AppColors.progressBgSelected
-              : AppColors.lightGreyColor,
+              ? GameColors.progressBgSelected
+              : GameColors.lightGreyColor,
         ),
       );
     }
@@ -216,8 +216,8 @@ class TopBlueBox extends StatelessWidget {
         children: [
           const SizedBox(height: 18),
           Text(
-            AppStrings.dailyChallenges,
-            style: AppTextStyles.dailyChallengesTitle,
+            GameStrings.dailyChallenges,
+            style: GameTextStyles.dailyChallengesTitle,
           ),
         ],
       ),

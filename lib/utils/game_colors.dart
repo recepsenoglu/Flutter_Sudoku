@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class AppColors {
+class GameColors {
   static const _primary = Color(0xFF325BAD);
 
   static const _appBarBackground = Colors.white;

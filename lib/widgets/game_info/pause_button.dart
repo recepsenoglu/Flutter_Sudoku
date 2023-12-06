@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/utils/app_colors.dart';
+import 'package:flutter_sudoku/utils/game_colors.dart';
 
 class PauseButton extends StatelessWidget {
   const PauseButton({
@@ -20,11 +20,11 @@ class PauseButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           shape: const CircleBorder(),
           padding: EdgeInsets.zero,
-          backgroundColor: AppColors.pauseButton,
+          backgroundColor: GameColors.pauseButton,
         ),
         child: Icon(
           isPaused ? Icons.play_arrow : Icons.pause_outlined,
-          color: AppColors.pauseIcon,
+          color: GameColors.pauseIcon,
           size: 24,
         ),
       ),

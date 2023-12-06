@@ -1,24 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_sudoku/utils/app_strings.dart';
-import 'package:flutter_sudoku/constant/enums.dart';
-import 'package:flutter_sudoku/models/cell_model.dart';
-import 'package:flutter_sudoku/models/game_model.dart';
-import 'package:flutter_sudoku/screens/game_screen/game_screen_provider.dart';
-import 'package:flutter_sudoku/utils/app_colors.dart';
-import 'package:flutter_sudoku/utils/extensions.dart';
-import 'package:flutter_sudoku/utils/app_text_styles.dart';
-import 'package:flutter_sudoku/utils/utils.dart';
-import 'package:flutter_sudoku/widgets/button/action_button/action_button.dart';
-import 'package:flutter_sudoku/widgets/button/action_button/action_icon.dart';
-import 'package:flutter_sudoku/widgets/button/action_button/hints_amount_circle.dart';
-import 'package:flutter_sudoku/widgets/button/action_button/note_switch_widget.dart';
-import 'package:flutter_sudoku/widgets/app_bar_action_button.dart';
-import 'package:flutter_sudoku/widgets/game_info/game_info_widget.dart';
-import 'package:flutter_sudoku/widgets/game_info/pause_button.dart';
-import 'package:flutter_sudoku/widgets/sudoku_board/horizontal_lines.dart';
-import 'package:flutter_sudoku/widgets/sudoku_board/vertical_lines.dart';
 import 'package:provider/provider.dart';
+
+import '../../constant/enums.dart';
+import '../../models/cell_model.dart';
+import '../../models/game_model.dart';
+import '../../utils/game_colors.dart';
+import '../../utils/game_strings.dart';
+import '../../utils/game_text_styles.dart';
+import '../../utils/extensions.dart';
+import '../../utils/utils.dart';
+import '../../widgets/app_bar_action_button.dart';
+import '../../widgets/button/action_button/exports.dart';
+import '../../widgets/game_info/exports.dart';
+import '../../widgets/sudoku_board/exports.dart';
+import 'game_screen_provider.dart';
 
 class GameScreen extends StatelessWidget {
   const GameScreen({required this.gameModel, super.key});
@@ -30,7 +26,7 @@ class GameScreen extends StatelessWidget {
       create: (context) => GameScreenProvider(gameModel: gameModel),
       child: Consumer<GameScreenProvider>(builder: (context, provider, _) {
         return Scaffold(
-          backgroundColor: AppColors.background,
+          backgroundColor: GameColors.background,
           appBar: GameAppBar(
             onBackPressed: provider.onBackPressed,
             onSettingsPressed: provider.onSettingsPressed,
@@ -68,17 +64,17 @@ class ActionButtons extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           ActionButton(
-            title: AppStrings.undo,
+            title: GameStrings.undo,
             iconWidget: const ActionIcon(Icons.refresh),
             onTap: () => provider.undoOnTap(),
           ),
           ActionButton(
-            title: AppStrings.erase,
+            title: GameStrings.erase,
             iconWidget: const ActionIcon(Icons.delete),
             onTap: () => provider.eraseOnTap(),
           ),
           ActionButton(
-            title: AppStrings.notes,
+            title: GameStrings.notes,
             iconWidget: Align(
               alignment: Alignment.centerRight,
               child: Stack(
@@ -94,7 +90,7 @@ class ActionButtons extends StatelessWidget {
             onTap: () => provider.notesOnTap(),
           ),
           ActionButton(
-            title: AppStrings.hint,
+            title: GameStrings.hint,
             iconWidget: Align(
               alignment: Alignment.centerRight,
               child: Stack(
@@ -142,8 +138,8 @@ class NumberButtons extends StatelessWidget {
                 child: Text(
                   (index + 1).toString(),
                   style: provider.notesMode
-                      ? AppTextStyles.noteButton
-                      : AppTextStyles.numberButton,
+                      ? GameTextStyles.noteButton
+                      : GameTextStyles.numberButton,
                 ),
               ),
             ),
@@ -179,11 +175,11 @@ class SudokuBoard extends StatelessWidget {
         children: [
           VerticalLines(
             borderWidth: borderWidth,
-            borderColor: AppColors.boardBorder,
+            borderColor: GameColors.boardBorder,
           ),
           HorizontalLines(
             borderWidth: borderWidth,
-            borderColor: AppColors.boardBorder,
+            borderColor: GameColors.boardBorder,
           ),
           GridView.builder(
             physics: const NeverScrollableScrollPhysics(),
@@ -198,11 +194,11 @@ class SudokuBoard extends StatelessWidget {
                 children: [
                   VerticalLines(
                     borderWidth: cellBorderWidth,
-                    borderColor: AppColors.cellBorder,
+                    borderColor: GameColors.cellBorder,
                   ),
                   HorizontalLines(
                     borderWidth: cellBorderWidth,
-                    borderColor: AppColors.cellBorder,
+                    borderColor: GameColors.cellBorder,
                   ),
                   GridView.builder(
                     physics: const NeverScrollableScrollPhysics(),
@@ -302,8 +298,8 @@ class CellNotesGrid extends StatelessWidget {
                 child: Text(
                   number.toString(),
                   style: number == selectedCell.value
-                      ? AppTextStyles.highlightedNoteNumber
-                      : AppTextStyles.noteNumber,
+                      ? GameTextStyles.highlightedNoteNumber
+                      : GameTextStyles.noteNumber,
                 ),
               ),
             );
@@ -364,20 +360,20 @@ class GameInfo extends StatelessWidget {
               children: [
                 GameInfoWidget(
                   value: difficulty.name,
-                  title: AppStrings.difficulty,
+                  title: GameStrings.difficulty,
                   crossAxisAlignment: CrossAxisAlignment.start,
                 ),
                 GameInfoWidget(
                   value: '$mistakes/3',
-                  title: AppStrings.mistakes,
+                  title: GameStrings.mistakes,
                 ),
                 GameInfoWidget(
                   value: '$score',
-                  title: AppStrings.score,
+                  title: GameStrings.score,
                 ),
                 GameInfoWidget(
                   value: time.toTimeString(),
-                  title: AppStrings.time,
+                  title: GameStrings.time,
                   crossAxisAlignment: CrossAxisAlignment.end,
                 ),
               ],
@@ -404,13 +400,13 @@ class GameAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: AppColors.appBarBackground,
+      backgroundColor: GameColors.appBarBackground,
       systemOverlayStyle: SystemUiOverlayStyle.dark,
       centerTitle: true,
       elevation: 0,
       title: Text(
-        AppStrings.appBarTitle,
-        style: AppTextStyles.appBarTitle,
+        GameStrings.appBarTitle,
+        style: GameTextStyles.appBarTitle,
       ),
       leading: AppBarActionButton(
         icon: Icons.arrow_back_ios_new,

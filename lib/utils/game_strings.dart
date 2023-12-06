@@ -1,4 +1,4 @@
-class AppStrings {
+class GameStrings {
   static const appBarTitle = 'Flutter Sudoku';
 
   /// GameInfo

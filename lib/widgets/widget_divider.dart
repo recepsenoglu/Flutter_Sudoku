@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/utils/app_colors.dart';
+import 'package:flutter_sudoku/utils/game_colors.dart';
 
 class WidgetDivider extends StatelessWidget {
   const WidgetDivider(
@@ -20,7 +20,7 @@ class WidgetDivider extends StatelessWidget {
             height: 0.9,
             margin: EdgeInsets.only(left: leftPadding),
             width: double.infinity,
-            color: AppColors.divider,
+            color: GameColors.divider,
           );
         }
       }),

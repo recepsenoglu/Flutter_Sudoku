@@ -7,9 +7,9 @@ import 'package:flutter_sudoku/models/game_model.dart';
 import 'package:flutter_sudoku/screens/game_screen/game_screen.dart';
 import 'package:flutter_sudoku/screens/win_screen/win_screen_provider.dart';
 import 'package:flutter_sudoku/services/game_routes.dart';
-import 'package:flutter_sudoku/utils/app_colors.dart';
-import 'package:flutter_sudoku/utils/app_strings.dart';
-import 'package:flutter_sudoku/utils/app_text_styles.dart';
+import 'package:flutter_sudoku/utils/game_colors.dart';
+import 'package:flutter_sudoku/utils/game_strings.dart';
+import 'package:flutter_sudoku/utils/game_text_styles.dart';
 import 'package:flutter_sudoku/utils/extensions.dart';
 import 'package:flutter_sudoku/widgets/button/rounded_button/rounded_button.dart';
 import 'package:flutter_sudoku/widgets/option_widgets/option_group_widget.dart';
@@ -32,11 +32,11 @@ class WinScreen extends StatelessWidget {
       child: Consumer<WinScreenProvider>(
         builder: (context, provider, _) {
           return Scaffold(
-            backgroundColor: AppColors.winScreenBg,
+            backgroundColor: GameColors.winScreenBg,
             appBar: AppBar(
               elevation: 0,
               toolbarHeight: 0,
-              backgroundColor: AppColors.winScreenBg,
+              backgroundColor: GameColors.winScreenBg,
               systemOverlayStyle: SystemUiOverlayStyle.light,
             ),
             body: CustomScrollView(
@@ -51,8 +51,8 @@ class WinScreen extends StatelessWidget {
                       children: [
                         const Spacer(),
                         Text(
-                          AppStrings.levelCompleted,
-                          style: AppTextStyles.winScreenHeader,
+                          GameStrings.levelCompleted,
+                          style: GameTextStyles.winScreenHeader,
                         ),
                         MiniSudokuBoard(
                             boardModel: provider.gameModel.sudokuBoard),
@@ -90,8 +90,8 @@ class MainButton extends StatelessWidget {
       child: TextButton(
         onPressed: onPressed,
         child: Text(
-          AppStrings.main,
-          style: AppTextStyles.mainTextButton,
+          GameStrings.main,
+          style: GameTextStyles.mainTextButton,
         ),
       ),
     );
@@ -111,7 +111,7 @@ class NewGameButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 32),
       child: RoundedButton(
-        buttonText: AppStrings.newGame,
+        buttonText: GameStrings.newGame,
         onPressed: onPressed,
         whiteButton: true,
       ),
@@ -137,8 +137,8 @@ class LevelStatistics extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                AppStrings.statistics,
-                style: AppTextStyles.levelStatisticsTitle,
+                GameStrings.statistics,
+                style: GameTextStyles.levelStatisticsTitle,
               ),
               InkWell(
                 onTap: () => GameRoutes.goTo(GameRoutes.navigationBar, args: [2]),
@@ -150,11 +150,11 @@ class LevelStatistics extends StatelessWidget {
                   ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16),
-                    color: AppColors.translucentWhite,
+                    color: GameColors.translucentWhite,
                   ),
                   child: Text(
-                    AppStrings.seeAll,
-                    style: AppTextStyles.seeAll,
+                    GameStrings.seeAll,
+                    style: GameTextStyles.seeAll,
                   ),
                 ),
               ),
@@ -163,22 +163,22 @@ class LevelStatistics extends StatelessWidget {
         ),
         // PromotionContainer(gameModel: gameModel),
         OptionGroup(
-          bgColor: AppColors.translucentWhite,
+          bgColor: GameColors.translucentWhite,
           dividerColor: Colors.white,
           options: [
             StatRowWidget(
               icon: Icons.bar_chart,
-              title: AppStrings.difficulty,
+              title: GameStrings.difficulty,
               value: gameModel.difficulty.name,
             ),
             StatRowWidget(
               icon: Icons.stars_rounded,
-              title: AppStrings.score,
+              title: GameStrings.score,
               value: gameModel.score.toString(),
             ),
             StatRowWidget(
               icon: Icons.timer,
-              title: AppStrings.time,
+              title: GameStrings.time,
               value: gameModel.time.toInt().toTimeString(),
             ),
           ],
@@ -204,7 +204,7 @@ class PromotionContainer extends StatelessWidget {
       alignment: Alignment.center,
       padding: const EdgeInsets.symmetric(vertical: 22, horizontal: 12),
       decoration: BoxDecoration(
-        color: AppColors.translucentWhite,
+        color: GameColors.translucentWhite,
         borderRadius: BorderRadius.circular(13),
       ),
       // child: PromotionText(
@@ -244,12 +244,12 @@ class StatRowWidget extends StatelessWidget {
           const SizedBox(width: 14),
           Text(
             title,
-            style: AppTextStyles.statRowText,
+            style: GameTextStyles.statRowText,
           ),
           const Spacer(),
           Text(
             value,
-            style: AppTextStyles.statRowText,
+            style: GameTextStyles.statRowText,
           ),
         ],
       ),
@@ -279,25 +279,25 @@ class PromotionText extends StatelessWidget {
       return RichText(
         textAlign: TextAlign.center,
         text: TextSpan(
-          text: AppStrings.youSetANew,
-          style: AppTextStyles.promotionText,
+          text: GameStrings.youSetANew,
+          style: GameTextStyles.promotionText,
           children: [
             TextSpan(
-              text: AppStrings.bestTimeB,
-              style: AppTextStyles.promotionTextGold,
+              text: GameStrings.bestTimeB,
+              style: GameTextStyles.promotionTextGold,
             ),
             const TextSpan(
-              text: AppStrings.forThe,
+              text: GameStrings.forThe,
             ),
             TextSpan(
               text: difficulty.name,
             ),
             const TextSpan(
-              text: AppStrings.difficultyLevel,
+              text: GameStrings.difficultyLevel,
             ),
             TextSpan(
               text: time.toTimeString(),
-              style: AppTextStyles.promotionTextGold,
+              style: GameTextStyles.promotionTextGold,
             ),
             const TextSpan(
               text: '!',
@@ -310,16 +310,16 @@ class PromotionText extends StatelessWidget {
     return RichText(
       textAlign: TextAlign.center,
       text: TextSpan(
-        text: AppStrings.youSolvedThisPuzzle,
-        style: AppTextStyles.promotionText,
+        text: GameStrings.youSolvedThisPuzzle,
+        style: GameTextStyles.promotionText,
         children: [
           TextSpan(
             text:
-                '${timeDifference.toTimeString()} ${faster ? AppStrings.faster : AppStrings.slower}',
-            style: AppTextStyles.promotionTextGold,
+                '${timeDifference.toTimeString()} ${faster ? GameStrings.faster : GameStrings.slower}',
+            style: GameTextStyles.promotionTextGold,
           ),
           const TextSpan(
-            text: AppStrings.thanYourAverage,
+            text: GameStrings.thanYourAverage,
           ),
         ],
       ),
@@ -355,11 +355,11 @@ class MiniSudokuBoard extends StatelessWidget {
           children: [
             VerticalLines(
               borderWidth: borderWidth,
-              borderColor: AppColors.boardBorder,
+              borderColor: GameColors.boardBorder,
             ),
             HorizontalLines(
               borderWidth: borderWidth,
-              borderColor: AppColors.boardBorder,
+              borderColor: GameColors.boardBorder,
             ),
             GridView.builder(
               physics: const NeverScrollableScrollPhysics(),
@@ -374,11 +374,11 @@ class MiniSudokuBoard extends StatelessWidget {
                   children: [
                     VerticalLines(
                       borderWidth: cellBorderWidth,
-                      borderColor: AppColors.cellBorder,
+                      borderColor: GameColors.cellBorder,
                     ),
                     HorizontalLines(
                       borderWidth: cellBorderWidth,
-                      borderColor: AppColors.cellBorder,
+                      borderColor: GameColors.cellBorder,
                     ),
                     GridView.builder(
                       physics: const NeverScrollableScrollPhysics(),

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/utils/app_strings.dart';
-import 'package:flutter_sudoku/constant/enums.dart';
-import 'package:flutter_sudoku/utils/extensions.dart';
-import 'package:flutter_sudoku/widgets/game_info/game_info_widget.dart';
+
+import '../../constant/enums.dart';
+import '../../utils/game_strings.dart';
+import '../../utils/extensions.dart';
+import '../game_info/game_info_widget.dart';
 
 class PopupGameStats extends StatelessWidget {
   const PopupGameStats({
@@ -24,17 +25,17 @@ class PopupGameStats extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           GameInfoWidget(
-            title: AppStrings.time,
+            title: GameStrings.time,
             value: time.toTimeString(),
             forPopup: true,
           ),
           GameInfoWidget(
-            title: AppStrings.mistakes,
+            title: GameStrings.mistakes,
             value: '$mistakes/3',
             forPopup: true,
           ),
           GameInfoWidget(
-            title: AppStrings.difficulty,
+            title: GameStrings.difficulty,
             value: difficulty.name,
             forPopup: true,
           ),

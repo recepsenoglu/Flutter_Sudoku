@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/utils/app_colors.dart';
+import 'package:flutter_sudoku/utils/game_colors.dart';
 
 class ActionIcon extends StatelessWidget {
   const ActionIcon(
@@ -17,7 +17,7 @@ class ActionIcon extends StatelessWidget {
       padding: EdgeInsets.only(top: 6, right: rightPadding),
       child: Icon(
         iconData,
-        color: AppColors.actionButton,
+        color: GameColors.actionButton,
         size: 36,
       ),
     );

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sudoku/utils/game_sizes.dart';
 
 import '../../models/game_model.dart';
-import '../../utils/app_colors.dart';
-import '../../utils/app_strings.dart';
-import '../../utils/app_text_styles.dart';
+import '../../utils/game_colors.dart';
+import '../../utils/game_strings.dart';
+import '../../utils/game_text_styles.dart';
 import '../main_screen/main_screen.dart';
 import '../statistics_screen/statistics_screen.dart';
 
@@ -39,7 +39,7 @@ class _NavigationBarScreenState extends State<NavigationBarScreen> {
       const StatisticsScreen(),
     ];
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: GameColors.background,
       bottomNavigationBar: BottomNavigationBar(
         elevation: 10,
         onTap: onTappedItem,
@@ -47,11 +47,11 @@ class _NavigationBarScreenState extends State<NavigationBarScreen> {
         currentIndex: _selectedIndex,
         backgroundColor: Colors.white,
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: AppColors.navigationBarItemActive,
-        unselectedItemColor: AppColors.navigationBarItemPassive,
-        selectedLabelStyle: AppTextStyles.navigationBarItemLabel
+        selectedItemColor: GameColors.navigationBarItemActive,
+        unselectedItemColor: GameColors.navigationBarItemPassive,
+        selectedLabelStyle: GameTextStyles.navigationBarItemLabel
             .copyWith(fontSize: GameSizes.getWidth(0.035)),
-        unselectedLabelStyle: AppTextStyles.navigationBarItemLabel.copyWith(
+        unselectedLabelStyle: GameTextStyles.navigationBarItemLabel.copyWith(
           fontSize: GameSizes.getWidth(0.035),
         ),
       ),
@@ -61,11 +61,11 @@ class _NavigationBarScreenState extends State<NavigationBarScreen> {
 
   List<BottomNavigationBarItem> get navigationBarItems => [
         BottomNavigationBarItem(
-          label: AppStrings.main,
+          label: GameStrings.main,
           icon: Icon(Icons.home, size: GameSizes.getWidth(0.08)),
         ),
         BottomNavigationBarItem(
-          label: AppStrings.statistics,
+          label: GameStrings.statistics,
           icon: Icon(Icons.bar_chart, size: GameSizes.getWidth(0.08)),
         ),
       ];

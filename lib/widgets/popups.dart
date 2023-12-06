@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/utils/app_strings.dart';
+import 'package:flutter_sudoku/utils/game_strings.dart';
 import 'package:flutter_sudoku/constant/enums.dart';
 import 'package:flutter_sudoku/services/game_routes.dart';
-import 'package:flutter_sudoku/utils/app_colors.dart';
-import 'package:flutter_sudoku/utils/app_text_styles.dart';
+import 'package:flutter_sudoku/utils/game_colors.dart';
+import 'package:flutter_sudoku/utils/game_text_styles.dart';
 import 'package:flutter_sudoku/widgets/button/rounded_button/rounded_button.dart';
 import 'package:flutter_sudoku/widgets/popup/popup_game_stats.dart';
 import 'package:flutter_sudoku/widgets/popup/useful_tip_divider.dart';
@@ -13,8 +13,8 @@ class Popup {
   static Future<void> gameOver({
     required Function() onNewGame,
   }) {
-    const String title = AppStrings.gameOver;
-    const String contentText = AppStrings.gameOverDescription;
+    const String title = GameStrings.gameOver;
+    const String contentText = GameStrings.gameOverDescription;
 
     Widget content = Padding(
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
@@ -22,7 +22,7 @@ class Popup {
         contentText,
         textAlign: TextAlign.center,
         style: TextStyle(
-          color: AppColors.popupContentText,
+          color: GameColors.popupContentText,
           fontSize: 16,
         ),
       ),
@@ -30,7 +30,7 @@ class Popup {
 
     List<Widget> actions = [
       RoundedButton(
-          buttonText: AppStrings.secondChance,
+          buttonText: GameStrings.secondChance,
           disabled: true,
           icon: Icons.movie_filter,
           onPressed: () {
@@ -38,7 +38,7 @@ class Popup {
           }),
       RoundedButton(
           whiteButton: true,
-          buttonText: AppStrings.newGame,
+          buttonText: GameStrings.newGame,
           onPressed: () {
             Navigator.pop(GameRoutes.navigatorKey.currentContext!);
             onNewGame();
@@ -58,7 +58,7 @@ class Popup {
     required Difficulty difficulty,
     required Function() onResume,
   }) {
-    const String title = AppStrings.pause;
+    const String title = GameStrings.pause;
 
     Widget content = Column(
       children: [
@@ -72,7 +72,7 @@ class Popup {
 
     List<Widget> actions = [
       RoundedButton(
-          buttonText: AppStrings.resumeGame,
+          buttonText: GameStrings.resumeGame,
           onPressed: () {
             onResume();
             Navigator.pop(GameRoutes.navigatorKey.currentContext!);
@@ -110,7 +110,7 @@ class Popup {
                 Center(
                   child: Text(
                     title,
-                    style: AppTextStyles.popupTitle,
+                    style: GameTextStyles.popupTitle,
                   ),
                 ),
                 const SizedBox(height: 32),

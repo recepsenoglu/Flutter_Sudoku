@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/utils/app_colors.dart';
-import 'package:flutter_sudoku/utils/app_text_styles.dart';
+import 'package:flutter_sudoku/utils/game_colors.dart';
+import 'package:flutter_sudoku/utils/game_text_styles.dart';
 import 'package:flutter_sudoku/utils/game_sizes.dart';
 
 class RoundedButton extends StatelessWidget {
@@ -35,15 +35,15 @@ class RoundedButton extends StatelessWidget {
       onPressed: !disabled ? onPressed : null,
       style: ElevatedButton.styleFrom(
         backgroundColor:
-            !whiteButton ? AppColors.roundedButton : AppColors.buttonText,
-        disabledBackgroundColor: AppColors.buttonDisabled,
+            !whiteButton ? GameColors.roundedButton : GameColors.buttonText,
+        disabledBackgroundColor: GameColors.buttonDisabled,
         padding: GameSizes.getSymmetricPadding(0.02, 0.0015),
         maximumSize: Size(double.infinity, GameSizes.getHeight(0.07)),
         shape: RoundedRectangleBorder(borderRadius: GameSizes.getRadius(28)),
         elevation: elevation,
         foregroundColor: !whiteButton
-            ? AppColors.buttonText
-            : AppColors.whiteButtonForeground,
+            ? GameColors.buttonText
+            : GameColors.whiteButtonForeground,
       ),
       child: Center(
         child: Row(
@@ -100,26 +100,26 @@ class RoundedButton extends StatelessWidget {
   TextStyle getTextStyle({bool subText = false}) {
     TextStyle textStyle;
     if (disabled) {
-      textStyle = AppTextStyles.disabledButtonText;
+      textStyle = GameTextStyles.disabledButtonText;
     } else if (whiteButton) {
-      textStyle = AppTextStyles.whiteButtonText;
+      textStyle = GameTextStyles.whiteButtonText;
     } else {
-      textStyle = AppTextStyles.buttonText;
+      textStyle = GameTextStyles.buttonText;
     }
 
     return !subText
         ? textStyle.copyWith(fontSize: textSize ?? GameSizes.getHeight(0.022))
-        : AppTextStyles.buttonSubText.copyWith(
+        : GameTextStyles.buttonSubText.copyWith(
             color: textStyle.color,
             fontSize: subTextSize ?? GameSizes.getHeight(0.015));
   }
 
   Color getIconColor() {
     if (disabled) {
-      return AppColors.buttonDisabledText;
+      return GameColors.buttonDisabledText;
     } else if (whiteButton) {
-      return AppColors.roundedButton;
+      return GameColors.roundedButton;
     }
-    return AppColors.buttonText;
+    return GameColors.buttonText;
   }
 }

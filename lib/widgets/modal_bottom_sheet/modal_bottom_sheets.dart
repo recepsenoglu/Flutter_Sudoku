@@ -4,8 +4,8 @@ import '../../constant/enums.dart';
 import '../../constant/game_constants.dart';
 import '../../models/option_button_model.dart';
 import '../../services/game_routes.dart';
-import '../../utils/app_colors.dart';
-import '../../utils/app_strings.dart';
+import '../../utils/game_colors.dart';
+import '../../utils/game_strings.dart';
 import '../../utils/game_sizes.dart';
 import '../../utils/utils.dart';
 import '../widget_divider.dart';
@@ -21,7 +21,7 @@ class ModalBottomSheets {
       bool last = index == options.length - 1;
       final bool isSelected = intervalOption.name == timeInterval.name && !last;
       final String title =
-          last ? AppStrings.cancel : removeUnderscore(intervalOption.name);
+          last ? GameStrings.cancel : removeUnderscore(intervalOption.name);
 
       return OptionButtonModel(
           onTap: () => intervalOption, selected: isSelected, title: title);
@@ -38,7 +38,7 @@ class ModalBottomSheets {
     return await _showOptions(
         options: List.generate(options.length, (index) {
       final String title = index == options.length - 1 && restartButton
-          ? AppStrings.restart
+          ? GameStrings.restart
           : options[index].name;
 
       return OptionButtonModel(title: title, onTap: () => options[index]);
@@ -87,7 +87,7 @@ class ModalBottomSheets {
                 return Material(
                   borderRadius: GameSizes.getRadius(28),
                   child: InkWell(
-                    highlightColor: AppColors.whiteButtonForeground,
+                    highlightColor: GameColors.whiteButtonForeground,
                     onTap: () {
                       Navigator.pop(context, optionButton.onTap());
                     },
@@ -105,7 +105,7 @@ class ModalBottomSheets {
                                 child: Center(
                                   child: Icon(
                                     Icons.done,
-                                    color: AppColors.roundedButton,
+                                    color: GameColors.roundedButton,
                                     size: GameSizes.getWidth(0.06),
                                   ),
                                 ),
@@ -122,7 +122,7 @@ class ModalBottomSheets {
                                 Text(
                                   optionButton.title,
                                   style: TextStyle(
-                                    color: AppColors.roundedButton,
+                                    color: GameColors.roundedButton,
                                     fontWeight: FontWeight.w400,
                                     fontSize: GameSizes.getWidth(0.045),
                                   ),
@@ -131,7 +131,7 @@ class ModalBottomSheets {
                                   Text(
                                     optionButton.title,
                                     style: TextStyle(
-                                      color: AppColors.roundedButton,
+                                      color: GameColors.roundedButton,
                                       fontWeight: FontWeight.w400,
                                       fontSize: GameSizes.getWidth(0.03),
                                     ),

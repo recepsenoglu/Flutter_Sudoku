@@ -1,58 +1,58 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/utils/app_colors.dart';
+import 'package:flutter_sudoku/utils/game_colors.dart';
 
-class AppTextStyles {
+class GameTextStyles {
   static final _appBarTitle = TextStyle(
-    color: AppColors.appBarTitle,
+    color: GameColors.appBarTitle,
     fontWeight: FontWeight.bold,
   );
 
   static final _gameInfoTitle = TextStyle(
     fontSize: 13,
-    color: AppColors.gameInfoTitle,
+    color: GameColors.gameInfoTitle,
   );
   static final _gameInfoValue = TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.bold,
-    color: AppColors.gameInfoValue,
+    color: GameColors.gameInfoValue,
   );
 
   static final _givenNumber = TextStyle(
-    color: AppColors.givenNumber,
+    color: GameColors.givenNumber,
     fontSize: 30,
   );
   static final _enteredNumber = TextStyle(
-    color: AppColors.enteredNumber,
+    color: GameColors.enteredNumber,
     fontSize: 30,
   );
   static final _wrongNumber = TextStyle(
-    color: AppColors.wrongNumber,
+    color: GameColors.wrongNumber,
     fontSize: 30,
   );
   static final _noteNumber = TextStyle(
-    color: AppColors.noteNumber,
+    color: GameColors.noteNumber,
     fontWeight: FontWeight.w600,
     fontSize: 14,
   );
   static final _highlightedNoteNumber = TextStyle(
-    color: AppColors.highlightedNoteNumber,
+    color: GameColors.highlightedNoteNumber,
     fontWeight: FontWeight.bold,
     fontSize: 12,
   );
 
   static final _actionButton = TextStyle(
-    color: AppColors.actionButton,
+    color: GameColors.actionButton,
     fontSize: 13,
   );
 
   static final _numberButton = TextStyle(
-    color: AppColors.numberButton,
+    color: GameColors.numberButton,
     fontWeight: FontWeight.w500,
     fontSize: 34,
   );
 
   static final _noteButton = TextStyle(
-    color: AppColors.noteButton,
+    color: GameColors.noteButton,
     fontWeight: FontWeight.w500,
     fontSize: 34,
   );
@@ -60,7 +60,7 @@ class AppTextStyles {
   static final _popupTitle = TextStyle(
     fontSize: 22,
     fontWeight: FontWeight.w800,
-    color: AppColors.popupTitle,
+    color: GameColors.popupTitle,
   );
 
   static final _popupInfoTitle =
@@ -68,7 +68,7 @@ class AppTextStyles {
 
   static final _popupInfoValue = _gameInfoValue.copyWith(
     fontSize: 18,
-    color: AppColors.popupInfoValue,
+    color: GameColors.popupInfoValue,
     fontWeight: FontWeight.w700,
   );
 
@@ -76,7 +76,7 @@ class AppTextStyles {
       _gameInfoTitle.copyWith(fontWeight: FontWeight.w600);
 
   static final _buttonText = TextStyle(
-    color: AppColors.buttonText,
+    color: GameColors.buttonText,
     fontSize: 18,
     fontWeight: FontWeight.bold,
   );
@@ -87,10 +87,10 @@ class AppTextStyles {
   );
 
   static final _disabledButtonText =
-      _buttonText.copyWith(color: AppColors.buttonDisabledText);
+      _buttonText.copyWith(color: GameColors.buttonDisabledText);
 
   static final _whiteButtonText =
-      _buttonText.copyWith(color: AppColors.roundedButton);
+      _buttonText.copyWith(color: GameColors.roundedButton);
 
   static const _navigationBarItemLabel = TextStyle(
     fontSize: 12,
@@ -103,7 +103,7 @@ class AppTextStyles {
   );
 
   static final _statisticsTitle = TextStyle(
-    color: AppColors.statisticsTitle,
+    color: GameColors.statisticsTitle,
     fontWeight: FontWeight.bold,
   );
 
@@ -137,7 +137,7 @@ class AppTextStyles {
   );
   static final _optionGroupDescription = TextStyle(
     fontSize: 13,
-    color: AppColors.greyColor,
+    color: GameColors.greyColor,
     fontWeight: FontWeight.w500,
   );
 
@@ -193,7 +193,7 @@ class AppTextStyles {
 
   static final _promotionTextGold = TextStyle(
     fontSize: 14,
-    color: AppColors.gold,
+    color: GameColors.gold,
     fontWeight: FontWeight.w600,
   );
 
