@@ -42,7 +42,7 @@ class SettingsScreen extends StatelessWidget {
               child: Column(
                 children: [
                   OptionGroup(
-                    fullDivider: true,
+                    // fullDivider: true,
                     options: [
                       SettingWidget(
                         title: GameStrings.sounds,

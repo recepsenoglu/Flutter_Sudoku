@@ -105,8 +105,8 @@ class NumberButtons extends StatelessWidget {
         children: List.generate(9, (index) {
           final bool showButton = provider.isNumberButtonNecessary(index + 1);
 
-          return Visibility(
-            visible: showButton,
+          return Opacity(
+            opacity: showButton ? 1 : 0.3,
             child: InkWell(
               onTap: showButton
                   ? () => provider.numberButtonOnTap(index + 1)
