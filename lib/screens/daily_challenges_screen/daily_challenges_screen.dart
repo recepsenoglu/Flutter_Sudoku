@@ -3,8 +3,8 @@ import 'package:flutter_sudoku/utils/app_strings.dart';
 import 'package:flutter_sudoku/constant/constants.dart';
 import 'package:flutter_sudoku/screens/daily_challenges_screen/daily_challenges_screen_provider.dart';
 import 'package:flutter_sudoku/utils/app_colors.dart';
-import 'package:flutter_sudoku/utils/app_sizes.dart';
 import 'package:flutter_sudoku/utils/app_text_styles.dart';
+import 'package:flutter_sudoku/utils/game_sizes.dart';
 import 'package:flutter_sudoku/widgets/button/rounded_button/rounded_button.dart';
 import 'package:flutter_sudoku/widgets/star_badge_widget.dart';
 import 'package:provider/provider.dart';
@@ -210,9 +210,7 @@ class TopBlueBox extends StatelessWidget {
     return Container(
       height: 330,
       width: double.infinity,
-      padding: EdgeInsets.only(
-        top: AppSizes.statusBarHeight(context),
-      ),
+      padding: EdgeInsets.only(top: GameSizes.topPadding + 20),
       decoration: BoxDecoration(color: Colors.blue.shade700),
       child: Column(
         children: [

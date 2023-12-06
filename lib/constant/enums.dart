@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 enum StatisticType { Games, Time, Score, Streaks }
 
 enum Difficulty { Easy, Medium, Hard, Expert, Nightmare }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_sudoku/utils/game_sizes.dart';
 
 import 'services/routes.dart';
 
@@ -15,6 +16,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    GameSizes.init(context);
+    
     return MaterialApp(
       title: 'Sudoku',
       theme: ThemeData(primarySwatch: Colors.blue),
