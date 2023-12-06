@@ -22,11 +22,12 @@ class GameStrings {
   static const resumeGame = 'Resume Game';
   static const usefulTip = 'Useful Tip';
 
+  // Pause Pop-up
   static const gameOver = 'Game Over';
   static const gameOverDescription =
       'You have made 3 mistakes and lost this game';
-  static const secondChance = 'Second Chance';
   static const newGame = 'New Game';
+  static const exit = 'Exit';
 
   // Modal Bottom Sheet
   static const restart = 'Restart';

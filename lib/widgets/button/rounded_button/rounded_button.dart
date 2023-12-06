@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/utils/game_colors.dart';
-import 'package:flutter_sudoku/utils/game_text_styles.dart';
-import 'package:flutter_sudoku/utils/game_sizes.dart';
+
+import '../../../utils/exports.dart';
 
 class RoundedButton extends StatelessWidget {
   const RoundedButton({
@@ -39,7 +38,7 @@ class RoundedButton extends StatelessWidget {
         disabledBackgroundColor: GameColors.buttonDisabled,
         padding: GameSizes.getSymmetricPadding(0.02, 0.0015),
         maximumSize: Size(double.infinity, GameSizes.getHeight(0.07)),
-        shape: RoundedRectangleBorder(borderRadius: GameSizes.getRadius(28)),
+        shape: RoundedRectangleBorder(borderRadius: GameSizes.getRadius(32)),
         elevation: elevation,
         foregroundColor: !whiteButton
             ? GameColors.buttonText
@@ -88,7 +87,7 @@ class RoundedButton extends StatelessWidget {
               Icon(
                 icon,
                 color: getIconColor(),
-                size: GameSizes.getHeight(0.03),
+                size: GameSizes.getWidth(0.06),
               )
             ],
           ],
@@ -108,7 +107,7 @@ class RoundedButton extends StatelessWidget {
     }
 
     return !subText
-        ? textStyle.copyWith(fontSize: textSize ?? GameSizes.getHeight(0.022))
+        ? textStyle.copyWith(fontSize: textSize ?? GameSizes.getWidth(0.045))
         : GameTextStyles.buttonSubText.copyWith(
             color: textStyle.color,
             fontSize: subTextSize ?? GameSizes.getHeight(0.015));

@@ -369,7 +369,8 @@ class GameScreenProvider with ChangeNotifier {
     if (win) {
       GameRoutes.goTo(GameRoutes.winScreen, args: gameModel);
     } else {
-      Popup.gameOver(onNewGame: _chooseNewGameDifficulty);
+      Popup.gameOver(
+          onNewGame: _chooseNewGameDifficulty, onExit: onBackPressed);
     }
   }
 
@@ -385,8 +386,10 @@ class GameScreenProvider with ChangeNotifier {
 
       _createNewGame(gameModel);
     } else {
-      Future.delayed(const Duration(milliseconds: 300),
-          () => Popup.gameOver(onNewGame: _chooseNewGameDifficulty));
+      Future.delayed(
+          const Duration(milliseconds: 300),
+          () => Popup.gameOver(
+              onNewGame: _chooseNewGameDifficulty, onExit: onBackPressed));
     }
   }
 

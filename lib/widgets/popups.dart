@@ -1,43 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/utils/game_strings.dart';
-import 'package:flutter_sudoku/constant/enums.dart';
-import 'package:flutter_sudoku/services/game_routes.dart';
-import 'package:flutter_sudoku/utils/game_colors.dart';
-import 'package:flutter_sudoku/utils/game_text_styles.dart';
-import 'package:flutter_sudoku/widgets/button/rounded_button/rounded_button.dart';
-import 'package:flutter_sudoku/widgets/popup/popup_game_stats.dart';
-import 'package:flutter_sudoku/widgets/popup/useful_tip_divider.dart';
-import 'package:flutter_sudoku/widgets/popup/useful_tip_widget.dart';
+
+import '../constant/enums.dart';
+import '../services/game_routes.dart';
+import '../utils/exports.dart';
+import 'button/rounded_button/rounded_button.dart';
+import 'popup/popup_game_stats.dart';
+import 'popup/useful_tip_divider.dart';
+import 'popup/useful_tip_widget.dart';
 
 class Popup {
-  static Future<void> gameOver({
-    required Function() onNewGame,
-  }) {
-    const String title = GameStrings.gameOver;
-    const String contentText = GameStrings.gameOverDescription;
-
+  static Future<void> gameOver(
+      {required Function() onNewGame, required Function() onExit}) {
     Widget content = Padding(
-      padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
+      padding: GameSizes.getSymmetricPadding(0.05, 0.02)
+          .copyWith(bottom: GameSizes.getHeight(0.02)),
       child: Text(
-        contentText,
+        GameStrings.gameOverDescription,
         textAlign: TextAlign.center,
         style: TextStyle(
           color: GameColors.popupContentText,
-          fontSize: 16,
+          fontSize: GameSizes.getWidth(0.04),
         ),
       ),
     );
 
     List<Widget> actions = [
       RoundedButton(
-          buttonText: GameStrings.secondChance,
-          disabled: true,
-          icon: Icons.movie_filter,
+          whiteButton: true,
+          buttonText: GameStrings.exit,
+          icon: Icons.exit_to_app,
           onPressed: () {
+            onExit();
             Navigator.pop(GameRoutes.navigatorKey.currentContext!);
           }),
       RoundedButton(
-          whiteButton: true,
           buttonText: GameStrings.newGame,
           onPressed: () {
             Navigator.pop(GameRoutes.navigatorKey.currentContext!);
@@ -46,7 +42,7 @@ class Popup {
     ];
 
     return _showDialog(
-      title: title,
+      title: GameStrings.gameOver,
       content: content,
       actions: actions,
     );
@@ -63,20 +59,19 @@ class Popup {
     Widget content = Column(
       children: [
         PopupGameStats(time: time, mistakes: mistakes, difficulty: difficulty),
-        const SizedBox(height: 28),
         const UsefulTipDivider(),
-        const SizedBox(height: 18),
         const UsefulTipWidget(),
       ],
     );
 
     List<Widget> actions = [
       RoundedButton(
-          buttonText: GameStrings.resumeGame,
-          onPressed: () {
-            onResume();
-            Navigator.pop(GameRoutes.navigatorKey.currentContext!);
-          })
+        buttonText: GameStrings.resumeGame,
+        onPressed: () {
+          onResume();
+          Navigator.pop(GameRoutes.navigatorKey.currentContext!);
+        },
+      )
     ];
 
     _showDialog(
@@ -97,34 +92,33 @@ class Popup {
       barrierDismissible: barrierDismissible,
       builder: (BuildContext context) {
         return Dialog(
-          insetPadding: const EdgeInsets.symmetric(horizontal: 28),
-          shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(24))),
+          insetPadding: GameSizes.getHorizontalPadding(0.05),
+          shape: RoundedRectangleBorder(borderRadius: GameSizes.getRadius(22)),
           alignment: Alignment.center,
+          backgroundColor: Colors.white,
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20),
+            padding: GameSizes.getVerticalPadding(0.02),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const SizedBox(height: 16),
+                SizedBox(height: GameSizes.getHeight(0.01)),
                 Center(
-                  child: Text(
-                    title,
-                    style: GameTextStyles.popupTitle,
-                  ),
+                  child: Text(title,
+                      style: GameTextStyles.popupTitle
+                          .copyWith(fontSize: GameSizes.getWidth(0.065))),
                 ),
-                const SizedBox(height: 32),
+                SizedBox(height: GameSizes.getHeight(0.01)),
                 content,
-                const SizedBox(height: 22),
+                SizedBox(height: GameSizes.getHeight(0.01)),
                 Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 2),
+                  padding: GameSizes.getSymmetricPadding(0.05, 0.005),
                   child: Column(
                       children: List<Widget>.generate(
                           actions.length,
                           (index) => Padding(
                                 padding: index < actions.length - 1
-                                    ? const EdgeInsets.only(bottom: 12)
+                                    ? EdgeInsets.only(
+                                        bottom: GameSizes.getHeight(0.015))
                                     : EdgeInsets.zero,
                                 child: actions[index],
                               ))),
