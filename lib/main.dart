@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
     
     return MaterialApp(
       title: 'Sudoku',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.blue),
       navigatorKey: GameRoutes.navigatorKey,
       onGenerateRoute: GameRoutes.generateRoute,

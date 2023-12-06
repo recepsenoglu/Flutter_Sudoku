@@ -38,7 +38,7 @@ class AppStrings {
   static const statistics = 'Statistics';
 
   // Main Screen
-  static const gameTitle = 'Flutter Sudoku';
+  static const gameTitle = 'Classic Sudoku';
   static const continueGame = 'Continue Game';
 
   // Statistics Screen

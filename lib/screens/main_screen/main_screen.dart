@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_sudoku/utils/app_strings.dart';
-import 'package:flutter_sudoku/models/game_model.dart';
-import 'package:flutter_sudoku/screens/main_screen/main_screen_provider.dart';
-import 'package:flutter_sudoku/services/game_routes.dart';
-import 'package:flutter_sudoku/utils/app_colors.dart';
-import 'package:flutter_sudoku/utils/app_text_styles.dart';
-import 'package:flutter_sudoku/widgets/app_bar_action_button.dart';
-import 'package:flutter_sudoku/widgets/button/rounded_button/rounded_button.dart';
 import 'package:provider/provider.dart';
+
+import '../../models/game_model.dart';
+import '../../services/game_routes.dart';
+import '../../utils/app_colors.dart';
+import '../../utils/app_strings.dart';
+import '../../utils/app_text_styles.dart';
+import '../../utils/game_sizes.dart';
+import '../../widgets/app_bar_action_button.dart';
+import '../../widgets/button/rounded_button/rounded_button.dart';
+import 'main_screen_provider.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({this.savedGame, super.key});
@@ -21,69 +23,54 @@ class MainScreen extends StatelessWidget {
       backgroundColor: AppColors.mainScreenBg,
       appBar: AppBar(
         elevation: 0,
-        toolbarHeight: 52,
+        toolbarHeight: GameSizes.getHeight(0.07),
         backgroundColor: AppColors.mainScreenBg,
         systemOverlayStyle: SystemUiOverlayStyle.dark,
         leading: const SizedBox.shrink(),
         actions: [
           AppBarActionButton(
-            onPressed: () {},
-            icon: Icons.emoji_events_outlined,
-            iconSize: 32,
-          ),
-          AppBarActionButton(
             onPressed: () =>
                 GameRoutes.goTo(GameRoutes.optionsScreen, enableBack: true),
             icon: Icons.settings_outlined,
-            iconSize: 32,
+            iconSize: GameSizes.getHeight(0.035),
           ),
-          const SizedBox(width: 12),
+          SizedBox(width: GameSizes.getWidth(0.02)),
         ],
       ),
       body: ChangeNotifierProvider<MainScreenProvider>(
         create: (context) => MainScreenProvider(savedGame: savedGame),
         child: Consumer<MainScreenProvider>(builder: (context, provider, _) {
           return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 8),
+            padding: GameSizes.getSymmetricPadding(0.05, 0.02),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const ChallengeAndEvents(),
                 const GameTitle(),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 26),
-                    child: Column(
-                      children: [
-                        Expanded(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Visibility(
-                                  visible: provider.isThereASavedGame,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(bottom: 16),
-                                    child: RoundedButton(
-                                      buttonText: AppStrings.continueGame,
-                                      subText: provider.continueGameButtonText,
-                                      subIcon: Icons.watch_later_outlined,
-                                      onPressed: provider.continueGame,
-                                    ),
-                                  )),
-                              RoundedButton(
-                                buttonText: AppStrings.newGame,
-                                whiteButton: provider.isThereASavedGame,
-                                elevation: provider.isThereASavedGame ? 2 : 0,
-                                onPressed: provider.newGame,
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 86,
-                          width: double.infinity,
-                        ),
-                      ],
-                    ),
+                Container(
+                  height: GameSizes.getHeight(0.25),
+                  padding: GameSizes.getHorizontalPadding(0.05),
+                  child: Column(
+                    children: [
+                      Visibility(
+                          visible: provider.isThereASavedGame,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                bottom: GameSizes.getHeight(0.02)),
+                            child: RoundedButton(
+                              buttonText: AppStrings.continueGame,
+                              subText: provider.continueGameButtonText,
+                              subIcon: Icons.watch_later_outlined,
+                              onPressed: provider.continueGame,
+                            ),
+                          )),
+                      RoundedButton(
+                        buttonText: AppStrings.newGame,
+                        whiteButton: provider.isThereASavedGame,
+                        elevation: provider.isThereASavedGame ? 5 : 0,
+                        onPressed: provider.newGame,
+                      ),
+                    ],
                   ),
                 ),
               ],
@@ -96,19 +83,19 @@ class MainScreen extends StatelessWidget {
 }
 
 class GameTitle extends StatelessWidget {
-  const GameTitle({
-    super.key,
-  });
+  const GameTitle({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 130, horizontal: 56),
+      padding: GameSizes.getHorizontalPadding(0.05),
       child: FittedBox(
         child: Center(
           child: Text(
             AppStrings.gameTitle,
-            style: AppTextStyles.mainScreenTitle,
+            style: AppTextStyles.mainScreenTitle.copyWith(
+              fontSize: GameSizes.getHeight(0.05),
+            ),
           ),
         ),
       ),
@@ -117,24 +104,22 @@ class GameTitle extends StatelessWidget {
 }
 
 class ChallengeAndEvents extends StatelessWidget {
-  const ChallengeAndEvents({
-    super.key,
-  });
+  const ChallengeAndEvents({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 190,
+      height: GameSizes.getHeight(0.25),
       width: double.infinity,
-      padding: const EdgeInsets.all(16),
+      padding: GameSizes.getPadding(0.02),
       decoration: BoxDecoration(border: Border.all()),
-      child: const Center(
+      child: Center(
         child: Text(
           'This app is being developed by \n @recepsenoglu',
           textAlign: TextAlign.center,
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 18,
+            fontSize: GameSizes.getHeight(0.025),
           ),
         ),
       ),
