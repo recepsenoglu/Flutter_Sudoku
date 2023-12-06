@@ -36,7 +36,7 @@ class GameTextStyles {
   );
   static final _highlightedNoteNumber = TextStyle(
     color: GameColors.highlightedNoteNumber,
-    fontWeight: FontWeight.bold,
+    fontWeight: FontWeight.w900,
     fontSize: 12,
   );
 

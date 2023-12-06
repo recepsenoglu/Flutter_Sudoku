@@ -132,36 +132,29 @@ class NumberButtons extends StatelessWidget {
 }
 
 class SudokuBoard extends StatelessWidget {
-  const SudokuBoard({
-    required this.provider,
-    super.key,
-  });
+  const SudokuBoard({required this.provider, super.key});
 
   final GameScreenProvider provider;
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double borderWidth = 2;
-    double cellBorderWidth = 1.5;
+    double screenWidth = GameSizes.getWidth(1);
+    double borderWidth = GameSizes.getWidth(0.006);
+    double cellBorderWidth = GameSizes.getWidth(0.004);
 
     return Container(
       width: double.infinity,
-      height: screenWidth - 12,
-      margin: const EdgeInsets.symmetric(horizontal: 6),
+      height: screenWidth - GameSizes.getWidth(0.06),
+      margin: GameSizes.getHorizontalPadding(0.03),
       decoration: BoxDecoration(
         border: Border.all(width: borderWidth),
       ),
       child: Stack(
         children: [
           VerticalLines(
-            borderWidth: borderWidth,
-            borderColor: GameColors.boardBorder,
-          ),
+              borderWidth: borderWidth, borderColor: GameColors.boardBorder),
           HorizontalLines(
-            borderWidth: borderWidth,
-            borderColor: GameColors.boardBorder,
-          ),
+              borderWidth: borderWidth, borderColor: GameColors.boardBorder),
           GridView.builder(
             physics: const NeverScrollableScrollPhysics(),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -193,24 +186,7 @@ class SudokuBoard extends StatelessWidget {
                       CellModel cell = provider.sudokuBoard
                           .getCellByBoxIndex(boxIndex, boxCellIndex);
 
-                      return CellWidget(
-                        provider: provider,
-                        cell: cell,
-                        child: (() {
-                          if (provider.gamePaused) {
-                            return null;
-                          } else {
-                            if (cell.hasValue) {
-                              return CellValueText(cell: cell);
-                            } else {
-                              return CellNotesGrid(
-                                cell: cell,
-                                selectedCell: provider.selectedCell,
-                              );
-                            }
-                          }
-                        }()),
-                      );
+                      return CellWidget(provider: provider, cell: cell);
                     },
                   ),
                 ],
@@ -224,40 +200,38 @@ class SudokuBoard extends StatelessWidget {
 }
 
 class CellWidget extends StatelessWidget {
-  const CellWidget({
-    super.key,
-    required this.provider,
-    required this.cell,
-    required this.child,
-  });
+  const CellWidget({super.key, required this.provider, required this.cell});
 
   final GameScreenProvider provider;
   final CellModel cell;
-  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => provider.cellOnTap(cell),
       child: Container(
-        padding: const EdgeInsets.all(2),
+        padding: GameSizes.getPadding(0.005),
         color: getCellColor(
           cell: cell,
-          selectedCell: provider.selectedCell,
           hideCells: provider.gamePaused,
+          selectedCell: provider.selectedCell,
         ),
-        child: child,
+        child: getCellChild(cell),
       ),
     );
+  }
+
+  Widget getCellChild(CellModel cell) {
+    if (provider.gamePaused) return const SizedBox.shrink();
+    if (cell.hasValue) return CellValueText(cell: cell);
+
+    return CellNotesGrid(cell: cell, selectedCell: provider.selectedCell);
   }
 }
 
 class CellNotesGrid extends StatelessWidget {
-  const CellNotesGrid({
-    required this.cell,
-    required this.selectedCell,
-    super.key,
-  });
+  const CellNotesGrid(
+      {required this.cell, required this.selectedCell, super.key});
 
   final CellModel cell;
   final CellModel selectedCell;
@@ -268,7 +242,6 @@ class CellNotesGrid extends StatelessWidget {
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
         ),
-        padding: const EdgeInsets.all(1.5),
         physics: const NeverScrollableScrollPhysics(),
         itemCount: 9,
         itemBuilder: (_, i) {
@@ -280,22 +253,20 @@ class CellNotesGrid extends StatelessWidget {
                   number.toString(),
                   style: number == selectedCell.value
                       ? GameTextStyles.highlightedNoteNumber
-                      : GameTextStyles.noteNumber,
+                          .copyWith(fontSize: GameSizes.getWidth(0.03))
+                      : GameTextStyles.noteNumber
+                          .copyWith(fontSize: GameSizes.getWidth(0.03)),
                 ),
               ),
             );
-          } else {
-            return const SizedBox.shrink();
           }
+          return const SizedBox.shrink();
         });
   }
 }
 
 class CellValueText extends StatelessWidget {
-  const CellValueText({
-    required this.cell,
-    super.key,
-  });
+  const CellValueText({required this.cell, super.key});
 
   final CellModel cell;
 
@@ -305,7 +276,7 @@ class CellValueText extends StatelessWidget {
       child: Center(
         child: Text(
           cell.print(),
-          style: getStyle(cell),
+          style: getStyle(cell)?.copyWith(fontSize: GameSizes.getWidth(0.1)),
         ),
       ),
     );

@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 
 class VerticalLines extends StatelessWidget {
-  const VerticalLines({
-    required this.borderWidth,
-    required this.borderColor,
-    super.key,
-  });
+  const VerticalLines(
+      {required this.borderWidth, required this.borderColor, super.key});
 
   final double borderWidth;
   final Color borderColor;

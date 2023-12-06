@@ -71,13 +71,9 @@ Color getCellColor({
 
 TextStyle? getStyle(CellModel cell) {
   if (cell.hasValue) {
-    if (cell.isGivenNumber) {
-      return GameTextStyles.givenNumber;
-    } else if (cell.isValueCorrect) {
-      return GameTextStyles.enteredNumber;
-    } else {
-      return GameTextStyles.wrongNumber;
-    }
+    if (cell.isGivenNumber) return GameTextStyles.givenNumber;
+    if (cell.isValueCorrect) return GameTextStyles.enteredNumber;
+    return GameTextStyles.wrongNumber;
   }
   return null;
 }

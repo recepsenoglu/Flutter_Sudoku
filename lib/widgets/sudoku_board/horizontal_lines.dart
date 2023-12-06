@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 
 class HorizontalLines extends StatelessWidget {
-  const HorizontalLines({
-    super.key,
-    required this.borderWidth,
-    required this.borderColor,
-  });
+  const HorizontalLines(
+      {super.key, required this.borderWidth, required this.borderColor});
 
   final double borderWidth;
   final Color borderColor;
