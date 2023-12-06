@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/utils/game_colors.dart';
+
+import '../../utils/exports.dart';
 
 class PauseButton extends StatelessWidget {
-  const PauseButton({
-    required this.isPaused,
-    required this.onPressed,
-    super.key,
-  });
+  const PauseButton(
+      {required this.isPaused, required this.onPressed, super.key});
 
   final bool isPaused;
   final Function() onPressed;
@@ -14,7 +12,7 @@ class PauseButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 32,
+      width: GameSizes.getWidth(0.085),
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
@@ -25,7 +23,7 @@ class PauseButton extends StatelessWidget {
         child: Icon(
           isPaused ? Icons.play_arrow : Icons.pause_outlined,
           color: GameColors.pauseIcon,
-          size: 24,
+          size: GameSizes.getWidth(0.06),
         ),
       ),
     );

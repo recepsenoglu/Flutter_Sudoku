@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sudoku/utils/game_sizes.dart';
 import 'package:flutter_sudoku/utils/game_text_styles.dart';
 
 class ActionButton extends StatelessWidget {
@@ -18,23 +19,19 @@ class ActionButton extends StatelessWidget {
     return Expanded(
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(10),
-        child: Container(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 20,
-            vertical: 0,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              iconWidget,
-              const SizedBox(height: 6),
-              Text(
-                title,
-                style: GameTextStyles.actionButton,
-              )
-            ],
-          ),
+        borderRadius: GameSizes.getRadius(10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            iconWidget,
+            SizedBox(height: GameSizes.getHeight(0.005)),
+            Text(
+              title,
+              textAlign: TextAlign.center,
+              style: GameTextStyles.actionButton
+                  .copyWith(fontSize: GameSizes.getWidth(0.035)),
+            )
+          ],
         ),
       ),
     );

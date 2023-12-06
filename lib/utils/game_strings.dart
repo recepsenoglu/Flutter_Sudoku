@@ -1,5 +1,5 @@
 class GameStrings {
-  static const appBarTitle = 'Flutter Sudoku';
+  static const appBarTitle = 'Classic Sudoku';
 
   /// GameInfo
   static const difficulty = 'Difficulty';
@@ -15,7 +15,7 @@ class GameStrings {
 
   static const notesOn = 'ON';
   static const notesOff = 'OFF';
-  static const ad = 'Ad';
+  static const ad = ''; // 'Ad';
 
   // Pause Pop-up
   static const pause = 'Pause';

@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import '../../constant/enums.dart';
@@ -105,7 +104,9 @@ class StatisticsGroup extends StatelessWidget {
         children: [
           Text(
             groupTitle,
-            style: GameTextStyles.statisticsGroupTitle,
+            style: GameTextStyles.statisticsGroupTitle.copyWith(
+              fontSize: GameSizes.getHeight(0.027),
+            ),
           ),
           SizedBox(height: GameSizes.getHeight(0.005)),
           Column(
@@ -249,11 +250,11 @@ class StatisticsAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       elevation: 0.5,
       backgroundColor: GameColors.appBarBackground,
-      systemOverlayStyle: SystemUiOverlayStyle.dark,
+      toolbarHeight: GameSizes.getHeight(0.13),
       title: Text(
         GameStrings.statistics,
         style: GameTextStyles.statisticsTitle
-            .copyWith(fontSize: GameSizes.getHeight(0.03)),
+            .copyWith(fontSize: GameSizes.getHeight(0.035)),
       ),
       leading: const SizedBox(),
       leadingWidth: 0,

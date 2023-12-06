@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import '../../constant/enums.dart';
 import '../../models/cell_model.dart';
 import '../../models/game_model.dart';
-import '../../utils/game_colors.dart';
-import '../../utils/game_strings.dart';
-import '../../utils/game_text_styles.dart';
-import '../../utils/extensions.dart';
-import '../../utils/utils.dart';
+import '../../utils/exports.dart';
 import '../../widgets/app_bar_action_button.dart';
 import '../../widgets/button/action_button/exports.dart';
 import '../../widgets/game_info/exports.dart';
@@ -49,17 +44,14 @@ class GameScreen extends StatelessWidget {
 }
 
 class ActionButtons extends StatelessWidget {
-  const ActionButtons({
-    required this.provider,
-    super.key,
-  });
+  const ActionButtons({required this.provider, super.key});
 
   final GameScreenProvider provider;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12),
+      padding: GameSizes.getHorizontalPadding(0.03),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -75,30 +67,21 @@ class ActionButtons extends StatelessWidget {
           ),
           ActionButton(
             title: GameStrings.notes,
-            iconWidget: Align(
-              alignment: Alignment.centerRight,
-              child: Stack(
-                children: [
-                  const ActionIcon(
-                    Icons.drive_file_rename_outline_outlined,
-                    rightPadding: 16,
-                  ),
-                  NotesSwitchWidget(notesOn: provider.notesMode),
-                ],
-              ),
+            iconWidget: Stack(
+              children: [
+                const ActionIcon(Icons.drive_file_rename_outline_outlined),
+                NotesSwitchWidget(notesOn: provider.notesMode),
+              ],
             ),
             onTap: () => provider.notesOnTap(),
           ),
           ActionButton(
             title: GameStrings.hint,
-            iconWidget: Align(
-              alignment: Alignment.centerRight,
-              child: Stack(
-                children: [
-                  const ActionIcon(Icons.lightbulb_outlined, rightPadding: 12),
-                  HintsAmountCircle(hints: provider.hints),
-                ],
-              ),
+            iconWidget: Stack(
+              children: [
+                const ActionIcon(Icons.lightbulb_outlined),
+                HintsAmountCircle(hints: provider.hints),
+              ],
             ),
             onTap: () => provider.hintsOnTap(),
           ),
@@ -109,37 +92,35 @@ class ActionButtons extends StatelessWidget {
 }
 
 class NumberButtons extends StatelessWidget {
-  const NumberButtons({
-    required this.provider,
-    super.key,
-  });
+  const NumberButtons({required this.provider, super.key});
 
   final GameScreenProvider provider;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 26),
+      padding: GameSizes.getHorizontalPadding(0.05),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: List.generate(9, (index) {
           final bool showButton = provider.isNumberButtonNecessary(index + 1);
 
-          return Opacity(
-            opacity: showButton ? 1 : 0,
+          return Visibility(
+            visible: showButton,
             child: InkWell(
               onTap: showButton
                   ? () => provider.numberButtonOnTap(index + 1)
                   : null,
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: GameSizes.getRadius(8),
               child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 6, vertical: 10),
+                padding: GameSizes.getSymmetricPadding(0.015, 0.015),
                 child: Text(
                   (index + 1).toString(),
                   style: provider.notesMode
                       ? GameTextStyles.noteButton
-                      : GameTextStyles.numberButton,
+                          .copyWith(fontSize: GameSizes.getWidth(0.09))
+                      : GameTextStyles.numberButton
+                          .copyWith(fontSize: GameSizes.getWidth(0.09)),
                 ),
               ),
             ),
@@ -332,10 +313,7 @@ class CellValueText extends StatelessWidget {
 }
 
 class GameInfo extends StatelessWidget {
-  const GameInfo({
-    required this.provider,
-    super.key,
-  });
+  const GameInfo({required this.provider, super.key});
 
   final GameScreenProvider provider;
 
@@ -350,7 +328,7 @@ class GameInfo extends StatelessWidget {
     final Function() pauseGame = provider.pauseButtonOnTap;
 
     return Padding(
-      padding: const EdgeInsets.all(12),
+      padding: GameSizes.getPadding(0.025),
       child: Row(
         children: [
           Expanded(
@@ -379,7 +357,7 @@ class GameInfo extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(width: 12),
+          SizedBox(width: GameSizes.getWidth(0.03)),
           PauseButton(isPaused: isPaused, onPressed: pauseGame),
         ],
       ),
@@ -401,30 +379,33 @@ class GameAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: GameColors.appBarBackground,
-      systemOverlayStyle: SystemUiOverlayStyle.dark,
       centerTitle: true,
       elevation: 0,
-      title: Text(
-        GameStrings.appBarTitle,
-        style: GameTextStyles.appBarTitle,
-      ),
+      toolbarHeight: GameSizes.getHeight(0.08),
+      title: Text(GameStrings.appBarTitle,
+          style: GameTextStyles.appBarTitle.copyWith(
+            fontSize: GameSizes.getHeight(0.029),
+          )),
+      leadingWidth: GameSizes.getHeight(0.06),
       leading: AppBarActionButton(
         icon: Icons.arrow_back_ios_new,
         onPressed: onBackPressed,
+        iconSize: GameSizes.getHeight(0.033),
       ),
       actions: [
-        AppBarActionButton(
-          icon: Icons.palette_outlined,
-          onPressed: () {},
-        ),
+        // AppBarActionButton(
+        //   icon: Icons.palette_outlined,
+        //   onPressed: () {},
+        // ),
         AppBarActionButton(
           icon: Icons.settings_outlined,
           onPressed: onSettingsPressed,
         ),
+        SizedBox(width: GameSizes.getWidth(0.02)),
       ],
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => Size.fromHeight(GameSizes.getHeight(0.08));
 }

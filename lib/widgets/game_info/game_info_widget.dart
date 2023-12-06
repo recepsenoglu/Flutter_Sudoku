@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/utils/game_text_styles.dart';
+
+import '../../utils/game_sizes.dart';
+import '../../utils/game_text_styles.dart';
 
 class GameInfoWidget extends StatelessWidget {
   const GameInfoWidget({
@@ -25,14 +27,22 @@ class GameInfoWidget extends StatelessWidget {
             title,
             style: forPopup
                 ? GameTextStyles.popupInfoTitle
-                : GameTextStyles.gameInfoTitle,
+                    .copyWith(fontSize: GameSizes.getWidth(0.035))
+                : GameTextStyles.gameInfoTitle.copyWith(
+                    fontSize: GameSizes.getWidth(0.033),
+                  ),
           ),
-          SizedBox(height: forPopup ? 8 : 4),
+          SizedBox(
+              height: forPopup
+                  ? GameSizes.getHeight(0.005)
+                  : GameSizes.getHeight(0.002)),
           Text(
             value,
             style: forPopup
                 ? GameTextStyles.popupInfoValue
-                : GameTextStyles.gameInfoTitle,
+                    .copyWith(fontSize: GameSizes.getWidth(0.043))
+                : GameTextStyles.gameInfoTitle
+                    .copyWith(fontSize: GameSizes.getWidth(0.032)),
           ),
         ],
       ),

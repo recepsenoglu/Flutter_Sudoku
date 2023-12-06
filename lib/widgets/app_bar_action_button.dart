@@ -4,12 +4,8 @@ import '../utils/game_colors.dart';
 import '../utils/game_sizes.dart';
 
 class AppBarActionButton extends StatelessWidget {
-  const AppBarActionButton({
-    required this.icon,
-    required this.onPressed,
-    this.iconSize,
-    super.key,
-  });
+  const AppBarActionButton(
+      {required this.icon, required this.onPressed, this.iconSize, super.key});
 
   final IconData icon;
   final Function() onPressed;
@@ -23,9 +19,10 @@ class AppBarActionButton extends StatelessWidget {
         icon,
         color: GameColors.appBarActions,
       ),
-      iconSize: iconSize ?? GameSizes.getHeight(0.035),
-      splashRadius: iconSize,
+      iconSize: iconSize ?? GameSizes.getHeight(0.033),
       visualDensity: VisualDensity.compact,
+      // splashRadius: iconSize,
+      padding: GameSizes.getSymmetricPadding(0.01, 0.001),
     );
   }
 }
