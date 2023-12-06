@@ -1,33 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/utils/app_strings.dart';
-import 'package:flutter_sudoku/constant/enums.dart';
-import 'package:flutter_sudoku/constant/game_constants.dart';
-import 'package:flutter_sudoku/models/option_button_model.dart';
-import 'package:flutter_sudoku/services/game_routes.dart';
-import 'package:flutter_sudoku/utils/app_colors.dart';
-import 'package:flutter_sudoku/utils/utils.dart';
-import 'package:flutter_sudoku/widgets/widget_divider.dart';
+
+import '../../constant/enums.dart';
+import '../../constant/game_constants.dart';
+import '../../models/option_button_model.dart';
+import '../../services/game_routes.dart';
+import '../../utils/app_colors.dart';
+import '../../utils/app_strings.dart';
+import '../../utils/game_sizes.dart';
+import '../../utils/utils.dart';
+import '../widget_divider.dart';
 
 class ModalBottomSheets {
   static Future<dynamic> chooseTimeInterval(TimeInterval timeInterval) async {
     List<TimeInterval> options = GameSettings.getTimeIntervals;
-
     options.add(timeInterval);
 
     return await _showOptions(
-        options: List.generate(
-      options.length,
-      (index) => OptionButtonModel(
-        title: index == options.length - 1
-            ? AppStrings.cancel
-            : removeUnderscore(options[index].name),
-        selected: options[index].name == timeInterval.name &&
-            index != options.length - 1,
-        onTap: () {
-          return options[index];
-        },
-      ),
-    ));
+        options: List.generate(options.length, (index) {
+      TimeInterval intervalOption = options[index];
+      bool last = index == options.length - 1;
+      final bool isSelected = intervalOption.name == timeInterval.name && !last;
+      final String title =
+          last ? AppStrings.cancel : removeUnderscore(intervalOption.name);
+
+      return OptionButtonModel(
+          onTap: () => intervalOption, selected: isSelected, title: title);
+    }));
   }
 
   static Future<dynamic> chooseDifficulty(
@@ -35,29 +33,23 @@ class ModalBottomSheets {
     List<Difficulty> options = GameSettings.getDifficulties;
     final bool restartButton = restartDifficulty != null;
 
-    if (restartButton) {
-      options.add(restartDifficulty);
-    }
+    if (restartButton) options.add(restartDifficulty);
 
     return await _showOptions(
-        options: List.generate(
-      options.length,
-      (index) => OptionButtonModel(
-        title: index == options.length - 1 && restartButton
-            ? AppStrings.restart
-            : options[index].name,
-        onTap: () {
-          return options[index];
-        },
-      ),
-    ));
+        options: List.generate(options.length, (index) {
+      final String title = index == options.length - 1 && restartButton
+          ? AppStrings.restart
+          : options[index].name;
+
+      return OptionButtonModel(title: title, onTap: () => options[index]);
+    }));
   }
 
   static Future<dynamic> _showOptions({
     required List<OptionButtonModel> options,
   }) {
     const double radius = 28;
-    const double leadingWidth = 72;
+    final double leadingWidth = GameSizes.getWidth(0.15);
 
     final bool leading = options.any((element) => element.selected);
 
@@ -67,10 +59,10 @@ class ModalBottomSheets {
       enableDrag: false,
       builder: (context) {
         return Container(
-          margin: const EdgeInsets.all(22),
+          margin: GameSizes.getPadding(0.02),
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(radius),
+            borderRadius: GameSizes.getRadius(radius),
           ),
           child: WidgetDivider(
             leftPadding: leading ? leadingWidth - 3 : 0,
@@ -93,7 +85,7 @@ class ModalBottomSheets {
                 }
 
                 return Material(
-                  borderRadius: BorderRadius.circular(28),
+                  borderRadius: GameSizes.getRadius(28),
                   child: InkWell(
                     highlightColor: AppColors.whiteButtonForeground,
                     onTap: () {
@@ -102,7 +94,7 @@ class ModalBottomSheets {
                     borderRadius: borderRadius,
                     child: Container(
                       width: double.infinity,
-                      padding: const EdgeInsets.symmetric(vertical: 18),
+                      padding: GameSizes.getVerticalPadding(0.02),
                       child: Row(
                         children: [
                           if (leading) ...[
@@ -111,8 +103,11 @@ class ModalBottomSheets {
                               child: Visibility(
                                 visible: optionButton.selected,
                                 child: Center(
-                                  child: Icon(Icons.done,
-                                      color: AppColors.roundedButton),
+                                  child: Icon(
+                                    Icons.done,
+                                    color: AppColors.roundedButton,
+                                    size: GameSizes.getWidth(0.06),
+                                  ),
                                 ),
                               ),
                             ),
@@ -127,17 +122,19 @@ class ModalBottomSheets {
                                 Text(
                                   optionButton.title,
                                   style: TextStyle(
-                                      color: AppColors.roundedButton,
-                                      fontSize: 20.toDouble(),
-                                      fontWeight: FontWeight.w400),
+                                    color: AppColors.roundedButton,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: GameSizes.getWidth(0.045),
+                                  ),
                                 ),
                                 if (optionButton.subTitle != null) ...[
                                   Text(
                                     optionButton.title,
                                     style: TextStyle(
-                                        color: AppColors.roundedButton,
-                                        fontSize: 20.toDouble(),
-                                        fontWeight: FontWeight.w400),
+                                      color: AppColors.roundedButton,
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: GameSizes.getWidth(0.03),
+                                    ),
                                   ),
                                 ],
                               ],
