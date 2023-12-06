@@ -1,16 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_sudoku/utils/app_strings.dart';
-import 'package:flutter_sudoku/constant/enums.dart';
-import 'package:flutter_sudoku/constant/game_constants.dart';
-import 'package:flutter_sudoku/models/stat_group_model.dart';
-import 'package:flutter_sudoku/models/stat_model.dart';
-import 'package:flutter_sudoku/screens/statistics_screen/statistics_screen_provider.dart';
-import 'package:flutter_sudoku/utils/app_colors.dart';
-import 'package:flutter_sudoku/utils/app_text_styles.dart';
-import 'package:flutter_sudoku/widgets/app_bar_action_button.dart';
 import 'package:provider/provider.dart';
+
+import '../../constant/enums.dart';
+import '../../constant/game_constants.dart';
+import '../../models/stat_group_model.dart';
+import '../../models/stat_model.dart';
+import '../../utils/app_colors.dart';
+import '../../utils/app_strings.dart';
+import '../../utils/app_text_styles.dart';
+import '../../utils/game_sizes.dart';
+import '../../widgets/app_bar_action_button.dart';
+import 'statistics_screen_provider.dart';
 
 class StatisticsScreen extends StatelessWidget {
   const StatisticsScreen({super.key});
@@ -36,7 +38,7 @@ class StatisticsScreen extends StatelessWidget {
               children: [
                 if (provider.loading) ...[
                   const Center(child: CupertinoActivityIndicator()),
-                ] else
+                ] else ...[
                   Expanded(
                     child: TabBarView(
                       children: List.generate(
@@ -49,6 +51,7 @@ class StatisticsScreen extends StatelessWidget {
                       ),
                     ),
                   ),
+                ],
               ],
             ),
           );
@@ -59,11 +62,8 @@ class StatisticsScreen extends StatelessWidget {
 }
 
 class Statistics extends StatelessWidget {
-  const Statistics({
-    required this.statGroupModel,
-    required this.provider,
-    super.key,
-  });
+  const Statistics(
+      {required this.statGroupModel, required this.provider, super.key});
 
   final StatGroupModel statGroupModel;
   final StatisticsScreenProvider provider;
@@ -71,14 +71,13 @@ class Statistics extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+      padding: GameSizes.getSymmetricPadding(0.05, 0.011),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: List.generate(
           GameSettings.getStatisticTypes.length,
           (index) {
             StatisticType statisticType = GameSettings.getStatisticTypes[index];
-
             return StatisticsGroup(
               groupTitle: statisticType.name,
               statistics: statGroupModel.getStats(statisticType),
@@ -91,11 +90,8 @@ class Statistics extends StatelessWidget {
 }
 
 class StatisticsGroup extends StatelessWidget {
-  const StatisticsGroup({
-    required this.groupTitle,
-    required this.statistics,
-    super.key,
-  });
+  const StatisticsGroup(
+      {required this.groupTitle, required this.statistics, super.key});
 
   final String groupTitle;
   final List<StatModel> statistics;
@@ -103,7 +99,7 @@ class StatisticsGroup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 12),
+      padding: GameSizes.getVerticalPadding(0.015),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -111,7 +107,7 @@ class StatisticsGroup extends StatelessWidget {
             groupTitle,
             style: AppTextStyles.statisticsGroupTitle,
           ),
-          const SizedBox(height: 6),
+          SizedBox(height: GameSizes.getHeight(0.005)),
           Column(
             children: List.generate(
               statistics.length,
@@ -127,10 +123,7 @@ class StatisticsGroup extends StatelessWidget {
 }
 
 class StatisticCard extends StatelessWidget {
-  const StatisticCard({
-    required this.statModel,
-    super.key,
-  });
+  const StatisticCard({required this.statModel, super.key});
 
   final StatModel statModel;
 
@@ -138,11 +131,11 @@ class StatisticCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      margin: const EdgeInsets.symmetric(vertical: 5),
-      padding: const EdgeInsets.all(19),
+      margin: GameSizes.getVerticalPadding(0.007),
+      padding: GameSizes.getPadding(0.045),
       decoration: BoxDecoration(
         color: AppColors.statisticsCard,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: GameSizes.getRadius(12),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -151,14 +144,15 @@ class StatisticCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Icon(
-                getIcon(statModel.title),
+                getIconData(statModel.title),
                 color: AppColors.roundedButton,
-                size: 28,
+                size: GameSizes.getHeight(0.038),
               ),
-              const SizedBox(height: 14),
+              SizedBox(height: GameSizes.getHeight(0.013)),
               Text(
                 statModel.title,
-                style: AppTextStyles.statisticsCardTitle,
+                style: AppTextStyles.statisticsCardTitle
+                    .copyWith(fontSize: GameSizes.getHeight(0.019)),
               ),
             ],
           ),
@@ -169,7 +163,8 @@ class StatisticCard extends StatelessWidget {
               // const ComparisonBox(),
               Text(
                 statModel.value == null ? '-' : statModel.value.toString(),
-                style: AppTextStyles.statisticsCardValue,
+                style: AppTextStyles.statisticsCardValue
+                    .copyWith(fontSize: GameSizes.getHeight(0.025)),
               ),
             ],
           ),
@@ -178,7 +173,7 @@ class StatisticCard extends StatelessWidget {
     );
   }
 
-  IconData getIcon(String title) {
+  IconData getIconData(String title) {
     switch (title) {
       case AppStrings.gamesStarted:
         return Icons.grid_on_rounded;
@@ -207,10 +202,7 @@ class StatisticCard extends StatelessWidget {
 }
 
 class ComparisonBox extends StatelessWidget {
-  const ComparisonBox({
-    required this.positive,
-    super.key,
-  });
+  const ComparisonBox({required this.positive, super.key});
 
   final bool positive;
 
@@ -246,11 +238,8 @@ class ComparisonBox extends StatelessWidget {
 }
 
 class StatisticsAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const StatisticsAppBar({
-    required this.onTimeInterval,
-    required this.difficulties,
-    super.key,
-  });
+  const StatisticsAppBar(
+      {required this.onTimeInterval, required this.difficulties, super.key});
 
   final Function() onTimeInterval;
   final List<Difficulty> difficulties;
@@ -261,19 +250,28 @@ class StatisticsAppBar extends StatelessWidget implements PreferredSizeWidget {
       elevation: 0.5,
       backgroundColor: AppColors.appBarBackground,
       systemOverlayStyle: SystemUiOverlayStyle.dark,
-      title: Text(AppStrings.statistics, style: AppTextStyles.statisticsTitle),
-      leading: const SizedBox.shrink(),
+      title: Text(
+        AppStrings.statistics,
+        style: AppTextStyles.statisticsTitle
+            .copyWith(fontSize: GameSizes.getHeight(0.03)),
+      ),
+      leading: const SizedBox(),
+      leadingWidth: 0,
       actions: [
         AppBarActionButton(
           icon: Icons.tune,
           onPressed: onTimeInterval,
         ),
+        SizedBox(width: GameSizes.getWidth(0.02)),
       ],
       bottom: TabBar(
+          tabAlignment: TabAlignment.start,
           labelColor: AppColors.roundedButton,
           unselectedLabelColor: AppColors.greyColor,
-          labelStyle:
-              const TextStyle(fontSize: 15.5, fontWeight: FontWeight.bold),
+          labelStyle: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: GameSizes.getWidth(0.04),
+          ),
           indicatorColor: Colors.transparent,
           isScrollable: true,
           tabs: List.generate(
@@ -287,5 +285,5 @@ class StatisticsAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(100);
+  Size get preferredSize => Size.fromHeight(GameSizes.getHeight(0.13));
 }
