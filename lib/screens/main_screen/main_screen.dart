@@ -62,6 +62,7 @@ class MainScreen extends StatelessWidget {
                               subText: provider.continueGameButtonText,
                               subIcon: Icons.watch_later_outlined,
                               onPressed: provider.continueGame,
+                              textSize: GameSizes.getHeight(0.02),
                             ),
                           )),
                       RoundedButton(
@@ -69,6 +70,7 @@ class MainScreen extends StatelessWidget {
                         whiteButton: provider.isThereASavedGame,
                         elevation: provider.isThereASavedGame ? 5 : 0,
                         onPressed: provider.newGame,
+                        textSize: GameSizes.getHeight(0.022),
                       ),
                     ],
                   ),
