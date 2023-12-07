@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/utils/game_strings.dart';
-import 'package:flutter_sudoku/services/game_routes.dart';
-import 'package:flutter_sudoku/utils/game_text_styles.dart';
+
+import '../../services/game_routes.dart';
+import '../../utils/game_sizes.dart';
+import '../../utils/game_strings.dart';
+import '../../utils/game_text_styles.dart';
 
 class DoneButton extends StatelessWidget {
   const DoneButton({super.key, this.onPressed});
@@ -14,7 +16,9 @@ class DoneButton extends StatelessWidget {
       onPressed: onPressed ?? () => GameRoutes.back(),
       child: Text(
         GameStrings.done,
-        style: GameTextStyles.doneButtonText,
+        style: GameTextStyles.doneButtonText.copyWith(
+          fontSize: GameSizes.getWidth(0.04),
+        )
       ),
     );
   }

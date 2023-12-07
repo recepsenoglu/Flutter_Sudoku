@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/utils/game_colors.dart';
-import 'package:flutter_sudoku/utils/game_sizes.dart';
-import 'package:flutter_sudoku/utils/game_text_styles.dart';
+
+import '../../utils/game_colors.dart';
+import '../../utils/game_sizes.dart';
+import '../../utils/game_text_styles.dart';
 
 class OptionGroup extends StatelessWidget {
   const OptionGroup({
@@ -63,17 +64,18 @@ class OptionGroup extends StatelessWidget {
           ),
         ),
         if (groupDescription != null) ...[
-          const SizedBox(height: 10),
+          SizedBox(height: GameSizes.getHeight(0.01)),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Text(
-              groupDescription!,
-              style: GameTextStyles.optionGroupDescription,
-            ),
+            padding: GameSizes.getHorizontalPadding(0.02),
+            child: Text(groupDescription!,
+                style: GameTextStyles.optionGroupDescription
+                    .copyWith(fontSize: GameSizes.getWidth(0.03))),
           ),
         ],
         SizedBox(
-            height: groupDescription != null ? 4 : GameSizes.getHeight(0.015)),
+            height: groupDescription != null
+                ? GameSizes.getHeight(0.01)
+                : GameSizes.getHeight(0.015)),
       ],
     );
   }

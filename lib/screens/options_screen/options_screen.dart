@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_sudoku/utils/game_strings.dart';
-import 'package:flutter_sudoku/screens/options_screen/options_screen_provider.dart';
-import 'package:flutter_sudoku/services/game_routes.dart';
-import 'package:flutter_sudoku/utils/game_colors.dart';
-import 'package:flutter_sudoku/utils/game_text_styles.dart';
-import 'package:flutter_sudoku/widgets/button/done_button.dart';
-import 'package:flutter_sudoku/widgets/option_widgets/option_group_widget.dart';
-import 'package:flutter_sudoku/widgets/option_widgets/option_widget.dart';
 import 'package:provider/provider.dart';
+
+import '../../utils/exports.dart';
+import '../../services/game_routes.dart';
+import '../../widgets/button/done_button.dart';
+import '../../widgets/option_widgets/exports.dart';
+import 'options_screen_provider.dart';
 
 class OptionsScreen extends StatelessWidget {
   const OptionsScreen({super.key});
@@ -23,18 +20,18 @@ class OptionsScreen extends StatelessWidget {
             backgroundColor: GameColors.optionsBackground,
             appBar: AppBar(
               elevation: 0,
-              toolbarHeight: 50,
+              leadingWidth: 0,
+              centerTitle: true,
+              toolbarHeight: GameSizes.getHeight(0.065),
               backgroundColor: GameColors.appBarBackground,
-              systemOverlayStyle: SystemUiOverlayStyle.dark,
-              title: Text(
-                GameStrings.options,
-                style: GameTextStyles.optionsScreenAppBarTitle,
-              ),
+              title: Text(GameStrings.options,
+                  style: GameTextStyles.optionsScreenAppBarTitle
+                      .copyWith(fontSize: GameSizes.getWidth(0.05))),
               leading: const SizedBox.shrink(),
               actions: const [DoneButton()],
             ),
             body: SingleChildScrollView(
-              padding: const EdgeInsets.all(20),
+              padding: GameSizes.getSymmetricPadding(0.04, 0.01),
               child: Column(
                 children: [
                   OptionGroup(
@@ -43,10 +40,8 @@ class OptionsScreen extends StatelessWidget {
                         title: GameStrings.settings,
                         iconColor: Colors.red,
                         iconData: Icons.settings,
-                        onTap: () => GameRoutes.goTo(
-                          GameRoutes.settingsScreen,
-                          enableBack: true,
-                        ),
+                        onTap: () => GameRoutes.goTo(GameRoutes.settingsScreen,
+                            enableBack: true),
                       ),
                       OptionWidget(
                         title: GameStrings.howToPlay,
@@ -64,12 +59,12 @@ class OptionsScreen extends StatelessWidget {
                   ),
                   OptionGroup(
                     options: [
-                      OptionWidget(
-                        title: GameStrings.help,
-                        iconColor: Colors.green,
-                        iconData: Icons.help,
-                        onTap: () => null,
-                      ),
+                      // OptionWidget(
+                      //   title: GameStrings.help,
+                      //   iconColor: Colors.green,
+                      //   iconData: Icons.help,
+                      //   onTap: () => null,
+                      // ),
                       OptionWidget(
                         title: GameStrings.aboutGame,
                         iconColor: Colors.blue.shade700,
@@ -78,26 +73,26 @@ class OptionsScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  OptionGroup(
-                    options: [
-                      OptionWidget(
-                        title: GameStrings.mathPuzzle,
-                        iconColor: Colors.purple,
-                        iconData: Icons.numbers,
-                        onTap: () => null,
-                      ),
-                    ],
-                  ),
-                  OptionGroup(
-                    options: [
-                      OptionWidget(
-                        title: GameStrings.removeAds,
-                        iconColor: Colors.red,
-                        iconData: Icons.no_adult_content_sharp,
-                        onTap: () => null,
-                      ),
-                    ],
-                  ),
+                  // OptionGroup(
+                  //   options: [
+                  //     OptionWidget(
+                  //       title: GameStrings.mathPuzzle,
+                  //       iconColor: Colors.purple,
+                  //       iconData: Icons.numbers,
+                  //       onTap: () => null,
+                  //     ),
+                  //   ],
+                  // ),
+                  // OptionGroup(
+                  //   options: [
+                  //     OptionWidget(
+                  //       title: GameStrings.removeAds,
+                  //       iconColor: Colors.red,
+                  //       iconData: Icons.no_adult_content_sharp,
+                  //       onTap: () => null,
+                  //     ),
+                  //   ],
+                  // ),
                 ],
               ),
             ),

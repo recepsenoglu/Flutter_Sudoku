@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/utils/game_colors.dart';
-import 'package:flutter_sudoku/utils/game_text_styles.dart';
+
+import '../../utils/game_colors.dart';
+import '../../utils/game_sizes.dart';
+import '../../utils/game_text_styles.dart';
 
 class OptionWidget extends StatelessWidget {
   const OptionWidget({
@@ -20,19 +22,19 @@ class OptionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(8),
+      borderRadius: GameSizes.getRadius(6),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 4),
+        padding: GameSizes.getVerticalPadding(0.005),
         child: Row(
           children: [
-            const SizedBox(width: 4),
+            SizedBox(width: GameSizes.getWidth(0.01)),
             Container(
-              width: 28,
-              height: 28,
-              padding: const EdgeInsets.all(3),
+              width: GameSizes.getWidth(0.07),
+              height: GameSizes.getWidth(0.07),
+              padding: GameSizes.getPadding(0.01),
               decoration: BoxDecoration(
                 color: iconColor,
-                borderRadius: BorderRadius.circular(6),
+                borderRadius: GameSizes.getRadius(6),
               ),
               child: Center(
                 child: FittedBox(
@@ -43,15 +45,15 @@ class OptionWidget extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(width: 18),
-            Text(
-              title,
-              style: GameTextStyles.optionButtonTitle,
-            ),
+            SizedBox(width: GameSizes.getWidth(0.04)),
+            Text(title,
+                style: GameTextStyles.optionButtonTitle
+                    .copyWith(fontSize: GameSizes.getWidth(0.04))),
             const Spacer(),
             Icon(
               Icons.keyboard_arrow_right,
               color: GameColors.greyColor,
+              size: GameSizes.getWidth(0.07),
             ),
           ],
         ),
