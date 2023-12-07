@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_sudoku/utils/game_colors.dart';
-import 'package:flutter_sudoku/utils/game_text_styles.dart';
+
+import '../../utils/game_colors.dart';
+import '../../utils/game_sizes.dart';
+import '../../utils/game_text_styles.dart';
 
 class SettingWidget extends StatelessWidget {
   const SettingWidget({
@@ -17,17 +19,16 @@ class SettingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 4),
+      padding: GameSizes.getHorizontalPadding(0.01),
       child: Row(
         children: [
-          const SizedBox(width: 6),
-          Text(
-            title,
-            style: GameTextStyles.settingButtonTitle,
-          ),
+          SizedBox(width: GameSizes.getWidth(0.015)),
+          Text(title,
+              style: GameTextStyles.settingButtonTitle
+                  .copyWith(fontSize: GameSizes.getWidth(0.04))),
           const Spacer(),
           SizedBox(
-            height: 38,
+            height: GameSizes.getHeight(0.04),
             child: CupertinoSwitch(
               value: value,
               onChanged: onChanged,

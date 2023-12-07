@@ -121,9 +121,10 @@ class GameTextStyles {
     color: Colors.black,
     fontWeight: FontWeight.bold,
   );
-  static const _doneButtonText = TextStyle(
+  static final _doneButtonText = TextStyle(
     fontWeight: FontWeight.w700,
     fontSize: 16,
+    color: GameColors.roundedButton,
   );
   static const _optionButtonTitle = TextStyle(
     color: Colors.black,

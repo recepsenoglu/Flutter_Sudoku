@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_sudoku/utils/game_strings.dart';
-import 'package:flutter_sudoku/screens/options_screen/settings_screen/settings_screen_provider.dart';
-import 'package:flutter_sudoku/services/game_routes.dart';
-import 'package:flutter_sudoku/utils/game_colors.dart';
-import 'package:flutter_sudoku/utils/game_text_styles.dart';
-import 'package:flutter_sudoku/widgets/app_bar_action_button.dart';
-import 'package:flutter_sudoku/widgets/button/done_button.dart';
-import 'package:flutter_sudoku/widgets/option_widgets/option_group_widget.dart';
-import 'package:flutter_sudoku/widgets/option_widgets/setting_widget.dart';
 import 'package:provider/provider.dart';
+
+import '../../../services/game_routes.dart';
+import '../../../utils/exports.dart';
+import '../../../widgets/app_bar_action_button.dart';
+import '../../../widgets/button/done_button.dart';
+import '../../../widgets/option_widgets/exports.dart';
+import 'settings_screen_provider.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -24,25 +21,27 @@ class SettingsScreen extends StatelessWidget {
             backgroundColor: GameColors.optionsBackground,
             appBar: AppBar(
               elevation: 0,
-              toolbarHeight: 50,
+              centerTitle: true,
+              toolbarHeight: GameSizes.getHeight(0.065),
               backgroundColor: GameColors.appBarBackground,
-              systemOverlayStyle: SystemUiOverlayStyle.dark,
-              title: Text(
-                GameStrings.settings,
-                style: GameTextStyles.optionsScreenAppBarTitle,
-              ),
+              title: Text(GameStrings.settings,
+                  style: GameTextStyles.optionsScreenAppBarTitle
+                      .copyWith(fontSize: GameSizes.getWidth(0.05))),
               leading: AppBarActionButton(
                 icon: Icons.arrow_back_ios_new,
                 onPressed: () => GameRoutes.back(),
+                iconSize: GameSizes.getHeight(0.03),
               ),
-              actions: [DoneButton(onPressed: () => GameRoutes.back(backTimes: 2))],
+              actions: [
+                DoneButton(onPressed: () => GameRoutes.back(backTimes: 2))
+              ],
             ),
             body: SingleChildScrollView(
-              padding: const EdgeInsets.all(20),
+              padding: GameSizes.getSymmetricPadding(0.04, 0.01),
               child: Column(
                 children: [
                   OptionGroup(
-                    // fullDivider: true,
+                    dividerPadding: GameSizes.getWidth(0.045),
                     options: [
                       SettingWidget(
                         title: GameStrings.sounds,
@@ -107,7 +106,8 @@ class SettingsScreen extends StatelessWidget {
                     ],
                   ),
                   OptionGroup(
-                    groupDescription: GameStrings.autoCheckForMistakesDescription,
+                    groupDescription:
+                        GameStrings.autoCheckForMistakesDescription,
                     options: [
                       SettingWidget(
                         title: GameStrings.autoCheckForMistakes,
@@ -117,7 +117,8 @@ class SettingsScreen extends StatelessWidget {
                     ],
                   ),
                   OptionGroup(
-                    groupDescription: GameStrings.highLightDuplicatesDescription,
+                    groupDescription:
+                        GameStrings.highLightDuplicatesDescription,
                     options: [
                       SettingWidget(
                         title: GameStrings.highLightDuplicates,
