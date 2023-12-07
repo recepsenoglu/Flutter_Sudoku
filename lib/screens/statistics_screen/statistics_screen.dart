@@ -249,6 +249,7 @@ class StatisticsAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       elevation: 0.5,
+      centerTitle: true,
       backgroundColor: GameColors.appBarBackground,
       toolbarHeight: GameSizes.getHeight(0.13),
       title: Text(
