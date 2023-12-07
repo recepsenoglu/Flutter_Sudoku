@@ -104,7 +104,7 @@ class GameTextStyles {
 
   static final _statisticsTitle = TextStyle(
     color: GameColors.statisticsTitle,
-    fontWeight: FontWeight.bold,
+    fontWeight: FontWeight.w600,
   );
 
   static const _statisticsGroupTitle =

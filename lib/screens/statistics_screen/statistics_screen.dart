@@ -251,11 +251,10 @@ class StatisticsAppBar extends StatelessWidget implements PreferredSizeWidget {
       elevation: 0.5,
       centerTitle: true,
       backgroundColor: GameColors.appBarBackground,
-      toolbarHeight: GameSizes.getHeight(0.13),
       title: Text(
         GameStrings.statistics,
         style: GameTextStyles.statisticsTitle
-            .copyWith(fontSize: GameSizes.getHeight(0.035)),
+            .copyWith(fontSize: GameSizes.getHeight(0.023)),
       ),
       leading: const SizedBox(),
       leadingWidth: 0,
@@ -263,8 +262,9 @@ class StatisticsAppBar extends StatelessWidget implements PreferredSizeWidget {
         AppBarActionButton(
           icon: Icons.tune,
           onPressed: onTimeInterval,
+          iconSize: GameSizes.getHeight(0.035),
         ),
-        SizedBox(width: GameSizes.getWidth(0.02)),
+        SizedBox(width: GameSizes.getWidth(0.025)),
       ],
       bottom: TabBar(
           tabAlignment: TabAlignment.start,
@@ -287,5 +287,5 @@ class StatisticsAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(GameSizes.getHeight(0.13));
+  Size get preferredSize => Size.fromHeight(GameSizes.getHeight(0.115));
 }

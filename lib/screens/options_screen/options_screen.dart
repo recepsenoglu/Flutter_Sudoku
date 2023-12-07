@@ -19,19 +19,19 @@ class OptionsScreen extends StatelessWidget {
           return Scaffold(
             backgroundColor: GameColors.optionsBackground,
             appBar: AppBar(
-              elevation: 0,
+              elevation: 0.5,
               leadingWidth: 0,
               centerTitle: true,
-              toolbarHeight: GameSizes.getHeight(0.065),
+              toolbarHeight: GameSizes.getHeight(0.06),
               backgroundColor: GameColors.appBarBackground,
               title: Text(GameStrings.options,
                   style: GameTextStyles.optionsScreenAppBarTitle
-                      .copyWith(fontSize: GameSizes.getWidth(0.05))),
+                      .copyWith(fontSize: GameSizes.getHeight(0.023))),
               leading: const SizedBox.shrink(),
               actions: const [DoneButton()],
             ),
             body: SingleChildScrollView(
-              padding: GameSizes.getSymmetricPadding(0.04, 0.01),
+              padding: GameSizes.getSymmetricPadding(0.04, 0.02),
               child: Column(
                 children: [
                   OptionGroup(

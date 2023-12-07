@@ -20,24 +20,24 @@ class SettingsScreen extends StatelessWidget {
           return Scaffold(
             backgroundColor: GameColors.optionsBackground,
             appBar: AppBar(
-              elevation: 0,
+              elevation: 0.5,
               centerTitle: true,
-              toolbarHeight: GameSizes.getHeight(0.065),
+              toolbarHeight: GameSizes.getHeight(0.06),
               backgroundColor: GameColors.appBarBackground,
               title: Text(GameStrings.settings,
                   style: GameTextStyles.optionsScreenAppBarTitle
-                      .copyWith(fontSize: GameSizes.getWidth(0.05))),
+                      .copyWith(fontSize: GameSizes.getHeight(0.023))),
               leading: AppBarActionButton(
                 icon: Icons.arrow_back_ios_new,
                 onPressed: () => GameRoutes.back(),
-                iconSize: GameSizes.getHeight(0.03),
+                iconSize: GameSizes.getHeight(0.025),
               ),
               actions: [
                 DoneButton(onPressed: () => GameRoutes.back(backTimes: 2))
               ],
             ),
             body: SingleChildScrollView(
-              padding: GameSizes.getSymmetricPadding(0.04, 0.01),
+              padding: GameSizes.getSymmetricPadding(0.04, 0.02),
               child: Column(
                 children: [
                   OptionGroup(
