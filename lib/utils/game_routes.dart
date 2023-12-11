@@ -6,6 +6,7 @@ import 'package:flutter_sudoku/screens/options_screen/about_game_screen/about_ga
 import 'package:flutter_sudoku/screens/options_screen/about_game_screen/privacy_policy_screen.dart';
 import 'package:flutter_sudoku/screens/options_screen/about_game_screen/terms_of_use_screen.dart';
 import 'package:flutter_sudoku/screens/options_screen/options_screen.dart';
+import 'package:flutter_sudoku/screens/options_screen/rules_screen/rules_screen.dart';
 import 'package:flutter_sudoku/screens/options_screen/settings_screen/settings_screen.dart';
 import 'package:flutter_sudoku/screens/statistics_screen/statistics_screen.dart';
 import 'package:flutter_sudoku/screens/win_screen/win_screen.dart';
@@ -22,6 +23,8 @@ class GameRoutes {
   static const String aboutScreen = '/about_screen';
   static const String termsOfUseScreen = '/terms_of_use_screen';
   static const String privacyPolicyScreen = '/privacy_policy_screen';
+  static const String rulesScreen = '/rules_screen';
+
 
   static Route<dynamic>? generateRoute(RouteSettings settings) {
     final args = settings.arguments;
@@ -53,6 +56,8 @@ class GameRoutes {
         return MaterialPageRoute(builder: (_) => const TermsOfUseScreen());
       case privacyPolicyScreen:
         return MaterialPageRoute(builder: (_) => const PrivacyPolicyScreen());
+      case rulesScreen:
+        return MaterialPageRoute(builder: (_) => const RulesScreen());
 
       default:
         return _errorRoute();

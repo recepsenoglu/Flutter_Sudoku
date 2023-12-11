@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/utils/game_colors.dart';
-import 'package:flutter_sudoku/utils/game_routes.dart';
-import 'package:flutter_sudoku/utils/game_sizes.dart';
-import 'package:flutter_sudoku/utils/game_text_styles.dart';
-import 'package:flutter_sudoku/widgets/option_widgets/exports.dart';
+
+import '../../../utils/game_colors.dart';
+import '../../../utils/game_routes.dart';
+import '../../../utils/game_sizes.dart';
+import '../../../utils/game_text_styles.dart';
+import '../../../widgets/option_widgets/exports.dart';
 
 class AboutGameScreen extends StatelessWidget {
   const AboutGameScreen({super.key});
@@ -15,6 +16,7 @@ class AboutGameScreen extends StatelessWidget {
         appBar: AppBar(
           elevation: 0.5,
           centerTitle: true,
+          backgroundColor: GameColors.appBarBackground,
           title: Text(
             'About Game',
             style: GameTextStyles.optionsScreenAppBarTitle

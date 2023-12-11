@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+import '../../../utils/game_colors.dart';
+
 class PrivacyPolicyScreen extends StatefulWidget {
   const PrivacyPolicyScreen({super.key});
 
@@ -54,12 +56,13 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: GameColors.appBarBackground,
         title: const Text('Privacy Policy'),
         leading: const BackButton(),
       ),
       body: Visibility(
         visible: progress >= 100,
-        replacement:  LinearProgressIndicator(value: progress * 1.0),
+        replacement: LinearProgressIndicator(value: progress * 1.0),
         child: WebViewWidget(controller: _controller),
       ),
     );
