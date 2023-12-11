@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sudoku/models/game_model.dart';
 import 'package:flutter_sudoku/screens/game_screen/game_screen.dart';
 import 'package:flutter_sudoku/screens/navigation_bar/navigation_bar_screen.dart';
+import 'package:flutter_sudoku/screens/options_screen/about_game_screen/about_game_screen.dart';
+import 'package:flutter_sudoku/screens/options_screen/about_game_screen/privacy_policy_screen.dart';
+import 'package:flutter_sudoku/screens/options_screen/about_game_screen/terms_of_use_screen.dart';
 import 'package:flutter_sudoku/screens/options_screen/options_screen.dart';
 import 'package:flutter_sudoku/screens/options_screen/settings_screen/settings_screen.dart';
 import 'package:flutter_sudoku/screens/statistics_screen/statistics_screen.dart';
@@ -11,11 +14,14 @@ class GameRoutes {
   static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
   static const String navigationBar = '/navigation_bar';
-  static const String gameScreen = '/game_screen';
   static const String statisticsScreen = '/statistics_screen';
+  static const String gameScreen = '/game_screen';
+  static const String winScreen = '/win_screen';
   static const String optionsScreen = '/options_screen';
   static const String settingsScreen = '/settings_screen';
-  static const String winScreen = '/win_screen';
+  static const String aboutScreen = '/about_screen';
+  static const String termsOfUseScreen = '/terms_of_use_screen';
+  static const String privacyPolicyScreen = '/privacy_policy_screen';
 
   static Route<dynamic>? generateRoute(RouteSettings settings) {
     final args = settings.arguments;
@@ -41,6 +47,12 @@ class GameRoutes {
       case winScreen:
         return MaterialPageRoute(
             builder: (_) => WinScreen(gameModel: args as GameModel));
+      case aboutScreen:
+        return MaterialPageRoute(builder: (_) => const AboutGameScreen());
+      case termsOfUseScreen:
+        return MaterialPageRoute(builder: (_) => const TermsOfUseScreen());
+      case privacyPolicyScreen:
+        return MaterialPageRoute(builder: (_) => const PrivacyPolicyScreen());
 
       default:
         return _errorRoute();
@@ -77,20 +89,6 @@ class GameRoutes {
       callBackAfter();
     }
   }
-
-  // static Future<void> goTo(
-  //   String route, {
-  //   args,
-  //   bool enableBack = false,
-  // }) async {
-  //   debugPrint('GO TO $route');
-  //   await Navigator.of(GameRoutes.navigatorKey.currentContext!)
-  //       .pushNamedAndRemoveUntil(
-  //     route,
-  //     arguments: args,
-  //     (route) => enableBack,
-  //   );
-  // }
 
   static void goToPageThenCallFunction(Function() function) {}
 

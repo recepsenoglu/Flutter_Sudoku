@@ -5,7 +5,7 @@ import '../../constant/enums.dart';
 import '../../models/board_model.dart';
 import '../../models/cell_model.dart';
 import '../../models/game_model.dart';
-import '../../services/game_routes.dart';
+import '../../utils/game_routes.dart';
 import '../../utils/exports.dart';
 import '../../widgets/button/rounded_button/rounded_button.dart';
 import '../../widgets/option_widgets/option_group_widget.dart';

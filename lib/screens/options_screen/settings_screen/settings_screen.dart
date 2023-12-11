@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../services/game_routes.dart';
 import '../../../utils/exports.dart';
-import '../../../widgets/app_bar_action_button.dart';
+import '../../../utils/game_routes.dart';
 import '../../../widgets/button/done_button.dart';
 import '../../../widgets/option_widgets/exports.dart';
 import 'settings_screen_provider.dart';
@@ -22,16 +21,11 @@ class SettingsScreen extends StatelessWidget {
             appBar: AppBar(
               elevation: 0.5,
               centerTitle: true,
-              toolbarHeight: GameSizes.getHeight(0.06),
               backgroundColor: GameColors.appBarBackground,
               title: Text(GameStrings.settings,
                   style: GameTextStyles.optionsScreenAppBarTitle
-                      .copyWith(fontSize: GameSizes.getHeight(0.023))),
-              leading: AppBarActionButton(
-                icon: Icons.arrow_back_ios_new,
-                onPressed: () => GameRoutes.back(),
-                iconSize: GameSizes.getHeight(0.025),
-              ),
+                      .copyWith(fontSize: GameSizes.getWidth(0.045))),
+              leading: const BackButton(),
               actions: [
                 DoneButton(onPressed: () => GameRoutes.back(backTimes: 2))
               ],

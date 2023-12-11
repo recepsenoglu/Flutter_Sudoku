@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/game_model.dart';
-import '../../services/game_routes.dart';
+import '../../utils/game_routes.dart';
 import '../../utils/game_colors.dart';
 import '../../utils/game_strings.dart';
 import '../../utils/game_text_styles.dart';

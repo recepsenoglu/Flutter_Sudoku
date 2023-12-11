@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../utils/exports.dart';
-import '../../services/game_routes.dart';
+import '../../utils/game_routes.dart';
 import '../../widgets/button/done_button.dart';
 import '../../widgets/option_widgets/exports.dart';
 import 'options_screen_provider.dart';
@@ -22,11 +22,10 @@ class OptionsScreen extends StatelessWidget {
               elevation: 0.5,
               leadingWidth: 0,
               centerTitle: true,
-              toolbarHeight: GameSizes.getHeight(0.06),
               backgroundColor: GameColors.appBarBackground,
               title: Text(GameStrings.options,
                   style: GameTextStyles.optionsScreenAppBarTitle
-                      .copyWith(fontSize: GameSizes.getHeight(0.023))),
+                      .copyWith(fontSize: GameSizes.getWidth(0.045))),
               leading: const SizedBox.shrink(),
               actions: const [DoneButton()],
             ),
@@ -69,7 +68,8 @@ class OptionsScreen extends StatelessWidget {
                         title: GameStrings.aboutGame,
                         iconColor: Colors.blue.shade700,
                         iconData: Icons.info,
-                        onTap: () => null,
+                        onTap: () => GameRoutes.goTo(GameRoutes.aboutScreen,
+                            enableBack: true),
                       ),
                     ],
                   ),

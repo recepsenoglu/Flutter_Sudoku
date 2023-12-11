@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../constant/enums.dart';
 import '../../constant/game_constants.dart';
 import '../../models/option_button_model.dart';
-import '../../services/game_routes.dart';
+import '../../utils/game_routes.dart';
 import '../../utils/game_colors.dart';
 import '../../utils/game_strings.dart';
 import '../../utils/game_sizes.dart';

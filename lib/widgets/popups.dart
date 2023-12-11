@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../constant/enums.dart';
 import '../constant/useful_tips.dart';
 import '../models/useful_tip_model.dart';
-import '../services/game_routes.dart';
+import '../utils/game_routes.dart';
 import '../utils/exports.dart';
 import 'button/rounded_button/rounded_button.dart';
 import 'popup/popup_game_stats.dart';
