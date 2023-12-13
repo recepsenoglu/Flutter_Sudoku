@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../utils/game_colors.dart';
 import '../../../utils/game_routes.dart';
@@ -8,6 +11,18 @@ import '../../../widgets/option_widgets/exports.dart';
 
 class AboutGameScreen extends StatelessWidget {
   const AboutGameScreen({super.key});
+
+  Future<void> launchPage(String url) async {
+    try {
+      final Uri uri = Uri.parse(url);
+      await canLaunchUrl(uri)
+          ? await launchUrl(uri)
+          : throw 'Could not launch $url';
+    } catch (e) {
+      debugPrint(e.toString());
+      log('error', name: 'AboutGameScreen', error: e);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +52,28 @@ class AboutGameScreen extends StatelessWidget {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    FlutterLogo(size: GameSizes.getWidth(0.15)),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                        image: const DecorationImage(
+                          image: AssetImage('assets/images/play_store_512.png'),
+                          fit: BoxFit.cover,
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.2),
+                            spreadRadius: 1,
+                            blurRadius: 2,
+                            offset: const Offset(0, 1),
+                          ),
+                        ],
+                      ),
+                      child: SizedBox(
+                        width: GameSizes.getWidth(0.2),
+                        height: GameSizes.getWidth(0.2),
+                      ),
+                    ),
                     SizedBox(width: GameSizes.getWidth(0.04)),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,7 +131,34 @@ class AboutGameScreen extends StatelessWidget {
                         enableBack: true),
                   ),
                 ],
-              )
+              ),
+              OptionGroup(
+                options: [
+                  OptionWidget(
+                    title: 'Visit Developer Website',
+                    iconColor: Colors.blue,
+                    iconData: Icons.web_asset,
+                    onTap: () => launchPage(
+                        'https://recepsenoglu.github.io/'),
+                  ),
+                ],
+              ),
+              // OptionGroup(
+              //   options: [
+              //     OptionWidget(
+              //       title: 'Rate Us',
+              //       iconColor: Colors.green,
+              //       iconData: Icons.star,
+              //       onTap: () {},
+              //     ),
+              //     OptionWidget(
+              //       title: 'Share',
+              //       iconColor: Colors.blue,
+              //       iconData: Icons.share,
+              //       onTap: () {},
+              //     ),
+              //   ],
+              // ),
             ],
           ),
         ));

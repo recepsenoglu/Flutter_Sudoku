@@ -1,5 +1,5 @@
 class GameStrings {
-  static const appBarTitle = 'Classic Sudoku';
+  static const appBarTitle = 'Sudoku';
 
   /// GameInfo
   static const difficulty = 'Difficulty';
