@@ -284,7 +284,7 @@ class GameScreenProvider with ChangeNotifier {
   }
 
   void numberButtonOnTap(int number) {
-    if (!selectedCell.isGivenNumber && !selectedCell.isValueCorrect) {
+    if (!selectedCell.isGivenNumber || !selectedCell.isValueCorrect) {
       if (notesMode) {
         _enterNote(number);
       } else {
@@ -293,6 +293,10 @@ class GameScreenProvider with ChangeNotifier {
       _saveGame();
       _updateSelectedCell();
       notifyListeners();
+    } else {
+      debugPrint('Number is given');
+      // selectedCell.isGivenNumber = false;
+      // notifyListeners();
     }
   }
 
@@ -315,17 +319,20 @@ class GameScreenProvider with ChangeNotifier {
     _clearValue();
   }
 
-  void _enterValue(int number) {
+  void _enterValue(int number, {bool isHint = false}) {
     if (selectedCell.value != number) {
-      addMoveToLog(
-        value: number,
-        oldValue: selectedCell.value,
-        notes: [],
-        oldNotes: List<int>.from(selectedCell.notes),
-      );
+      if (isHint) {
+        selectedCell.isGivenNumber = true;
+      } else {
+        addMoveToLog(
+          value: number,
+          oldValue: selectedCell.value,
+          notes: [],
+          oldNotes: List<int>.from(selectedCell.notes),
+        );
+      }
 
       _clearNotes();
-
       selectedCell.value = number;
       if (selectedCell.realValue != selectedCell.value) {
         mistakes += 1;
@@ -502,8 +509,7 @@ class GameScreenProvider with ChangeNotifier {
   void _giveHint() {
     hints -= 1;
     _clearCell();
-    selectedCell.isGivenNumber = true;
-    selectedCell.value = selectedCell.realValue;
+    _enterValue(selectedCell.realValue, isHint: true);
     _updateSelectedCell();
     notifyListeners();
   }

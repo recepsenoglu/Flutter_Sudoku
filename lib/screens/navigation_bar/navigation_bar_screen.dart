@@ -50,9 +50,9 @@ class _NavigationBarScreenState extends State<NavigationBarScreen> {
         selectedItemColor: GameColors.navigationBarItemActive,
         unselectedItemColor: GameColors.navigationBarItemPassive,
         selectedLabelStyle: GameTextStyles.navigationBarItemLabel
-            .copyWith(fontSize: GameSizes.getWidth(0.035)),
+            .copyWith(fontSize: GameSizes.getWidth(0.032)),
         unselectedLabelStyle: GameTextStyles.navigationBarItemLabel.copyWith(
-          fontSize: GameSizes.getWidth(0.035),
+          fontSize: GameSizes.getWidth(0.032),
         ),
       ),
       body: screens[_selectedIndex],

@@ -7,9 +7,9 @@ import '../../constant/game_constants.dart';
 import '../../models/stat_group_model.dart';
 import '../../models/stat_model.dart';
 import '../../utils/game_colors.dart';
+import '../../utils/game_sizes.dart';
 import '../../utils/game_strings.dart';
 import '../../utils/game_text_styles.dart';
-import '../../utils/game_sizes.dart';
 import '../../widgets/app_bar_action_button.dart';
 import 'statistics_screen_provider.dart';
 
@@ -254,15 +254,15 @@ class StatisticsAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: Text(
         GameStrings.statistics,
         style: GameTextStyles.statisticsTitle
-            .copyWith(fontSize: GameSizes.getHeight(0.023)),
+            .copyWith(fontSize: GameSizes.getWidth(0.045)),
       ),
-      leading: const SizedBox(),
       leadingWidth: 0,
+      leading: const SizedBox(),
       actions: [
         AppBarActionButton(
           icon: Icons.tune,
           onPressed: onTimeInterval,
-          iconSize: GameSizes.getHeight(0.035),
+          iconSize: GameSizes.getWidth(0.07),
         ),
         SizedBox(width: GameSizes.getWidth(0.025)),
       ],
@@ -287,5 +287,5 @@ class StatisticsAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(GameSizes.getHeight(0.115));
+  Size get preferredSize => Size.fromHeight(GameSizes.getWidth(0.25));
 }

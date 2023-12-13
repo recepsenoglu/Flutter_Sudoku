@@ -352,16 +352,16 @@ class GameAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: GameColors.appBarBackground,
       centerTitle: true,
       elevation: 0,
-      toolbarHeight: GameSizes.getHeight(0.08),
+      toolbarHeight: GameSizes.getWidth(0.1),
       title: Text(GameStrings.appBarTitle,
           style: GameTextStyles.appBarTitle.copyWith(
-            fontSize: GameSizes.getHeight(0.029),
+            fontSize: GameSizes.getWidth(0.06),
           )),
-      leadingWidth: GameSizes.getHeight(0.06),
+      leadingWidth: GameSizes.getWidth(0.1),
       leading: AppBarActionButton(
         icon: Icons.arrow_back_ios_new,
         onPressed: onBackPressed,
-        iconSize: GameSizes.getHeight(0.033),
+        iconSize: GameSizes.getWidth(0.06),
       ),
       actions: [
         // AppBarActionButton(
@@ -378,5 +378,5 @@ class GameAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(GameSizes.getHeight(0.08));
+  Size get preferredSize => Size.fromHeight(GameSizes.getWidth(0.1));
 }

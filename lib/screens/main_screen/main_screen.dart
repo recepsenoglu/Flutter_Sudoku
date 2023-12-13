@@ -3,11 +3,11 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/game_model.dart';
-import '../../utils/game_routes.dart';
 import '../../utils/game_colors.dart';
+import '../../utils/game_routes.dart';
+import '../../utils/game_sizes.dart';
 import '../../utils/game_strings.dart';
 import '../../utils/game_text_styles.dart';
-import '../../utils/game_sizes.dart';
 import '../../widgets/app_bar_action_button.dart';
 import '../../widgets/button/rounded_button/rounded_button.dart';
 import 'main_screen_provider.dart';
@@ -23,7 +23,7 @@ class MainScreen extends StatelessWidget {
       backgroundColor: GameColors.mainScreenBg,
       appBar: AppBar(
         elevation: 0,
-        toolbarHeight: GameSizes.getHeight(0.07),
+        toolbarHeight: GameSizes.getWidth(0.12),
         backgroundColor: GameColors.mainScreenBg,
         systemOverlayStyle: SystemUiOverlayStyle.dark,
         leading: const SizedBox.shrink(),
@@ -32,7 +32,7 @@ class MainScreen extends StatelessWidget {
             onPressed: () =>
                 GameRoutes.goTo(GameRoutes.optionsScreen, enableBack: true),
             icon: Icons.settings_outlined,
-            iconSize: GameSizes.getHeight(0.035),
+            iconSize: GameSizes.getWidth(0.08),
           ),
           SizedBox(width: GameSizes.getWidth(0.02)),
         ],
@@ -98,7 +98,7 @@ class GameTitle extends StatelessWidget {
             GameStrings.gameTitle,
             textAlign: TextAlign.center,
             style: GameTextStyles.mainScreenTitle.copyWith(
-              fontSize: GameSizes.getWidth(0.09),
+              fontSize: GameSizes.getWidth(0.08),
             ),
           ),
         ),
@@ -122,8 +122,8 @@ class AppLogo extends StatelessWidget {
         ),
       ),
       child: SizedBox(
-        width: GameSizes.getWidth(0.45),
-        height: GameSizes.getWidth(0.45),
+        width: GameSizes.getWidth(0.42),
+        height: GameSizes.getWidth(0.42),
       ),
     );
   }

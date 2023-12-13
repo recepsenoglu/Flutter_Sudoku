@@ -28,6 +28,11 @@ class WinScreen extends StatelessWidget {
             canPop: false,
             child: Scaffold(
               backgroundColor: GameColors.winScreenBg,
+              appBar: AppBar(
+                elevation: 0,
+                toolbarHeight: 0,
+                backgroundColor: Colors.transparent,
+              ),
               body: CustomScrollView(
                 shrinkWrap: false,
                 physics: const PageScrollPhysics(),
@@ -41,7 +46,7 @@ class WinScreen extends StatelessWidget {
                         children: [
                           Padding(
                             padding: GameSizes.getHorizontalPadding(0.05)
-                                .copyWith(top: GameSizes.getHeight(0.05)),
+                                .copyWith(top: GameSizes.getHeight(0.02)),
                             child: Text(
                               GameStrings.levelCompleted,
                               style: GameTextStyles.winScreenHeader

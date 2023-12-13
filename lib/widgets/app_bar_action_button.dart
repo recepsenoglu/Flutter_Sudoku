@@ -19,7 +19,7 @@ class AppBarActionButton extends StatelessWidget {
         icon,
         color: GameColors.appBarActions,
       ),
-      iconSize: iconSize ?? GameSizes.getHeight(0.033),
+      iconSize: iconSize ?? GameSizes.getWidth(0.06),
       visualDensity: VisualDensity.compact,
       // splashRadius: iconSize,
       padding: GameSizes.getSymmetricPadding(0.01, 0.001),
