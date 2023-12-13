@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../utils/exports.dart';
 import '../../utils/game_routes.dart';
-import '../../widgets/button/done_button.dart';
+import '../../widgets/button/custom_text_button.dart';
 import '../../widgets/option_widgets/exports.dart';
 import 'options_screen_provider.dart';
 
@@ -27,7 +27,7 @@ class OptionsScreen extends StatelessWidget {
                   style: GameTextStyles.optionsScreenAppBarTitle
                       .copyWith(fontSize: GameSizes.getWidth(0.045))),
               leading: const SizedBox.shrink(),
-              actions: const [DoneButton()],
+              actions: const [CustomTextButton()],
             ),
             body: SingleChildScrollView(
               padding: GameSizes.getSymmetricPadding(0.04, 0.02),
@@ -46,7 +46,8 @@ class OptionsScreen extends StatelessWidget {
                         title: GameStrings.howToPlay,
                         iconColor: Colors.orange,
                         iconData: Icons.school,
-                        onTap: () => null,
+                        onTap: () => GameRoutes.goTo(GameRoutes.howToPlayScreen,
+                            enableBack: true),
                       ),
                       OptionWidget(
                         title: GameStrings.rules,

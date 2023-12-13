@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../../utils/exports.dart';
 import '../../../utils/game_routes.dart';
-import '../../../widgets/button/done_button.dart';
+import '../../../widgets/button/custom_text_button.dart';
 import '../../../widgets/option_widgets/exports.dart';
 import 'settings_screen_provider.dart';
 
@@ -27,7 +27,7 @@ class SettingsScreen extends StatelessWidget {
                       .copyWith(fontSize: GameSizes.getWidth(0.045))),
               leading: const BackButton(),
               actions: [
-                DoneButton(onPressed: () => GameRoutes.back(backTimes: 2))
+                CustomTextButton(onPressed: () => GameRoutes.back(backTimes: 2))
               ],
             ),
             body: SingleChildScrollView(

@@ -121,7 +121,7 @@ class GameTextStyles {
     color: Colors.black,
     fontWeight: FontWeight.bold,
   );
-  static final _doneButtonText = TextStyle(
+  static final _customTextButtonText = TextStyle(
     fontWeight: FontWeight.w700,
     fontSize: 16,
     color: GameColors.roundedButton,
@@ -241,7 +241,7 @@ class GameTextStyles {
   static TextStyle get statisticsCardTitle => _statisticsCardTitle;
 
   static TextStyle get optionsScreenAppBarTitle => _optionsScreenAppBarTitle;
-  static TextStyle get doneButtonText => _doneButtonText;
+  static TextStyle get customTextButtonText => _customTextButtonText;
 
   static TextStyle get optionButtonTitle => _optionButtonTitle;
   static TextStyle get settingButtonTitle => _settingButtonTitle;

@@ -84,6 +84,12 @@ class GameStrings {
   static const forThe = 'for the ';
   static const difficultyLevel = ' difficulty level: ';
 
+  // How to Play Screen
+  static const skip = 'Skip';
+  static const chooseACell =
+      'Choose a cell and tap on a number to place it in that cell';
+  static const notesMode = 'Enable notes mode to add or delete notes';
+
   // Settings Screen
   static const sounds = 'Sounds';
   static const autoLock = 'Auto-Lock';
