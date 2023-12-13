@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 
@@ -328,9 +329,15 @@ class GameScreenProvider with ChangeNotifier {
       selectedCell.value = number;
       if (selectedCell.realValue != selectedCell.value) {
         mistakes += 1;
+        score = score >= 75 ? score - 75 : 0;
         if (mistakes == 3) {
           _gameOver();
         }
+      } else if (!selectedCell.scored) {
+        Random random = Random();
+        int factor = random.nextInt(3) + 1;
+        score += 50 + (factor * 25);
+        selectedCell.scored = true;
       }
 
       _checkIsCompleted();
@@ -439,7 +446,6 @@ class GameScreenProvider with ChangeNotifier {
   }
 
   void eraseOnTap() {
-
     if (!selectedCell.isGivenNumber && !selectedCell.isValueCorrect) {
       if (selectedCell.hasValue) {
         _deleteNumber();

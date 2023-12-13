@@ -8,6 +8,7 @@ class CellModel {
   int realValue;
   bool isGivenNumber;
   bool isHighlighted;
+  bool scored = false;
   List<int> notes;
   final CellPositionModel position;
 
