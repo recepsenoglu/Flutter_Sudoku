@@ -45,7 +45,8 @@ class MainScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const ChallengeAndEvents(),
+                // const ChallengeAndEvents(),
+                const AppLogo(),
                 const GameTitle(),
                 Container(
                   height: GameSizes.getHeight(0.25),
@@ -100,6 +101,28 @@ class GameTitle extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class AppLogo extends StatelessWidget {
+  const AppLogo({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: GameColors.mainScreenBg,
+        borderRadius: BorderRadius.circular(32),
+        image: const DecorationImage(
+          image: AssetImage('assets/images/play_store_512.png'),
+          fit: BoxFit.contain,
+        ),
+      ),
+      child: SizedBox(
+        width: GameSizes.getWidth(0.45),
+        height: GameSizes.getWidth(0.45),
       ),
     );
   }
