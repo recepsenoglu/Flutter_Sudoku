@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_sudoku/constant/enums.dart';
 import 'package:flutter_sudoku/models/game_model.dart';
 import 'package:flutter_sudoku/models/game_stats_model.dart';
@@ -21,11 +22,19 @@ class StorageService {
     await _prefs.setString('game', jsonEncode(gameModel.toJson()));
   }
 
+  Future<void> deleteGame() async {
+   await _prefs.setString('game', '');
+  }
+
   GameModel? getSavedGame() {
     if (_prefs.containsKey('game')) {
+      debugPrint('Getting saved game');
       String jsonString = _prefs.getString('game')!;
-
-      return GameModel.fromJson(jsonDecode(jsonString));
+      if (jsonString.isNotEmpty) {
+        debugPrint('Saved game found');
+        return GameModel.fromJson(jsonDecode(jsonString));
+      }
+      return null;
     }
     return null;
   }

@@ -361,16 +361,16 @@ class GameScreenProvider with ChangeNotifier {
     await storageService.saveGameStats(gameStatsModel);
   }
 
-  void _gameOver({bool win = false}) {
+  Future<void> _gameOver({bool win = false}) async {
     gameOver = true;
     notifyListeners();
 
-    _saveGameStats();
+    await _saveGameStats();
+    await storageService.deleteGame();
     if (win) {
       GameRoutes.goTo(GameRoutes.winScreen, args: gameModel);
     } else {
-      Popup.gameOver(
-          onNewGame: _chooseNewGameDifficulty, onExit: onBackPressed);
+      Popup.gameOver(onNewGame: _chooseNewGameDifficulty, onExit: _onExit);
     }
   }
 
@@ -389,8 +389,14 @@ class GameScreenProvider with ChangeNotifier {
       Future.delayed(
           const Duration(milliseconds: 300),
           () => Popup.gameOver(
-              onNewGame: _chooseNewGameDifficulty, onExit: onBackPressed));
+              onNewGame: _chooseNewGameDifficulty, onExit: _onExit));
     }
+  }
+
+  Future<void> _onExit() async {
+    Future.delayed(const Duration(milliseconds: 100), () {
+      GameRoutes.goTo(GameRoutes.navigationBar, args: [0, null]);
+    });
   }
 
   void _clearValue() {

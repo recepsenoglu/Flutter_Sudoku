@@ -91,40 +91,44 @@ class Popup {
     return showDialog<void>(
       context: GameRoutes.navigatorKey.currentContext!,
       barrierDismissible: barrierDismissible,
+
       builder: (BuildContext context) {
-        return Dialog(
-          insetPadding: GameSizes.getHorizontalPadding(0.05),
-          shape: RoundedRectangleBorder(borderRadius: GameSizes.getRadius(22)),
-          alignment: Alignment.center,
-          backgroundColor: Colors.white,
-          child: Padding(
-            padding: GameSizes.getVerticalPadding(0.02),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                SizedBox(height: GameSizes.getHeight(0.01)),
-                Center(
-                  child: Text(title,
-                      style: GameTextStyles.popupTitle
-                          .copyWith(fontSize: GameSizes.getWidth(0.065))),
-                ),
-                SizedBox(height: GameSizes.getHeight(0.01)),
-                content,
-                SizedBox(height: GameSizes.getHeight(0.01)),
-                Padding(
-                  padding: GameSizes.getSymmetricPadding(0.05, 0.005),
-                  child: Column(
-                      children: List<Widget>.generate(
-                          actions.length,
-                          (index) => Padding(
-                                padding: index < actions.length - 1
-                                    ? EdgeInsets.only(
-                                        bottom: GameSizes.getHeight(0.015))
-                                    : EdgeInsets.zero,
-                                child: actions[index],
-                              ))),
-                ),
-              ],
+        return PopScope(
+          canPop: false,
+          child: Dialog(
+            insetPadding: GameSizes.getHorizontalPadding(0.05),
+            shape: RoundedRectangleBorder(borderRadius: GameSizes.getRadius(22)),
+            alignment: Alignment.center,
+            backgroundColor: Colors.white,
+            child: Padding(
+              padding: GameSizes.getVerticalPadding(0.02),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SizedBox(height: GameSizes.getHeight(0.01)),
+                  Center(
+                    child: Text(title,
+                        style: GameTextStyles.popupTitle
+                            .copyWith(fontSize: GameSizes.getWidth(0.065))),
+                  ),
+                  SizedBox(height: GameSizes.getHeight(0.01)),
+                  content,
+                  SizedBox(height: GameSizes.getHeight(0.01)),
+                  Padding(
+                    padding: GameSizes.getSymmetricPadding(0.05, 0.005),
+                    child: Column(
+                        children: List<Widget>.generate(
+                            actions.length,
+                            (index) => Padding(
+                                  padding: index < actions.length - 1
+                                      ? EdgeInsets.only(
+                                          bottom: GameSizes.getHeight(0.015))
+                                      : EdgeInsets.zero,
+                                  child: actions[index],
+                                ))),
+                  ),
+                ],
+              ),
             ),
           ),
         );
