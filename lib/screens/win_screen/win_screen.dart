@@ -5,8 +5,8 @@ import '../../constant/enums.dart';
 import '../../models/board_model.dart';
 import '../../models/cell_model.dart';
 import '../../models/game_model.dart';
-import '../../utils/game_routes.dart';
 import '../../utils/exports.dart';
+import '../../utils/game_routes.dart';
 import '../../widgets/button/rounded_button/rounded_button.dart';
 import '../../widgets/option_widgets/option_group_widget.dart';
 import '../../widgets/sudoku_board/exports.dart';
@@ -24,42 +24,44 @@ class WinScreen extends StatelessWidget {
       create: (context) => WinScreenProvider(gameModel),
       child: Consumer<WinScreenProvider>(
         builder: (context, provider, _) {
-          return Scaffold(
-            backgroundColor: GameColors.winScreenBg,
-            body: CustomScrollView(
-              shrinkWrap: false,
-              physics: const PageScrollPhysics(),
-              slivers: [
-                SliverFillRemaining(
-                  hasScrollBody: false,
-                  child: Padding(
-                    padding: GameSizes.getHorizontalPadding(0.05),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const Spacer(flex: 2),
-                        Padding(
-                          padding: GameSizes.getVerticalPadding(0.02),
-                          child: Text(
-                            GameStrings.levelCompleted,
-                            style: GameTextStyles.winScreenHeader
-                                .copyWith(fontSize: GameSizes.getWidth(0.08)),
+          return PopScope(
+            canPop: false,
+            child: Scaffold(
+              backgroundColor: GameColors.winScreenBg,
+              body: CustomScrollView(
+                shrinkWrap: false,
+                physics: const PageScrollPhysics(),
+                slivers: [
+                  SliverFillRemaining(
+                    hasScrollBody: false,
+                    child: Padding(
+                      padding: GameSizes.getHorizontalPadding(0.05),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: GameSizes.getHorizontalPadding(0.05)
+                                .copyWith(top: GameSizes.getHeight(0.05)),
+                            child: Text(
+                              GameStrings.levelCompleted,
+                              style: GameTextStyles.winScreenHeader
+                                  .copyWith(fontSize: GameSizes.getWidth(0.07)),
+                            ),
                           ),
-                        ),
-                        const Spacer(),
-                        MiniSudokuBoard(
-                            boardModel: provider.gameModel.sudokuBoard),
-                        const Spacer(),
-                        LevelStatistics(gameModel: provider.gameModel),
-                        NewGameButton(onPressed: () => provider.newGame()),
-                        MainButton(
-                            onPressed: () =>
-                                GameRoutes.goTo(GameRoutes.navigationBar)),
-                      ],
+                          MiniSudokuBoard(
+                              boardModel: provider.gameModel.sudokuBoard),
+                          const Spacer(),
+                          LevelStatistics(gameModel: provider.gameModel),
+                          NewGameButton(onPressed: () => provider.newGame()),
+                          MainButton(
+                              onPressed: () =>
+                                  GameRoutes.goTo(GameRoutes.navigationBar)),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           );
         },
@@ -127,7 +129,7 @@ class LevelStatistics extends StatelessWidget {
                       .copyWith(fontSize: GameSizes.getWidth(0.04))),
               InkWell(
                 onTap: () =>
-                    GameRoutes.goTo(GameRoutes.navigationBar, args: [2]),
+                    GameRoutes.goTo(GameRoutes.navigationBar, args: [1]),
                 borderRadius: GameSizes.getRadius(16),
                 child: Container(
                   padding: GameSizes.getSymmetricPadding(0.02, 0.005),
@@ -340,6 +342,7 @@ class MiniSudokuBoard extends StatelessWidget {
               borderColor: GameColors.boardBorder,
             ),
             GridView.builder(
+              padding: EdgeInsets.zero,
               physics: const NeverScrollableScrollPhysics(),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
@@ -349,6 +352,7 @@ class MiniSudokuBoard extends StatelessWidget {
               itemCount: 9,
               itemBuilder: (context, boxIndex) {
                 return Stack(
+                  alignment: Alignment.topCenter,
                   children: [
                     VerticalLines(
                       borderWidth: cellBorderWidth,
@@ -359,6 +363,7 @@ class MiniSudokuBoard extends StatelessWidget {
                       borderColor: GameColors.cellBorder,
                     ),
                     GridView.builder(
+                      padding: EdgeInsets.zero,
                       physics: const NeverScrollableScrollPhysics(),
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 3,
