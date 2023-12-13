@@ -96,8 +96,9 @@ class GameTitle extends StatelessWidget {
         child: Center(
           child: Text(
             GameStrings.gameTitle,
+            textAlign: TextAlign.center,
             style: GameTextStyles.mainScreenTitle.copyWith(
-              fontSize: GameSizes.getHeight(0.05),
+              fontSize: GameSizes.getWidth(0.09),
             ),
           ),
         ),

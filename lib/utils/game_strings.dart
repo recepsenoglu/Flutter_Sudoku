@@ -39,7 +39,7 @@ class GameStrings {
   static const statistics = 'Statistics';
 
   // Main Screen
-  static const gameTitle = 'Classic Sudoku';
+  static const gameTitle = 'Sudoku:\nPuzzle Game';
   static const continueGame = 'Continue Game';
 
   // Statistics Screen
