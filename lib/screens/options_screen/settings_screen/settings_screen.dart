@@ -37,25 +37,20 @@ class SettingsScreen extends StatelessWidget {
                   OptionGroup(
                     dividerPadding: GameSizes.getWidth(0.045),
                     options: [
-                      SettingWidget(
+                      const SettingWidget(
                         title: GameStrings.sounds,
-                        value: provider.switchValue,
-                        onChanged: provider.changeValue,
-                      ),
-                      SettingWidget(
-                        title: GameStrings.autoLock,
-                        value: provider.switchValue,
-                        onChanged: provider.changeValue,
+                        value: false,
+                        onChanged: null,
                       ),
                       SettingWidget(
                         title: GameStrings.timer,
                         value: provider.switchValue,
-                        onChanged: provider.changeValue,
+                        onChanged: null,
                       ),
                       SettingWidget(
                         title: GameStrings.score,
                         value: provider.switchValue,
-                        onChanged: provider.changeValue,
+                        onChanged: null,
                       ),
                     ],
                   ),
@@ -65,40 +60,20 @@ class SettingsScreen extends StatelessWidget {
                       SettingWidget(
                         title: GameStrings.statisticsMessage,
                         value: provider.switchValue,
-                        onChanged: provider.changeValue,
+                        onChanged: null,
                       ),
                     ],
                   ),
-                  OptionGroup(
-                    groupDescription: GameStrings.smartHintsDescription,
-                    options: [
-                      SettingWidget(
-                        title: GameStrings.smartHints,
-                        value: provider.switchValue,
-                        onChanged: provider.changeValue,
-                      ),
-                    ],
-                  ),
-                  OptionGroup(
-                    groupDescription: GameStrings.numberFirstInputDescription,
-                    options: [
-                      SettingWidget(
-                        title: GameStrings.numberFirstInput,
-                        value: provider.switchValue,
-                        onChanged: provider.changeValue,
-                      ),
-                    ],
-                  ),
-                  OptionGroup(
-                    groupDescription: GameStrings.mistakeLimitDescription,
-                    options: [
-                      SettingWidget(
-                        title: GameStrings.mistakeLimit,
-                        value: provider.switchValue,
-                        onChanged: provider.changeValue,
-                      ),
-                    ],
-                  ),
+                  // OptionGroup(
+                  //   groupDescription: GameStrings.mistakeLimitDescription,
+                  //   options: [
+                  //     SettingWidget(
+                  //       title: GameStrings.mistakeLimit,
+                  //       value: provider.switchValue,
+                  //       onChanged: provider.changeValue,
+                  //     ),
+                  //   ],
+                  // ),
                   OptionGroup(
                     groupDescription:
                         GameStrings.autoCheckForMistakesDescription,
@@ -117,7 +92,7 @@ class SettingsScreen extends StatelessWidget {
                       SettingWidget(
                         title: GameStrings.highLightDuplicates,
                         value: provider.switchValue,
-                        onChanged: provider.changeValue,
+                        onChanged: null,
                       ),
                     ],
                   ),
@@ -127,7 +102,7 @@ class SettingsScreen extends StatelessWidget {
                       SettingWidget(
                         title: GameStrings.highlightAres,
                         value: provider.switchValue,
-                        onChanged: provider.changeValue,
+                        onChanged: null,
                       ),
                     ],
                   ),
@@ -138,7 +113,7 @@ class SettingsScreen extends StatelessWidget {
                       SettingWidget(
                         title: GameStrings.highlightIdenticalNumbers,
                         value: provider.switchValue,
-                        onChanged: provider.changeValue,
+                        onChanged: null,
                       ),
                     ],
                   ),
@@ -148,7 +123,7 @@ class SettingsScreen extends StatelessWidget {
                       SettingWidget(
                         title: GameStrings.hideUsedNumbers,
                         value: provider.switchValue,
-                        onChanged: provider.changeValue,
+                        onChanged: null,
                       ),
                     ],
                   ),
@@ -158,7 +133,7 @@ class SettingsScreen extends StatelessWidget {
                       SettingWidget(
                         title: GameStrings.autoRemoveNotes,
                         value: provider.switchValue,
-                        onChanged: provider.changeValue,
+                        onChanged: null,
                       ),
                     ],
                   ),
