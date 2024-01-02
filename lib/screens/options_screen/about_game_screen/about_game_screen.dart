@@ -139,7 +139,7 @@ class AboutGameScreen extends StatelessWidget {
                     iconColor: Colors.blue,
                     iconData: Icons.web_asset,
                     onTap: () => launchPage(
-                        'https://recepsenoglu.github.io/'),
+                        'https://recepsenoglu.com/'),
                   ),
                 ],
               ),
