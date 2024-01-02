@@ -87,7 +87,7 @@ class AboutGameScreen extends StatelessWidget {
                         ),
                         SizedBox(height: GameSizes.getWidth(0.025)),
                         Text(
-                          'Version 1.0.0',
+                          'Version 1.0.1',
                           style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: GameSizes.getWidth(0.038),
