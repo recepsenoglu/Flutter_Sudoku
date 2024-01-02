@@ -1,11 +1,12 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/constant/enums.dart';
-import 'package:flutter_sudoku/models/game_model.dart';
-import 'package:flutter_sudoku/models/game_stats_model.dart';
-import 'package:flutter_sudoku/models/statistics_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../constant/enums.dart';
+import '../models/game_model.dart';
+import '../models/game_stats_model.dart';
+import '../models/statistics_model.dart';
 
 class StorageService {
   late final SharedPreferences _prefs;
@@ -23,7 +24,11 @@ class StorageService {
   }
 
   Future<void> deleteGame() async {
-   await _prefs.setString('game', '');
+    try {
+      await _prefs.setString('game', '');
+    } catch (e) {
+      debugPrint('Error while deleting game: $e');
+    }
   }
 
   GameModel? getSavedGame() {
@@ -32,7 +37,13 @@ class StorageService {
       String jsonString = _prefs.getString('game')!;
       if (jsonString.isNotEmpty) {
         debugPrint('Saved game found');
-        return GameModel.fromJson(jsonDecode(jsonString));
+        try {
+          GameModel gameModel = GameModel.fromJson(jsonDecode(jsonString));
+          return gameModel;
+        } catch (e) {
+          debugPrint('Error while getting saved game: $e');
+          return null;
+        }
       }
       return null;
     }
@@ -49,15 +60,25 @@ class StorageService {
       statistics.updateLast(gameStatsModel);
     }
 
-    await _prefs.setString('statistics_${gameStatsModel.difficulty}',
-        jsonEncode(statistics.toJson()));
+    try {
+      await _prefs.setString('statistics_${gameStatsModel.difficulty}',
+          jsonEncode(statistics.toJson()));
+    } catch (e) {
+      debugPrint('Error while saving game stats: $e');
+    }
   }
 
   StatisticsModel? getStatistics(Difficulty difficulty) {
     if (_prefs.containsKey('statistics_$difficulty')) {
       String jsonString = _prefs.getString('statistics_$difficulty')!;
-
-      return StatisticsModel.fromJson(jsonDecode(jsonString));
+      try {
+        StatisticsModel statisticsModel =
+            StatisticsModel.fromJson(jsonDecode(jsonString));
+        return statisticsModel;
+      } catch (e) {
+        debugPrint('Error while getting statistics: $e');
+        return null;
+      }
     }
     return null;
   }
