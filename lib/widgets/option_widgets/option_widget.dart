@@ -10,6 +10,7 @@ class OptionWidget extends StatelessWidget {
     required this.iconData,
     required this.iconColor,
     this.onTap,
+    this.loading = false,
     super.key,
   });
 
@@ -17,11 +18,12 @@ class OptionWidget extends StatelessWidget {
   final IconData iconData;
   final Color iconColor;
   final Function()? onTap;
+  final bool loading;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTap,
+      onTap: loading ? null : onTap,
       borderRadius: GameSizes.getRadius(6),
       child: Padding(
         padding: GameSizes.getVerticalPadding(0.005),

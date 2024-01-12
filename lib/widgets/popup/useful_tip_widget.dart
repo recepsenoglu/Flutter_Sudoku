@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/models/useful_tip_model.dart';
-import 'package:flutter_sudoku/widgets/popup/useful_tip_divider.dart';
 
+import '../../models/useful_tip_model.dart';
 import '../../utils/game_colors.dart';
 import '../../utils/game_sizes.dart';
+import 'useful_tip_divider.dart';
 
 class UsefulTipWidget extends StatelessWidget {
   const UsefulTipWidget({super.key, required this.usefulTipModel});
@@ -20,7 +20,8 @@ class UsefulTipWidget extends StatelessWidget {
           padding: GameSizes.getSymmetricPadding(0.045, 0.03),
           margin: GameSizes.getHorizontalPadding(0.05),
           decoration: BoxDecoration(
-              color: GameColors.usefulTipBg, borderRadius: GameSizes.getRadius(12)),
+              color: GameColors.usefulTipBg,
+              borderRadius: GameSizes.getRadius(12)),
           child: Column(
             children: [
               Icon(

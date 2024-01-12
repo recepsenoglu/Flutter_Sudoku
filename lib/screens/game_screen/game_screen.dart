@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -56,17 +57,17 @@ class ActionButtons extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           ActionButton(
-            title: GameStrings.undo,
+            title: "undo".tr(),
             iconWidget: const ActionIcon(Icons.refresh),
             onTap: () => provider.undoOnTap(),
           ),
           ActionButton(
-            title: GameStrings.erase,
+            title: "erase".tr(),
             iconWidget: const ActionIcon(Icons.delete),
             onTap: () => provider.eraseOnTap(),
           ),
           ActionButton(
-            title: GameStrings.notes,
+            title: "notes".tr(),
             iconWidget: Stack(
               children: [
                 const ActionIcon(Icons.drive_file_rename_outline_outlined),
@@ -76,7 +77,7 @@ class ActionButtons extends StatelessWidget {
             onTap: () => provider.notesOnTap(),
           ),
           ActionButton(
-            title: GameStrings.hint,
+            title: "hint".tr(),
             iconWidget: Stack(
               children: [
                 const ActionIcon(Icons.lightbulb_outlined),
@@ -308,21 +309,21 @@ class GameInfo extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GameInfoWidget(
-                  value: difficulty.name,
-                  title: GameStrings.difficulty,
+                  value: difficulty.name.toLowerCase().tr(),
+                  title: "difficulty".tr(),
                   crossAxisAlignment: CrossAxisAlignment.start,
                 ),
                 GameInfoWidget(
                   value: '$mistakes/3',
-                  title: GameStrings.mistakes,
+                  title: "mistakes".tr(),
                 ),
                 GameInfoWidget(
                   value: '$score',
-                  title: GameStrings.score,
+                  title: "score".tr(),
                 ),
                 GameInfoWidget(
                   value: time.toTimeString(),
-                  title: GameStrings.time,
+                  title: "time".tr(),
                   crossAxisAlignment: CrossAxisAlignment.end,
                 ),
               ],
@@ -353,7 +354,7 @@ class GameAppBar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: true,
       elevation: 0,
       toolbarHeight: GameSizes.getWidth(0.1),
-      title: Text(GameStrings.appBarTitle,
+      title: Text(GameStrings.sudoku,
           style: GameTextStyles.appBarTitle.copyWith(
             fontSize: GameSizes.getWidth(0.06),
           )),

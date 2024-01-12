@@ -1,7 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/utils/game_sizes.dart';
-import 'package:flutter_sudoku/utils/game_strings.dart';
-import 'package:flutter_sudoku/utils/game_colors.dart';
+
+import '../../../utils/game_colors.dart';
+import '../../../utils/game_sizes.dart';
 
 class NotesSwitchWidget extends StatelessWidget {
   const NotesSwitchWidget({required this.notesOn, super.key});
@@ -10,7 +11,7 @@ class NotesSwitchWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String text = notesOn ? GameStrings.notesOn : GameStrings.notesOff;
+    final String text = notesOn ? "notesOn".tr() : "notesOff".tr();
     final Color bgColor =
         notesOn ? GameColors.actionInfoBg : GameColors.actionInfoBgDeactive;
 

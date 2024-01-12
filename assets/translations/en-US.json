@@ -1,0 +1,95 @@
+{
+    "home": "Home",
+    "statistics": "Statistics",
+
+    "appName": "Sudoku{}Puzzle Game",
+    "newGame": "New Game",
+    "continueGame": "Continue Game",
+
+    "easy": "Easy",
+    "medium": "Medium",
+    "hard": "Hard",
+    "expert": "Expert",
+    "nightmare": "Nightmare",
+    "restart": "Restart",
+
+    "games": "Games",
+    "time": "Time",
+    "score": "Score",
+    "streaks": "Streaks",
+
+    "games started": "Games Started",
+    "games won": "Games Won",
+    "win rate": "Win Rate",
+    "wins with no mistakes": "Wins With No Mistakes",
+    "best time": "Best Time",
+    "average time": "Average Time",
+    "best score": "Best Score",
+    "average score": "Average Score",
+    "current win streak": "Current Win Streak",
+    "best win streak": "Best Win Streak",
+
+    "today": "Today",
+    "this_week": "This Week",
+    "this_month": "This Month",
+    "this_year": "This Year",
+    "all_time": "All Time",
+    "cancel": "Cancel",
+
+    "difficulty": "Difficulty",
+    "mistakes": "Mistakes",
+
+    "pause": "Pause",
+    "resumeGame": "Resume Game",
+    "usefulTip": "Useful Tip",
+    "settings": "Settings",
+    "timer": "Timer",
+    "notes": "Notes",
+    "statisticsTip": "Easily track your progress with detailed statistics",
+    "settingsTip": "Make the game more comfortable for you",
+    "difficultyTip": "Choose the difficulty that suits you best",
+    "timerTip": "Track your time and try to beat your best time",
+    "notesTip": "Use notes to help you solve the puzzle",
+    "mistakesTip": "Try to solve the puzzle without mistakes",
+
+    "undo": "Undo",
+    "erase": "Erase",
+    "hint": "Hint",
+    "notesOn": "On",
+    "notesOff": "Off",
+
+    "levelCompleted": "Level Completed!",
+    "seeAll": "See All",
+
+    "options": "Options",
+    "done": "Done",
+
+    "howToPlay": "How To Play",
+    "rules": "Rules",
+    "aboutGame": "About Game",
+
+    "skip": "Skip",
+
+    "howToPlay0": "A Sudoku puzzle starts with a grid where certain numbers are already positioned. The objective is to fill in the remaining cells with numbers 1 to 9 so that each digit appears exactly once in every row, column and 3x3 box. Examine the grid to identify the suitable numbers for each cell.",
+    "howToPlay1": "Choose a cell and tap on a number to place it in that cell",
+    "howToPlay2": "Enable notes mode to add or delete notes",
+
+    "sudokuRules": "Sudoku Rules",
+    "sudokuRulesTexts": "The classic Sudoku game involves a grid of 81 squares. The grid is divided into nine blocks, each containing nine squares.\n\nThe rules of the game are simple: each of the nine blocks has to contain all the numbers 1-9 within its squares. Each number can only appear once in a row, column or box.\n\nThe difficulty lies in that each vertical nine-square column, or horizontal nine-square line across, within the larger square, must also contain the numbers 1-9, without repetition or omission.\n\nEvery puzzle has just one correct solution.",
+    "tipsOnSolvingSudokuPuzzles": "Tips On Solving Sudoku Puzzles",
+    "tipsOnSolvingSudokuPuzzlesTexts": "Sudoku puzzles are great brain teasers that require logical thinking and a systematic approach to solve. Here are some tips on how to solve Sudoku puzzles.\n\nTip 1: Look for rows, columns of 3×3 sections that contain 5 or more numbers. Work through the remaining empty cells, trying the numbers that have not been used. In many cases, you will find numbers that can only be placed in one position considering the other numbers that are already in its row, column, and 3×3 grid.\n\nTip 2: Break the grid up visually into 3 columns and 3 rows. Each large column will have 3, 3×3 grids and each row will have 3, 3×3 grids. Now, look for columns or grids that have 2 of the same number. Logically, there must be a 3rd copy of the same number in the only remaining 9-cell section. Look at each of the remaining 9 positions and see if you can find the location of the missing number.\n\nTip 3: Look at each of the remaining 9 positions and see if you can find the location of the missing number. Now that you know the 9 possible numbers that can go into this cell, look at the row and see if any of those numbers are already present. If you don’t see any duplicate numbers, you can rule out those numbers for that cell. Now, look for columns or grids that have 2 of the same number. Logically, there must be a 3rd copy of the same number in the only remaining 9-cell section. Look at each of the remaining 9 positions and see if you can find the location of the missing number.",
+
+    "version": "Version {}",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfUse": "Terms of Use",
+    "developerWebsite": "Developer's Website",
+    "moreApps": "More Apps",
+    "rateUs": "Rate Us",
+    "share": "Share",
+    "shareText": "Check out this awesome Sudoku game! {}",
+
+    "gameOver": "Game Over",
+    "gameOverText": "You have made 3 mistakes and lost this game",
+    "exit": "Exit"
+
+}

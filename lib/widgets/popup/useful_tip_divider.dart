@@ -1,8 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/game_colors.dart';
 import '../../utils/game_sizes.dart';
-import '../../utils/game_strings.dart';
 import '../../utils/game_text_styles.dart';
 
 class UsefulTipDivider extends StatelessWidget {
@@ -19,7 +19,7 @@ class UsefulTipDivider extends StatelessWidget {
           Padding(
             padding: GameSizes.getHorizontalPadding(0.015),
             child: Text(
-              GameStrings.usefulTip,
+              "usefulTip".tr(),
               style: GameTextStyles.dividerText
                   .copyWith(fontSize: GameSizes.getWidth(0.03)),
             ),

@@ -1,0 +1,96 @@
+{
+    "home": "Ana Sayfa",
+    "statistics": "İstatistikler",
+
+    "appName": "Sudoku{}Bulmaca Oyunu",
+    "newGame": "Yeni Oyun",
+    "continueGame": "Devam Et",
+
+    "easy": "Kolay",
+    "medium": "Orta",
+    "hard": "Zor",
+    "expert": "Uzman",
+    "nightmare": "Kabus",
+    "restart": "Yeniden Başlat",
+
+    "games": "Oyunlar",
+    "time": "Süre",
+    "score": "Skor",
+    "streaks": "Seriler",
+
+    "games started": "Başlatılan Oyunlar",
+    "games won": "Kazanılan Oyunlar",
+    "win rate": "Kazanma Oranı",
+    "wins with no mistakes": "Hata Yapmadan Kazanılan Oyunlar",
+    "best time": "En İyi Süre",
+    "average time": "Ortalama Süre",
+    "best score": "En İyi Skor",
+    "average score": "Ortalama Skor",
+    "current win streak": "Mevcut Kazanma Serisi",
+    "best win streak": "En İyi Kazanma Serisi",
+
+    "today": "Bugün",
+    "this_week": "Bu Hafta",
+    "this_month": "Bu Ay",
+    "this_year": "Bu Yıl",
+    "all_time": "Tüm Zamanlar",
+    "cancel": "İptal",
+
+    "difficulty": "Zorluk",
+    "mistakes": "Hatalar",
+
+    "pause": "Duraklat",
+    "resumeGame": "Oyuna Devam Et",
+    "usefulTip": "İpuçları",
+    "settings": "Ayarlar",
+    "timer": "Süre",
+    "notes": "Notlar",
+    "statisticsTip": "İlerlemenizi takip edin ve istatistiklerinizi görün",
+    "settingsTip": "Oyun ayarlarını istediğiniz gibi değiştirin",
+    "difficultyTip": "Size uygun zorluk seviyesini seçin",
+    "timerTip": "En iyi sürenizi geliştirmek için bulmacayı hızlı bir şekilde çözün",
+    "notesTip": "Notlarınızı kullanarak daha iyi bir strateji geliştirin",
+    "mistakesTip": "Hata yapmadan kazanmak için dikkatli olun",
+
+    "undo": "Geri Al",
+    "erase": "Sil",
+    "hint": "İpucu",
+    "notesOn": "Açık",
+    "notesOff": "Kapalı",
+
+    "levelCompleted": "Seviye Tamamlandı!",
+    "seeAll": "Tümünü Gör",
+
+    "options": "Seçenekler",
+    "done": "Tamam",
+
+    "howToPlay": "Nasıl Oynanır",
+    "rules": "Kurallar",
+    "aboutGame": "Oyun Hakkında",
+
+    "skip": "Atla",
+
+    "howToPlay0": "Bir Sudoku bulmacası, belirli sayıların zaten konumlandırıldığı bir ızgara ile başlar. Amaç, kalan hücreleri 1'den 9'a kadar olan sayılarla doldurmaktır, böylece her rakamın her satırda, sütunda ve 3x3 kutuda yalnızca bir kez göründüğünden emin olun. Her hücre için uygun sayıları belirlemek için ızgarayı inceleyin.",
+    "howToPlay1": "Bir sayı girmek için bir hücreye dokunun ve ardından sayı tuşlarından birini seçin.",
+    "howToPlay2": "Not almak için notlar tuşuna dokunun ve ardından notları girmek istediğiniz hücrelere dokunun.",
+
+    "sudokuRules": "Sudoku Kuralları",
+    "sudokuRulesTexts": "Klasik Sudoku oyunu, 81 kareden oluşan bir ızgaradan meydana gelir. Izgara, her biri dokuz kare içeren dokuz bloğa bölünmüştür.\n\nOyunun kuralları basittir: dokuz bloğun her biri, karelerinde 1'den 9'a kadar tüm sayıları içermelidir. Her sayı, bir satırda, sütunda veya kutuda yalnızca bir kez görünebilir.\n\nZorluk, daha büyük karenin içindeki her dikey dokuz karelik sütunun veya yatay dokuz karelik çizginin de, tekrarlama veya eksiklik olmaksızın 1'den 9'a kadar olan sayıları içermesi gerektiğidir.\n\nHer bulmacanın yalnızca bir doğru çözümü vardır.",
+    "tipsOnSolvingSudokuPuzzles": "Sudoku Bulmacalarını Çözme İpuçları",
+    "tipsOnSolvingSudokuPuzzlesTexts": "Sudoku bulmacaları, mantıklı düşünmeyi ve sistemli bir yaklaşımı gerektiren harika beyin egzersizleridir. İşte Sudoku bulmacalarını çözmek için bazı ipuçları.\n\nİpucu 1: 5 veya daha fazla sayı içeren 3x3'lük bölümlere sahip sıraları ve sütunları arayın. Kullanılmamış sayıları deneyerek kalan boş hücreler üzerinden geçin. Çoğu durumda, bazı sayıların, zaten bulundukları satır, sütun ve 3x3'lük ızgaraya göre yalnızca bir pozisyona yerleştirilebileceğini göreceksiniz.\n\nİpucu 2: Izgarayı görsel olarak 3 sütun ve 3 satıra bölün. Her büyük sütunun 3 adet 3x3'lük ızgarası olacak ve her satırın da 3 adet 3x3'lük ızgarası olacak. Şimdi, aynı sayıdan 2 tane olan sütunları veya ızgaraları arayın. Mantıken, kalan tek 9 hücrelik bölümde aynı sayının 3. kopyası olmalıdır. Kalan 9 pozisyonu inceleyerek eksik sayının yerini bulmaya çalışın.\n\nİpucu 3: Kalan 9 pozisyona bakın ve eksik sayının yerini bulmaya çalışın. Şimdi bu hücreye girebilecek 9 olası sayıyı bildiğinize göre, satıra bakın ve bu sayılardan herhangi birinin zaten var olup olmadığını kontrol edin. Eğer aynı sayılardan herhangi birini görmüyorsanız, bu sayıları o hücre için eleyebilirsiniz. Şimdi, aynı sayıdan 2 tane olan sütunları veya ızgaraları arayın. Mantıken, kalan tek 9 hücrelik bölümde aynı sayının 3. kopyası olmalıdır. Kalan 9 pozisyonu inceleyerek eksik sayının yerini bulmaya çalışın.",
+
+    "version": "Versiyon {}",
+    "privacyPolicy": "Gizlilik Politikası",
+    "termsOfUse": "Kullanım Koşulları",
+    "developerWebsite": "Geliştirici Web Sitesi",
+    "moreApps": "Daha Fazla Uygulama",
+    "rateUs": "Bizi Değerlendir",
+    "share": "Paylaş",
+    "shareText": "Sudoku Bulmaca Oyunu'nu deneyin! {}",
+
+
+    "gameOver": "Oyun Bitti",
+    "gameOverText": "Oyunu kaybettiniz. Tekrar denemek ister misiniz?",
+    "exit": "Çıkış"
+
+}

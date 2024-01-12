@@ -1,10 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../constant/enums.dart';
 import '../constant/useful_tips.dart';
 import '../models/useful_tip_model.dart';
-import '../utils/game_routes.dart';
 import '../utils/exports.dart';
+import '../utils/game_routes.dart';
 import 'button/rounded_button/rounded_button.dart';
 import 'popup/popup_game_stats.dart';
 import 'popup/useful_tip_widget.dart';
@@ -16,7 +17,7 @@ class Popup {
       padding: GameSizes.getSymmetricPadding(0.05, 0.02)
           .copyWith(bottom: GameSizes.getHeight(0.02)),
       child: Text(
-        GameStrings.gameOverDescription,
+        "gameOverText".tr(),
         textAlign: TextAlign.center,
         style: TextStyle(
           color: GameColors.popupContentText,
@@ -28,14 +29,14 @@ class Popup {
     List<Widget> actions = [
       RoundedButton(
           whiteButton: true,
-          buttonText: GameStrings.exit,
+          buttonText: "exit".tr(),
           icon: Icons.exit_to_app,
           onPressed: () {
             onExit();
             Navigator.pop(GameRoutes.navigatorKey.currentContext!);
           }),
       RoundedButton(
-          buttonText: GameStrings.newGame,
+          buttonText: "newGame".tr(),
           onPressed: () {
             Navigator.pop(GameRoutes.navigatorKey.currentContext!);
             onNewGame();
@@ -43,7 +44,7 @@ class Popup {
     ];
 
     return _showDialog(
-      title: GameStrings.gameOver,
+      title: "gameOver".tr(),
       content: content,
       actions: actions,
     );
@@ -55,7 +56,6 @@ class Popup {
     required Difficulty difficulty,
     required Function() onResume,
   }) {
-    const String title = GameStrings.pause;
     final UsefulTipModel usefulTipModel = UsefulTips.getRandomUsefulTip();
 
     Widget content = Column(
@@ -67,7 +67,7 @@ class Popup {
 
     List<Widget> actions = [
       RoundedButton(
-        buttonText: GameStrings.resumeGame,
+        buttonText: "resumeGame".tr(),
         onPressed: () {
           onResume();
           Navigator.pop(GameRoutes.navigatorKey.currentContext!);
@@ -76,7 +76,7 @@ class Popup {
     ];
 
     _showDialog(
-      title: title,
+      title: "pause".tr(),
       content: content,
       actions: actions,
     );

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/utils/game_strings.dart';
-import 'package:flutter_sudoku/constant/constants.dart';
-import 'package:flutter_sudoku/screens/daily_challenges_screen/daily_challenges_screen_provider.dart';
-import 'package:flutter_sudoku/utils/game_colors.dart';
-import 'package:flutter_sudoku/utils/game_text_styles.dart';
-import 'package:flutter_sudoku/utils/game_sizes.dart';
-import 'package:flutter_sudoku/widgets/button/rounded_button/rounded_button.dart';
-import 'package:flutter_sudoku/widgets/star_badge_widget.dart';
 import 'package:provider/provider.dart';
+
+import '../../constant/constants.dart';
+import '../../utils/game_colors.dart';
+import '../../utils/game_sizes.dart';
+import '../../utils/game_text_styles.dart';
+import '../../widgets/button/rounded_button/rounded_button.dart';
+import '../../widgets/star_badge_widget.dart';
+import 'daily_challenges_screen_provider.dart';
 
 class DailyChallengesScreen extends StatelessWidget {
   const DailyChallengesScreen({super.key});
@@ -53,7 +53,7 @@ class PlayButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: RoundedButton(
-        buttonText: GameStrings.play,
+        buttonText: "GameStrings.play",
         onPressed: onPressed,
       ),
     );
@@ -216,7 +216,7 @@ class TopBlueBox extends StatelessWidget {
         children: [
           const SizedBox(height: 18),
           Text(
-            GameStrings.dailyChallenges,
+            "GameStrings.dailyChallenges",
             style: GameTextStyles.dailyChallengesTitle,
           ),
         ],

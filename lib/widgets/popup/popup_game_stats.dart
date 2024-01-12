@@ -1,7 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../constant/enums.dart';
-import '../../utils/game_strings.dart';
 import '../../utils/extensions.dart';
 import '../game_info/game_info_widget.dart';
 
@@ -25,18 +25,18 @@ class PopupGameStats extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           GameInfoWidget(
-            title: GameStrings.time,
+            title: "time".tr(),
             value: time.toTimeString(),
             forPopup: true,
           ),
           GameInfoWidget(
-            title: GameStrings.mistakes,
+            title: "mistakes".tr(),
             value: '$mistakes/3',
             forPopup: true,
           ),
           GameInfoWidget(
-            title: GameStrings.difficulty,
-            value: difficulty.name,
+            title: "difficulty".tr(),
+            value: difficulty.name.toLowerCase().tr(),
             forPopup: true,
           ),
         ],

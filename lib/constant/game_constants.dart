@@ -25,21 +25,9 @@ class GameSettings {
         StatisticType.Streaks
       ];
 
-  static List<Difficulty> get getDifficulties => [
-        Difficulty.Easy,
-        Difficulty.Medium,
-        Difficulty.Hard,
-        Difficulty.Expert,
-        Difficulty.Nightmare
-      ];
+  static List<Difficulty> get getDifficulties => Difficulty.values;
 
-  static List<TimeInterval> get getTimeIntervals => [
-        TimeInterval.Today,
-        TimeInterval.This_week,
-        TimeInterval.This_month,
-        TimeInterval.This_year,
-        TimeInterval.All_time,
-      ];
+  static List<TimeInterval> get getTimeIntervals => TimeInterval.values;
 
   static int amountOfNumbersGiven(Difficulty difficulty) {
     switch (difficulty) {

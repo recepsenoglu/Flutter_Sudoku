@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:math';
+import 'dart:developer' as dev;
 
 import 'package:flutter/material.dart';
 
@@ -390,8 +391,13 @@ class GameScreenProvider with ChangeNotifier {
   }
 
   Future<void> _chooseNewGameDifficulty() async {
-    Difficulty? chosenDifficulty =
-        await ModalBottomSheets.chooseDifficulty(restartDifficulty: difficulty);
+    Difficulty? chosenDifficulty;
+    try {
+      chosenDifficulty = await ModalBottomSheets.chooseDifficulty(
+          restartDifficulty: difficulty);
+    } catch (e) {
+      dev.log(e.toString(), error: e);
+    }
 
     if (chosenDifficulty != null) {
       final GameModel gameModel = GameModel(

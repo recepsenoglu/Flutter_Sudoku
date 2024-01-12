@@ -1,5 +1,5 @@
 import 'dart:math';
-
+import 'dart:developer' as dev;
 import 'package:flutter/material.dart';
 import 'package:flutter_sudoku/utils/game_strings.dart';
 import 'package:flutter_sudoku/constant/enums.dart';
@@ -240,8 +240,13 @@ class StatisticsScreenProvider with ChangeNotifier {
   }
 
   Future<void> changeTimeInterval() async {
-    TimeInterval? selectedTimeInterval =
-        await ModalBottomSheets.chooseTimeInterval(timeInterval);
+    TimeInterval? selectedTimeInterval;
+    try {
+      selectedTimeInterval =
+          await ModalBottomSheets.chooseTimeInterval(timeInterval);
+    } catch (e) {
+      dev.log(e.toString(), error: e);
+    }
 
     if (selectedTimeInterval != null && timeInterval != selectedTimeInterval) {
       timeInterval = selectedTimeInterval;

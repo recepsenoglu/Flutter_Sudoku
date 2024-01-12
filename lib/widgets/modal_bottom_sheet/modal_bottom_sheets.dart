@@ -1,18 +1,17 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../constant/enums.dart';
 import '../../constant/game_constants.dart';
 import '../../models/option_button_model.dart';
-import '../../utils/game_routes.dart';
 import '../../utils/game_colors.dart';
-import '../../utils/game_strings.dart';
+import '../../utils/game_routes.dart';
 import '../../utils/game_sizes.dart';
-import '../../utils/utils.dart';
 import '../widget_divider.dart';
 
 class ModalBottomSheets {
   static Future<dynamic> chooseTimeInterval(TimeInterval timeInterval) async {
-    List<TimeInterval> options = GameSettings.getTimeIntervals;
+    List<TimeInterval> options = List.from(GameSettings.getTimeIntervals);
     options.add(timeInterval);
 
     return await _showOptions(
@@ -21,7 +20,7 @@ class ModalBottomSheets {
       bool last = index == options.length - 1;
       final bool isSelected = intervalOption.name == timeInterval.name && !last;
       final String title =
-          last ? GameStrings.cancel : removeUnderscore(intervalOption.name);
+          last ? "cancel".tr() : intervalOption.name.toLowerCase().tr();
 
       return OptionButtonModel(
           onTap: () => intervalOption, selected: isSelected, title: title);
@@ -30,7 +29,7 @@ class ModalBottomSheets {
 
   static Future<dynamic> chooseDifficulty(
       {Difficulty? restartDifficulty}) async {
-    List<Difficulty> options = GameSettings.getDifficulties;
+    List<Difficulty> options = List.from(GameSettings.getDifficulties);
     final bool restartButton = restartDifficulty != null;
 
     if (restartButton) options.add(restartDifficulty);
@@ -38,8 +37,8 @@ class ModalBottomSheets {
     return await _showOptions(
         options: List.generate(options.length, (index) {
       final String title = index == options.length - 1 && restartButton
-          ? GameStrings.restart
-          : options[index].name;
+          ? "restart".tr()
+          : options[index].name.toLowerCase().tr();
 
       return OptionButtonModel(title: title, onTap: () => options[index]);
     }));

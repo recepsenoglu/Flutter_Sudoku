@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -103,7 +104,7 @@ class StatisticsGroup extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            groupTitle,
+            groupTitle.toLowerCase().tr(),
             style: GameTextStyles.statisticsGroupTitle.copyWith(
               fontSize: GameSizes.getHeight(0.027),
             ),
@@ -151,7 +152,7 @@ class StatisticCard extends StatelessWidget {
               ),
               SizedBox(height: GameSizes.getHeight(0.013)),
               Text(
-                statModel.title,
+                statModel.title.toLowerCase().tr(),
                 style: GameTextStyles.statisticsCardTitle
                     .copyWith(fontSize: GameSizes.getHeight(0.019)),
               ),
@@ -252,7 +253,7 @@ class StatisticsAppBar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: true,
       backgroundColor: GameColors.appBarBackground,
       title: Text(
-        GameStrings.statistics,
+        "statistics".tr(),
         style: GameTextStyles.statisticsTitle
             .copyWith(fontSize: GameSizes.getWidth(0.045)),
       ),
@@ -280,7 +281,7 @@ class StatisticsAppBar extends StatelessWidget implements PreferredSizeWidget {
               GameSettings.getDifficulties.length,
               (index) => Tab(
                       child: Text(
-                    GameSettings.getDifficulties[index].name,
+                    GameSettings.getDifficulties[index].name.toLowerCase().tr(),
                     textAlign: TextAlign.left,
                   )))),
     );

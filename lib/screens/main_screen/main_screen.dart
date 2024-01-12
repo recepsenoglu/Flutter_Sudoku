@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -6,7 +7,6 @@ import '../../models/game_model.dart';
 import '../../utils/game_colors.dart';
 import '../../utils/game_routes.dart';
 import '../../utils/game_sizes.dart';
-import '../../utils/game_strings.dart';
 import '../../utils/game_text_styles.dart';
 import '../../widgets/app_bar_action_button.dart';
 import '../../widgets/button/rounded_button/rounded_button.dart';
@@ -47,7 +47,7 @@ class MainScreen extends StatelessWidget {
               children: [
                 // const ChallengeAndEvents(),
                 const AppLogo(),
-                const GameTitle(),
+                GameTitle(title: "appName".tr(args: [":\n"])),
                 Container(
                   height: GameSizes.getHeight(0.25),
                   padding: GameSizes.getHorizontalPadding(0.05),
@@ -59,7 +59,7 @@ class MainScreen extends StatelessWidget {
                             padding: EdgeInsets.only(
                                 bottom: GameSizes.getHeight(0.02)),
                             child: RoundedButton(
-                              buttonText: GameStrings.continueGame,
+                              buttonText: "continueGame".tr(),
                               subText: provider.continueGameButtonText,
                               subIcon: Icons.watch_later_outlined,
                               onPressed: provider.continueGame,
@@ -67,7 +67,7 @@ class MainScreen extends StatelessWidget {
                             ),
                           )),
                       RoundedButton(
-                        buttonText: GameStrings.newGame,
+                        buttonText: "newGame".tr(),
                         whiteButton: provider.isThereASavedGame,
                         elevation: provider.isThereASavedGame ? 5 : 0,
                         onPressed: provider.newGame,
@@ -86,7 +86,9 @@ class MainScreen extends StatelessWidget {
 }
 
 class GameTitle extends StatelessWidget {
-  const GameTitle({super.key});
+  const GameTitle({super.key, required this.title});
+
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +97,7 @@ class GameTitle extends StatelessWidget {
       child: FittedBox(
         child: Center(
           child: Text(
-            GameStrings.gameTitle,
+            title,
             textAlign: TextAlign.center,
             style: GameTextStyles.mainScreenTitle.copyWith(
               fontSize: GameSizes.getWidth(0.08),

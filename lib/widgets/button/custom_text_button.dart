@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../../utils/game_routes.dart';
 import '../../utils/game_sizes.dart';
-import '../../utils/game_strings.dart';
 import '../../utils/game_text_styles.dart';
 
 class CustomTextButton extends StatelessWidget {
   const CustomTextButton({
     super.key,
-    this.text = GameStrings.done,
+    required this.text,
     this.onPressed,
   });
 

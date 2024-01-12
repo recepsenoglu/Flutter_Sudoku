@@ -1,7 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../constant/enums.dart';
 import '../../models/board_model.dart';
 import '../../models/cell_model.dart';
 import '../../models/game_model.dart';
@@ -48,7 +48,7 @@ class WinScreen extends StatelessWidget {
                             padding: GameSizes.getHorizontalPadding(0.05)
                                 .copyWith(top: GameSizes.getHeight(0.02)),
                             child: Text(
-                              GameStrings.levelCompleted,
+                              "levelCompleted".tr(),
                               style: GameTextStyles.winScreenHeader
                                   .copyWith(fontSize: GameSizes.getWidth(0.07)),
                             ),
@@ -86,7 +86,7 @@ class MainButton extends StatelessWidget {
       padding: GameSizes.getSymmetricPadding(0.05, 0.015),
       child: TextButton(
         onPressed: onPressed,
-        child: Text(GameStrings.main,
+        child: Text("home".tr(),
             style: GameTextStyles.mainTextButton
                 .copyWith(fontSize: GameSizes.getWidth(0.04))),
       ),
@@ -106,7 +106,7 @@ class NewGameButton extends StatelessWidget {
       child: Padding(
         padding: GameSizes.getHorizontalPadding(0.05),
         child: RoundedButton(
-          buttonText: GameStrings.newGame,
+          buttonText: "newGame".tr(),
           onPressed: onPressed,
           whiteButton: true,
         ),
@@ -129,7 +129,7 @@ class LevelStatistics extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(GameStrings.statistics,
+              Text("statistics".tr(),
                   style: GameTextStyles.levelStatisticsTitle
                       .copyWith(fontSize: GameSizes.getWidth(0.04))),
               InkWell(
@@ -141,9 +141,12 @@ class LevelStatistics extends StatelessWidget {
                   decoration: BoxDecoration(
                       borderRadius: GameSizes.getRadius(16),
                       color: GameColors.translucentWhite),
-                  child: Text(GameStrings.seeAll,
-                      style: GameTextStyles.seeAll
-                          .copyWith(fontSize: GameSizes.getWidth(0.035))),
+                  child: Text(
+                    "seeAll".tr(),
+                    style: GameTextStyles.seeAll.copyWith(
+                      fontSize: GameSizes.getWidth(0.035),
+                    ),
+                  ),
                 ),
               ),
             ],
@@ -156,17 +159,17 @@ class LevelStatistics extends StatelessWidget {
           options: [
             StatRowWidget(
               icon: Icons.bar_chart,
-              title: GameStrings.difficulty,
-              value: gameModel.difficulty.name,
+              title: "difficulty".tr(),
+              value: gameModel.difficulty.name.toLowerCase().tr(),
             ),
             StatRowWidget(
               icon: Icons.stars_rounded,
-              title: GameStrings.score,
+              title: "score".tr(),
               value: gameModel.score.toString(),
             ),
             StatRowWidget(
               icon: Icons.timer,
-              title: GameStrings.time,
+              title: "time".tr(),
               value: gameModel.time.toInt().toTimeString(),
             ),
           ],
@@ -247,75 +250,75 @@ class StatRowWidget extends StatelessWidget {
   }
 }
 
-class PromotionText extends StatelessWidget {
-  const PromotionText({
-    super.key,
-    required this.time,
-    required this.faster,
-    required this.difficulty,
-    required this.newBestTime,
-    required this.timeDifference,
-  });
+// class PromotionText extends StatelessWidget {
+//   const PromotionText({
+//     super.key,
+//     required this.time,
+//     required this.faster,
+//     required this.difficulty,
+//     required this.newBestTime,
+//     required this.timeDifference,
+//   });
 
-  final int time;
-  final bool faster;
-  final bool newBestTime;
-  final int timeDifference;
-  final Difficulty difficulty;
+//   final int time;
+//   final bool faster;
+//   final bool newBestTime;
+//   final int timeDifference;
+//   final Difficulty difficulty;
 
-  @override
-  Widget build(BuildContext context) {
-    if (newBestTime) {
-      return RichText(
-        textAlign: TextAlign.center,
-        text: TextSpan(
-          text: GameStrings.youSetANew,
-          style: GameTextStyles.promotionText,
-          children: [
-            TextSpan(
-              text: GameStrings.bestTimeB,
-              style: GameTextStyles.promotionTextGold,
-            ),
-            const TextSpan(
-              text: GameStrings.forThe,
-            ),
-            TextSpan(
-              text: difficulty.name,
-            ),
-            const TextSpan(
-              text: GameStrings.difficultyLevel,
-            ),
-            TextSpan(
-              text: time.toTimeString(),
-              style: GameTextStyles.promotionTextGold,
-            ),
-            const TextSpan(
-              text: '!',
-            ),
-          ],
-        ),
-      );
-    }
+//   @override
+//   Widget build(BuildContext context) {
+//     if (newBestTime) {
+//       return RichText(
+//         textAlign: TextAlign.center,
+//         text: TextSpan(
+//           text: GameStrings.youSetANew,
+//           style: GameTextStyles.promotionText,
+//           children: [
+//             TextSpan(
+//               text: GameStrings.bestTimeB,
+//               style: GameTextStyles.promotionTextGold,
+//             ),
+//             const TextSpan(
+//               text: GameStrings.forThe,
+//             ),
+//             TextSpan(
+//               text: difficulty.name,
+//             ),
+//             const TextSpan(
+//               text: GameStrings.difficultyLevel,
+//             ),
+//             TextSpan(
+//               text: time.toTimeString(),
+//               style: GameTextStyles.promotionTextGold,
+//             ),
+//             const TextSpan(
+//               text: '!',
+//             ),
+//           ],
+//         ),
+//       );
+//     }
 
-    return RichText(
-      textAlign: TextAlign.center,
-      text: TextSpan(
-        text: GameStrings.youSolvedThisPuzzle,
-        style: GameTextStyles.promotionText,
-        children: [
-          TextSpan(
-            text:
-                '${timeDifference.toTimeString()} ${faster ? GameStrings.faster : GameStrings.slower}',
-            style: GameTextStyles.promotionTextGold,
-          ),
-          const TextSpan(
-            text: GameStrings.thanYourAverage,
-          ),
-        ],
-      ),
-    );
-  }
-}
+//     return RichText(
+//       textAlign: TextAlign.center,
+//       text: TextSpan(
+//         text: GameStrings.youSolvedThisPuzzle,
+//         style: GameTextStyles.promotionText,
+//         children: [
+//           TextSpan(
+//             text:
+//                 '${timeDifference.toTimeString()} ${faster ? GameStrings.faster : GameStrings.slower}',
+//             style: GameTextStyles.promotionTextGold,
+//           ),
+//           const TextSpan(
+//             text: GameStrings.thanYourAverage,
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
 
 class MiniSudokuBoard extends StatelessWidget {
   const MiniSudokuBoard({required this.boardModel, super.key});

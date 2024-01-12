@@ -1,14 +1,30 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../mixins/app_review_mixin.dart';
+import '../../mixins/share_mixin.dart';
+import '../../services/localization_manager.dart';
 import '../../utils/exports.dart';
 import '../../utils/game_routes.dart';
 import '../../widgets/button/custom_text_button.dart';
 import '../../widgets/option_widgets/exports.dart';
 import 'options_screen_provider.dart';
 
-class OptionsScreen extends StatelessWidget {
+class OptionsScreen extends StatefulWidget {
   const OptionsScreen({super.key});
+
+  @override
+  State<OptionsScreen> createState() => _OptionsScreenState();
+}
+
+class _OptionsScreenState extends State<OptionsScreen>
+    with ShareMixin, AppReviewMixin {
+  @override
+  void initState() {
+    super.initState();
+    onStateChange = () => setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,11 +39,13 @@ class OptionsScreen extends StatelessWidget {
               leadingWidth: 0,
               centerTitle: true,
               backgroundColor: GameColors.appBarBackground,
-              title: Text(GameStrings.options,
-                  style: GameTextStyles.optionsScreenAppBarTitle
-                      .copyWith(fontSize: GameSizes.getWidth(0.045))),
+              title: Text(
+                "options".tr(),
+                style: GameTextStyles.optionsScreenAppBarTitle
+                    .copyWith(fontSize: GameSizes.getWidth(0.045)),
+              ),
               leading: const SizedBox.shrink(),
-              actions: const [CustomTextButton()],
+              actions: [CustomTextButton(text: "done".tr())],
             ),
             body: SingleChildScrollView(
               padding: GameSizes.getSymmetricPadding(0.04, 0.02),
@@ -36,21 +54,29 @@ class OptionsScreen extends StatelessWidget {
                   OptionGroup(
                     options: [
                       OptionWidget(
-                        title: GameStrings.settings,
-                        iconColor: Colors.red,
-                        iconData: Icons.settings,
-                        onTap: () => GameRoutes.goTo(GameRoutes.settingsScreen,
-                            enableBack: true),
+                        title: LocalizationManager.currentLanguageName,
+                        iconColor: Colors.pink,
+                        iconData: Icons.language,
+                        onTap: () => LocalizationManager.changeLocale(
+                            context,
+                            LocalizationManager.currentLocale.languageCode ==
+                                    'en'
+                                ? LocalizationManager.supportedLocales[1]
+                                : LocalizationManager.supportedLocales[0]),
                       ),
+                    ],
+                  ),
+                  OptionGroup(
+                    options: [
                       OptionWidget(
-                        title: GameStrings.howToPlay,
-                        iconColor: Colors.orange,
+                        title: "howToPlay".tr(),
+                        iconColor: Colors.green,
                         iconData: Icons.school,
                         onTap: () => GameRoutes.goTo(GameRoutes.howToPlayScreen,
                             enableBack: true),
                       ),
                       OptionWidget(
-                        title: GameStrings.rules,
+                        title: "rules".tr(),
                         iconColor: Colors.lightBlue,
                         iconData: Icons.menu_book_rounded,
                         onTap: () => GameRoutes.goTo(GameRoutes.rulesScreen,
@@ -60,41 +86,31 @@ class OptionsScreen extends StatelessWidget {
                   ),
                   OptionGroup(
                     options: [
-                      // OptionWidget(
-                      //   title: GameStrings.help,
-                      //   iconColor: Colors.green,
-                      //   iconData: Icons.help,
-                      //   onTap: () => null,
-                      // ),
                       OptionWidget(
-                        title: GameStrings.aboutGame,
+                        title: "aboutGame".tr(),
                         iconColor: Colors.blue.shade700,
                         iconData: Icons.info,
                         onTap: () => GameRoutes.goTo(GameRoutes.aboutScreen,
                             enableBack: true),
                       ),
+                      OptionWidget(
+                        title: "rateUs".tr(),
+                        iconColor: Colors.yellow,
+                        iconData: Icons.star,
+                        loading: reviewLoading,
+                        onTap: () => openStoreListing(),
+                      ),
+                      OptionWidget(
+                        title: "share".tr(),
+                        iconColor: Colors.orange,
+                        iconData: Icons.share,
+                        loading: shareLoading,
+                        onTap: () => shareApp("shareText".tr(args: [
+                          'https://play.google.com/store/apps/details?id=com.recepsenoglu.sudoku'
+                        ])),
+                      ),
                     ],
                   ),
-                  // OptionGroup(
-                  //   options: [
-                  //     OptionWidget(
-                  //       title: GameStrings.mathPuzzle,
-                  //       iconColor: Colors.purple,
-                  //       iconData: Icons.numbers,
-                  //       onTap: () => null,
-                  //     ),
-                  //   ],
-                  // ),
-                  // OptionGroup(
-                  //   options: [
-                  //     OptionWidget(
-                  //       title: GameStrings.removeAds,
-                  //       iconColor: Colors.red,
-                  //       iconData: Icons.no_adult_content_sharp,
-                  //       onTap: () => null,
-                  //     ),
-                  //   ],
-                  // ),
                 ],
               ),
             ),

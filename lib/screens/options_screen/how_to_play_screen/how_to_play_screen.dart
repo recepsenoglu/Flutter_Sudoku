@@ -1,9 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_sudoku/utils/game_colors.dart';
-import 'package:flutter_sudoku/utils/game_sizes.dart';
-import 'package:flutter_sudoku/utils/game_strings.dart';
-import 'package:flutter_sudoku/widgets/button/custom_icon_button.dart';
-import 'package:flutter_sudoku/widgets/button/custom_text_button.dart';
+
+import '../../../utils/game_colors.dart';
+import '../../../utils/game_sizes.dart';
+import '../../../widgets/button/custom_icon_button.dart';
+import '../../../widgets/button/custom_text_button.dart';
 
 class HowToPlayScreen extends StatefulWidget {
   const HowToPlayScreen({super.key});
@@ -44,14 +45,14 @@ class _HowToPlayScreenState extends State<HowToPlayScreen> {
         centerTitle: true,
         backgroundColor: Colors.white,
         title: Text(
-          'How to Play',
+          "howToPlay".tr(),
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: GameSizes.getWidth(0.045),
           ),
         ),
         leading: const SizedBox(),
-        actions: const [CustomTextButton(text: GameStrings.skip)],
+        actions: [CustomTextButton(text: "skip".tr())],
       ),
       body: Padding(
         padding: GameSizes.getHorizontalPadding(0.015),
@@ -89,60 +90,60 @@ class _HowToPlayScreenState extends State<HowToPlayScreen> {
                             ),
                             SizedBox(height: GameSizes.getHeight(0.04)),
                             Padding(
-                              padding: GameSizes.getHorizontalPadding(0.045),
-                              child: index > 0
-                                  ? Text(
-                                      index == 1
-                                          ? GameStrings.chooseACell
-                                          : GameStrings.notesMode,
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: GameSizes.getWidth(0.041),
-                                      ),
-                                    )
-                                  : RichText(
-                                      textAlign: TextAlign.center,
-                                      text: TextSpan(
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: GameSizes.getWidth(0.041),
-                                          ),
-                                          children: [
-                                            const TextSpan(
-                                              text:
-                                                  "A Sudoku puzzle starts with a grid where certain numbers are already positioned. The objective is to fill in the remaining cells with numbers 1 to 9 so that each digit appears exactly once in every ",
-                                            ),
-                                            TextSpan(
-                                              text: "rows",
-                                              style: TextStyle(
-                                                color: Colors.yellow.shade700,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                            const TextSpan(text: ", "),
-                                            TextSpan(
-                                              text: "columns",
-                                              style: TextStyle(
-                                                color: Colors.green.shade700,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                            const TextSpan(text: " and "),
-                                            TextSpan(
-                                              text: "3x3 boxes",
-                                              style: TextStyle(
-                                                color: Colors.blue.shade700,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                            const TextSpan(
-                                              text:
-                                                  ". Examine the grid to identify the suitable numbers for each cell.",
-                                            ),
-                                          ]),
-                                    ),
-                            ),
+                                padding: GameSizes.getHorizontalPadding(0.045),
+                                child:
+                                    // index > 0 ?
+                                    Text(
+                                  "howToPlay$index".tr(),
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: GameSizes.getWidth(0.041),
+                                  ),
+                                )
+                                // :
+                                // RichText(
+                                //     textAlign: TextAlign.center,
+                                //     text: TextSpan(
+                                //         style: TextStyle(
+                                //           color: Colors.black,
+                                //           fontSize: GameSizes.getWidth(0.041),
+                                //         ),
+                                //         children: [
+                                //           const TextSpan(
+                                //             text:
+                                //                 "A Sudoku puzzle starts with a grid where certain numbers are already positioned. The objective is to fill in the remaining cells with numbers 1 to 9 so that each digit appears exactly once in every ",
+                                //           ),
+                                //           TextSpan(
+                                //             text: "rows",
+                                //             style: TextStyle(
+                                //               color: Colors.yellow.shade700,
+                                //               fontWeight: FontWeight.bold,
+                                //             ),
+                                //           ),
+                                //           const TextSpan(text: ", "),
+                                //           TextSpan(
+                                //             text: "columns",
+                                //             style: TextStyle(
+                                //               color: Colors.green.shade700,
+                                //               fontWeight: FontWeight.bold,
+                                //             ),
+                                //           ),
+                                //           const TextSpan(text: " and "),
+                                //           TextSpan(
+                                //             text: "3x3 boxes",
+                                //             style: TextStyle(
+                                //               color: Colors.blue.shade700,
+                                //               fontWeight: FontWeight.bold,
+                                //             ),
+                                //           ),
+                                //           const TextSpan(
+                                //             text:
+                                //                 ". Examine the grid to identify the suitable numbers for each cell.",
+                                //           ),
+                                // ]),
+                                // ),
+                                ),
                           ],
                         ),
                       );

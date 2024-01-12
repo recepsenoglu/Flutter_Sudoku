@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -33,7 +34,7 @@ class AboutGameScreen extends StatelessWidget {
           centerTitle: true,
           backgroundColor: GameColors.appBarBackground,
           title: Text(
-            'About Game',
+            "aboutGame".tr(),
             style: GameTextStyles.optionsScreenAppBarTitle
                 .copyWith(fontSize: GameSizes.getWidth(0.045)),
           ),
@@ -79,7 +80,7 @@ class AboutGameScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Sudoku - Puzzle Game',
+                          'appName'.tr(args: [' - ']),
                           style: TextStyle(
                             fontWeight: FontWeight.w800,
                             fontSize: GameSizes.getWidth(0.042),
@@ -87,7 +88,7 @@ class AboutGameScreen extends StatelessWidget {
                         ),
                         SizedBox(height: GameSizes.getWidth(0.025)),
                         Text(
-                          'Version 1.0.1',
+                          'version'.tr(args: ['1.0.2']),
                           style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: GameSizes.getWidth(0.038),
@@ -117,14 +118,14 @@ class AboutGameScreen extends StatelessWidget {
               OptionGroup(
                 options: [
                   OptionWidget(
-                    title: 'Privacy Policy',
+                    title: "privacyPolicy".tr(),
                     iconColor: Colors.red,
                     iconData: Icons.privacy_tip,
                     onTap: () => GameRoutes.goTo(GameRoutes.privacyPolicyScreen,
                         enableBack: true),
                   ),
                   OptionWidget(
-                    title: 'Terms of Use',
+                    title: "termsOfUse".tr(),
                     iconColor: Colors.orange,
                     iconData: Icons.rule,
                     onTap: () => GameRoutes.goTo(GameRoutes.termsOfUseScreen,
@@ -135,11 +136,16 @@ class AboutGameScreen extends StatelessWidget {
               OptionGroup(
                 options: [
                   OptionWidget(
-                    title: 'Visit Developer Website',
+                    title: "moreApps".tr(),
+                    iconColor: Colors.green,
+                    iconData: Icons.apps,
+                    onTap: () => launchPage('https://play.google.com/store/apps/dev?id=7235038440743748997'),
+                  ),
+                  OptionWidget(
+                    title: "developerWebsite".tr(),
                     iconColor: Colors.blue,
                     iconData: Icons.web_asset,
-                    onTap: () => launchPage(
-                        'https://recepsenoglu.com/'),
+                    onTap: () => launchPage('https://recepsenoglu.com/'),
                   ),
                 ],
               ),
