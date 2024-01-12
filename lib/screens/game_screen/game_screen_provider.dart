@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'dart:math';
 import 'dart:developer' as dev;
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 
@@ -285,7 +285,7 @@ class GameScreenProvider with ChangeNotifier {
   }
 
   void numberButtonOnTap(int number) {
-    if (!selectedCell.isGivenNumber || !selectedCell.isValueCorrect) {
+    if (!selectedCell.isGivenNumber && !selectedCell.isValueCorrect) {
       if (notesMode) {
         _enterNote(number);
       } else {
@@ -295,9 +295,7 @@ class GameScreenProvider with ChangeNotifier {
       _updateSelectedCell();
       notifyListeners();
     } else {
-      debugPrint('Number is given');
-      // selectedCell.isGivenNumber = false;
-      // notifyListeners();
+      // dev.log('Number is given');
     }
   }
 
