@@ -19,8 +19,8 @@ class CustomTextButton extends StatelessWidget {
     return TextButton(
       onPressed: onPressed ?? () => GameRoutes.back(),
       style: ButtonStyle(
-        overlayColor: MaterialStateProperty.all(Colors.transparent),
-        foregroundColor: MaterialStateProperty.all(Colors.white),
+        overlayColor: WidgetStateProperty.all(Colors.transparent),
+        foregroundColor: WidgetStateProperty.all(Colors.white),
       ),
       child: Text(
         text,
